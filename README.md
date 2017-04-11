@@ -5,7 +5,7 @@ Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produ�
 </p>
 <hr>
 
-Olá, amig@! Primeiro, gostaria de dizer muito obrigado pelo seu interesse com o projeto **Libreflix**. Esse é o nosso espaço de discussão e desenvolvimento e ter você por aqui é um prazer. Você pode propor ideias e/ou iniciar qualquer debate clicando [aqui](https://github.com/guilmour/libreflix/issues). E claro, forkear o projeto e mandar um *Pull Request*.
+Olá, amigx! Primeiro, gostaria de dizer muito obrigado pelo seu interesse com o projeto **Libreflix**. Esse é o nosso espaço de discussão e desenvolvimento e ter você por aqui é um prazer. Você pode propor ideias e/ou iniciar qualquer debate clicando [aqui](https://github.com/guilmour/libreflix/issues). E claro, forkear o projeto e mandar um *Pull Request*.
 
 
 
