@@ -4,6 +4,7 @@ _vue/
 _docs/
 _media/
 node_modules/
+public/media/
 
 .env
 
