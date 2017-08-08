@@ -1,0 +1,49 @@
+{% set title = "Criar Conta" %}
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="login-container container">
+  <div class="panel">
+    <div class="panel-body">
+      {% if messages.error %}
+      <div role="alert" class="alert alert-danger">
+        {% for error in messages.error %}
+        <div>{{ error.msg }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <form method="POST">
+        <legend>Criar uma conta</legend>
+        <div class="form-group">
+          <label for="name">Nome</label>
+          <input type="text" name="name" id="name" placeholder="Nome" class="form-control" autofocus>
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input type="email" name="email" id="email" placeholder="E-mail" class="form-control">
+        </div>
+        <!-- <div class="form-group">
+          <label for="username">Username</label>
+          <input type="username" name="username" id="username" placeholder="Username" class="form-control">
+        </div> -->
+        <div class="form-group">
+          <label for="password">Senha</label>
+          <input type="password" name="password" id="password" placeholder="Senha" class="form-control">
+        </div>
+        <div class="form-group">
+          <small class="text-muted">Criando uma conta, você concorda com os <a href="/">Termos de Uso</a>.</small>
+        </div>
+        <button type="submit" class="btn btn-success">Criar uma conta</button>
+      </form>
+      <div class="hr-title"><span>ou</span></div>
+      <div class="btn-toolbar text-center">
+        <a href="/auth/facebook" class="btn btn-facebook">Criar conta com Facebook</a>
+        <a href="/auth/twitter" class="btn btn-twitter">Criar conta com Twitter</a>
+      </div>
+    </div>
+  </div>
+  <p class="text-center">
+    Já possui uma conta? <a href="/login"><strong>Entre agora</strong></a>
+  </p>
+</div>
+{% endblock %}

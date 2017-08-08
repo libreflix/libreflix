@@ -1,0 +1,102 @@
+<!--
+
+  _       _  _                  __  _  _
+ | |     (_)| |                / _|| |(_)
+ | |      _ | |__   _ __  ___ | |_ | | _ __  __
+ | |     | || '_ \ | '__|/ _ \|  _|| || |\ \/ /
+ | |____ | || |_) || |  |  __/| |  | || | >  <
+ |______||_||_.__/ |_|   \___||_|  |_||_|/_/\_\
+
+ Hey, friend. Check out the source-code at notabug.org/libreflix
+
+ -->
+
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title> {{ title }} | Libreflix </title>
+  <link rel="icon" type="image/png" href="/libre-icon.png" />
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/normalize.css">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/vendor/bootstrap.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.ui.min.js">
+
+
+  <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
+  <script src="/js/vendor/jquery-1.11.3.min.js"></script>
+  <script src="/js/main.js"></script>
+  <script src="/js/vendor/bootstrap.min.js">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js" charset="utf-8"></script>
+
+  <meta property="og:image" content="{{ site.baseurl }}{{ page.fb-share }}" />
+  <meta property="og:type" content="blog" />
+  <meta property="og:title" content="Assista {{page.title}} na Libreflix" />
+  <meta property="og:url" content="{{site.fullurl}}" />
+  <meta property="og:site_name" content="{{page.title}}" />
+
+  <!-- twitter metatags-->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{page.title}}">
+  <meta name="twitter:description" content="{{page.title}}">
+  <meta name="twitter:image" content="{{ site.baseurl }}{{ page.fb-share }}">
+
+
+  <script type="text/javascript" charset="utf-8">
+    // Creating custom :external selector
+    $.expr[':'].external = function(obj) {
+      return !obj.href.match(/^mailto\:/) &&
+        (obj.hostname != location.hostname);
+    };
+
+    $(function() {
+      // Add 'external' CSS class to all external links
+      $('a:external').addClass('external');
+
+      // turn target into target=_blank for elements w external class
+      $(".external").attr('target', '_blank');
+
+    });
+
+    $(document).ready(function() {
+      $('.container').fadeIn();
+    });
+  </script>
+
+  <link rel="stylesheet" type="text/css" href="libre.css">
+  <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
+  </script>
+</head>
+
+<body>
+  <div class="container">
+  {% include "partials/navbar.html" %}
+  {% block body %}{% endblock %}
+
+    <footer>
+      <p align="center" style="font-size: 11pt; margin-top:110px;">
+        <!--<a href="{{ site.baseurl }}/" style="border-bottom: 0px solid;"><img src="{{ site.baseurl }}/assets/img/libreflix.png" width="118px" style="border-bottom: 0px solid;"></a><br><br>-->
+        Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.
+        <br><br>
+        <a href="">Sobre</a> &middot; <a href="">FAQ</a> &middot; <a href="/privacidade">Privacidade</a> &middot; <a href="">Quem faz</a> &middot; <a href="">Código-Fonte</a>
+        <br>
+          Feito com &hearts; por <a href="http://twitter.com/guilmour" target="_blank">@guilmour</a>.
+
+      </p>
+
+    </footer>
+  </div>
+
+  </div>
+  <br>
+</body>
+
+</html>

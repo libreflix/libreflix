@@ -1,0 +1,41 @@
+
+.image-wrap {
+  position: relative;
+  min-height: 600px;
+  overflow: hidden;
+}
+
+.header-img {
+  position: absolute;
+  width: 100%;
+  min-height: 600px;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.title-etc {
+  margin: 0 auto;
+  margin-top: 20%;
+  max-width: 750px;
+  color: #6D6A6A;
+}
+.focus-post-date{
+  font-style: italic;
+}
+body {
+  font-size: 1.2em;
+  color: rgba(0, 0, 0, 0.8);
+  font-family: Georgia, Cambria, 'Times New Roman', Times, serif;
+  line-height: 1.8em;
+}
+body h1, body h2, body h3, body h4 {
+  font-family: 'Lucida Grande', 'Lucida Sans Unicode', 'Lucida Sans', Geneva, Verdana, sans-serif;
+  letter-spacing: -0.04em;
+  line-height: 1.15em;
+}
+
+.menu {
+  background-color: #fff;
+  font-family: helvetica, sans-serif;
+  line-height: 1.5;
+	font-size: 17px;
+  margin: 0 auto;
+}

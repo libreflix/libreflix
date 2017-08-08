@@ -1,0 +1,356 @@
+{% extends "layout.html" %} {% block body %}
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+</div>
+{% if layout == 'filme' %}
+<script>
+  var bgzao = "/img/obsabsorver.jpg";
+  var lb = {};
+  lb.videos = [{
+    title: '{{ title }}',
+    subtitle: '{{ subtitle }}',
+    placeholder: '{{ imgbg }}',
+    video: '{{ video }}',
+    thumb480: '{{ thumb480 }}',
+    thumb130: '{{ thumb130 }}',
+    runtime: '{{ runtime }}'
+  }];
+</script>
+
+<style media="screen" type="text/css">
+  #pl-final-screen {
+    display: none;
+    background: no-repeat center / cover url({{ imgbg }});
+    z-index: 1;
+  }
+</style>
+
+
+</head>
+<libreplayer>
+
+  <body onload="Q()" id="go" class="libreplayer">
+
+    <div id="pl-player" class="stretch loading">
+      <div id="pl-video-wrap" class="stretch">
+        <div id="pl-video" class="stretch"></div>
+
+        <div id="pl-placeholder" class="stretch"></div>
+      </div>
+
+      <div id="pl-player-overlay" class="stretch">
+        <img class="pl-loading" src="/img/loading.png">
+
+        <div id="pl-player-title">
+          <h1 class="titlePlayer"></h1>
+          <h3 class="titlePlayer"></h3>
+        </div>
+
+
+        <button type="button" id="exit-button" class="exit-button" onClick="javascript: history.go(-1)"><img src="/img/ico-exit.png"></button>
+
+        <div id="pl-player-ctrl-wrap">
+          <div id="pl-playback-progress-wrap">
+            <div id="pl-playback-progress">
+              <div id="pl-playback-loaded"></div>
+              <div id="pl-playback-position">
+                <div id="pl-playback-position-bullet"></div>
+              </div>
+            </div>
+            <div id="pl-playback-time">
+              00:00
+            </div>
+          </div>
+          <div id="pl-player-ctrl">
+
+
+            <div id="pl-playback-ctrls-wrap" class="play">
+              <button type="button" id="pl-playback-play" class="pl-button"><img src="/img/ico-play.png"></button>
+              <button type="button" id="pl-playback-pause" class="pl-button"><img src="/img/ico-pause.png"></button>
+              <div class="sep"></div>
+            </div>
+            <div id="pl-audio-ctrls-wrap" class="volume">
+              <button type="button" id="pl-audio-volume" class="pl-button"><img src="/img/ico-volume.png"></button>
+              <button type="button" id="pl-audio-mute" class="pl-button"><img src="/img/ico-mute.png"></button>
+              <div class="sep"></div>
+              <div id="pl-volume-wrap">
+                <div>
+                  <div id="pl-volume">
+                    <div id="pl-volume-bar">
+                      <div id="pl-volume-bar-bullet"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div id="pl-info-wrap">
+              <span id="pl-info-series"></span>
+              <span id="pl-info-episode"></span>
+              <div class="sep"></div>
+            </div>
+            <div id="pl-navigation-ctrls-wrap">
+
+              <!--<button type="button" id="pl-next" class="pl-button"><img src="/img/ico-next.png"></button>-->
+
+
+              <div id="pl-next-popup">
+                <div class="inner">
+                  <h4>Próximo episódio</h4>
+                  <div id="pl-next-popup-info">
+                    <div>
+                      <div id="pl-next-popup-image">
+                        <img src="/img/ico-play-next.png">
+                      </div>
+                    </div>
+                    <div>
+                      <h2 id="pl-next-popup-subtitle"></h2>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <div id="pl-fs-wrap">
+              <button type="button" id="pl-fs" class="pl-button"><img src="/img/ico-fullscreen.png"></button>
+              <button type="button" id="pl-fs-ex" class="pl-button"><img src="/img/ico-fullscreen-exit.png"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div id="pl-up-next" class="stretch">
+        <div>
+          <div id="pl-up-next-bg" class="stretch"></div>
+          <div id="pl-up-next-info">
+            <div id="pl-up-next-title">
+              <h1></h1>
+              <h3></h3>
+              <p>01/04/2017 L <span id="pl-runtime"></span>min</p>
+            </div>
+
+            <div id="pl-up-next-timer-wrap">
+              <span>O próximo episódio começa em </span>
+              <span id="pl-up-next-timer">15 segundos</span>
+            </div>
+            <div id="pl-up-next-go">
+              <div id="pl-up-next-image" class="stretch">
+                <img src="/img/ico-play-next.png">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="pl-watch-again" class="stretch"></div>
+      </div>
+
+      <div id="pl-final-screen" class="stretch">
+
+
+        <div id="pl-final-watch-again" class="stretch">
+          <div class="pl-classifique">
+            <span>Classifique:</span>
+            <img src="/img/stars.png">
+          </div>
+        </div>
+        <div id="pl-segunda-temporada">
+          <a href="/" style="border-bottom: 0px solid;"><img src="/img/ico-exit.png" title="Voltar"></a>
+        </div>
+      </div>
+    </div>
+
+    <div id="pl-mobile">
+      <img class="pl-loading" src="/img/loading.png" style="opacity: 1">
+    </div>
+  </body>
+
+  <p align="center">
+    <img src="/img/cargando.svg">
+  </p>
+  <script type="text/javascript" src="/js/yt.js"></script>
+  {% if layout == 'filme' %}
+  <script type="text/javascript" src="/js/script.js"></script>
+  {% endif %} {% if layout == 'serie' %}
+  <script type="text/javascript" src="/js/script2.js"></script>
+  {% endif %}
+
+
+
+  </html>
+</libreplayer>
+{% endif %}
+
+<!--  SERIES -->
+
+{% if layout == 'serie' %}
+<script>
+  var lb = {};
+  lb.videos = [{% for ep in eps %}
+    {
+      title: '{{ title }}',
+      subtitle: '{{ ep.subtitle }}',
+      placeholder: '{{ imgbg }}',
+      video: '{{ ep.video }}',
+      thumb480: '{{ ep.thumb480 }}',
+      thumb130: '{{ ep.thumb130 }}',
+      runtime: '0'
+    }
+    {% if ep.last == true %}
+    {% else %},
+    {% endif %}
+
+    {% endfor %}
+  ];
+  lb.player.prototype.hookListeners = function() {
+    this.elControlNext.addEventListener('click', this.onNextClick.bind(this));
+    this.elControlsNav.addEventListener('mouseenter', this.onNextHover.bind(this));
+    this.elControlsNav.addEventListener('mouseleave', this.onNextLeave.bind(this));
+  }
+</script>
+
+<style media="screen" type="text/css">
+  #pl-final-screen {
+    display: none;
+    background: no-repeat center / cover url({{ imgbg }});
+    z-index: 1;
+  }
+</style>
+
+</head>
+
+<body onload="Q()" id="go">
+
+  <div id="pl-player" class="stretch loading">
+    <div id="pl-video-wrap" class="stretch">
+      <div id="pl-video" class="stretch"></div>
+
+      <div id="pl-placeholder" class="stretch"></div>
+    </div>
+
+    <div id="pl-player-overlay" class="stretch">
+      <img class="pl-loading" src="/img/loading.png">
+
+      <div id="pl-player-title">
+        <h1 class="titlePlayer"></h1>
+        <h3 class="titlePlayer"></h3>
+      </div>
+
+      <button type="button" id="exit-button" class="exit-button" onClick="javascript: history.go(-1)"><img src="/img/ico-exit.png"></button>
+
+      <div id="pl-player-ctrl-wrap">
+        <div id="pl-playback-progress-wrap">
+          <div id="pl-playback-progress">
+            <div id="pl-playback-loaded"></div>
+            <div id="pl-playback-position">
+              <div id="pl-playback-position-bullet"></div>
+            </div>
+          </div>
+          <div id="pl-playback-time">
+            00:00
+          </div>
+        </div>
+        <div id="pl-player-ctrl">
+          <div id="pl-playback-ctrls-wrap" class="play">
+            <button type="button" id="pl-playback-play" class="pl-button"><img src="/img/ico-play.png"></button>
+            <button type="button" id="pl-playback-pause" class="pl-button"><img src="/img/ico-pause.png"></button>
+            <div class="sep"></div>
+          </div>
+          <div id="pl-audio-ctrls-wrap" class="volume">
+            <button type="button" id="pl-audio-volume" class="pl-button"><img src="/img/ico-volume.png"></button>
+            <button type="button" id="pl-audio-mute" class="pl-button"><img src="/img/ico-mute.png"></button>
+            <div class="sep"></div>
+            <div id="pl-volume-wrap">
+              <div>
+                <div id="pl-volume">
+                  <div id="pl-volume-bar">
+                    <div id="pl-volume-bar-bullet"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="pl-info-wrap">
+            <span id="pl-info-series"></span>
+            <span id="pl-info-episode"></span>
+            <div class="sep"></div>
+          </div>
+          <div id="pl-navigation-ctrls-wrap">
+            <button type="button" id="pl-next" class="pl-button"><img src="/img/ico-next.png"></button>
+
+            <div id="pl-next-popup">
+              <div class="inner">
+                <h4>Próximo episódio</h4>
+                <div id="pl-next-popup-info">
+                  <div>
+                    <div id="pl-next-popup-image">
+                      <img src="/img/ico-play-next.png">
+                    </div>
+                  </div>
+                  <div>
+                    <h2 id="pl-next-popup-subtitle"></h2>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="pl-fs-wrap">
+            <button type="button" id="pl-fs" class="pl-button"><img src="/img/ico-fullscreen.png"></button>
+            <button type="button" id="pl-fs-ex" class="pl-button"><img src="/img/ico-fullscreen-exit.png"></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="pl-up-next" class="stretch">
+      <div>
+        <div id="pl-up-next-bg" class="stretch"></div>
+        <div id="pl-up-next-info">
+          <div id="pl-up-next-title">
+
+            <p><span id="pl-runtime"></span></p>
+          </div>
+
+          <div id="pl-up-next-timer-wrap">
+            <span>O próximo episódio começa em </span>
+            <span id="pl-up-next-timer"> 15 segundos</span>
+          </div>
+          <div id="pl-up-next-go">
+            <div id="pl-up-next-image" class="stretch">
+              <img src="/img/ico-play-next.png">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="pl-watch-again" class="stretch"></div>
+    </div>
+
+    <div id="pl-final-screen" class="stretch">
+
+
+      <div id="pl-final-watch-again" class="stretch">
+        <div class="pl-classifique">
+          <span>Classifique:</span>
+          <img src="/img/stars.png">
+        </div>
+      </div>
+      <div id="pl-segunda-temporada">
+        <a href="/" style="border-bottom: 0px solid;"><img src="/img/ico-exit.png" title="Voltar"></a>
+      </div>
+    </div>
+  </div>
+
+  <div id="pl-mobile">
+    <img class="pl-loading" src="/img/loading.png" style="opacity: 1">
+  </div>
+</body>
+<p align="center">
+  <img src="/img/cargando.svg">
+</p>
+<script type="text/javascript" src="/js/script2.js"></script>
+<script type="text/javascript" src="/js/yt.js"></script>
+
+</html>
+{% endif %} {% endblock %}

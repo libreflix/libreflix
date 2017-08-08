@@ -1,0 +1,38 @@
+{% set title = "Entrar" %}
+{% extends 'layout.html' %}
+{% block body %}
+<div class="login-container container">
+  <div class="panel">
+    <div class="panel-body">
+      {% if messages.error %}
+      <div role="alert" class="alert alert-danger">
+        {% for error in messages.error %}
+        <div>{{ error.msg }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <form method="POST">
+        <legend>Entrar na sua conta</legend>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" placeholder="Email" class="form-control" autofocus>
+        </div>
+        <div class="form-group">
+          <label for="password">Senha</label>
+          <input type="password" name="password" id="password" placeholder="Password" class="form-control">
+        </div>
+        <div class="form-group"><a href="/forgot"><strong>Esqueceu sua senha?</strong></a></div>
+        <button type="submit" class="btn btn-success">Entrar</button>
+      </form>
+      <div class="hr-title"><span>ou</span></div>
+      <div class="btn-toolbar text-center">
+        <a href="/auth/facebook" class="btn btn-facebook">Entre com o Facebook</a>
+        <a href="/auth/twitter" class="btn btn-twitter">Entre com o Twitter</a>
+      </div>
+    </div>
+  </div>
+  <p class="text-center">
+    Ainda não tem uma conta? <a href="/signup"><strong>Registrar</strong></a>
+  </p>
+</div>
+{% endblock %}

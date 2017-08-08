@@ -1,4 +1,10 @@
 _jekyll/
 _mean/
 _vue/
+_docs/
+_media/
+node_modules/
 
+.env
+
+notes.md

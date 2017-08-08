@@ -1,0 +1,100 @@
+{% if title == "Início" %}
+  {% set title = "Início" %}
+{% elseif title == "Tag" %}
+  {% set title = "Tag: " + tag %}
+{% endif %}
+
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container-fluid">
+  {% if messages.success %}
+  <div role="alert" class="alert alert-success">
+    {% for success in messages.success %}
+    <div>{{ success.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.error %}
+  <div role="alert" class="alert alert-danger">
+    {% for error in messages.error %}
+    <div>{{ error.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.info %}
+  <div role="alert" class="alert alert-info">
+    {% for info in messages.info %}
+    <div>{{ info.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+</div>
+
+<section class="work">
+
+  <h2>
+    {% if title == "Início" %}
+      Adicionados recentemente
+    {% elseif tag %}
+      Tag: {{tag}}
+    {% endif %}
+  </h2>
+  {% if watch == "" %}
+    <p><br>Nada encontrado com a tag: {{ tag }}.</p>
+  {% endif %}
+
+  <div class="grid">
+    <p> {{ alltags }} </p>
+    <ul class="entries">
+      {% for w in watch %}
+      {% if w.featured == true %}
+
+      <li class="col-md-3">
+        <a role="button" data-toggle="modal" style="border-bottom: 0px solid;"  data-toggle="modal" data-target="#assistir{{ loop.index }}">
+          <img src="{{ w.thumb480 }}" title="{{ w.title }}{% if w.subtitle %} - {{ w.subtitle }}{% endif %} ({{ w.year }})" class="fadeCatalogo" onload="this.style.opacity='1'"/>
+          <!--<h3>{{ w.title }}</h3>-->
+        </a>
+      </li>
+      <div class="modal" id="assistir{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{ loop.index }}">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times-circle exitTimes"></i></button>
+              <a href="/assistir/{{ w.permalink }}"><button type="button" class="splash-play"><img src="/img/play.png" alt="Play"></button></a>
+              <!-- <h4 class="modal-title" id="myModalLabel{{ loop.index }}">{{ w.title }} {% if w.subtitle %} - {{ w.subtitle }} {% else %} {% endif %}</h4> -->
+              <a href="/assistir/{{ w.permalink }}"><div class="splash" style="background-image: url('{{ w.imgbg }}');">
+              </div></a>
+            </div>
+            <div class="modal-body">
+
+              <h3> {{ w.title }}  </h3>
+              <h4>
+                {{ w.subtitle }}
+                {% if w.subtitle %} &middot; {%endif%} {{w.year}}
+                {% if w.classind  %} &middot; <span class="classind">{{ w.classind }}</span>{% endif %}
+                {% if w.duration  %} &middot; {{ w.duration }} {% endif %}
+              </h4>
+              <div class="sinopse">{{ w.sinopse }}</div>
+              <h4> Tags: {{ w.tags }} </h4>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Fechar <i class="fa fa-times-circle"></i></button>
+              <a href="/assistir/{{ w.permalink }}"><button type="button" class="btn btn-success">Assistir <i class="fa fa-play-circle"></i></button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </ul>
+
+  <div class="centerBlock">
+    <!--<a class="btn" href="#">Ver todo o conteúdo</a>-->
+  </div>
+
+</section>
+
+
+{% endblock %}

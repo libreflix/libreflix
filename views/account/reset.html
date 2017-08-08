@@ -1,0 +1,39 @@
+{% set title = "Redefinir Senha" %}
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container">
+  <div class="panel">
+    <div class="panel-body">
+      {% if messages.success %}
+      <div role="alert" class="alert alert-success">
+        {% for success in messages.success %}
+        <div>{{ success.msg }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if messages.error %}
+      <div role="alert" class="alert alert-danger">
+        {% for error in messages.error %}
+        <div>{{ error.msg }}</div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      <form method="POST">
+        <legend>Reset Password</legend>
+        <div class="form-group">
+          <label for="password">Nova Senha</label>
+          <input type="password" name="password" id="password" placeholder="New password" class="form-control" autofocus>
+        </div>
+        <div class="form-group">
+          <label for="confirm">Confirmar Senha</label>
+          <input type="password" name="confirm" id="confirm" placeholder="Confirm password" class="form-control">
+        </div>
+        <div class="form-group">
+          <button type="submit" class="btn btn-success">Redefinir Senha</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}

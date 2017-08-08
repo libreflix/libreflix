@@ -1,30 +1,6 @@
-$(document).ready(function() {
 
 
-    var idleMouseTimer;
-    var forceMouseHide = false;
-
-    $("body").css('cursor', 'none');
-
-    $("#wrapper").mousemove(function(ev) {
-            if(!forceMouseHide) {
-                    $("body").css('cursor', '');
-
-                    clearTimeout(idleMouseTimer);
-
-                    idleMouseTimer = setTimeout(function() {
-                            $("body").css('cursor', 'none');
-
-                            forceMouseHide = true;
-                            setTimeout(function() {
-                                    forceMouseHide = false;
-                            }, 200);
-                    }, 1000);
-            }
-    });
-});
-
-nf.player = function nfPlayer() {
+lb.player = function lbPlayer() {
   var self = this;
 
   this.upNextTimer;
@@ -36,66 +12,66 @@ nf.player = function nfPlayer() {
   this.videoID;
   this.placeholder;
 
-  this.elPlayer = document.getElementById('nf-player');
-  this.elVideo = document.getElementById('nf-video');
-  this.elTitle = document.getElementById('nf-player-title').getElementsByTagName('h1')[0];
-  this.elSubtitle = document.getElementById('nf-player-title').getElementsByTagName('h3')[0];
-  this.elPlaceholder = document.getElementById('nf-placeholder');
-  this.elSeek = document.getElementById('nf-playback-progress');
-  this.elTime = document.getElementById('nf-playback-time');
-  this.elRuntime = document.getElementById('nf-runtime');
-  this.elLoaded = document.getElementById('nf-playback-loaded');
-  this.elProgressBarWrap = document.getElementById('nf-playback-progress-wrap');
-  this.elProgressPosition = document.getElementById('nf-playback-position');
-  this.elInfoTitle = document.getElementById('nf-info-series');
-  this.elInfoSubtitle = document.getElementById('nf-info-episode');
-  this.elPopup = document.getElementById('nf-next-popup');
-  this.elPopupImage = document.getElementById('nf-next-popup-image');
-  this.elPopupSubtitle = document.getElementById('nf-next-popup-subtitle');
-  this.elUpNext = document.getElementById('nf-up-next');
-  this.elUpNextWatchAgain = document.getElementById('nf-watch-again');
-  this.elUpNextBg = document.getElementById('nf-up-next-bg');
-  this.elUpNextImage = document.getElementById('nf-up-next-image');
-  this.elUpNextTitle = document.getElementById('nf-up-next-title').getElementsByTagName('h1')[0];
-  this.elUpNextSubtitle = document.getElementById('nf-up-next-title').getElementsByTagName('h3')[0];
-  this.elUpNextCounter = document.getElementById('nf-up-next-timer');
-  this.elUpNextGo = document.getElementById('nf-up-next-go');
-  this.elControls = document.getElementById('nf-player-ctrl-wrap');
-  this.elControlsPlayback = document.getElementById('nf-playback-ctrls-wrap');
-  this.elControlsAudio = document.getElementById('nf-audio-ctrls-wrap');
-  this.elControlPlay = document.getElementById('nf-playback-play');
-  this.elControlPause = document.getElementById('nf-playback-pause');
-  this.elControlVolume = document.getElementById('nf-audio-volume');
-  this.elControlMute = document.getElementById('nf-audio-mute');
-  this.elControlsNav = document.getElementById('nf-navigation-ctrls-wrap');
-  this.elControlNext = document.getElementById('nf-next');
-  this.finalScreen = document.getElementById('nf-final-screen');
-  this.finalWatchAgain = document.getElementById('nf-final-watch-again');
-  this.elVolumeWrap = document.getElementById('nf-volume-wrap');
-  this.elVolume = document.getElementById('nf-volume');
-  this.elVolumeBar = document.getElementById('nf-volume-bar');
+  this.elPlayer = document.getElementById('pl-player');
+  this.elVideo = document.getElementById('pl-video');
+  this.elTitle = document.getElementById('pl-player-title').getElementsByTagName('h1')[0];
+  this.elSubtitle = document.getElementById('pl-player-title').getElementsByTagName('h3')[0];
+  this.elPlaceholder = document.getElementById('pl-placeholder');
+  this.elSeek = document.getElementById('pl-playback-progress');
+  this.elTime = document.getElementById('pl-playback-time');
+  this.elRuntime = document.getElementById('pl-runtime');
+  this.elLoaded = document.getElementById('pl-playback-loaded');
+  this.elProgressBarWrap = document.getElementById('pl-playback-progress-wrap');
+  this.elProgressPosition = document.getElementById('pl-playback-position');
+  this.elInfoTitle = document.getElementById('pl-info-series');
+  this.elInfoSubtitle = document.getElementById('pl-info-episode');
+  //this.elPopup = document.getElementById('pl-next-popup');
+  // this.elPopupImage = document.getElementById('pl-next-popup-image');
+  // this.elPopupSubtitle = document.getElementById('pl-next-popup-subtitle');
+  this.elUpNext = document.getElementById('pl-up-next');
+  this.elUpNextWatchAgain = document.getElementById('pl-watch-again');
+  this.elUpNextBg = document.getElementById('pl-up-next-bg');
+  this.elUpNextImage = document.getElementById('pl-up-next-image');
+  this.elUpNextTitle = document.getElementById('pl-up-next-title').getElementsByTagName('h1')[0];
+  this.elUpNextSubtitle = document.getElementById('pl-up-next-title').getElementsByTagName('h3')[0];
+  this.elUpNextCounter = document.getElementById('pl-up-next-timer');
+  this.elUpNextGo = document.getElementById('pl-up-next-go');
+  this.elControls = document.getElementById('pl-player-ctrl-wrap');
+  this.elControlsPlayback = document.getElementById('pl-playback-ctrls-wrap');
+  this.elControlsAudio = document.getElementById('pl-audio-ctrls-wrap');
+  this.elControlPlay = document.getElementById('pl-playback-play');
+  this.elControlPause = document.getElementById('pl-playback-pause');
+  this.elControlVolume = document.getElementById('pl-audio-volume');
+  this.elControlMute = document.getElementById('pl-audio-mute');
+  this.elControlsNav = document.getElementById('pl-navigation-ctrls-wrap');
+  this.elControlNext = document.getElementById('pl-next');
+  this.finalScreen = document.getElementById('pl-final-screen');
+  this.finalWatchAgain = document.getElementById('pl-final-watch-again');
+  this.elVolumeWrap = document.getElementById('pl-volume-wrap');
+  this.elVolume = document.getElementById('pl-volume');
+  this.elVolumeBar = document.getElementById('pl-volume-bar');
 
   this.hookListeners();
 
   this.setCurrent(0);
 };
 
-nf.player.prototype.setTitle = function (value) {
+lb.player.prototype.setTitle = function (value) {
   this.title = value;
   this.elTitle.innerHTML = this.elInfoTitle.innerHTML = value;
 }
 
-nf.player.prototype.setSubtitle = function (value) {
+lb.player.prototype.setSubtitle = function (value) {
   this.subtitle = value;
   this.elSubtitle.innerHTML = this.elInfoSubtitle.innerHTML = value;
 }
 
-nf.player.prototype.setPlaceholder = function (value) {
+lb.player.prototype.setPlaceholder = function (value) {
   this.placeholder = value;
   this.elPlaceholder.style.backgroundImage = 'url("' + value + '")';
 }
 
-nf.player.prototype.setVideo = function (value) {
+lb.player.prototype.setVideo = function (value) {
   var self = this;
 
   this.videoID = value;
@@ -116,7 +92,8 @@ nf.player.prototype.setVideo = function (value) {
         rel: 0,
         start: 0,
         showinfo: 0,
-        iv_load_policy: 3
+        iv_load_policy: 3,
+        cc_load_policy: 1
       },
       events: {
         'onReady': self.onPlayerReady.bind(this),
@@ -126,14 +103,14 @@ nf.player.prototype.setVideo = function (value) {
   }
 }
 
-nf.player.prototype.changeInfo = function (title, subtitle, placeholder, video) {
+lb.player.prototype.changeInfo = function (title, subtitle, placeholder, video) {
   this.setTitle(title);
   this.setSubtitle(subtitle);
   this.setPlaceholder(placeholder);
   this.setVideo(video);
 }
 
-nf.player.prototype.showTime = function () {
+lb.player.prototype.showTime = function () {
   setInterval((function() {
     var remaining = this.video.getDuration() - this.video.getCurrentTime(),
         s = Math.floor(remaining) % 60,
@@ -144,13 +121,13 @@ nf.player.prototype.showTime = function () {
   }).bind(this), 100);
 }
 
-nf.player.prototype.showLoaded = function () {
+lb.player.prototype.showLoaded = function () {
   setInterval((function() {
     this.elLoaded.style.width = this.video.getVideoLoadedFraction() * 100 + '%';
   }).bind(this), 100);
 }
 
-nf.player.prototype.showProgressPosition = function () {
+lb.player.prototype.showProgressPosition = function () {
   setInterval((function() {
     if(this.isSeeking) return;
 
@@ -158,46 +135,46 @@ nf.player.prototype.showProgressPosition = function () {
   }).bind(this), 100);
 }
 
-nf.player.prototype.setCurrent = function(current) {
+lb.player.prototype.setCurrent = function(current) {
   clearInterval(this.upNextTimer);
   this.elPlayer.classList.add('loading');
 
   this.current = current;
 
   this.changeInfo(
-      nf.videos[current].title,
-      nf.videos[current].subtitle,
-      nf.videos[current].placeholder,
-      nf.videos[current].video);
+      lb.videos[current].title,
+      lb.videos[current].subtitle,
+      lb.videos[current].placeholder,
+      lb.videos[current].video);
 
   this.elUpNext.style.display = 'none';
 
   this.finalWatchAgain.style.backgroundImage =
-  this.elUpNextWatchAgain.style.backgroundImage = 'url("' + nf.videos[current].thumb480 + '")';
+  this.elUpNextWatchAgain.style.backgroundImage = 'url("' + lb.videos[current].thumb480 + '")';
   this.setNext();
 
-  if(this.current === nf.videos.length - 1) {
-    this.finalWatchAgain.style.backgroundImage = 'url("' + nf.videos[0].thumb480 + '")';
+  if(this.current === lb.videos.length - 1) {
+    this.finalWatchAgain.style.backgroundImage = 'url("' + lb.videos[0].thumb480 + '")';
   }
 }
 
-nf.player.prototype.setNext = function () {
-  if(this.current === nf.videos.length - 1){
-    this.elPopupImage.style.backgroundImage = 'url("imgs/obsabsorver.jpg")';
-    this.elPopupSubtitle.innerHTML = "Outros títulos";
-    return;
-  }
+// lb.player.prototype.setNext = function () {
+//   if(this.current === lb.videos.length - 1){
+//     this.elPopupImage.style.backgroundImage = 'url("/img/obsabsorver.jpg")';
+//     this.elPopupSubtitle.innerHTML = "Outros títulos";
+//     return;
+//   }
+//
+//   this.elUpNextBg.style.backgroundImage = 'url("' + lb.videos[this.current + 1].placeholder + '")';
+//   this.elUpNextImage.style.backgroundImage = 'url("' + lb.videos[this.current + 1].thumb480 + '")';
+//   this.elPopupImage.style.backgroundImage = 'url("' + lb.videos[this.current + 1].thumb130 + '")';
+//
+//   this.elPopupSubtitle.innerHTML = this.elUpNextSubtitle.innerHTML = lb.videos[this.current + 1].subtitle;
+//   this.elUpNextTitle.innerHTML = lb.videos[this.current + 1].title;
+//   this.elRuntime.innerHTML = lb.videos[this.current + 1].runtime;
+// }
 
-  this.elUpNextBg.style.backgroundImage = 'url("' + nf.videos[this.current + 1].placeholder + '")';
-  this.elUpNextImage.style.backgroundImage = 'url("' + nf.videos[this.current + 1].thumb480 + '")';
-  this.elPopupImage.style.backgroundImage = 'url("' + nf.videos[this.current + 1].thumb130 + '")';
-
-  this.elPopupSubtitle.innerHTML = this.elUpNextSubtitle.innerHTML = nf.videos[this.current + 1].subtitle;
-  this.elUpNextTitle.innerHTML = nf.videos[this.current + 1].title;
-  this.elRuntime.innerHTML = nf.videos[this.current + 1].runtime;
-}
-
-nf.player.prototype.hookListeners = function () {
+lb.player.prototype.hookListeners = function () {
   this.elPlayer.addEventListener('contextmenu', function(e){ e.preventDefault() });
 
   this.elControlPlay.addEventListener('click', this.onPlayClick.bind(this));
@@ -206,7 +183,7 @@ nf.player.prototype.hookListeners = function () {
   this.elControlVolume.addEventListener('click', this.onVolumeClick.bind(this));
   this.elControlMute.addEventListener('click', this.onMuteClick.bind(this));
 
-  this.elPopup.getElementsByClassName('inner')[0].addEventListener('click', this.onNextClick.bind(this));
+  // this.elPopup.getElementsByClassName('inner')[0].addEventListener('click', this.onNextClick.bind(this));
   //this.elControlNext.addEventListener('click', this.onNextClick.bind(this));
   this.elUpNextGo.addEventListener('click', this.onNextClick.bind(this));
   this.elUpNextWatchAgain.addEventListener('click', this.onWatchAgainClick.bind(this));
@@ -215,8 +192,8 @@ nf.player.prototype.hookListeners = function () {
   this.elControlsAudio.addEventListener('mouseenter', this.onVolumeControlsHover.bind(this));
   this.elControlsAudio.addEventListener('mouseleave', this.onVolumeControlsLeave.bind(this));
 
-  //this.elControlsNav.addEventListener('mouseenter', this.onNextHover.bind(this));
-  //this.elControlsNav.addEventListener('mouseleave', this.onNextLeave.bind(this));
+  this.elControlsNav.addEventListener('mouseenter', this.onNextHover.bind(this));
+  this.elControlsNav.addEventListener('mouseleave', this.onNextLeave.bind(this));
 
   this.elSeek.addEventListener('mousedown', this.startSeek.bind(this));
   document.addEventListener('mouseup', this.stopSeek.bind(this));
@@ -240,7 +217,7 @@ nf.player.prototype.hookListeners = function () {
     }
   }).bind(this));
 
-  document.getElementById('nf-fs').addEventListener('click', (function() {
+  document.getElementById('pl-fs').addEventListener('click', (function() {
     var elem = this.elPlayer;
     if (elem.requestFullscreen) {
       elem.requestFullscreen();
@@ -251,10 +228,10 @@ nf.player.prototype.hookListeners = function () {
     } else if (elem.webkitRequestFullscreen) {
       elem.webkitRequestFullscreen();
     }
-    document.getElementById('nf-fs-wrap').classList.add('fs');
+    document.getElementById('pl-fs-wrap').classList.add('fs');
   }).bind(this));
 
-  document.getElementById('nf-fs-ex').addEventListener('click', (function(){
+  document.getElementById('pl-fs-ex').addEventListener('click', (function(){
     if (document.exitFullscreen) {
       document.exitFullscreen();
     } else if (document.msExitFullscreen) {
@@ -264,18 +241,18 @@ nf.player.prototype.hookListeners = function () {
     } else if (document.webkitExitFullscreen) {
       document.webkitExitFullscreen();
     }
-    document.getElementById('nf-fs-wrap').classList.remove('fs');
+    document.getElementById('pl-fs-wrap').classList.remove('fs');
   }).bind(this));
 }
 
-nf.player.prototype.onPlayerReady = function () {
+lb.player.prototype.onPlayerReady = function () {
   this.video.playVideo();
   this.showTime();
   this.showLoaded();
   this.showProgressPosition();
 }
 
-nf.player.prototype.onPlayerStateChange = function (e) {
+lb.player.prototype.onPlayerStateChange = function (e) {
   switch(e.data) {
     case -1: // Not initialized
       break;
@@ -296,7 +273,7 @@ nf.player.prototype.onPlayerStateChange = function (e) {
   }
 }
 
-nf.player.prototype.onPlay = function () {
+lb.player.prototype.onPlay = function () {
   this.elPlayer.classList.remove('loading');
   this.elControlsPlayback.classList.add('pause');
   this.elControlsPlayback.classList.remove('play');
@@ -304,13 +281,13 @@ nf.player.prototype.onPlay = function () {
   this.showControls();
 }
 
-nf.player.prototype.onPause = function () {
+lb.player.prototype.onPause = function () {
   this.elControlsPlayback.classList.add('play');
   this.elControlsPlayback.classList.remove('pause');
 }
 
-nf.player.prototype.onEnded = function () {
-  if(this.current < nf.videos.length - 1) {
+lb.player.prototype.onEnded = function () {
+  if(this.current < lb.videos.length - 1) {
     this.elUpNext.style.display = 'block';
 
     var time = 15;
@@ -318,9 +295,11 @@ nf.player.prototype.onEnded = function () {
       if(time > 0) {
         time--;
         this.elUpNextCounter.innerHTML = time + ' segundos';
+
       } else {
         this.onNextClick(this);
         this.elUpNextCounter.innerHTML = '15 segundos';
+
       }
     }).bind(this), 333);
   } else {
@@ -328,30 +307,30 @@ nf.player.prototype.onEnded = function () {
   }
 }
 
-nf.player.prototype.onPlayClick = function () {
+lb.player.prototype.onPlayClick = function () {
   this.video.playVideo();
 }
 
-nf.player.prototype.onPauseClick = function () {
+lb.player.prototype.onPauseClick = function () {
   this.video.pauseVideo();
 }
 
-nf.player.prototype.onVolumeClick = function () {
+lb.player.prototype.onVolumeClick = function () {
   this.video.mute();
 
   this.elControlsAudio.classList.add('mute');
   this.elControlsAudio.classList.remove('volume');
 }
 
-nf.player.prototype.onMuteClick = function () {
+lb.player.prototype.onMuteClick = function () {
   this.video.unMute();
 
   this.elControlsAudio.classList.add('volume');
   this.elControlsAudio.classList.remove('mute');
 }
 
-nf.player.prototype.onNextClick = function () {
-  if(this.current < nf.videos.length - 1) {
+lb.player.prototype.onNextClick = function () {
+  if(this.current < lb.videos.length - 1) {
     this.setCurrent(this.current + 1);
   } else {
     this.video.pauseVideo();
@@ -359,21 +338,21 @@ nf.player.prototype.onNextClick = function () {
   }
 }
 
-nf.player.prototype.onWatchAgainClick = function () {
+lb.player.prototype.onWatchAgainClick = function () {
   this.finalScreen.style.display = 'none';
-  if(this.current === nf.videos.length - 1) {
+  if(this.current === lb.videos.length - 1) {
     this.setCurrent(0);
   } else {
     this.setCurrent(this.current);
   }
 }
 
-nf.player.prototype.hideVolumeWrap = function () {
+lb.player.prototype.hideVolumeWrap = function () {
   this.elVolumeWrap.style.display = 'none';
   this.elVolumeWrap.removeEventListener('transitionend', this.hideVolumeWrapBind)
 }
 
-nf.player.prototype.onVolumeControlsHover = function () {
+lb.player.prototype.onVolumeControlsHover = function () {
   this.hideSeekBar();
   this.elVolumeWrap.removeEventListener('transitionend', this.hideVolumeWrapBind);
   this.elVolumeWrap.style.display = 'block';
@@ -382,7 +361,7 @@ nf.player.prototype.onVolumeControlsHover = function () {
   }).bind(this), 10);
 }
 
-nf.player.prototype.onVolumeControlsLeave = function () {
+lb.player.prototype.onVolumeControlsLeave = function () {
   this.showSeekBar();
   this.hideVolumeWrapBind = (function() {
     this.elVolumeWrap.style.display = 'none';
@@ -401,40 +380,40 @@ nf.player.prototype.onVolumeControlsLeave = function () {
   }).bind(this),10);
 }
 
-nf.player.prototype.hideNext = function () {
-  this.elPopup.style.display = 'none';
-  this.elPopup.removeEventListener('transitionend', this.hideNextBind)
+lb.player.prototype.hideNext = function () {
+  //this.elPopup.style.display = 'none';
+  //this.elPopup.removeEventListener('transitionend', this.hideNextBind)
 }
 
-nf.player.prototype.onNextHover = function () {
+lb.player.prototype.onNextHover = function () {
   this.hideSeekBar();
-  this.elPopup.removeEventListener('transitionend', this.hideNextBind);
-  this.elPopup.style.display = 'block';
+  //this.elPopup.removeEventListener('transitionend', this.hideNextBind);
+  //this.elPopup.style.display = 'block';
   setTimeout((function(){
-    this.elPopup.style.opacity = 1;
+    //this.elPopup.style.opacity = 1;
   }).bind(this),10);
 }
 
-nf.player.prototype.onNextLeave = function () {
+lb.player.prototype.onNextLeave = function () {
   this.showSeekBar();
   this.hideNextBind = (function() {
-    this.elPopup.style.display = 'none';
-    this.elPopup.removeEventListener('transitionend', this.hideNextBind);
+    //this.elPopup.style.display = 'none';
+    //this.elPopup.removeEventListener('transitionend', this.hideNextBind);
   }).bind(this);
 
-  this.elPopup.addEventListener('transitionend', this.hideNextBind);
-  this.elPopup.style.opacity = 0;
+  //this.elPopup.addEventListener('transitionend', this.hideNextBind);
+  //this.elPopup.style.opacity = 0;
 }
 
 
-nf.player.prototype.startSeek = function (e) {
+lb.player.prototype.startSeek = function (e) {
   this.isSeeking = true;
   this.bindSeek = this.seek.bind(this);
   this.bindSeek(e);
   this.elSeek.addEventListener('mousemove', this.bindSeek);
 }
 
-nf.player.prototype.stopSeek = function (e) {
+lb.player.prototype.stopSeek = function (e) {
   if(!this.isSeeking) return;
 
   var layerX = e.clientX - this.elSeek.getBoundingClientRect().left,
@@ -449,7 +428,7 @@ nf.player.prototype.stopSeek = function (e) {
   this.elSeek.removeEventListener('mousemove', this.bindSeek);
 }
 
-nf.player.prototype.seek = function(e) {
+lb.player.prototype.seek = function(e) {
   var layerX = e.clientX - this.elSeek.getBoundingClientRect().left,
       seconds = (layerX / this.elSeek.clientWidth) * this.video.getDuration(),
       progress = (seconds / this.video.getDuration()) * 100;
@@ -462,14 +441,14 @@ nf.player.prototype.seek = function(e) {
 }
 
 
-nf.player.prototype.startVolumeChange = function(e) {
+lb.player.prototype.startVolumeChange = function(e) {
   this.isChangingVolume = true;
   this.bindVolumeChange = this.volumeChange.bind(this);
   this.bindVolumeChange(e);
   this.elVolume.addEventListener('mousemove', this.bindVolumeChange);
 }
 
-nf.player.prototype.stopVolumeChange = function(e) {
+lb.player.prototype.stopVolumeChange = function(e) {
   if(!this.isChangingVolume) return;
 
   var layerY = e.clientY - this.elVolume.getBoundingClientRect().top,
@@ -480,7 +459,7 @@ nf.player.prototype.stopVolumeChange = function(e) {
   this.elVolume.removeEventListener('mousemove', this.bindVolumeChange);
 }
 
-nf.player.prototype.volumeChange = function(e) {
+lb.player.prototype.volumeChange = function(e) {
   if(window.YT === undefined) return;
 
   var layerY = e.clientY - this.elVolume.getBoundingClientRect().top,
@@ -492,29 +471,40 @@ nf.player.prototype.volumeChange = function(e) {
   this.elVolumeBar.style.height = volume + '%';
 };
 
-nf.player.prototype.hideSeekBar = function () {
+lb.player.prototype.hideSeekBar = function () {
   this.elProgressBarWrap.classList.add('hide');
 }
 
-nf.player.prototype.showSeekBar = function () {
+lb.player.prototype.showSeekBar = function () {
   this.elProgressBarWrap.classList.remove('hide');
 }
 
-nf.player.prototype.hideControls = function () {
+lb.player.prototype.hideControls = function () {
   this.controlsHideBind = (function(){
+    document.getElementById('exit-button').style.display = 'none';
+    document.getElementById('exit-button').addEventListener('transitionend', this.controlsHideBind);
+
     this.elControls.style.display = 'none';
     this.elControls.addEventListener('transitionend', this.controlsHideBind);
   }).bind(this);
+
+  document.getElementById('exit-button').addEventListener('transitionend', this.controlsHideBind);
+  document.getElementById('exit-button').classList.add('hide');
 
   this.elControls.addEventListener('transitionend', this.controlsHideBind);
   this.elControls.classList.add('hide');
 }
 
-nf.player.prototype.showControls = function () {
+lb.player.prototype.showControls = function () {
   clearTimeout(this.controlsTimer);
+
+  document.getElementById('exit-button').style.display = 'block';
+  document.getElementById('exit-button').removeEventListener('transitionend', this.controlsHideBind);
+  document.getElementById('exit-button').classList.remove('hide');
 
   this.elControls.style.display = 'block';
   this.elControls.removeEventListener('transitionend', this.controlsHideBind);
   this.elControls.classList.remove('hide');
+
   this.controlsTimer = setTimeout(this.hideControls.bind(this), 3000);
 }

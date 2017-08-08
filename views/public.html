@@ -1,0 +1,222 @@
+{% set title = "Início" %}
+{% extends 'layout.html' %}
+
+{% block body %}
+
+  <div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12" style="margin-top:30px;">
+            <h4 align="center">
+              <a href="http://facebook.com/{{ user.name }}" target="_blank" id="social_icons"><i class="fa fa-facebook-official fa-2x"></i></a>
+              <a href="http://instagram.com/hopeforaisha" target="_blank" id="social_icons"><i class="fa fa-instagram fa-2x"></i></a>
+            </h4>
+      <h1 align=center><a href="/"><img src="img/hope-for-aisha.png" class="logo" alt="Hope For Aisha"></a></h1>
+      <br>
+		</div>
+	</div>
+	<div class="row">
+    <div class="col-md-1"></div>
+		<div class="col-md-5">
+			<p align=center>
+        <img src="img/aisha.jpg" class="img_perfil">
+			</p>
+		</div>
+		<div class="col-md-5" id="teste">
+			<h2 align=left id="text_arrecadamos">
+				Já arrecadamos
+			</h2>
+      <h1 align=left id="temos"></h1>
+			<h2 align=left id="text_arrecadamos">
+				Precisamos ainda
+			</h2>
+      <h1 align=left id="precisamos"></h1>
+			<h1>
+        <div class="progress">
+          <div class="progress-bar" id="barra" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width:99%">
+  				</div>
+  			</div>
+      </h1>
+		</div>
+    <div class="col-md-1"></div>
+    <div class="col-md-12">
+      <p class="texto_principal">
+        <b>Oi, gente grande!</b> Meu nome é <b>Aisha</b> e eu tenho 1 ano e 4 meses e estou desde meus 5 meses internada na <b>UTI Pediátrica</b>. Tenho <a href="http://atrofiaespinhal.org/o-que-e/descricao/" target="_blank">Atrofia Muscular Espinhal tipo 1</a>. É uma síndrome <b>rara e fatal</b>. Estou atualmente traqueostomizada e dependente de gastrostomia para me alimentar. Já perdi quase todos meus movimentos e hoje só consigo mexer meus dedinhos e ainda tenho expressões faciais. Apesar de tudo, sou muito sorridente e sou apaixonada por desenhos animados - os minions, principalmente.
+        <br><br>
+        <b>Ano passado foi descoberto um tratamento que já fez algumas crianças que nem eu ficarem melhores</b> e que me faria melhorar também, mas esse medicamento é muito caro e precisa ser importado. Já estou com 1 ano e 4 meses, e quanto mais rápido o tratamento, melhor. Queria poder brincar que nem meus amiguinhos do hospital e queria também poder fazer carinho na minha mamãe e no meu papai, que já estão há mais de um 1 ano no hospital comigo quase que 24h. Precisamos da ajuda de todos que puderem nos ajudar, por menor que seja o valor, cada centavo conta. Se não puder doar, ajude compartilhando e falando de mim para seus amigos. <b>Não tenho muito tempo e preciso da sua ajuda.</b> <a class="btn" href="hope-for-aisha.pdf" target="_blank">Saiba mais »</a>
+			</p>
+      </p>
+    </div>
+	</div>
+	<div class="row" id="campo_doacoes">
+    <h1 align=center>Doe qualquer valor para salvar a Aisha</h1>
+    <br>
+		<div class="col-md-3">
+			<h2 style="font-size:20pt;">
+				 <i class="fa fa-bank fa-1x"></i> Depósito
+			</h2>
+      <img src="img/bradesco.png" class="bandeira-banco">
+			<p class="texto_doacoes">
+        <b>Agência:</b> 2941 <br>
+        <b>Conta:</b> 1001344-3 <br>
+        <b>CPF:</b> 051.765.760-07 <br>
+        Aisha Saldanha de Souza
+			</p>
+		</div>
+		<div class="col-md-3">
+			<h2 style="font-size:20pt;">
+				 <i class="fa fa-file-o fa-1x"></i> Boleto
+			</h2>
+			<p align=justify>
+				A melhor forma de pagar por boleto é usando o serviço pagseguro, clique abaixo e você será direcionado para a página de doação. Basta escolher a opção boleto. Obs: A conta está no nome da mamãe por ela ser maior de idade.
+			</p>
+			<p align="center">
+        <img src="img/pagseguro.png"><br><br>
+				<a href="https://pag.ae/bkh8PW6" target="_blank"><button type="submit" class="btn btn-success">Doar com pagseguro</button></a>
+			</p>
+		</div>
+		<div class="col-md-3">
+			<h2 style="font-size:20pt;">
+				 <i class="fa fa-credit-card fa-1x"></i> Cartão de Crédito
+			</h2>
+			<p align=justify>
+				Para ajudar com qualquer quantia com cartão de crédito, recomendados o uso do paypal. Clique abaixo e você será direcionado para a página de doação. Basta escolher o cartão desejado.
+			</p>
+			<p align="center">
+        <img src="img/paypal.png"><br><br>
+				<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=5HFY2RS7LNEUA" target="_blank"><button type="submit" class="btn btn-success">Doar com paypal</button></a>
+			</p>
+		</div>
+		<div class="col-md-3">
+			<h2 style="font-size:20pt;">
+				<i class="fa fa-clone fa-1x"></i> Outros Sites
+			</h2>
+			<p align=justify>
+				Você também pode ajudar pelo site vakinha, um site de vaquinhas onlines. Mas lá eles ficam com uma <a href="https://www.vakinha.com.br/taxas-e-termos-de-uso-2" target="_blank">taxa</a> de 6,4% do valor original, que no caso de um tratamento de AME1, siginifica um valor de 192 mil reais.
+			</p>
+      <p align="center">
+        <img src="img/vakinha.png" style="max-height:30px;"><br><br>
+				<a href="https://www.vakinha.com.br/vaquinha/tratamento-ame-spinraza-nusinersen" target="_blank"><button type="submit" class="btn btn-success">Acessar Vakinha</button></a>
+			</p>
+		</div>
+	</div>
+	<div class="row">
+    <br>
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-10">
+      <h2 align=center>
+        <h1 align=center>Fotos da nossa pequena</h1><br>
+        				<div class="slide">
+        					<div class="demo-gallery">
+        		            <ul id="lightgallery" class="list-unstyled row">
+        		                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/aisha7.jpg 375, img/aisha7.jpg 480, img/aisha7.jpg 800" data-src="img/aisha7.jpg" data-sub-html="Nossa princesa.">
+        		                    <a href="">
+        		                        <img class="img-responsive" src="img/aisha7-t.jpg">
+        		                    </a>
+        		                </li>
+        		                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/aisha1.jpg 375, img/aisha1.jpg 480, img/aisha1.jpg 800" data-src="img/aisha1.jpg" data-sub-html="">
+        		                    <a href="">
+        		                        <img class="img-responsive" src="img/aisha1.jpg">
+        		                    </a>
+        		                </li>
+        		                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/aisha2.jpg 375, img/aisha2.jpg 480, img/aisha2.jpg 800" data-src="img/aisha2.jpg" data-sub-html="">
+        		                    <a href="">
+        		                        <img class="img-responsive" src="img/aisha2-t.jpg">
+        		                    </a>
+        		                </li>
+        		                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/aisha3.jpg 375, img/aisha3.jpg 480, img/img/aisha3.jpg 800" data-src="img/aisha3.jpg" data-sub-html="">
+        		                    <a href="">
+        		                        <img class="img-responsive" src="img/aisha3.jpg">
+        		                    </a>
+        		                </li>
+        		                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/aisha4.jpg 375, img/aisha4.jpg 480, img/aisha4.jpg 800" data-src="img/aisha4.jpg" data-sub-html="">
+        		                    <a href="">
+        		                        <img class="img-responsive" src="img/aisha4.jpg">
+        		                    </a>
+        		                </li>
+        		                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/aisha5.jpg 375, img/aisha5.jpg 480, img/aisha5.jpg 800" data-src="img/aisha5.jpg" data-sub-html="El bigodón">
+        		                    <a href="">
+        		                        <img class="img-responsive" src="img/aisha5.jpg">
+        		                    </a>
+        		                </li>
+        		                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/aisha6.jpg 375, img/aisha6.jpg 480, img/aisha6.jpg 800" data-src="img/aisha6.jpg" data-sub-html="">
+        		                    <a href="">
+        		                        <img class="img-responsive" src="img/aisha6.jpg">
+        		                    </a>
+        		                </li>
+        		                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/aisha8.jpg 375, img/aisha8.jpg 480, img/aisha8.jpg 800" data-src="img/aisha8.jpg" data-sub-html="Dia de passeio.">
+        		                    <a href="">
+        		                        <img class="img-responsive" src="img/aisha8.jpg">
+        		                    </a>
+        		                </li>
+        		                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/aisha9.jpg 375, img/aisha9.jpg 480, img/aisha9.jpg 800" data-src="img/aisha9.jpg" data-sub-html="">
+        		                    <a href="">
+        		                        <img class="img-responsive" src="img/aisha9.jpg">
+        		                    </a>
+        		                </li>
+        		                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/aisha10.jpg 375, img/aisha10.jpg 480, img/aisha10.jpg 800" data-src="img/aisha10.jpg" data-sub-html="">
+        		                    <a href="">
+        		                        <img class="img-responsive" src="img/aisha10.jpg">
+        		                    </a>
+        		                </li>
+        		                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/aisha11.jpg 375, img/aisha11.jpg 480, img/aisha11.jpg 800" data-src="img/aisha11.jpg" data-sub-html="">
+        		                    <a href="">
+        		                        <img class="img-responsive" src="img/aisha11-t.jpg">
+        		                    </a>
+        		                </li>
+        		                <li class="col-xs-6 col-sm-4 col-md-3" data-responsive="img/aisha12.jpg 375, img/aisha12.jpg 480, img/aisha12.jpg 800" data-src="img/aisha12.jpg" data-sub-html="">
+        		                    <a href="">
+        		                        <img class="img-responsive" src="img/aisha12.jpg">
+        		                    </a>
+        		                </li>
+        		            </ul>
+        		        </div>
+      </h2>
+		</div>
+		<div class="col-md-1">
+		</div>
+	</div>
+</div>
+
+  <div class="row" id="campo_doacoes">
+    <h2 style="margin-left:15px;">
+       Contatos
+    </h2>
+    <div class="col-md-4" >
+      <p class="texto_doacoes">
+          <b>Whatsapp Mamãe:</b> +55 (55) 9-9689-3779 <br>
+          <b>Whatsapp Papai:</b> +55 (55) 9-9722-3360 <br>
+          <b>Telefone para contato:</b> +55 (55) 9-9147-9960 <br>
+          <b>E-mail:</b> hopeforaisha@gmail.com <br>
+        </p>
+    </div>
+    <div class="col-md-4" ></div>
+    <div class="col-md-4" ></div>
+</div>
+
+
+
+
+</div>
+</div>
+</div>
+
+    <script type="text/javascript">
+    $(document).ready(function(){
+        $('#lightgallery').lightGallery();
+    });
+    </script>
+    <script src="https://cdn.jsdelivr.net/picturefill/2.3.1/picturefill.min.js"></script>
+    <script src="js/lightgallery.js"></script>
+    <script src="js/lg-fullscreen.js"></script>
+    <script src="js/lg-thumbnail.js"></script>
+    <script src="js/lg-video.js"></script>
+    <script src="js/lg-autoplay.js"></script>
+    <script src="js/lg-zoom.js"></script>
+    <script src="js/lg-hash.js"></script>
+    <script src="js/lg-pager.js"></script>
+    <script src="js/jquery.mousewheel.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/scripts.js"></script>
+    <script src="js/acredito.js"></script>
+{% endblock %}
