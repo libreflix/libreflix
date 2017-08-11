@@ -36,17 +36,26 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js" charset="utf-8"></script>
 
-  <meta property="og:image" content="{{ site.baseurl }}{{ page.fb-share }}" />
+  {% if title == "Início" %}
+  <meta property="og:image" content="/sm-share.jpg" />
   <meta property="og:type" content="blog" />
-  <meta property="og:title" content="Assista {{page.title}} na Libreflix" />
-  <meta property="og:url" content="{{site.fullurl}}" />
-  <meta property="og:site_name" content="{{page.title}}" />
+  <meta property="og:title" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar." />
+  <meta property="og:url" content="https://libreflix.org" />
+  <meta property="og:site_name" content="Libreflix" />
+  {% else %}
+  <meta property="og:image" content="{{ thumb480 }}" />
+  <meta property="og:type" content="blog" />
+  <meta property="og:title" content="Assista '{{title}}' de graça na Libreflix" />
+  <meta property="og:url" content="https://libreflix.org/assistir/{{permalink}}" />
+  <meta property="og:site_name" content="Libreflix" />
+  {% endif %}
+
 
   <!-- twitter metatags-->
-  <meta name="twitter:card" content="summary_large_image">
+  <!-- <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="{{page.title}}">
   <meta name="twitter:description" content="{{page.title}}">
-  <meta name="twitter:image" content="{{ site.baseurl }}{{ page.fb-share }}">
+  <meta name="twitter:image" content="{{ site.baseurl }}{{ page.fb-share }}"> -->
 
 
   <script type="text/javascript" charset="utf-8">
