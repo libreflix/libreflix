@@ -39,13 +39,15 @@
   {% if title == "Início" %}
   <meta property="og:image" content="/sm-share.jpg" />
   <meta property="og:type" content="blog" />
-  <meta property="og:title" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar." />
+  <meta property="og:title" content="Libreflix" />
+  <meta property="og:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar." />
   <meta property="og:url" content="https://libreflix.org" />
   <meta property="og:site_name" content="Libreflix" />
   {% else %}
   <meta property="og:image" content="{{ thumb480 }}" />
   <meta property="og:type" content="blog" />
   <meta property="og:title" content="Assista '{{title}}' de graça na Libreflix" />
+  <meta property="og:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar." />
   <meta property="og:url" content="https://libreflix.org/assistir/{{permalink}}" />
   <meta property="og:site_name" content="Libreflix" />
   {% endif %}
@@ -115,7 +117,7 @@
   ga('create', 'UA-104410990-1', 'auto');
   ga('send', 'pageview');
 
-</script>  
+</script>
 </body>
 
 </html>
