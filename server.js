@@ -21,6 +21,7 @@ var userController = require('./controllers/user');
 var contactController = require('./controllers/contact');
 var watchController = require('./controllers/watch');
 var uploadController = require('./controllers/upload');
+var pagesController = require('./controllers/pages');
 
 // Passport OAuth strategies
 require('./config/passport');
@@ -66,6 +67,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 // routers
 // Home
 app.get('/', HomeController.index);
+
+// Pages
+app.get('/sobre', pagesController.sobreController);
 
 // Watch
 app.get('/assistir/:permalink', watchController.watchGet);

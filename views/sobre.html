@@ -1,0 +1,103 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container-fluid">
+  {% if messages.success %}
+  <div role="alert" class="alert alert-success">
+    {% for success in messages.success %}
+    <div>{{ success.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.error %}
+  <div role="alert" class="alert alert-danger">
+    {% for error in messages.error %}
+    <div>{{ error.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.info %}
+  <div role="alert" class="alert alert-info">
+    {% for info in messages.info %}
+    <div>{{ info.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+</div>
+
+<div class="row">
+  <div class="manifesto">
+    <h1>Sobre nós</h1>
+</div>
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="row">
+				<div class="col-md-2">
+				</div>
+				<div class="col-md-8">
+          <br>
+					<h2>
+						Libreflix
+					</h2>
+					<p>
+            Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.
+					</p>
+          <br>
+          <h2>
+						Colaborativa
+					</h2>
+					<p>
+            Qualquer um pode adicionar uma produção ao Libreflix. Se você conhece alguma produção em que seus criadores a disponibilizaram para livre exibição ou se ainda você é um filmmaker, disponibilize esse conteúdo e espalhe a palavra.
+          </p>
+          <p>
+            <a href="/novo">Adicionar nova produção »</a>
+          </p>
+          <br>
+          <h2>
+						Código-aberto
+					</h2>
+					<p>
+          Todo software deve respeitar o usuário e ter seu código-aberto! Com uma comunidade podemos fazer muito mais. Se você é desenvolvedor ou quer aprender:
+          </p>
+          <p>
+            <a href="https://notabug.org/libreflix/libreflix/issues">Junte-se a mim »</a>
+          </p>
+          <br>
+					<h2>
+						Quem faz
+					</h2>
+					<p>
+            O Libreflix é criado por <a href="http://guilmour.org">@guilmour</a>, mas que precisa de mais marujos a bordo! Você é muito bem vindo. Chega junto no <a href="https://notabug.org/libreflix/libreflix/issues">NotABug</a> ou me de um alô no <a href="https://telegram.me/guilmour">Telegram</a>.
+					</p>
+				</div>
+				<div class="col-md-2">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<br><br>
+
+<div class="row">
+  <div class="text-center">
+    <a href="https://notabug.org/libreflix">
+      <i class="fa fa-bug footer-icons"></i>
+    </a>
+    <a href="https://www.facebook.com/Libreflix-113399199252507/">
+      <i class="fa fa-facebook footer-icons"></i>
+    </a>
+    <a href="https://instagram.com/libreflix">
+      <i class="fa fa-instagram footer-icons"></i>
+    </a>
+    <a href="https://twitter.com/libreflix">
+      <i class="fa fa-twitter footer-icons"></i>
+    </a>
+  </div>
+</div>
+
+
+{% endblock %}
