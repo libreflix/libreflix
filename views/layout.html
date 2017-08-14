@@ -43,6 +43,13 @@
   <meta property="og:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar." />
   <meta property="og:url" content="https://libreflix.org" />
   <meta property="og:site_name" content="Libreflix" />
+  
+  <!-- twitter metatags-->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Libreflix">
+  <meta name="twitter:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.">
+  <meta name="twitter:image" content="/sm-share2.jpg"> 
+    
   {% elseif title == "Sobre" %}
   <meta property="og:image" content="/jon-tyson-228428.jpg" />
   <meta property="og:type" content="blog" />
@@ -50,6 +57,13 @@
   <meta property="og:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar." />
   <meta property="og:url" content="https://libreflix.org" />
   <meta property="og:site_name" content="Libreflix" />
+
+  <!-- twitter metatags-->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Libreflix">
+  <meta name="twitter:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.">
+  <meta name="twitter:image" content="/jon-tyson-228428.jpg"> 
+  
   {% else %}
   <meta property="og:image" content="{{ thumb480 }}" />
   <meta property="og:type" content="blog" />
@@ -57,14 +71,16 @@
   <meta property="og:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar." />
   <meta property="og:url" content="https://libreflix.org/assistir/{{permalink}}" />
   <meta property="og:site_name" content="Libreflix" />
+
+  <!-- twitter metatags-->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Assista '{{title}}' agora na Libreflix">
+  <meta name="twitter:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.">
+  <meta name="twitter:image" content="{{ thumb480 }}">   
   {% endif %}
 
 
-  <!-- twitter metatags-->
-  <!-- <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{page.title}}">
-  <meta name="twitter:description" content="{{page.title}}">
-  <meta name="twitter:image" content="{{ site.baseurl }}{{ page.fb-share }}"> -->
+
 
 
   <link rel="stylesheet" type="text/css" href="libre.css">
