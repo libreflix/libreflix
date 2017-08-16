@@ -22,17 +22,21 @@
           <input type="password" name="password" id="password" placeholder="Password" class="form-control">
         </div>
         <div class="form-group"><a href="/forgot"><strong>Esqueceu sua senha?</strong></a></div>
-        <button type="submit" class="btn btn-success">Entrar</button>
+        <button type="submit" class="btn btn-success">Entrar</button><hr>
       </form>
-      <!-- <div class="hr-title"><span>ou</span></div>
-      <div class="btn-toolbar text-center">
-        <a href="/auth/facebook" class="btn btn-facebook">Entre com o Facebook</a>
-        <a href="/auth/twitter" class="btn btn-twitter">Entre com o Twitter</a>
-      </div> -->
+
+      <div class="text-center">
+        <div class="text-center">
+          <a href="/auth/facebook"><button type="submit" class="btn btn-fb">Entre com o Facebook</button></a>
+          <a href="/auth/twitter"><button type="submit" class="btn btn-tw">Entre com o Twitter</button></a>
+        </div>
+
+      </div>
     </div>
   </div>
   <p class="text-center">
-    Ainda não tem uma conta? <a href="/signup"><strong>Registrar</strong></a>
+    Ainda não tem uma conta? <br><br>
+    <a href="/signup"><button type="submit" class="btn btn-danger">Criar uma Nova Conta</button></a>
   </p>
 </div>
 {% endblock %}
