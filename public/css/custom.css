@@ -531,3 +531,7 @@ input[type="search"]::-webkit-search-decoration {
 	width: 480px;
 	height: 270px;
 }
+
+.apoio-marcas{
+	margin: 15px;
+}
