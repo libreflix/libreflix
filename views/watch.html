@@ -24,6 +24,19 @@
   }
 </style>
 
+<script>
+    function voltar(){
+        if(history.length === 1)
+        {
+            window.location = "https://libreflix.org"
+        }
+        else
+        {
+            history.back();
+        }
+    }
+</script>
+
 
 </head>
 <libreplayer>
@@ -46,7 +59,7 @@
         </div>
 
 
-        <button type="button" id="exit-button" class="exit-button" onClick="javascript: history.go(-1)"><img src="/img/ico-exit.png"></button>
+        <button type="button" id="exit-button" class="exit-button" onClick="voltar()"><img src="/img/ico-exit.png"></button>
 
         <div id="pl-player-ctrl-wrap">
           <div id="pl-playback-progress-wrap">

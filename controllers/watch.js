@@ -81,6 +81,7 @@ var body = req.body;
     });
     watch.save(function(err) {
       //req.logIn(campanha, function(err) {
+        req.flash('success', { msg: 'Muito obrigado por sua colaboração. Em breve a produção estará no ar. <3' });
         res.redirect('/');
       //});
     });

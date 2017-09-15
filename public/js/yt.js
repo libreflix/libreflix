@@ -23,7 +23,7 @@ $(function () {
             //console.log("fadeout");
             $('.fade-object').fadeOut()
             $('html').css({
-                cursor: 'url(http://www.javascriptkit.com/dhtmltutors/cursor-hand.gif), auto'
+                cursor: 'url(), auto'
             });
             fadeInBuffer = true;
         }, 5000)
