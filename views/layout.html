@@ -36,7 +36,7 @@
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js" charset="utf-8"></script>
 
-  {% if title == "Início" %}
+  {% if title == "Início" or title == "Criar Conta" or title == "Entrar" %}
   <meta property="og:image" content="/sm-share2.jpg" />
   <meta property="og:type" content="blog" />
   <meta property="og:title" content="Libreflix" />
@@ -49,6 +49,7 @@
   <meta name="twitter:title" content="Libreflix">
   <meta name="twitter:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.">
   <meta name="twitter:image" content="https://libreflix.org/sm-share2.jpg">
+  
 
   {% elseif title == "Sobre" %}
   <meta property="og:image" content="/jon-tyson-228428.jpg" />
