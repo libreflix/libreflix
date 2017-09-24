@@ -462,6 +462,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 
 .sinopse{
+	margin-top: 10px;
 	font-size: 10.1pt;
 }
 .splash{
