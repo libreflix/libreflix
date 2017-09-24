@@ -77,8 +77,8 @@
               </h4>
               <ul class="nav nav-pills text-right">
                 <li class="active"><a data-toggle="pill" href="#resumo{{ loop.index }}">Resumo</a></li>
-                <li><a data-toggle="pill" href="#creditos{{ loop.index }}">Créditos</a></li>
-                <li><a data-toggle="pill" href="#links{{ loop.index }}">Links</a></li>
+                <!-- <li><a data-toggle="pill" href="#creditos{{ loop.index }}">Créditos</a></li> -->
+                <!-- <li><a data-toggle="pill" href="#links{{ loop.index }}">Links</a></li> -->
               </ul>
               <div class="tab-content">
                 <div id="resumo{{ loop.index }}" class="tab-pane fade in active">
@@ -86,18 +86,18 @@
                   <div class="sinopse">{{ w.sinopse }}</div>
                   <h4> Tags: {% set list1 = w.tags.split(',') %}{% for list in list1 %}<a href="\t\{{ list | trim}}">{{ list | trim}}</a>{%if loop.index0 < loop.length-1 %}, {%endif%}{% endfor %}</h4>
                 </div>
-                <div id="creditos{{ loop.index }}" class="tab-pane fade">
-                  <!-- <h4>Créditos e Elenco</h4> -->
+                <!-- <div id="creditos{{ loop.index }}" class="tab-pane fade">
+                  <h4>Créditos e Elenco</h4>
                   <div class="sinopse">
 
                   </div>
-                </div>
-                <div id="links{{ loop.index }}" class="tab-pane fade">
-                  <!-- <h4>Links</h4> -->
+                </div> -->
+                <!-- <div id="links{{ loop.index }}" class="tab-pane fade">
+                   <h4>Links</h4> 
                   <div class="sinopse">
 
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
             <div class="modal-footer">
