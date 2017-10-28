@@ -215,6 +215,25 @@ lb.player.prototype.hookListeners = function () {
         this.onPlayClick();
       }
     }
+
+  }).bind(this));
+
+  //Bind keyboard events to make the playback controllable by the keyboard.
+  window.addEventListener('keydown', (function(e) {
+    var k = e.keyCode || e.which;
+
+    //Volume Controls.
+    if (k == '38') //Up Arrow
+      this.changeVolumeDelta(+10);
+    else if (k == '40') //Down Arrow
+      this.changeVolumeDelta(-10);
+
+    //Playback controls.
+    else if (k == '37') //Left Arrow.
+      this.seekTo(-10);
+    else if (k == '39')  //Right Arrow.
+       this.seekTo(+10);
+
   }).bind(this));
 
   document.getElementById('pl-fs').addEventListener('click', (function() {
@@ -440,6 +459,10 @@ lb.player.prototype.seek = function(e) {
   this.elProgressPosition.style.width = progress + '%';
 }
 
+lb.player.prototype.seekTo = function(deltaSeconds) {
+    var currSeconds = this.video.getCurrentTime();
+    this.video.seekTo(currSeconds + deltaSeconds, true);
+}
 
 lb.player.prototype.startVolumeChange = function(e) {
   this.isChangingVolume = true;
@@ -463,13 +486,21 @@ lb.player.prototype.volumeChange = function(e) {
   if(window.YT === undefined) return;
 
   var layerY = e.clientY - this.elVolume.getBoundingClientRect().top,
-      volume = 100 - (layerY / this.elVolume.clientHeight) * 100;
+      volume = 100 - (layerY / this.elVolume.clientHeight) * 100,
+      delta  = volume - this.video.getVolume();
 
-  volume = (volume < 0 ? 0 : volume > 100 ? 100 : volume);
-  this.video.setVolume(volume);
-
-  this.elVolumeBar.style.height = volume + '%';
+  this.changeVolumeDelta(delta);
 };
+
+lb.player.prototype.changeVolumeDelta = function(deltaVolume) {
+  var currVolume  = this.video.getVolume();
+  var finalVolume = currVolume + deltaVolume;
+
+  finalVolume = (finalVolume < 0 ? 0 : finalVolume > 100 ? 100 : finalVolume);
+
+  this.video.setVolume(finalVolume);
+  this.elVolumeBar.style.height = finalVolume + '%';
+}
 
 lb.player.prototype.hideSeekBar = function () {
   this.elProgressBarWrap.classList.add('hide');
