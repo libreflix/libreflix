@@ -496,6 +496,22 @@ input[type="search"]::-webkit-search-decoration {
 	max-width: 900px;
 }
 
+.apps-page{
+  margin-top: 20px;
+  text-align: center;
+  color: white;
+  font-size: 15pt;
+  text-shadow: 1px 1px 4px rgba(0,0,0,.6);
+  padding-top: 80px;
+  padding-bottom: 40px;
+  padding-left: 15%;
+  padding-right: 15%;
+  background-image: url("/ajeet-mestry-429216.jpg");
+  height: 25%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .manifesto{
   margin-top: 20px;
   text-align: center;
@@ -506,11 +522,8 @@ input[type="search"]::-webkit-search-decoration {
   padding-bottom: 40px;
   padding-left: 15%;
   padding-right: 15%;
-
   background-image: url("/jon-tyson-228428.jpg");
-
   height: 45%;
-
   background-repeat: no-repeat;
   background-size: cover;
 }
