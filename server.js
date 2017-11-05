@@ -70,6 +70,7 @@ app.get('/', HomeController.index);
 
 // Pages
 app.get('/sobre', pagesController.sobreController);
+app.get('/apps', pagesController.appsController);
 
 // Watch
 app.get('/assistir/:permalink', watchController.watchGet);
