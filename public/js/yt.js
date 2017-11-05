@@ -32,34 +32,23 @@ $(function () {
 
 
 
-if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
- // document.getElementById('pl-mobile').style.display = 'block';
-
-  setTimeout(function() {
-   // window.location.replace('');
-  }, 10000);
-}
-else {
-  window.onYouTubeIframeAPIReady = function() {
-
-   // lb.obj = new lb.player();
-
-  }
+function Q(id)
+{
+    return document.querySelector(id);
 }
 
-	function  Q(id){
-		return document.querySelector(id);
-	}
-
-	Q("#go").onload=function(){
-
-		if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) {
-   			//window.location.replace('');
-        Q("#pl-player").style.display='block';
-  			lb.obj = new lb.player();
-		}else{
-			//Q("#step_one").style.display='none';
-			Q("#pl-player").style.display='block';
-			lb.obj = new lb.player();
-		}
-	}
+Q("#go").onload=function()
+{
+    if( /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ) 
+    {
+	//window.location.replace('');
+	console.log("celular3");
+	Q("#pl-player").style.display='block';
+	lb.obj = new lb.player();
+    }
+    else
+    {
+	Q("#pl-player").style.display='block';
+	lb.obj = new lb.player();
+    }
+}

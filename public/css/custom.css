@@ -536,3 +536,9 @@ input[type="search"]::-webkit-search-decoration {
 .apoio-marcas{
 	margin: 15px;
 }
+
+.footer2{
+	max-width: 900px;
+	margin-top:110px;
+	font-size: 11pt;
+}
