@@ -12,3 +12,11 @@ exports.appsController = function(req, res) {
         title:'Instalar Libreflix'
       });
 };
+
+
+/* GET Uploader */
+exports.uploaderController = function(req, res) {
+      res.render('uploader', {
+        title:'Uploader de Imagem'
+      });
+};

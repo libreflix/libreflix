@@ -106,3 +106,49 @@ exports.tagsGet = function(req, res){
     }
   });
 };
+
+
+//Get Edit Watch
+exports.watchEdit = function(req, res){
+  Watch.findOne({ '_id': req.params._id }, function(err, w){
+
+    if (!w) {
+      return res.redirect('/404');
+    }
+    else{
+      res.render('edit', {
+        w: w
+      });
+    }
+  });
+};
+
+
+
+// PUT or Update a Production
+exports.watchPut = function(req, res, next) {
+var body = req.body;
+  Watch.findById(req.params._id, function(err, watch) {
+    // Para salvar no BD
+    watch.criador = req.user.id;
+    watch.permalink = req.body.permalink;
+    watch.layout = req.body.layout;
+    watch.license = req.body.license;
+    watch.featured  = req.body.featured;
+    watch.title = req.body.title;
+    watch.subtitle = req.body.subtitle;
+    watch.sinopse = req.body.sinopse;
+    watch.year = req.body.year;
+    watch.classind = req.body.classind;
+    watch.duration = req.body.duration;
+    watch.video = req.body.video;
+    watch.thumb480 = req.body.thumb480;
+    watch.imgbg = req.body.imgbg;
+    watch.tags = req.body.tags
+    watch.save(function(err) {
+      req.flash('success', { msg: 'Alterações feitas com sucesso.' });
+      res.redirect('/edit/' + req.params._id);
+    });
+
+    });
+};

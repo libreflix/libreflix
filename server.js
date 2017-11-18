@@ -22,6 +22,7 @@ var contactController = require('./controllers/contact');
 var watchController = require('./controllers/watch');
 var uploadController = require('./controllers/upload');
 var pagesController = require('./controllers/pages');
+var listController = require('./controllers/list');
 
 // Passport OAuth strategies
 require('./config/passport');
@@ -71,12 +72,16 @@ app.get('/', HomeController.index);
 // Pages
 app.get('/sobre', pagesController.sobreController);
 app.get('/apps', pagesController.appsController);
+app.get('/uploader', userController.ensureAuthenticated, pagesController.uploaderController);
 
 // Watch
 app.get('/assistir/:permalink', watchController.watchGet);
 app.get('/t/:tags', watchController.tagsGet);
 app.get('/novo', userController.ensureAuthenticated, watchController.newWatchGet);
 app.post('/novo', userController.ensureAuthenticated, watchController.newWatchPost);
+// Watch edit
+app.get('/edit/:_id', userController.ensureAuthenticated, watchController.watchEdit);
+app.post('/edit/:_id', userController.ensureAuthenticated, watchController.watchPut);
 
 //upload
 app.post('/upload', userController.ensureAuthenticated, uploadController.uploadImage);
@@ -85,6 +90,10 @@ uploadDir = path.join(__dirname, '/public/media/');
 // Contato
 app.get('/contato', contactController.contactGet);
 app.post('/contato', contactController.contactPost);
+
+//list
+app.get('/list', listController.index);
+
 
 // Account
 app.get('/account', userController.ensureAuthenticated, userController.accountGet);

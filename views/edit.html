@@ -1,0 +1,140 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<script src="/js/jquery.tagsinput.min.js" charset="utf-8"></script>
+<link rel="stylesheet" href="/css/jquery.tagsinput.css">
+{% if user.mod %}
+
+<div class="container-fluid">
+  {% if messages.success %}
+  <div role="alert" class="alert alert-success">
+    {% for success in messages.success %}
+    <div>{{ success.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.error %}
+  <div role="alert" class="alert alert-danger">
+    {% for error in messages.error %}
+    <div>{{ error.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.info %}
+  <div role="alert" class="alert alert-info">
+    {% for info in messages.info %}
+    <div>{{ info.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+</div>
+
+<div class="container">
+  <div class="panel panel-novo">
+    <div class="panel-body">
+      <form action="" class="form-horizontal">
+        <legend> Editar produção </legend>
+        <div class="form-group">
+          <label class="col-sm-3" for="name">Título da Produção</label>
+          <div class="col-sm-7">
+            <input type="text" name="title" class="form-control" autofocus value="{{ w.title }}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Subtítulo da Produção</label>
+          <div class="col-sm-7">
+            <input type="text" name="subtitle" class="form-control" autofocus value="{{ w.subtitle }}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Ano da Produção</label>
+          <div class="col-sm-2">
+            <input type="text" name="year" class="form-control" autofocus value="{{ w.year }}" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Duração</label>
+          <div class="col-sm-2">
+            <input type="text" name="duration" class="form-control" autofocus value="{{ w.duration }}" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Classificação Indicativa</label>
+          <div class="col-sm-2">
+            <input type="text" name="classind" class="form-control" autofocus value="{{ w.classind }}" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Descrição</label>
+          <div class="col-sm-7">
+            <textarea class="form-control" rows="10" name="sinopse" id="textarea">{{w.sinopse}}</textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Url do Vídeo</label>
+          <div class="col-sm-5">
+            <input type="text" name="video" class="form-control" autofocus value="{{w.video}}" placeholder="y8fxto7ua">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Permalink</label>
+          <div class="col-sm-5">
+            <input type="text" name="permalink" class="form-control" autofocus value="{{w.permalink}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Licença</label>
+          <div class="col-sm-5">
+            <input type="text" name="license" class="form-control" autofocus value="{{w.license}}">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Layout</label>
+          <div class="col-sm-5">
+            <input type="text" name="layout" class="form-control" autofocus value="{{w.layout}}" >
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Featured</label>
+          <div class="col-sm-5">
+            <input type="text" name="featured" class="form-control" autofocus value="{{w.featured}}" placeholder="o-menino-da-internet">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Tags</label>
+          <div class="col-sm-7">
+            <input type="text" name="tags" class="form-control" autofocus value="{{w.tags}}" placeholder="docs, tech, biografia">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Imagem de Background</label>
+            <div class="col-sm-7">
+              <input type="text" name="imgbg" class="form-control" autofocus value="{{w.imgbg}}">
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Imagem para Thumbnail</label>
+          <div class="col-sm-7">
+            <input type="text" name="thumb480" class="form-control" autofocus value="{{w.thumb480}}">
+          </div>
+          <small>480x270</small>
+        </div>
+        <!-- Fim -->
+        <div class="form-group">
+          <!-- <small class="text-muted">Criando uma conta, você concorda com os <a href="/" target="_blank">Termos de Uso</a>.</small> -->
+        </div>
+        <div class="col-sm-3"></div>
+        <div class="col-sm-7">
+          <button type="submit" class="btn btn-success" formmethod="post">Salvar Alterações</button>
+          <a href="/"><button class="btn btn-danger" type="button">Cancelar</button></a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endif %}
+<script src="/js/bootstrap-select.js"></script>
+<script src="js/upload.js"></script>
+{% endblock %}

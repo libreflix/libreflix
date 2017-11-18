@@ -21,7 +21,8 @@ var userSchema = new mongoose.Schema({
   website: String,
   picture: String,
   facebook: String,
-  twitter: String
+  twitter: String,
+  mod: Boolean
 }, schemaOptions);
 
 userSchema.pre('save', function(next) {

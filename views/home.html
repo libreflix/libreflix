@@ -49,7 +49,7 @@
     <p> {{ alltags }} </p>
     <ul class="entries">
       {% for w in watch %}
-      {% if w.featured == true %}
+      {% if w.featured == 'true' %}
 
       <li class="col-md-3">
         <a role="button" data-toggle="modal" style="border-bottom: 0px solid;"  data-toggle="modal" data-target="#assistir{{ loop.index }}">
@@ -68,7 +68,8 @@
               </div></a>
             </div>
             <div class="modal-body">
-              <h2> {{ w.title }}  </h2>
+              <h2> {{ w.title }}</h2>
+
               <h4>
                 {{ w.subtitle }}
                 {% if w.subtitle %} &middot; {%endif%} {{w.year}}
@@ -93,7 +94,8 @@
                   </div>
                 </div> -->
                 <!-- <div id="links{{ loop.index }}" class="tab-pane fade">
-                   <h4>Links</h4> 
+                   <h4>Links</h4>
+                   {% if w.license != 'false' %}<div class="sinopse">Licença:  {{ w.license }} </div>{%endif%}  
                   <div class="sinopse">
 
                   </div>
@@ -101,6 +103,7 @@
               </div>
             </div>
             <div class="modal-footer">
+              {% if user.mod %}<a href="/edit/{{ w._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
               <button type="button" class="btn btn-default" data-dismiss="modal">Fechar <i class="fa fa-times-circle"></i></button>
               <a href="/assistir/{{ w.permalink }}"><button type="button" class="btn btn-success">Assistir <i class="fa fa-play-circle"></i></button></a>
             </div>

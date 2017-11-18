@@ -1,0 +1,94 @@
+{% if title == "Início" %}
+  {% set title = "Início" %}
+{% elseif title == "Tag" %}
+  {% set title = "Tag: " + tag %}
+{% endif %}
+
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container-fluid">
+  {% if messages.success %}
+  <div role="alert" class="alert alert-success">
+    {% for success in messages.success %}
+    <div>{{ success.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.error %}
+  <div role="alert" class="alert alert-danger">
+    {% for error in messages.error %}
+    <div>{{ error.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.info %}
+  <div role="alert" class="alert alert-info">
+    {% for info in messages.info %}
+    <div>{{ info.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+</div>
+<h2>Uploader de Imagem</h2>
+<section class="work">
+    {% if user.mod %}
+    <br><br><br>
+    <input id="upload-input3" type="file" accept="image/jpg, image/jpeg">
+    <img3></img3>
+    {% endif %}
+
+  <div class="centerBlock">
+    <!--<a class="btn" href="#">Ver todo o conteúdo</a>-->
+  </div>
+
+</section>
+<script type="text/javascript">
+  var f3 = document.getElementById('upload-input3');
+  f3.onchange = function(e){
+      var ext = this.value.match(/\.(.+)$/)[1];
+      switch(ext)
+      {
+          case 'jpg':
+          case 'png':
+              break;
+          default:
+              alert('Formato de arquivo inválido.');
+              this.value='';
+      }
+  };
+  $('#upload-input3').on('change', function(){
+
+    var files = $(this).get(0).files;
+
+    if (files.length > 0){
+      // create a FormData object which will be sent as the data payload in the
+      // AJAX request
+      var formData = new FormData();
+
+      // loop through all the selected files and add them to the formData object
+      for (var i = 0; i < files.length; i++) {
+        var file = files[i];
+
+        // add the files to formData object for the data payload
+        formData.append('uploads[]', file, file.name);
+      }
+
+      $.ajax({
+        url: '/upload',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function(data){
+            console.log('upload successful!\n' + data);
+            $( "img3" ).html( "<input name='none' style='' size='70' value='" + data + "'>");
+        },
+      });
+
+    }
+  });
+</script>
+
+{% endblock %}

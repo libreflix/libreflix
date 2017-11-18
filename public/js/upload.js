@@ -1,5 +1,6 @@
 var fl = document.getElementById('upload-input');
 
+
 fl.onchange = function(e){
     var ext = this.value.match(/\.(.+)$/)[1];
     switch(ext)
@@ -12,7 +13,6 @@ fl.onchange = function(e){
             this.value='';
     }
 };
-
 
 $('#upload-input').on('change', function(){
 
