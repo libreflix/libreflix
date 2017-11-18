@@ -39,7 +39,7 @@
       {% if w.featured == 'false' %}
 
       <hr>
-      <b>Título: {{w.title}} </b>
+      <b>Título: {{w.title}} </b> <br>
       <b>permalink</b>: {{w.permalink}} <br>
       <b>layout</b>: {{w.layout}} <br>
       <b>featured</b>: {{w.featured}} <br>
@@ -53,7 +53,7 @@
       <b>eps</b>: {{w.eps}} <br>
       <b>tags</b>: {{w.tags}} <br>
       <b>thumb480</b>: <a href="https://libreflix.org/{{w.thumb480}}" target="_blank">Thumbnail</a> <br>
-      <b>imgbg</b>:  <a href="https://libreflix.org/{{w.thumb480}}" target="_blank">Background</a> <br>
+      <b>imgbg</b>:  <a href="https://libreflix.org/{{w.imgbg}}" target="_blank">Background</a> <br>
       <br>
       {% if user.mod %}<a href="/edit/{{ w._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
       <button formaction="/list" formmethod="post" class="btn btn-danger" value="">Rejeitar Produção</button>
