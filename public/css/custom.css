@@ -622,3 +622,7 @@ input[type="search"]::-webkit-search-decoration {
 	-ms-transition: all .3s ease;
 	transition: all .3s ease;
 }
+
+.text-small{
+	font-size: 9pt;
+}
