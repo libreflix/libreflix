@@ -28,6 +28,7 @@ var watchSchema = new mongoose.Schema({
   runtime: String,
   tags: { type: [], get: getTags, set: setTags },
   featured: String,
+  top: String,
   n_eps: Number,
   eps: [{   last: Boolean,
             subtitle : String,

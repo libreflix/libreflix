@@ -144,7 +144,8 @@ var body = req.body;
     watch.video = req.body.video;
     watch.thumb480 = req.body.thumb480;
     watch.imgbg = req.body.imgbg;
-    watch.tags = req.body.tags
+    watch.tags = req.body.tags;
+    watch.top = req.body.top
     watch.save(function(err) {
       req.flash('success', { msg: 'Alterações feitas com sucesso.' });
       res.redirect('/edit/' + req.params._id);

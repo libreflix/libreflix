@@ -9,7 +9,7 @@ exports.index = function(req, res) {
     if(err){
       console.log(err);
     } else {
-      res.render('home', {
+      res.render('inicio', {
         title:'Início',
         watch: watch
       });
