@@ -265,13 +265,13 @@ exports.forgotPost = function(req, res, next) {
       });
       var mailOptions = {
         to: user.email,
-        from: 'suporte@acredito.me',
-        subject: 'Redefinir sua senha no Acredito.me',
-        text: 'Você está recebendo isso porque você (ou alguma outra pessoa) pediu para redefenir a senha da sua conta.\n\n' +
-        'Por favor, clieque no link a seguir, ou cole no seu navegador para completar esse processo:\n\n' +
-        'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+        from: 'Libreflix@openmailbox.org',
+        subject: 'Redefinir sua senha no Libreflix',
+        text: 'Oi, tudo bem?\n\n Você está recebendo esse email porque pediu para redefenir a senha da sua conta no Libreflix.\n\n' +
+        'Por favor, clique no link a seguir, ou cole no seu navegador para completar esse processo:\n\n' +
+        'https://' + req.headers.host + '/reset/' + token + '\n\n' +
         'Se você não pediu essa redefinição, por favor ignore este e-mail e a sua senha não sofrerá nenhuma alteração.\n' +
-        'Obrigado por salvar vidas com o acredito.me\n'
+        '\nAbraços Libres! <3\n\nTime Libreflix\n\n'
       };
       transporter.sendMail(mailOptions, function(err) {
         req.flash('info', { msg: 'Um e-mail foi enviado para ' + user.email + ' com mais informações.' });
@@ -343,11 +343,11 @@ exports.resetPost = function(req, res, next) {
         }
       });
       var mailOptions = {
-        from: 'suporte@acredito.me',
+        from: 'Libreflix@openmailbox.org',
         to: user.email,
-        subject: 'Sua senha no acredito.me foi alterada',
-        text: 'Hello,\n\n' +
-        'Este e-mail é uma confirmação que a senha da sua conta no acredito.me (' + user.email + ') foi alterada recentemente.\n'
+        subject: 'Sua senha no Libreflix foi alterada',
+        text: 'Olá! Tudo bem? \n\n' +
+        'Este e-mail é uma confirmação que a senha da sua conta no Libreflix (' + user.email + ') foi alterada recentemente.\n\nAbraços Libres! <3\n\nTime Libreflix\n\n'
       };
       transporter.sendMail(mailOptions, function(err) {
         req.flash('success', { msg: 'Sua senha foi alterada com sucesso.' });

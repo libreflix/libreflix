@@ -23,6 +23,7 @@ var watchController = require('./controllers/watch');
 var uploadController = require('./controllers/upload');
 var pagesController = require('./controllers/pages');
 var listController = require('./controllers/list');
+var profileController = require('./controllers/profile');
 
 // Passport OAuth strategies
 require('./config/passport');
@@ -94,6 +95,8 @@ app.post('/contato', contactController.contactPost);
 //list
 app.get('/list', listController.index);
 
+//ProfileNavigation
+app.get('/u/:username', profileController.profileGet);
 
 // Account
 app.get('/account', userController.ensureAuthenticated, userController.accountGet);

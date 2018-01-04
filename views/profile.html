@@ -1,0 +1,42 @@
+{% set title = "Perfil de " + p.username %}
+
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container-fluid">
+  {% if messages.success %}
+  <div role="alert" class="alert alert-success">
+    {% for success in messages.success %}
+    <div>{{ success.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.error %}
+  <div role="alert" class="alert alert-danger">
+    {% for error in messages.error %}
+    <div>{{ error.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.info %}
+  <div role="alert" class="alert alert-info">
+    {% for info in messages.info %}
+    <div>{{ info.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+</div>
+
+<section class="work">
+
+  <p align="center">
+    <h2>Perfil de {{ p.username }}</h2>
+    <img src="{{ p.gravatar }}" alt="{{ p.username }}" width="150px">
+  </p>
+
+
+</section>
+
+
+{% endblock %}

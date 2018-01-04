@@ -114,18 +114,13 @@
 
   <div class="tagcardgrab">
     <div class="tagcardcontainer">
-      {{ printTagCards('social')}}
-      {{ printTagCards('tech')}}
-      {{ printTagCards('musica')}}
-      {{ printTagCards('sci-fi')}}
-      {{ printTagCards('ativismo')}}
-      {{ printTagCards('veganismo')}}
-      {{ printTagCards('feminismo')}}
-      {{ printTagCards('educação')}}
-      {{ printTagCards('animação')}}
-      {{ printTagCards('comédia')}}
-      {{ printTagCards('religião')}}
-      {{ printTagCards('natureza')}}
+      {% set tagsArray = [ 'social', 'tech', 'musica', 'sci-fi', 'ativismo', 'veganismo', 'feminismo', 'educação', 'animação', 'comédia', 'religião', 'natureza'] %}
+
+      <!-- Print Cards -->
+      {% for tags in tagsArray%}
+        {{ printTagCards(tags)}}
+      {% endfor %}
+
     </div>
   </div>
   <br>
