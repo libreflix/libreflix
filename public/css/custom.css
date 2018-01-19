@@ -626,3 +626,10 @@ input[type="search"]::-webkit-search-decoration {
 .text-small{
 	font-size: 9pt;
 }
+
+.inst-container{
+	background-color: #ececec;
+	color: #4b4b4b;
+	padding: 25px 45px;
+	margin-top: -36px;
+}
