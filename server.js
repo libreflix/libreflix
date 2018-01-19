@@ -31,22 +31,18 @@ require('./config/passport');
 var app = express();
 
 
-
-
 mongoose.connect(process.env.DB_PATH);
-
 
 mongoose.connection.on('error', function() {
   console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
   process.exit(1);
 });
+
 // view engine setup
 nunjucks.configure('views', {
   autoescape: true,
   express: app
 });
-
-
 
 app.set('view engine', 'html');
 app.set('port', process.env.PORT || 3999);

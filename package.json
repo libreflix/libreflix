@@ -15,6 +15,7 @@
     "express-flash": "0.0.2",
     "express-session": "^1.2.1",
     "express-validator": "^2.20.4",
+    "formidable": "^1.0.17",
     "method-override": "^2.3.5",
     "mongoose": "4.9.2",
     "morgan": "^1.7.0",
@@ -25,7 +26,6 @@
     "passport-github": "^1.1.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
-    "formidable": "^1.0.17",
     "uuid": "^3.1.0"
   },
   "devDependencies": {},
