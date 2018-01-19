@@ -106,8 +106,11 @@
 
 <body>
   <div class="container">
-    {% include "partials/navbar.html" %}
-    {% block body %}{% endblock %}
+    {% block navbar %}
+      {% include "partials/navbar.html" %}
+    {% endblock %}
+    {% block body %}
+    {% endblock %}
 
     <footer>
       <!-- <p align="center" style="font-size: 11pt; margin-top:110px;">
@@ -132,36 +135,80 @@
 
       {% block footer %}
 
-      <div class="mt-6 footer2">
-        <div class="mb-5">
-          <div class="col-12 col-md-2 mb-3">
-            <p class="text-gray alt-text-small">
-              © 2018
-            </p>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 mb-3 pr-3">
-            <h4 class="mb-2">Libreflix</h4>
-            <ul class="list-style-none text-gray">
-              <li class="lh-condensed mb-2"></li>
-            </ul>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 mb-3 pr-3">
-            <h4 class="mb-2">Comunidade</h4>
-            <ul class="list-style-none">
-            </ul>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 mb-3 pr-3">
-            <h4 class="mb-2">Legal</h4>
-            <ul class="list-style-none">
-            </ul>
-          </div>
-          <div class="col-6 col-sm-4 col-md-2 mb-3 pr-3">
-            <h4 class="mb-2">Social</h4>
-            <ul class="list-style-none">
-            </ul>
-          </div>
-        </div>
+<div class="container-fluid">
+  <div class="mt-6 footer2">
+    <div class="mb-5">
+      <div class="col-12 col-md-2 mb-3">
+        <p class="text-medium">
+          <a href="/"><img src="/libreflix.png" alt="" width="100px"></a>
+          <br>
+          <span class="copyleft">&copy;</span> 2017 - 2018
+        </p>
       </div>
+      <div class="col-6 col-sm-4 col-md-2 mb-3 pr-3">
+        <h4 class="">Libreflix</h4>
+        <ul class="list-unstyled">
+          <li><a href="/sobre">Sobre Nós</a></li>
+          <li><a href="/apps">Apps</a></li>
+          <!-- <li>Quem Faz</li> -->
+          <li><a href="http://blog.libreflix.org" target="_blank">Blog</a></li>
+          <li><a href="/contato">Contato</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-sm-4 col-md-2 mb-3 pr-3">
+        <h4 class="">Comunidade</h4>
+        <ul class="list-unstyled">
+          <li><a href="/novo">Adicionar Produção</a></li>
+          <li>Como Colaborar</li>
+          <!-- <li>Voluntariado</li> -->
+        </ul>
+      </div>
+      <div class="col-6 col-sm-4 col-md-2 mb-3 pr-3">
+        <h4 class="">Legal</h4>
+        <ul class="list-unstyled">
+          <li>Perguntas Frequentes</li>
+          <li>Política de Privacidade</li>
+          <li>Termos de Uso</li>
+          <li>Direito Autoral e DMCA</li>
+        </ul>
+      </div>
+      <div class="col-6 col-sm-4 col-md-2 mb-3 pr-3">
+        <h4 class="">Social</h4>
+        <ul class="list-unstyled">
+          <!-- <li>Fórum</li> -->
+          <li><a href="https://notabug.org/libreflix" target="_blank">Código-Fonte</a></li>
+          <li><a href="http://t.me/libreflix" target="_blank">Canal Telegram</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="text-center">
+      <a href="https://www.facebook.com/libreflix/">
+        <i class="fa fa-facebook footer-icons"></i>
+      </a>
+      <a href="https://instagram.com/libreflix">
+        <i class="fa fa-instagram footer-icons"></i>
+      </a>
+      <a href="https://twitter.com/libreflix">
+        <i class="fa fa-twitter footer-icons"></i>
+      </a>
+      <a href="https://t.me/libreflix">
+        <i class="fa fa-paper-plane footer-icons"></i>
+      </a>
+      <a href="https://notabug.org/libreflix">
+        <i class="fa fa-bug footer-icons"></i>
+      </a>
+      <!-- <a href="https://notabug.org/libreflix">
+        <i class="fa fa-newspaper-o footer-icons"></i>
+      </a> -->
+    </div>
+  </div>
+</div>
+<br>
       {% endblock  %}
 
     </footer>
