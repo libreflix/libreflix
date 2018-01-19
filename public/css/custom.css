@@ -571,7 +571,7 @@ input[type="search"]::-webkit-search-decoration {
   padding-top: 10px;
   margin-right: 7.5px;
   margin-left: 7.5px;
-  font-size: 25pt !important;
+  font-size: 1.9em !important;
   text-align: center;
 }
 
@@ -659,9 +659,18 @@ input[type="search"]::-webkit-search-decoration {
 	font-size: 9pt;
 }
 
+.text-medium{
+	font-size: 11pt;
+}
+
 .inst-container{
 	background-color: #ececec;
 	color: #4b4b4b;
 	padding: 25px 45px;
 	margin-top: -36px;
+}
+
+.copyleft {
+  display: inline-block;
+  transform: rotate(180deg);
 }
