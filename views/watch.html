@@ -1,4 +1,7 @@
 {% extends "layout.html" %} {% block body %}
+
+{% block navbar %}{% endblock %} {# just to overide parent navbar block#}
+
 <link rel="stylesheet" type="text/css" href="/css/style.css">
 </div>
 {% if layout == 'filme' %}
@@ -366,4 +369,9 @@
 <script type="text/javascript" src="/js/yt.js"></script>
 
 </html>
-{% endif %} {% endblock %}
+{% endif %}
+
+<!-- This block just to overide the parent footer block not useful in the watch page -->
+{% block footer%} {% endblock %}
+
+{% endblock %}
