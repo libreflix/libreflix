@@ -39,21 +39,21 @@
       {% if w.featured == 'false' %}
 
       <hr>
-      <b>Título: {{w.title}} </b> <br>
-      <b>permalink</b>: {{w.permalink}} <br>
-      <b>layout</b>: {{w.layout}} <br>
-      <b>featured</b>: {{w.featured}} <br>
+      <b>Título: {{w.title}} </b> |
+      <b>permalink</b>: {{w.permalink}} |
+      <b>layout</b>: {{w.layout}} |
+      <b>featured</b>: {{w.featured}} |
       <b>subtitle</b>: {{w.subtitle}} <br>
       <b>sinopse</b>: <small>{{w.sinopse}}</small> <br>
-      <b>year</b>: {{w.year}} <br>
-      <b>classind</b>: {{w.classind}} <br>
-      <b>duration</b>: {{w.duration}} <br>
-      <b>license</b>: {{w.license}} <br>
+      <b>year</b>: {{w.year}} |
+      <b>classind</b>: {{w.classind}} |
+      <b>duration</b>: {{w.duration}} |
+      <b>license</b>: {{w.license}} |
       <b>video</b>: <a href="{{w.video}}" target="_blank">{{w.video}}</a> <br>
-      <b>eps</b>: {{w.eps}} <br>
-      <b>tags</b>: {{w.tags}} <br>
-      <b>thumb480</b>: <a href="https://libreflix.org/{{w.thumb480}}" target="_blank">Thumbnail</a> <br>
-      <b>imgbg</b>:  <a href="https://libreflix.org/{{w.imgbg}}" target="_blank">Background</a> <br>
+      <b>eps</b>: {{w.eps}} |
+      <b>tags</b>: {{w.tags}} |
+      <b>thumb480</b>: <a href="https://libreflix.org/{{w.thumb480}}" target="_blank"><img src="{{w.thumb480}}" alt="" width="270"></a>
+      <b>imgbg</b>:  <a href="https://libreflix.org/{{w.imgbg}}" target="_blank"><img src="{{w.imgbg}}" alt="" width="270"></a> <br>
       <br>
       {% if user.mod %}<a href="/edit/{{ w._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
       <button formaction="/list" formmethod="post" class="btn btn-danger" value="">Rejeitar Produção</button>
