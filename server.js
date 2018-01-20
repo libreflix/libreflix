@@ -77,6 +77,8 @@ app.get('/apps', pagesController.appsController);
 app.get('/privacy', pagesController.privacyController);
 app.get('/tos', pagesController.tosController);
 app.get('/dmca', pagesController.dmcaController);
+app.get('/faq', pagesController.faqController);
+app.get('/press', pagesController.pressController);
 app.get('/uploader', userController.ensureAuthenticated, pagesController.uploaderController);
 
 // Watch

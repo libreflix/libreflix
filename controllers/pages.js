@@ -22,29 +22,36 @@ exports.uploaderController = function(req, res) {
 };
 
 /* GET Privacidade */
-exports.privacidadeController = function(req, res) {
-      res.render('privacidade', {
-        title:'Uploader de Imagem'
+exports.privacyController = function(req, res) {
+      res.render('privacy', {
+        title:'Política de Privacidade'
       });
 };
 
-/* GET Regras */
-exports.regrasdeController = function(req, res) {
-      res.render('regras', {
-        title:'Uploader de Imagem'
+/* GET Termos */
+exports.tosController = function(req, res) {
+      res.render('tos', {
+        title:'Termos de Uso'
       });
 };
 
 /* GET FAQ */
 exports.faqController = function(req, res) {
       res.render('faq', {
-        title:'Uploader de Imagem'
+        title:'Perguntas Frequentes - FAQ'
       });
 };
 
-/* GET FAQ */
+/* GET DMCA */
 exports.dmcaController = function(req, res) {
       res.render('dmca', {
-        title:'Uploader de Imagem'
+        title:'DMCA'
+      });
+};
+
+/* GET Press */
+exports.pressController = function(req, res) {
+      res.render('press', {
+        title:'Na Mídia'
       });
 };
