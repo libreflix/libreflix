@@ -9,6 +9,8 @@ var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
 var dotenv = require('dotenv');
 var nunjucks = require('nunjucks');
+var markdown = require('nunjucks-markdown');
+var marked = require('marked');
 var mongoose = require('mongoose');
 var passport = require('passport');
 
@@ -39,10 +41,13 @@ mongoose.connection.on('error', function() {
 });
 
 // view engine setup
-nunjucks.configure('views', {
+var njks = nunjucks.configure('views', {
   autoescape: true,
-  express: app
+  express: app,
+  marked: true
 });
+
+markdown.register(njks, marked);
 
 app.set('view engine', 'html');
 app.set('port', process.env.PORT || 3999);
@@ -69,6 +74,9 @@ app.get('/', HomeController.index);
 // Pages
 app.get('/sobre', pagesController.sobreController);
 app.get('/apps', pagesController.appsController);
+app.get('/privacy', pagesController.privacyController);
+app.get('/tos', pagesController.tosController);
+app.get('/dmca', pagesController.dmcaController);
 app.get('/uploader', userController.ensureAuthenticated, pagesController.uploaderController);
 
 // Watch
