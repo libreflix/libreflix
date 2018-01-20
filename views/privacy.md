@@ -1,5 +1,4 @@
 # Política de Privacidade
-Última alteração desse arquivo: 19-01-18.
 
 Nós do Libreflix levamos sua privacidade de forma séria, além da navegação normal do website, nós não fazemos nenhuma outra tentativa de identificar você ou suas atividades. Essa parte da página explica basicamente o que recebemos de informação vinda de você e o que fazemos com esses dados.
 
@@ -42,3 +41,5 @@ Os mantenedores da plataforma são cidadãos brasileiros.
 
 ### Versões antigas desse documento
 Versões antigas desse documento podem ser encontradas no repositório de código do Libreflix clicando [aqui](https://notabug.org/libreflix/libreflix/commits/master/views/privacy.md).
+
+Última alteração desse arquivo: 19-01-18.
