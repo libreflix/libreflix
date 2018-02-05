@@ -5,17 +5,6 @@ var passport = require('passport');
 var User = require('../models/User');
 
 /**
- * Login required middleware
- */
-exports.ensureAuthenticated = function(req, res, next) {
-  if (req.isAuthenticated()) {
-    next();
-  } else {
-    res.redirect('/login');
-  }
-};
-
-/**
  * GET /login
  */
 exports.loginGet = function(req, res) {
