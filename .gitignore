@@ -5,7 +5,7 @@ _docs/
 _media/
 node_modules/
 public/media/
-
+public/downloads
 .env
 
 notes.md
