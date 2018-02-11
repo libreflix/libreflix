@@ -23,6 +23,4 @@ Além do trabalho feito por incríveis voluntários para manter e melhorar o Lib
 [Doe-nos](https://acredito.me/libreflix2018)
 
 # ENTRE EM CONTATO
-[💌](mailto:libreflix@openmailbox.org)
-
-[🚀](https://t.me/libreflix_org)
+# [💌](mailto:libreflix@openmailbox.org)  -  [🚀](https://t.me/libreflix_org)
