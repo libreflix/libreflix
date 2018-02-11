@@ -23,4 +23,5 @@ Além do trabalho feito por incríveis voluntários para manter e melhorar o Lib
 [Doe-nos](https://acredito.me/libreflix2018)
 
 # ENTRE EM CONTATO
-[![email](https://freeiconshop.com/wp-content/uploads/edd/mail-flat.png)](mailto:libreflix@openmailbox.org)  [![telegram](https://www.shareicon.net/download/2015/10/04/112103_telegram.ico)](https://t.me/libreflix_org)
+✉️ Nosso email:[libreflix@openmailbox.org](mailto:libreflix@openmailbox.org) 
+🚀 Nosso telegram:[Amigos Libreflix](https://t.me/libreflix_org)
