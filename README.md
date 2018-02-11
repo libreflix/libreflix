@@ -24,5 +24,5 @@ Além do trabalho feito por incríveis voluntários para manter e melhorar o Lib
 
 # ENTRE EM CONTATO
 [💌](mailto:libreflix@openmailbox.org)
+
 [🚀](https://t.me/libreflix_org)
-<span class="fa fa-facebook-official fa-1x">a</span> 
