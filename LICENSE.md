@@ -1,10 +1,11 @@
 Libreflix is an open and collaborative streaming platform that brings together 
 independent, free-to-air and thought-provoking audiovisual productions. 
 
-Copyright (C) 2017 by Guilmour Rossi
+Copyright (C) 2017-2018 by Guilmour Rossi and its contributors.
 
 The license is the AGPL License below. Thank you for your interest. <3
-                    
+  
+```
                     GNU AFFERO GENERAL PUBLIC LICENSE
                        Version 3, 19 November 2007
 
@@ -666,3 +667,4 @@ specific requirements.
 if any, to sign a "copyright disclaimer" for the program, if necessary.
 For more information on this, and how to apply and follow the GNU AGPL, see
 <http://www.gnu.org/licenses/>.
+```

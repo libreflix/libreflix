@@ -1,4 +1,7 @@
 ![Logo da libreflix](assets/img/libreflix.png)
+
+
+
 # SOBRE 📜 
  Libreflix é uma plataforma de streaming livre e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.
 
