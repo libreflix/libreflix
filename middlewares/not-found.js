@@ -6,7 +6,7 @@ const Watch = require('../models/Watch');
  * Resolve 404 with 2 last uploaded productions
  */
 module.exports = (req, res) => {
-	Watch.find({'top': 'new-l'}, null, {sort: '-year'}, function(err, watches){
+	Watch.find({'top': 'new-l'}, null, {sort: '-_id'}, function(err, watches){
 		let options = {
 			title: 'Ops, não encontramos o que você procura',
 			watches: []
