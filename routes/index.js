@@ -1,6 +1,7 @@
 'use strict';
 const express = require('express');
 const router = express.Router();
+const notFoundMiddleware = require('../middlewares/not-found');
 
 /**
  * Home Controller
@@ -33,6 +34,11 @@ function init(app, passport) {
 	app.use('/', uploadRoutes);
 	app.use('/', userRoutes);
 	app.use('/', watchRoutes);
+
+	/**
+	 * Error handling middleware
+	 */
+	app.use(notFoundMiddleware);
 }
 
 module.exports = { init };
