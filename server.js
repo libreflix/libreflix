@@ -13,25 +13,15 @@ var markdown = require('nunjucks-markdown');
 var marked = require('marked');
 var mongoose = require('mongoose');
 var passport = require('passport');
+var routes = require('./routes');
 
 // Load environment variables from .env file
 dotenv.load();
-
-// Controllers
-var HomeController = require('./controllers/home');
-var userController = require('./controllers/user');
-var contactController = require('./controllers/contact');
-var watchController = require('./controllers/watch');
-var uploadController = require('./controllers/upload');
-var pagesController = require('./controllers/pages');
-var listController = require('./controllers/list');
-var profileController = require('./controllers/profile');
 
 // Passport OAuth strategies
 require('./config/passport');
 
 var app = express();
-
 
 mongoose.connect(process.env.DB_PATH);
 
@@ -67,64 +57,11 @@ app.use(function(req, res, next) {
 });
 app.use(express.static(path.join(__dirname, 'public')));
 
-// routers
-// Home
-app.get('/', HomeController.index);
-
-// Pages
-app.get('/sobre', pagesController.sobreController);
-app.get('/apps', pagesController.appsController);
-app.get('/privacy', pagesController.privacyController);
-app.get('/tos', pagesController.tosController);
-app.get('/dmca', pagesController.dmcaController);
-app.get('/faq', pagesController.faqController);
-app.get('/press', pagesController.pressController);
-app.get('/uploader', userController.ensureAuthenticated, pagesController.uploaderController);
-
-// Watch
-app.get('/assistir/:permalink', watchController.watchGet);
-app.get('/t/:tags', watchController.tagsGet);
-app.get('/novo', userController.ensureAuthenticated, watchController.newWatchGet);
-app.post('/novo', userController.ensureAuthenticated, watchController.newWatchPost);
-// Watch edit
-app.get('/edit/:_id', userController.ensureAuthenticated, watchController.watchEdit);
-app.post('/edit/:_id', userController.ensureAuthenticated, watchController.watchPut);
-
-//upload
-app.post('/upload', userController.ensureAuthenticated, uploadController.uploadImage);
+/**
+ * Setup Routes
+ */
+routes.init(app, passport);
 uploadDir = path.join(__dirname, '/public/media/');
-
-// Contato
-app.get('/contato', contactController.contactGet);
-app.post('/contato', contactController.contactPost);
-
-//list
-app.get('/list', listController.index);
-
-//ProfileNavigation
-app.get('/u/:username', profileController.profileGet);
-
-// Account
-app.get('/account', userController.ensureAuthenticated, userController.accountGet);
-app.put('/account', userController.ensureAuthenticated, userController.accountPut);
-app.delete('/account', userController.ensureAuthenticated, userController.accountDelete);
-app.get('/signup', userController.signupGet);
-app.post('/signup', userController.signupPost);
-app.get('/login', userController.loginGet);
-app.post('/login', userController.loginPost);
-app.get('/forgot', userController.forgotGet);
-app.post('/forgot', userController.forgotPost);
-app.get('/reset/:token', userController.resetGet);
-app.post('/reset/:token', userController.resetPost);
-app.get('/logout', userController.logout);
-app.get('/unlink/:provider', userController.ensureAuthenticated, userController.unlink);
-app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_location'] }));
-app.get('/auth/facebook/callback', passport.authenticate('facebook', { successRedirect: '/', failureRedirect: '/login' }));
-app.get('/auth/twitter', passport.authenticate('twitter'));
-app.get('/auth/twitter/callback', passport.authenticate('twitter', { successRedirect: '/', failureRedirect: '/login' }));
-app.get('/auth/github', passport.authenticate('github', { scope: [ 'user:email profile repo' ] }));
-app.get('/auth/github/callback', passport.authenticate('github', { successRedirect: '/', failureRedirect: '/login' }));
-
 
 // Production error handler
 if (app.get('env') === 'production') {
