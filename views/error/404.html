@@ -12,7 +12,7 @@
 	<div class="grid">
 		<ul class="entries">
 			{% for watch in watches %}
-				<li class="col-md-3">
+				<li class="col-md-3 thumb-404">
 					<a role="button" data-toggle="modal" style="border-bottom: 0px solid;" data-toggle="modal" data-target="#assistir{{ loop.index }}">
 						<img src="{{ watch.thumb480 }}" title="{{ watch.title }}{% if watch.subtitle %} - {{ watch.subtitle }}{% endif %} ({{ watch.year }})" class="fadeCatalogo" onload="this.style.opacity='1'"/>
 					</a>

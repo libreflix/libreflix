@@ -674,3 +674,13 @@ input[type="search"]::-webkit-search-decoration {
   display: inline-block;
   transform: rotate(180deg);
 }
+
+@media all and (max-width: 560px) {
+  .thumb-404:first-child {
+    margin-top: 0em;
+  }
+
+  .thumb-404 {
+    margin-top: 1.5em;
+  }
+}
