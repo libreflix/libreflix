@@ -20,6 +20,7 @@ var userSchema = new mongoose.Schema({
   location: String,
   website: String,
   picture: String,
+  cover_picture: String,
   facebook: String,
   twitter: String,
   mod: Boolean
