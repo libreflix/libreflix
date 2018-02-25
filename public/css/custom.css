@@ -704,10 +704,10 @@ input[type="search"]::-webkit-search-decoration {
   z-index: -1;
   background-size: cover;
 
-  filter        : opacity(45%) blur(1px);
-  -moz-filter   : opacity(45%) blur(1px);
-  -webkit-filter: opacity(45%) blur(1px);
-  -o-filter     : opacity(45%) blur(1px);
+  filter        : opacity(55%) blur(1px);
+  -moz-filter   : opacity(55%) blur(1px);
+  -webkit-filter: opacity(55%) blur(1px);
+  -o-filter     : opacity(55%) blur(1px);
 }
 
 .profile_banner_content{
