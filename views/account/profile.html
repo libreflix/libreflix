@@ -63,6 +63,12 @@
           </div>
         </div>
         <div class="form-group">
+          <label for="website" class="col-sm-3">Imagem de Capa (URL)</label>
+          <div class="col-sm-7">
+            <input type="text" name="cover_picture" id="cover_picture" class="form-control" value="{{ user.cover_picture }}">
+          </div>
+        </div>
+        <div class="form-group">
           <label class="col-sm-3">Gravatar</label>
           <div class="col-sm-4">
             <img src="{{ user.gravatar }}" class="profile" width="100" height="100">
