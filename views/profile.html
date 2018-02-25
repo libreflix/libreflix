@@ -1,4 +1,8 @@
+{% if p.name %}
+{% set title = "Perfil de " + p.name %}
+{% else %}
 {% set title = "Perfil de " + p.username %}
+{% endif %}
 
 {% extends 'layout.html' %}
 
@@ -29,13 +33,24 @@
 </div>
 
 <section class="work">
-
-  <p align="center">
-    <h2>Perfil de {{ p.username }}</h2>
-    <img src="{{ p.gravatar }}" alt="{{ p.username }}" width="150px">
-  </p>
-
-
+  <div class="profile_banner" style="background: url({{ p.cover_picture}}) no-repeat center center;">
+  </div>
+  <div class="profile_banner_content">
+    <img src="{% if p.twitter %}
+                {{ p.gravatar }}
+              {% elseif p.picture %}
+                {{ p.picture }}
+              {% else %}
+                {{ p.gravatar}}
+              {% endif %}"
+    alt="{{ p.username }}" class="profile_pic">
+    <h2>{% if p.name %} {{ p.name }} {% else %} {{ p.username }} {% endif %}</h2>
+    <h4>
+      {% if p.name %} @{{ p.username }}  {% else %} {% endif %}
+      {% if p.location %} · {{ p.location }} {% endif %}
+      {% if p.website %} · <a href="http://{{ p.website | replace("https://", "") | replace("http://", "")}}">{{ p.website | replace("https://", "") | replace("http://", "")}}</a>  {% endif %}
+    </h4>
+  </div>
 </section>
 
 

@@ -64,7 +64,9 @@
       <li><a href="/novo">Nova Produção</a></li>
       <li class="dropdown">
         <a href="#" data-toggle="dropdown" class="navbar-avatar dropdown-toggle">
-          {% if user.picture %}
+          {% if user.twitter %}
+            <img src="{{ user.gravatar }}"  width="20px" style="border-radius: 100%;">
+          {% elseif user.picture %}
             <img src="{{ user.picture }}"  width="20px" style="border-radius: 100%;">
           {% else %}
             <img src="{{ user.gravatar }}"  width="20px" style="border-radius: 100%;">
@@ -79,7 +81,8 @@
           <i class="caret"></i>
         </a>
         <ul class="dropdown-menu">
-          <li><a href="/account">Minha Conta</a></li>
+          <li><a href="/u/{{ user.username }}">Meu Perfil</a></li>
+          <li><a href="/account">Editar Conta</a></li>
           <li class="divider"></li>
           <!-- <li><a href="#">Minhas Produções</a></li>
           <li class="divider"></li> -->

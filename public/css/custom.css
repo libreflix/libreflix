@@ -684,3 +684,37 @@ input[type="search"]::-webkit-search-decoration {
     margin-top: 1.5em;
   }
 }
+
+/* Profile Page  */
+.profile_pic{
+  max-width: 200px;
+  border-radius: 100%;
+}
+
+.profile_banner{
+  overflow: hidden;
+}
+
+.profile_banner:after {
+  content: "";
+  position: absolute;
+  width : 100%;
+  height: 350px;
+  background: inherit;
+  z-index: -1;
+  background-size: cover;
+
+  filter        : opacity(45%) blur(1px);
+  -moz-filter   : opacity(45%) blur(1px);
+  -webkit-filter: opacity(45%) blur(1px);
+  -o-filter     : opacity(45%) blur(1px);
+}
+
+.profile_banner_content{
+  overflow: hidden;
+  text-align: center;
+  height: 350px;
+  padding-top: 30px;
+  padding-bottom: 0px;
+  text-shadow: 1px 2px 3px #000
+}
