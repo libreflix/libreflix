@@ -19,6 +19,7 @@ function init(app, passport) {
 	const uploadRoutes = require('./upload')(router);
 	const userRoutes = require('./user')(router, passport);
 	const watchRoutes = require('./watch')(router);
+	const filmRoutes = require('./film')(router);	
 
 	/**
 	 * Mount routes
@@ -34,6 +35,7 @@ function init(app, passport) {
 	app.use('/', uploadRoutes);
 	app.use('/', userRoutes);
 	app.use('/', watchRoutes);
+	app.use('/', filmRoutes);
 
 	/**
 	 * Error handling middleware

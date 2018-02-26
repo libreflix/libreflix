@@ -1,0 +1,130 @@
+{% set title = film.title %}
+
+
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container-fluid">
+  {% if messages.success %}
+  <div role="alert" class="alert alert-success">
+    {% for success in messages.success %}
+    <div>{{ success.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.error %}
+  <div role="alert" class="alert alert-danger">
+    {% for error in messages.error %}
+    <div>{{ error.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.info %}
+  <div role="alert" class="alert alert-info">
+    {% for info in messages.info %}
+    <div>{{ info.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</div>
+
+<div class="film_banner" style="background: url('{{ film.imgbg }}') no-repeat center center;">
+  <a href="/assistir/{{ film.permalink }}"><button type="button" class="banner-play"><img src="/img/play.png" alt="Play"></button></a>
+</div>
+
+<div class="container-fluid">
+	<div class="row film_content">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-4">
+			<img alt="{{ film.title }}({{ film.year }})" src="{{ film.thumb480 }}" class="film_pic" />
+		</div>
+		<div class="col-md-6 film_content_left">
+      <h2>{{ film.title }} ({{ film.year }})</h2>
+      <h4>
+        {{ film.subtitle }}
+        {% if film.subtitle %} &middot; {%endif%} {{film.year}}
+        {% if film.classind  %} &middot; <span class="classind">{{ film.classind }}</span>{% endif %}
+        {% if film.duration  %} &middot; {{ film.duration }} {% endif %}
+      </h4>
+			<p>
+      {{ film.sinopse }}
+			</p>
+      {% if user.mod %}<a href="/edit/{{ film._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
+			<div class="btn-group">
+
+				<button class="btn btn-default" onclick="location.href='/assistir/{{ film.permalink }}'">
+					<i class="fa fa-play-circle"></i> Assistir
+				</button>
+				<!-- <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+					<span class="caret"></span>
+				</button>
+				<ul class="dropdown-menu">
+					<li>
+						<a href="">  Baixar <i class="fa fa-download"></i></a>
+					</li>
+					<li class="disabled">
+						<a href="">Baixar <i class="fa fa-download"></i></a>
+					</li>
+				</ul> -->
+			</div>
+		</div>
+		<div class="col-md-1">
+		</div>
+	</div>
+  <br><br>
+  <div class="row">
+		<div class="col-md-1">
+		</div>
+		<div class="col-md-3">
+      <p>
+      <ul class="list-unstyled">
+
+        {% macro printSimpleField(detail, content) %}
+        {% if content %}
+        <li><b>{{ detail }}</b></li>
+        <li>{{ content }}</li>
+        <br>
+        {% endif %}
+        {% endmacro %}
+
+        {{ printSimpleField('Título Original:', film.original_title) }}
+        {{ printSimpleField('Direção:', film.crew.director) }}
+        {{ printSimpleField('País de Origem:', film.location.country) }}
+        {{ printSimpleField('Cidade de Origem:', film.location.city) }}
+        {{ printSimpleField('Estado de Origem:', film.location.state) }}
+        {{ printSimpleField('Lançamento:', film.premiere) }}
+        {{ printSimpleField('Qualidade:', film.quality) }}
+        {{ printSimpleField('Aúdio:', film.audio_language) }}
+        {{ printSimpleField('Legendas:', film.srt_language) }}
+        {{ printSimpleField('Produção:', film.crew.producer) }}
+        {{ printSimpleField('Roteiro:', film.crew.screenplay) }}
+        {{ printSimpleField('Elenco:', film.crew.cast) }}
+        {{ printSimpleField('Edição:', film.crew.editor) }}
+
+        {% if film.criador %}
+        <li><b>Enviador por:</b></li>
+        <li>
+          {% if film.criador.name %}<a href="/u/{{ film.criador.username }}">{{ film.criador.name }}</a>
+          {% else %}<a href="/u/{{ film.criador.username }}">{{ film.criador.username }}</a> {% endif %}
+        </li>
+        <br>
+        {% endif %}
+      </ul>
+      </p>
+		</div>
+		<div class="col-md-7">
+      {% if film.description %}
+      <h3>Descrição</h3>
+      {{ film.description | urlize | safe}}
+      {% endif %}
+      <!-- <h3>Comentários</h3> -->
+      <h4> Tags: {% set list1 = film.tags.split(',') %}{% for list in list1 %}<a href="/t/{{ list | trim}}">{{ list | trim}}</a>{%if loop.index0 < loop.length-1 %}, {%endif%}{% endfor %}</h4>
+		</div>
+		<div class="col-md-1">
+		</div>
+	</div>
+</div>
+
+
+{% endblock %}
