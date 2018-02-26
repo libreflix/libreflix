@@ -29,6 +29,14 @@
        url('/fonts/source-sans-pro-v11-latin-regular.svg#SourceSansPro') format('svg'); /* Legacy iOS */
 }
 
+/* Basics */
+.alignleft {
+	float: left;
+}
+.alignright {
+	float: right;
+}
+
 /* styles */
 .videoWrapper {
 	position: relative;
@@ -585,7 +593,11 @@ input[type="search"]::-webkit-search-decoration {
 }
 
 .footer2{
-	margin-top:110px;
+	margin-top:16%;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  padding: 1rem;
 }
 
 .tagcardgrab{
@@ -685,7 +697,8 @@ input[type="search"]::-webkit-search-decoration {
   }
 }
 
-/* Profile Page  */
+/****************** Profile Page  ********************/
+
 .profile_pic{
   max-width: 200px;
   border-radius: 100%;
@@ -717,4 +730,55 @@ input[type="search"]::-webkit-search-decoration {
   padding-top: 30px;
   padding-bottom: 0px;
   text-shadow: 1px 2px 3px #000
+}
+
+/****************** Film Info Page ********************/
+.film_pic{
+  width: 100%;
+  align-content: center;
+}
+
+.banner-play{
+  position: static;
+	background: transparent;
+  -webkit-appearance: none;
+	border: 0px;
+	padding-left: 48%;
+	padding-top: 270px;
+  opacity: 1 !important;
+  outline:none;
+}
+.banner-play:hover,
+.banner-play:focus {
+  opacity: 1 !important;
+}
+
+.film_banner{
+  margin-top: -15px;
+  position: static;
+  width : 100%;
+  height: 600px;
+  background-size: cover !important;
+  z-index: 0;
+
+  -webkit-box-shadow: inset 0px 0px 106px 79px rgba(0,0,0,1);
+  -moz-box-shadow: inset 0px 0px 106px 79px rgba(0,0,0,1);
+  box-shadow: inset 0px 0px 106px 79px rgba(0,0,0,1);
+
+  filter        : opacity(75%);
+  -moz-filter   : opacity(75%);
+  -webkit-filter: opacity(75%);
+  -o-filter     : opacity(75%);
+}
+
+.film_content{
+  margin-top: -50px;
+}
+
+.film_content_left{
+  margin-top: 15px;
+}
+
+.film_content_left p{
+  font-size: 0.9em;
 }
