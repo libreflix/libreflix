@@ -4,10 +4,6 @@ let Watch = require('../models/Watch');
 var nunjucks = require('nunjucks');
 var env = new nunjucks.Environment();
 
-
-
-
-
 /**
  * GET /
  */
