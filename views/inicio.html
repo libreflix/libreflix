@@ -95,6 +95,7 @@
           <div class="modal-footer">
             {% if user.mod %}<a href="/edit/{{ w._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
             <button type="button" class="btn btn-default" data-dismiss="modal">Fechar <i class="fa fa-times-circle"></i></button>
+            <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">Informações <i class="fa fa-info-circle"></i></button></a>
             <a href="/assistir/{{ w.permalink }}"><button type="button" class="btn btn-success">Assistir <i class="fa fa-play-circle"></i></button></a>
           </div>
         </div>
