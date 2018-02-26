@@ -116,7 +116,9 @@
 		<div class="col-md-7">
       {% if film.description %}
       <h3>Descrição</h3>
+      {% markdown %}
       {{ film.description | urlize | safe}}
+      {% endmarkdown %}
       {% endif %}
       <!-- <h3>Comentários</h3> -->
       <h4> Tags: {% set list1 = film.tags.split(',') %}{% for list in list1 %}<a href="/t/{{ list | trim}}">{{ list | trim}}</a>{%if loop.index0 < loop.length-1 %}, {%endif%}{% endfor %}</h4>
