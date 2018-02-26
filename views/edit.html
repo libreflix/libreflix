@@ -34,98 +34,246 @@
   <div class="panel panel-novo">
     <div class="panel-body">
       <form action="" class="form-horizontal">
-        <legend> Editar produção </legend>
-        <div class="form-group">
-          <label class="col-sm-3" for="name">Título da Produção</label>
-          <div class="col-sm-7">
-            <input type="text" name="title" class="form-control" autofocus value="{{ w.title }}">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">Subtítulo da Produção</label>
-          <div class="col-sm-7">
-            <input type="text" name="subtitle" class="form-control" autofocus value="{{ w.subtitle }}">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">Ano da Produção</label>
-          <div class="col-sm-2">
-            <input type="text" name="year" class="form-control" autofocus value="{{ w.year }}" >
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">Duração</label>
-          <div class="col-sm-2">
-            <input type="text" name="duration" class="form-control" autofocus value="{{ w.duration }}" >
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">Classificação Indicativa</label>
-          <div class="col-sm-2">
-            <input type="text" name="classind" class="form-control" autofocus value="{{ w.classind }}" >
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">Descrição</label>
-          <div class="col-sm-7">
-            <textarea class="form-control" rows="10" name="sinopse" id="textarea">{{w.sinopse}}</textarea>
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">Url do Vídeo</label>
-          <div class="col-sm-5">
-            <input type="text" name="video" class="form-control" autofocus value="{{w.video}}" placeholder="y8fxto7ua">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">Permalink</label>
-          <div class="col-sm-5">
-            <input type="text" name="permalink" class="form-control" autofocus value="{{w.permalink}}">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">Licença</label>
-          <div class="col-sm-5">
-            <input type="text" name="license" class="form-control" autofocus value="{{w.license}}">
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">Layout</label>
-          <div class="col-sm-5">
-            <input type="text" name="layout" class="form-control" autofocus value="{{w.layout}}" >
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">Featured</label>
-          <div class="col-sm-5">
-            <input type="text" name="featured" class="form-control" autofocus value="{{w.featured}}" >
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">top</label>
-          <div class="col-sm-5">
-            <input type="text" name="top" class="form-control" autofocus value="{{w.top}}" >
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">Tags</label>
-          <div class="col-sm-7">
-            <input type="text" name="tags" class="form-control" autofocus value="{{w.tags}}" >
-          </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">Imagem de Background</label>
-            <div class="col-sm-7">
-              <input type="text" name="imgbg" class="form-control" autofocus value="{{w.imgbg}}">
+        <div class="tab-content">
+          <h1>Editar produção</h1>
+          <ul class="nav nav-pills text-right">
+            <li class="active"><a data-toggle="pill" href="#basic">Básico</a></li>
+            <li><a data-toggle="pill" href="#moreinfo">Mais Informações</a></li>
+            <li><a data-toggle="pill" href="#internal">Interno</a></li>
+            <li><a data-toggle="pill" href="#videoseimagens">Vídeos e Imagens</a></li>
+            <li><a data-toggle="pill" href="#download">Arquivos e Download</a></li>
+          </ul>
+
+          <!-- Basic -->
+          <div id="basic" class="tab-pane fade in active">
+            <legend> Básico </legend>
+            <div class="form-group">
+              <label class="col-sm-3" for="name">Título da Produção</label>
+              <div class="col-sm-7">
+                <input type="text" name="title" class="form-control" autofocus value="{{ w.title }}">
+              </div>
             </div>
-        </div>
-        <div class="form-group">
-          <label class="col-sm-3">Imagem para Thumbnail</label>
-          <div class="col-sm-7">
-            <input type="text" name="thumb480" class="form-control" autofocus value="{{w.thumb480}}">
+            <div class="form-group">
+              <label class="col-sm-3">Subtítulo da Produção</label>
+              <div class="col-sm-7">
+                <input type="text" name="subtitle" class="form-control" autofocus value="{{ w.subtitle }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Título Original (Se houver)</label>
+              <div class="col-sm-7">
+                <input type="text" name="original_title" class="form-control" autofocus value="{{ w.original_title }}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Ano da Produção</label>
+              <div class="col-sm-2">
+                <input type="text" name="year" class="form-control" autofocus value="{{ w.year }}" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Duração</label>
+              <div class="col-sm-2">
+                <input type="text" name="duration" class="form-control" autofocus value="{{ w.duration }}" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Classificação Indicativa</label>
+              <div class="col-sm-2">
+                <input type="text" name="classind" class="form-control" autofocus value="{{ w.classind }}" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Sinopse</label>
+              <div class="col-sm-7">
+                <textarea class="form-control" rows="10" name="sinopse" id="textarea">{{w.sinopse}}</textarea>
+              </div>
+            </div>
           </div>
-          <small>480x270</small>
-        </div>
+
+          <!-- More Info -->
+          <div id="moreinfo" class="tab-pane fade">
+            <legend>Mais informações</legend>
+            <div class="form-group">
+              <label class="col-sm-3">Descrição</label>
+              <div class="col-sm-7">
+                <textarea class="form-control" rows="10" name="description" id="textarea">{{w.description}}</textarea>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Licença</label>
+              <div class="col-sm-5">
+                <input type="text" name="license" class="form-control" autofocus value="{{w.license}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">País de Origem</label>
+              <div class="col-sm-5">
+                <input type="text" name="location_country" class="form-control" autofocus value="{{w.location.country}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Estado/Província de Origem</label>
+              <div class="col-sm-5">
+                <input type="text" name="location_state" class="form-control" autofocus value="{{w.location.state}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Cidade de Origem</label>
+              <div class="col-sm-5">
+                <input type="text" name="location_city" class="form-control" autofocus value="{{w.location.city}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Direção</label>
+              <div class="col-sm-7">
+                <input type="text" name="crew_director" class="form-control" autofocus value="{{w.crew.director}}" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Roteiro</label>
+              <div class="col-sm-7">
+                <input type="text" name="crew_screenplay" class="form-control" autofocus value="{{w.crew.screenplay}}" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Produção</label>
+              <div class="col-sm-7">
+                <input type="text" name="crew_producer" class="form-control" autofocus value="{{w.crew.producer}}" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Atores</label>
+              <div class="col-sm-7">
+                <input type="text" name="crew_cast" class="form-control" autofocus value="{{w.crew.cast}}" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Editor</label>
+              <div class="col-sm-7">
+                <input type="text" name="crew_editor" class="form-control" autofocus value="{{w.crew.editor}}" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Equipe Técnica</label>
+              <div class="col-sm-7">
+                <input type="text" name="crew_other" class="form-control" autofocus value="{{w.crew.other}}" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Permalink</label>
+              <div class="col-sm-5">
+                <input type="text" name="permalink" class="form-control" autofocus value="{{w.permalink}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Tags</label>
+              <div class="col-sm-7">
+                <input type="text" name="tags" class="form-control" autofocus value="{{w.tags}}" >
+              </div>
+            </div>
+          </div>
+
+          <!-- Internal  -->
+          <div id="internal" class="tab-pane fade">
+            <legend>Interno</legend>
+            <div class="form-group">
+              <label class="col-sm-3">Layout</label>
+              <div class="col-sm-5">
+                <input type="text" name="layout" class="form-control" autofocus value="{{w.layout}}" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Featured</label>
+              <div class="col-sm-5">
+                <input type="text" name="featured" class="form-control" autofocus value="{{w.featured}}" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">top</label>
+              <div class="col-sm-5">
+                <input type="text" name="top" class="form-control" autofocus value="{{w.top}}" >
+              </div>
+            </div>
+            {% if user.mod %}
+            <div class="form-group">
+              <label class="col-sm-3">Criador</label>
+              <div class="col-sm-7">
+                <input type="text" name="criador" class="form-control" autofocus value="{{w.criador}}" >
+              </div>
+            </div>
+            {% endif %}
+          </div>
+
+          <!-- Videos and Images -->
+          <div id="videoseimagens" class="tab-pane fade">
+            <legend>Videos e Imagens</legend>
+            <div class="form-group">
+              <label class="col-sm-3">Url do Vídeo</label>
+              <div class="col-sm-5">
+                <input type="text" name="video" class="form-control" autofocus value="{{w.video}}" placeholder="y8fxto7ua">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Idioma do Aúdio</label>
+              <div class="col-sm-5">
+                <input type="text" name="audio_language" class="form-control" autofocus value="{{w.audio_language}}" placeholder="Português">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Idioma das Legendas</label>
+              <div class="col-sm-7">
+                <input type="text" name="srt_language" class="form-control" autofocus value="{{w.srt_language}}" >
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Qualidade do Vídeo</label>
+              <div class="col-sm-5">
+                <input type="text" name="quality" class="form-control" autofocus value="{{w.quality}}">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Url Youtube Trailer</label>
+                <div class="col-sm-7">
+                  <input type="text" name="trailer" class="form-control" autofocus value="{{w.trailer}}">
+                </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Imagem de Background</label>
+                <div class="col-sm-7">
+                  <input type="text" name="imgbg" class="form-control" autofocus value="{{w.imgbg}}">
+                </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Imagem para Thumbnail</label>
+              <div class="col-sm-7">
+                <input type="text" name="thumb480" class="form-control" autofocus value="{{w.thumb480}}">
+              </div>
+              <small>480x270</small>
+            </div>
+          </div>
+          <!-- Download Files -->
+          <div id="download" class="tab-pane fade">
+            <legend>Opções de Download</legend>
+            <div class="form-group">
+              <label class="col-sm-3">Arquivo Download do Filme</label>
+                <div class="col-sm-7">
+                  <input type="text" name="file_film" class="form-control" autofocus value="{{w.file.film}}">
+                </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Arquivo Download do Trailer</label>
+                <div class="col-sm-7">
+                  <input type="text" name="file_trailer" class="form-control" autofocus value="{{w.file.trailer}}">
+                </div>
+            </div>
+            <div class="form-group">
+              <label class="col-sm-3">Arquivo Download das Legendas</label>
+                <div class="col-sm-7">
+                  <input type="text" name="file_srt" class="form-control" autofocus value="{{w.file.srt}}">
+                </div>
+            </div>
+          </div>
         <!-- Fim -->
         <div class="form-group">
           <!-- <small class="text-muted">Criando uma conta, você concorda com os <a href="/" target="_blank">Termos de Uso</a>.</small> -->

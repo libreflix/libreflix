@@ -129,23 +129,59 @@ exports.watchEdit = function(req, res){
 exports.watchPut = function(req, res, next) {
 var body = req.body;
   Watch.findById(req.params._id, function(err, watch) {
-    // Para salvar no BD
-    watch.criador = req.user.id;
+    /* Para salvar no BD */
+
+    /* Internal */
     watch.permalink = req.body.permalink;
+    watch.criador = req.body.criador;
     watch.layout = req.body.layout;
-    watch.license = req.body.license;
     watch.featured  = req.body.featured;
+    watch.top = req.body.top
+
+    /* Basic */
     watch.title = req.body.title;
     watch.subtitle = req.body.subtitle;
-    watch.sinopse = req.body.sinopse;
+    watch.original_title = req.body.original_title;
     watch.year = req.body.year;
-    watch.classind = req.body.classind;
     watch.duration = req.body.duration;
-    watch.video = req.body.video;
-    watch.thumb480 = req.body.thumb480;
+    watch.classind = req.body.classind;
+    watch.sinopse = req.body.sinopse;
+
+    /* More Info */
+    watch.description = req.body.description;
+    watch.license = req.body.license;
+    watch.location.country = req.body.location_country;
+    watch.location.state = req.body.location_state;
+    watch.location.city = req.body.location_city;
+    // watch.location.lat = req.body.location.lat;
+    // watch.location.lon = req.body.location.lon;
+    watch.crew.director = req.body.crew_director;
+    watch.crew.screenplay = req.body.crew_screenplay;
+    watch.crew.producer = req.body.crew_producer;
+    watch.crew.cast = req.body.crew_cast;
+    watch.crew.editor = req.body.crew_editor;
+    watch.crew.other = req.body.crew_other;
+
+    /* Images */
     watch.imgbg = req.body.imgbg;
+    watch.thumb480 = req.body.thumb480;
+    watch.thumb130 = req.body.thumb130;
+
+    /* Video */
+    watch.video = req.body.video;
+    watch.trailer = req.body.trailer;
+    watch.quality = req.body.quality;
+    watch.audio_language = req.body.audio_language;
+    watch.srt_language = req.body.srt_language;
+
+    /* Files and Download*/
+    watch.file.film = req.body.file_film;
+    watch.file.trailer = req.body.file_trailer;
+    watch.file.srt = req.body.file_srt;
+
+    /* Categories */
     watch.tags = req.body.tags;
-    watch.top = req.body.top
+
     watch.save(function(err) {
       req.flash('success', { msg: 'Alterações feitas com sucesso.' });
       res.redirect('/edit/' + req.params._id);
