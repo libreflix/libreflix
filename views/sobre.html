@@ -1,5 +1,20 @@
 {% extends 'layout.html' %}
 
+{% block opengraph %}
+<meta property="og:image" content="https://libreflix.org/jon-tyson-228428.jpg" />
+<meta property="og:type" content="blog" />
+<meta property="og:title" content="Sobre - Libreflix" />
+<meta property="og:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar." />
+<meta property="og:url" content="https://libreflix.org" />
+<meta property="og:site_name" content="Libreflix" />
+
+<!-- twitter metatags-->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sobre - Libreflix">
+<meta name="twitter:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.">
+<meta name="twitter:image" content="https://libreflix.org/jon-tyson-228428.jpg">
+{% endblock %}
+
 {% block body %}
 <div class="container-fluid">
   {% if messages.success %}

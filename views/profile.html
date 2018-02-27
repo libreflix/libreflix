@@ -5,6 +5,25 @@
 {% endif %}
 
 {% extends 'layout.html' %}
+{% block opengraph %}
+<meta name="description" content='Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.'>
+<meta name="keywords"  content="libreflix, {{p.name}} Libreflix, liberflix, librefix" />
+
+<meta property="og:image" content="
+{% if p.twitter %}{{ p.gravatar }}{% elseif p.picture %}{{ p.picture }}{% else %}{{ p.gravatar }}{% endif %}"/>
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://libreflix.org/u/{{ p.username }}" />
+<meta property="og:title" content="{{p.name}} - Libreflix" />
+<meta property="og:description" content="Perfil de {{p.name}} no Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar." />
+<meta property="og:site_name" content="Libreflix" />
+
+<!-- twitter metatags-->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{p.name}} - Libreflix">
+<meta name="twitter:description" content="Perfil de {{p.name}} no Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.">
+<meta name="twitter:image" content="{% if p.twitter %}{{ p.gravatar }}{% elseif p.picture %}{{ p.picture }}{% else %}{{ p.gravatar }}{% endif %}">
+{% endblock %}
 
 {% block body %}
 <div class="container-fluid">
@@ -130,7 +149,7 @@
 
   <!-- Longas Que o User cadastrou -->
   {% if watch != '' %}
-  {{ printWatches('Últimas Obras Enviadas') }}
+  {{ printWatches('Obras Enviadas') }}
   {% endif %}
 </section>
 

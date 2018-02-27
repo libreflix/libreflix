@@ -1,4 +1,22 @@
-{% extends "layout.html" %} {% block body %}
+{% extends "layout.html" %}
+
+{% block opengraph %}
+<meta property="og:image" content="{{ thumb480 }}" />
+<meta property="og:type" content="video.movie" />
+<meta property="og:title" content="Assista '{{title}}' agora na Libreflix" />
+<meta property="og:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar." />
+<meta property="og:url" content="https://libreflix.org/assistir/{{permalink}}" />
+<meta property="og:site_name" content="Libreflix" />
+
+<!-- twitter metatags-->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Assista '{{title}}' agora na Libreflix">
+<meta name="twitter:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.">
+<meta name="twitter:image" content="https://libreflix.org/{{ thumb480 }}">
+{% endblock %}
+
+
+{% block body %}
 
 {% block navbar %}{% endblock %} {# just to overide parent navbar block#}
 <script type="text/javascript" src="https://www.youtube.com/iframe_api"></script>
