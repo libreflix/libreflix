@@ -4,6 +4,7 @@ O **Libreflix** já foi apresentado em **dezenas** de publicações online, jorn
 
 Confira essas e outras matérias nos links abaixo.
 ### 2018
+- Diário do Nordeste: [Plataforma gratuita é alternativa ao Netflix ](http://diariodonordeste.verdesmares.com.br/suplementos/tecno/plataforma-gratuita-e-alternativa-ao-netflix-1.1910311)
 - Integração Online: [Você conhece a Libreflix?](http://integracaoonline.com.br/comunicacao/voce-conhece-libreflix/)
 - Portal Uai: [Surgem no Brasil novas plataformas de exibição gratuitas de audiovisual independente, com ênfase em processos colaborativos](https://www.uai.com.br/app/noticia/e-mais/2018/02/06/noticia-e-mais,221274/surgem-no-pais-novas-plataformas-de-exibicao-gratuitas-de-audiovisual.shtml)
 
