@@ -136,7 +136,10 @@ var body = req.body;
     watch.criador = req.body.criador;
     watch.layout = req.body.layout;
     watch.featured  = req.body.featured;
-    watch.top = req.body.top
+    watch.top = req.body.top;
+    watch.mod_message = req.body.mod_message;
+    watch.downloadable = req.body.downloadable;
+    watch.canwecopy = req.body.canwecopy;
 
     /* Basic */
     watch.title = req.body.title;
