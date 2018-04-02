@@ -23,7 +23,8 @@ var userSchema = new mongoose.Schema({
   cover_picture: String,
   facebook: String,
   twitter: String,
-  mod: Boolean
+  mod: Boolean,
+  adm: Boolean
 }, schemaOptions);
 
 userSchema.pre('save', function(next) {

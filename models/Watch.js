@@ -16,7 +16,12 @@ var watchSchema = new mongoose.Schema({
   criador: { type : mongoose.Schema.ObjectId, ref : 'User' },
   layout: String,
   featured: String,
-  top: String,  
+  status: String,
+  top: String,
+  mod_message: String,
+  downloadable: String,
+  canwecopy: String,
+
 
   /* Basic */
   title: String,
