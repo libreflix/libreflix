@@ -10,13 +10,13 @@ lb.player = function lbPlayer() {
   this.subtitle;
   this.video;
   this.videoID;
-  this.placeholder;
+  this.imgbg;
 
   this.elPlayer = document.getElementById('pl-player');
   this.elVideo = document.getElementById('pl-video');
   this.elTitle = document.getElementById('pl-player-title').getElementsByTagName('h1')[0];
   this.elSubtitle = document.getElementById('pl-player-title').getElementsByTagName('h3')[0];
-  this.elPlaceholder = document.getElementById('pl-placeholder');
+  this.elimgbg = document.getElementById('pl-imgbg');
   this.elSeek = document.getElementById('pl-playback-progress');
   this.elTime = document.getElementById('pl-playback-time');
   this.elRuntime = document.getElementById('pl-runtime');
@@ -66,9 +66,9 @@ lb.player.prototype.setSubtitle = function (value) {
   this.elSubtitle.innerHTML = this.elInfoSubtitle.innerHTML = value;
 }
 
-lb.player.prototype.setPlaceholder = function (value) {
-  this.placeholder = value;
-  this.elPlaceholder.style.backgroundImage = 'url("' + value + '")';
+lb.player.prototype.setimgbg = function (value) {
+  this.imgbg = value;
+  this.elimgbg.style.backgroundImage = 'url("' + value + '")';
 }
 
 lb.player.prototype.setVideo = function (value) {
@@ -103,10 +103,10 @@ lb.player.prototype.setVideo = function (value) {
   }
 }
 
-lb.player.prototype.changeInfo = function (title, subtitle, placeholder, video) {
+lb.player.prototype.changeInfo = function (title, subtitle, imgbg, video) {
   this.setTitle(title);
   this.setSubtitle(subtitle);
-  this.setPlaceholder(placeholder);
+  this.setimgbg(imgbg);
   this.setVideo(video);
 }
 
@@ -144,7 +144,7 @@ lb.player.prototype.setCurrent = function(current) {
   this.changeInfo(
       lb.videos[current].title,
       lb.videos[current].subtitle,
-      lb.videos[current].placeholder,
+      lb.videos[current].imgbg,
       lb.videos[current].video);
 
   this.elUpNext.style.display = 'none';
@@ -165,7 +165,7 @@ lb.player.prototype.setCurrent = function(current) {
 //     return;
 //   }
 //
-//   this.elUpNextBg.style.backgroundImage = 'url("' + lb.videos[this.current + 1].placeholder + '")';
+//   this.elUpNextBg.style.backgroundImage = 'url("' + lb.videos[this.current + 1].imgbg + '")';
 //   this.elUpNextImage.style.backgroundImage = 'url("' + lb.videos[this.current + 1].thumb480 + '")';
 //   this.elPopupImage.style.backgroundImage = 'url("' + lb.videos[this.current + 1].thumb130 + '")';
 //

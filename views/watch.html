@@ -24,12 +24,11 @@
 </div>
 {% if layout == 'filme' %}
 <script>
-  var bgzao = "/img/obsabsorver.jpg";
   var lb = {};
   lb.videos = [{
     title: '{{ title }}',
     subtitle: '{{ subtitle }}',
-    placeholder: '{{ imgbg }}',
+    imgbg: '{{ imgbg }}',
     video: '{{ video }}',
     thumb480: '{{ thumb480 }}',
     thumb130: '{{ thumb130 }}',
@@ -39,23 +38,21 @@
 
 <style media="screen" type="text/css">
   #pl-final-screen {
-    display: none;
-    background: no-repeat center / cover url({{ imgbg }});
     z-index: 1;
+    background: no-repeat center / cover url({{ imgbg }});
+    display: none;    
   }
 </style>
 
 <script>
-    function voltar(){
-        if(history.length === 1)
-        {
-            window.location = "https://libreflix.org"
-        }
-        else
-        {
-            history.back();
-        }
+  function voltar(){
+    if(history.length === 1){
+      window.location = "https://libreflix.org"
     }
+    else{
+      history.back();
+    }
+  }
 </script>
 
 
@@ -68,7 +65,7 @@
       <div id="pl-video-wrap" class="stretch">
         <div id="pl-video" class="stretch"></div>
 
-        <div id="pl-placeholder" class="stretch"></div>
+        <div id="pl-imgbg" class="stretch"></div>
       </div>
 
       <div id="pl-player-overlay" class="stretch">
@@ -223,7 +220,7 @@
     {
       title: '{{ title }}',
       subtitle: '{{ ep.subtitle }}',
-      placeholder: '{{ imgbg }}',
+      imgbg: '{{ imgbg }}',
       video: '{{ ep.video }}',
       thumb480: '{{ ep.thumb480 }}',
       thumb130: '{{ ep.thumb130 }}',
@@ -258,7 +255,7 @@
     <div id="pl-video-wrap" class="stretch">
       <div id="pl-video" class="stretch"></div>
 
-      <div id="pl-placeholder" class="stretch"></div>
+      <div id="pl-imgbg" class="stretch"></div>
     </div>
 
     <div id="pl-player-overlay" class="stretch">

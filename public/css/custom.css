@@ -593,6 +593,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 
 .footer2{
+  font-size: 11pt;
 	margin-top:16%;
   right: 0;
   bottom: 0;

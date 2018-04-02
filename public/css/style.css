@@ -101,7 +101,7 @@ body {
   height: 60px;
 }
 
-#pl-placeholder {
+#pl-imgbg {
   background: black no-repeat center / cover;
   -webkit-transition: opacity .1s ease-out;
   -ms-transition: opacity .1s ease-out;
@@ -109,7 +109,7 @@ body {
   opacity: 0;
 }
 
-.loading #pl-placeholder {
+.loading #pl-imgbg {
   opacity: 1;
 }
 
