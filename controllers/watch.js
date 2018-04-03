@@ -133,10 +133,12 @@ var body = req.body;
 
     /* Internal */
     watch.permalink = req.body.permalink;
-    watch.criador = req.body.criador;
     watch.layout = req.body.layout;
     watch.featured  = req.body.featured;
-    watch.top = req.body.top;
+    if (req.user.adm) {
+      watch.criador = req.body.criador;      
+      watch.top = req.body.top;
+    }
     watch.mod_message = req.body.mod_message;
     watch.downloadable = req.body.downloadable;
     watch.canwecopy = req.body.canwecopy;
