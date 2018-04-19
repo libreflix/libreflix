@@ -20,6 +20,7 @@ function init(app, passport) {
 	const userRoutes = require('./user')(router, passport);
 	const watchRoutes = require('./watch')(router);
 	const filmRoutes = require('./film')(router);	
+  const adminRoutes = require('./admin')(router, passport);	
 
 	/**
 	 * Mount routes

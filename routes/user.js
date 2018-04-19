@@ -24,7 +24,7 @@ module.exports = function (router, passport) {
 		/** DELETE /account - Delete an account */
 		.delete(userController.accountDelete);
 
-	/**
+    /**
 	 * Sign up to create a new account
 	 */
 	router.route('/signup')
