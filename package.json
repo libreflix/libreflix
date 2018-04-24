@@ -14,9 +14,11 @@
     "dotenv": "^2.0.0",
     "express": "^4.13.4",
     "express-flash": "0.0.2",
+    "express-processimage": "^7.9.0",
     "express-session": "^1.2.1",
     "express-validator": "^2.20.4",
     "formidable": "^1.0.17",
+    "fs-extra": "5.0.0",
     "marked": "^0.3.12",
     "method-override": "^2.3.5",
     "mongoose": "4.9.2",
@@ -29,9 +31,7 @@
     "passport-github": "^1.1.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
-    "uuid": "^3.1.0",
-    "formidable": "^1.0.17",
-    "fs-extra": "5.0.0"
+    "uuid": "^3.1.0"
   },
   "devDependencies": {},
   "engines": {
