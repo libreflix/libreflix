@@ -121,14 +121,14 @@
         {{ printSimpleField('Elenco:', film.crew.cast) }}
         {{ printSimpleField('Edição:', film.crew.editor) }}
 
-        {% if film.criador %}
+        <!-- {% if film.criador %}
         <li><b>Enviador por:</b></li>
         <li>
           {% if film.criador.name %}<a href="/u/{{ film.criador.username }}">{{ film.criador.name }}</a>
           {% else %}<a href="/u/{{ film.criador.username }}">{{ film.criador.username }}</a> {% endif %}
         </li>
         <br>
-        {% endif %}
+        {% endif %} -->
       </ul>
       </p>
 		</div>
