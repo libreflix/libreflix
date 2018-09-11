@@ -28,6 +28,7 @@ COPY . /libreflix/
 
 RUN npm install --loglevel=error
 RUN npm install -g nodemon --loglevel=error
+RUN npm install express --loglevel=error
 
 # Define default command.
 CMD ["/bin/bash"]
