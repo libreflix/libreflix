@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  database:
+      logging:
+        driver: none
+      image: mongo:latest
+      ports:
+          - "27019:27017"
+      environment:
+          - MONGODB_USER="libreflix"
+          - MONGODB_PASS="PASSWORD"
+
+  libreflix:
+      stdin_open: true
+      build: .
+      volumes:
+        - ./:/libreflix
+      command: nodemon -e js,html,css server.js
+      ports:
+        - "3999:3999"
+      links:
+        - database
