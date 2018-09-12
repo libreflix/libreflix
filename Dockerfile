@@ -24,11 +24,11 @@ RUN apt-get update && apt-get install -y \
 # Define working directory.
 WORKDIR /libreflix
 
+COPY package*.json ./
+RUN npm install .
+RUN npm install express
+RUN npm install -g nodemon
 COPY . /libreflix/
-
-RUN npm install --loglevel=error
-RUN npm install -g nodemon --loglevel=error
-RUN npm install express --loglevel=error
 
 # Define default command.
 CMD ["/bin/bash"]

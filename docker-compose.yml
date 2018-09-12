@@ -16,6 +16,7 @@ services:
       build: .
       volumes:
         - ./:/libreflix
+        - /libreflix/node_modules
       command: nodemon -e js,html,css server.js
       ports:
         - "3999:3999"
