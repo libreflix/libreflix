@@ -7,6 +7,26 @@
 
 Nós defendemos novas formas de compartilhamento da cultura. Formas que atinjam todas as pessoas, principalmente as que não podem pagar por ela. Formas que conectem os artistas direto com os fãs. E até formas que permitam que artistas criem algo novo à partir do trabalho de outros artistas. Cultura é ciência, é poesia e é de todo mundo.
 
+
+### Deploying (Using Docker)
+#### First, clone the repository.
+```
+git clone https://notabug.org/librflix/libreflix
+cd libreflix
+```
+
+#### Copy environment file
+```
+cp .env.sample .env
+```
+
+#### Finally, use Docker-Compose to deploy
+```
+sudo docker-compose up
+```
+
+Ready! Now access on your browser [http://localhost:3999](http://localhost:3999)
+
 # ESTRUTURA 🔧
 Utilizamos o `node.js` a cima ou igual da versão `6.1.0`, seguimos a estrutura `MVC` para facilitar no desenvolvimento, nossos playes atualmente utilizam o do Youtube.
 
