@@ -140,7 +140,11 @@
       {% endmarkdown %}
       {% endif %}
       <!-- <h3>Comentários</h3> -->
-      <h4> Tags: {% set list1 = film.tags.split(',') %}{% for list in list1 %}<a href="/t/{{ list | trim}}">{{ list | trim}}</a>{%if loop.index0 < loop.length-1 %}, {%endif%}{% endfor %}</h4>
+      <h4>
+        {% if film.tags %}
+          Tags:  {% set list1 = film.tags.split(',') %}{% for list in list1 %}<a href="/t/{{ list | trim}}">{{ list | trim}}</a>{%if loop.index0 < loop.length-1 %}, {%endif%}{% endfor %}
+        {% endif %}
+      </h4>
 		</div>
 		<div class="col-md-1">
 		</div>
