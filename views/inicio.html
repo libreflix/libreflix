@@ -130,7 +130,7 @@
 
   <div class="tagcardgrab">
     <div class="tagcardcontainer">
-      {% set tagsArray = [ 'social', 'tech', 'musica', 'sci-fi', 'ativismo', 'veganismo', 'feminismo', 'educação', 'animação', 'comédia', 'religião', 'natureza'] %}
+      {% set tagsArray = [ 'social', 'tech', 'musica', 'sci-fi', 'ativismo', 'veganismo', 'feminismo', 'educação', 'animação', 'comédia', 'religião', 'natureza', 'ocupação'] %}
 
       <!-- Print Cards -->
       {% for tags in tagsArray%}
@@ -141,6 +141,9 @@
   </div>
   <br>
 
+  <!-- Longas Recém Chegados -->
+  {{ printWatches('Longas Recém Chegados', 'new-l') }}
+
   <!-- Longas populares -->
   {{ printWatches('Longas Populares', 'top-l') }}
 
@@ -149,9 +152,6 @@
 
   <!-- Séries populares -->
   {{ printWatches('Séries Populares', 'top-s') }}
-
-  <!-- Longas Recém Chegados -->
-  {{ printWatches('Longas Recém Chegados', 'new-l') }}
 
   <!-- Curtas Recém Chegados -->
   {{ printWatches('Curtas Recém Chegados', 'new-c') }}
