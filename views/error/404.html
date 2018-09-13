@@ -14,7 +14,7 @@
 			{% for watch in watches %}
 				<li class="col-md-3 thumb-404">
 					<a role="button" data-toggle="modal" style="border-bottom: 0px solid;" data-toggle="modal" data-target="#assistir{{ loop.index }}">
-						<img src="{{ watch.thumb480 }}" title="{{ watch.title }}{% if watch.subtitle %} - {{ watch.subtitle }}{% endif %} ({{ watch.year }})" class="fadeCatalogo" onload="this.style.opacity='1'"/>
+						<img src="{% if w.thumb480 %}{{ w.thumb480 }}?resize=480,270&crop=entropy {% elseif w.imgbg %} {{ w.imgbg }}?resize=480,270&crop=entropy{% endif %}" title="{{ watch.title }}{% if watch.subtitle %} - {{ watch.subtitle }}{% endif %} ({{ watch.year }})" class="fadeCatalogo" onload="this.style.opacity='1'"/>
 					</a>
 				</li>
 				<div class="modal" id="assistir{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{ loop.index }}">
