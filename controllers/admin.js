@@ -1,5 +1,6 @@
 var User = require('../models/User');
 let Watch = require('../models/Watch');
+var mongoose = require('mongoose');
 
 exports.listWatches = (req, res) => {
 
@@ -12,6 +13,6 @@ exports.listWatches = (req, res) => {
         watch: watch
       });
     }
-  });
+  }).populate('criador');
 
 }

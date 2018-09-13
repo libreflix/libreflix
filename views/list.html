@@ -33,7 +33,7 @@
 </div>
 <h2>Obras Pendentes</h2>
 <section class="work">
-    {% if user.mod %}
+    {% if (user.mod) or (user.adm) %}
     <ul class="entries" style="font-size: 12pt;">
       {% for w in watch %}
       {% if w.featured == 'false' %}

@@ -1,4 +1,4 @@
-{% set title = "Esqueci minha senha" %} 
+{% set title = "Esqueci minha senha" %}
 {% extends 'layout.html' %}
 
 {% block body %}
@@ -27,22 +27,22 @@
           {{ w.title }}
         </td>
         <td>
-          {{ w.criador }}
+          {{ w.criador.name }} ({{ w.criador.email }})
         </td>
         <td>
-          {% if w.status == 'true' %}
+          {% if w.featured == 'true' %}
             <div class="badge badge-success">Publicado</div>
           {% endif %}
         </td>
         <td>
           <div class="btn-group">
-          
+
             <a class="btn btn-default" href="/edit/{{ w._id }}">Editar</a>
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="caret"></span>
               <span class="sr-only">Toggle Dropdown</span>
             </button>
-          
+
             <ul class="dropdown-menu">
               <li>
                 <a href="/edit/{{ w._id }}">Editar</a>

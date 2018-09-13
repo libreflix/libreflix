@@ -9,6 +9,9 @@ function isAuthenticatedAdmin(req, res, next) {
     if (req.user.adm) {
       next();
     }
+    else if (req.user.mod) {
+      next();
+    }
 
   } else {
     res.redirect('/no-permission');
