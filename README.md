@@ -11,7 +11,7 @@ Nós defendemos novas formas de compartilhamento da cultura. Formas que atinjam 
 ### Deploying (Using Docker)
 #### First, clone the repository.
 ```
-git clone https://notabug.org/librflix/libreflix
+git clone https://notabug.org/libreflix/libreflix
 cd libreflix
 ```
 
