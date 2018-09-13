@@ -1,0 +1,65 @@
+{% set title = "Esqueci minha senha" %} 
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>
+          Titulo
+        </th>
+        <th>
+          Criador
+        </th>
+        <th>
+          Situação
+        </th>
+        <th>
+          Ação
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for w in watch %}
+      <tr>
+        <td>
+          {{ w.title }}
+        </td>
+        <td>
+          {{ w.criador }}
+        </td>
+        <td>
+          {% if w.status == 'true' %}
+            <div class="badge badge-success">Publicado</div>
+          {% endif %}
+        </td>
+        <td>
+          <div class="btn-group">
+          
+            <a class="btn btn-default" href="/edit/{{ w._id }}">Editar</a>
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="caret"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+          
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/edit/{{ w._id }}">Editar</a>
+              </li>
+              <li>
+                <a href="#">
+                  Despublicar
+                </a>
+              </li>
+            </ul>
+          </div>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+
+{% endblock %}

@@ -14,6 +14,7 @@ var marked = require('marked');
 var mongoose = require('mongoose');
 var passport = require('passport');
 var routes = require('./routes');
+var processImage = require('express-processimage');
 
 // Load environment variables from .env file
 dotenv.load();
@@ -55,6 +56,14 @@ app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();
 });
+
+/*
+* https://www.npmjs.com/package/express-processimage
+* pacote de thumb pra corrigir o issue:  https://notabug.org/libreflix/libreflix/issues/19
+* instrução pra recortar uma imagem https://github.com/papandreou/express-processimage/issues/14 
+*/
+
+app.use(processImage(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 /**

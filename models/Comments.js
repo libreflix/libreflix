@@ -11,7 +11,7 @@ var commentSchema = new mongoose.Schema({
   date: Date,
   comments: [{
     body: String,
-    date: Date
+    date: Date,
     creator: { type : mongoose.Schema.ObjectId, ref : 'User' }
   }],
   attachedToUser: { type : mongoose.Schema.ObjectId, ref : 'User' },
