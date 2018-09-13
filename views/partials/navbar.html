@@ -83,6 +83,9 @@
         <ul class="dropdown-menu">
           <li><a href="/u/{{ user.username }}">Meu Perfil</a></li>
           <li><a href="/account">Editar Conta</a></li>
+          {% if (user.adm) or (user.mod) %}
+            <li><a href="/list-watches">Listar Filmes</a></li>
+          {% endif %}
           <li class="divider"></li>
           <!-- <li><a href="#">Minhas Produções</a></li>
           <li class="divider"></li> -->
