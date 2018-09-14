@@ -22,7 +22,7 @@ cp .env.sample .env
 
 #### Finally, use Docker-Compose to deploy
 ```
-sudo docker-compose up
+sudo docker-compose up --build
 ```
 
 Ready! Now access on your browser [http://localhost:3999](http://localhost:3999)
