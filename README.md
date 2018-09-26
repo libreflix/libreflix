@@ -27,15 +27,15 @@ sudo docker-compose up --build
 
 Ready! Now access on your browser [http://localhost:3999](http://localhost:3999)
 
-# ESTRUTURA 🔧
+# Estrutura 🔧
 Utilizamos o `node.js` a cima ou igual da versão `6.1.0`, seguimos a estrutura `MVC` para facilitar no desenvolvimento, nossos playes atualmente utilizam o do Youtube.
 
-# AJUDE-NOS ❤️
+# Ajude-nos ❤️
 
 ## Desenvolva com nossa equipe 🤖
 Temos um grupo de desenvolvedores geniais, e bem bacana, participe no desenvolvimento, sabe programar? tem dica, opa fala logo [aqui](https://notabug.org/libreflix/libreflix/issues), você mesmo deseja fazer alguma modificação pra ficar melhor? faz um __fork__ em nosso projeto, ficaremos honrado de receber sua dica ou aperfeiçoamento. Temos um grupo do [telegram](https://t.me/libreflix_org) onde conversamos bastante, e interagimos, falamos de todos os assuntos relacionados a Libreflix.
 
-## Estruturação e designer 🖥
+## Estruturação e Design 🖥
 Olá, você é um designer gráfico? ficamos feliz de sua presença aqui, temos um grupo no [telegram](https://t.me/libreflix_org) onde falamos de todos os assuntos relacionados tanto ao designer quanto a filosofia e a o desenvolvimento, seria ótimo a sua presença lá 💙
 
 ## Doe-nos ❤️
@@ -45,7 +45,7 @@ Além do trabalho feito por incríveis voluntários para manter e melhorar o Lib
 
 [Doe-nos](https://acredito.me/libreflix2018)
 
-# ENTRE EM CONTATO
+# Entre em contato
 ✉️ Nosso email: [libreflix@openmailbox.org](mailto:libreflix@openmailbox.org) 
 
 🚀 Nosso telegram: [Amigos Libreflix](https://t.me/libreflix_org)
