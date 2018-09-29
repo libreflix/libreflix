@@ -9,7 +9,7 @@ var env = new nunjucks.Environment();
  */
 
 exports.index = function(req, res) {
-  Watch.find({}, null, {sort: '-year'}, function(err, watch){
+  Watch.find({}, null, {sort: '-_id'}, function(err, watch){
     if(err){
       console.log(err);
     } else {
