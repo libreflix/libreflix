@@ -41,7 +41,7 @@ var njks = nunjucks.configure('views', {
 markdown.register(njks, marked);
 
 app.set('view engine', 'html');
-app.set('port', process.env.PORT || 3999);
+app.set('port', process.env.PORT || 3998);
 app.use(compression());
 app.use(logger('dev'));
 app.use(bodyParser.json());
@@ -60,7 +60,7 @@ app.use(function(req, res, next) {
 /*
 * https://www.npmjs.com/package/express-processimage
 * pacote de thumb pra corrigir o issue:  https://libregit.org/libreflix/libreflix/issues/19
-* instrução pra recortar uma imagem https://github.com/papandreou/express-processimage/issues/14 
+* instrução pra recortar uma imagem https://github.com/papandreou/express-processimage/issues/14
 */
 
 app.use(processImage(path.join(__dirname, 'public')));
