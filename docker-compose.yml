@@ -20,6 +20,6 @@ services:
         - /libreflix/node_modules
       command: nodemon -e js,html,css server.js
       ports:
-        - "3999:3999"
+        - "3998:3998"
       links:
         - database
