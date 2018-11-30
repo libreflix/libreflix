@@ -42,4 +42,4 @@ The statement of complaint that you provide us, containing all of the above info
 PLEASE REMEMBER THAT IF YOU CHOOSE TO MISREPRESENT ANY OF THE DETAILS REGARDING AN ALLEGED COPYRIGHT INFRINGEMENT, YOU WILL BE SUBJECT TO SERIOUS CIVIL PENALTIES UNDER FEDERAL LAW, INCLUDING ANY MONETARY DAMAGES, COURT COSTS AND LAWYERS FEES ACCRUED BY US, AND ANY COPYRIGHT HOLDERS OR COPYRIGHT HOLDER.S LICENSEES WHO ARE INJURED IN ANY CAPACITY FOLLOWING OUR RELIANCE ON THE VERACITY OF YOUR REPRESENTATION. YOU COULD ALSO BE CRIMINALLY PROSECUTED FOR ACTS OF PERJURY. Do not take anything outlined in this document as formal legal advice. For further information on the details required to lodge a formal DMCA notification, please refer to 17 U.S.C. 512(c)(3).
 
 ### Versões antigas desse documento
-Versões antigas desse documento podem ser encontradas no repositório de código do Libreflix clicando [aqui](https://notabug.org/libreflix/libreflix/commits/master/views/dmca.md).
+Versões antigas desse documento podem ser encontradas no repositório de código do Libreflix clicando [aqui](https://libregit.org/libreflix/libreflix/commits/master/views/dmca.md).

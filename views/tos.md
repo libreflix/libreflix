@@ -9,7 +9,7 @@ Libreflix cataloga e mantém uma plataforma para filmes que estejam de acordo co
 
 Tentamos manter esses termos de uso tão simples quanto possível. Se for necessário, vamos atualizá-los no futuro.
 
-Versões antigas desse documento podem ser encontradas no repositório de código do Libreflix clicando [aqui](https://notabug.org/libreflix/libreflix/commits/master/views/tos.md).
+Versões antigas desse documento podem ser encontradas no repositório de código do Libreflix clicando [aqui](https://libregit.org/libreflix/libreflix/commits/master/views/tos.md).
 
 Leia também os nossos [termos de privacidade](/privacy) e os [termos de direito autoral](/dmca).
 

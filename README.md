@@ -11,7 +11,7 @@ Nós defendemos novas formas de compartilhamento da cultura. Formas que atinjam 
 ### Deploying (Using Docker)
 #### First, clone the repository.
 ```
-git clone https://notabug.org/libreflix/libreflix
+git clone https://libregit.org/libreflix/libreflix
 cd libreflix
 ```
 
@@ -33,7 +33,7 @@ Utilizamos o `node.js` a cima ou igual da versão `6.1.0`, seguimos a estrutura 
 # Ajude-nos ❤️
 
 ## Desenvolva com nossa equipe 🤖
-Temos um grupo de desenvolvedores geniais, e bem bacana, participe no desenvolvimento, sabe programar? tem dica, opa fala logo [aqui](https://notabug.org/libreflix/libreflix/issues), você mesmo deseja fazer alguma modificação pra ficar melhor? faz um __fork__ em nosso projeto, ficaremos honrado de receber sua dica ou aperfeiçoamento. Temos um grupo do [telegram](https://t.me/libreflix_org) onde conversamos bastante, e interagimos, falamos de todos os assuntos relacionados a Libreflix.
+Temos um grupo de desenvolvedores geniais, e bem bacana, participe no desenvolvimento, sabe programar? tem dica, opa fala logo [aqui](https://libregit.org/libreflix/libreflix/issues), você mesmo deseja fazer alguma modificação pra ficar melhor? faz um __fork__ em nosso projeto, ficaremos honrado de receber sua dica ou aperfeiçoamento. Temos um grupo do [telegram](https://t.me/libreflix_org) onde conversamos bastante, e interagimos, falamos de todos os assuntos relacionados a Libreflix.
 
 ## Estruturação e Design 🖥
 Olá, você é um designer gráfico? ficamos feliz de sua presença aqui, temos um grupo no [telegram](https://t.me/libreflix_org) onde falamos de todos os assuntos relacionados tanto ao designer quanto a filosofia e a o desenvolvimento, seria ótimo a sua presença lá 💙

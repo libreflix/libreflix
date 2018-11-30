@@ -40,6 +40,6 @@ Os servidores do Libreflix estão hospedados em servidores alugados nos Estados 
 Os mantenedores da plataforma são cidadãos brasileiros.
 
 ### Versões antigas desse documento
-Versões antigas desse documento podem ser encontradas no repositório de código do Libreflix clicando [aqui](https://notabug.org/libreflix/libreflix/commits/master/views/privacy.md).
+Versões antigas desse documento podem ser encontradas no repositório de código do Libreflix clicando [aqui](https://libregit.org/libreflix/libreflix/commits/master/views/privacy.md).
 
 Última alteração desse arquivo: 19-01-18.

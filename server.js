@@ -59,7 +59,7 @@ app.use(function(req, res, next) {
 
 /*
 * https://www.npmjs.com/package/express-processimage
-* pacote de thumb pra corrigir o issue:  https://notabug.org/libreflix/libreflix/issues/19
+* pacote de thumb pra corrigir o issue:  https://libregit.org/libreflix/libreflix/issues/19
 * instrução pra recortar uma imagem https://github.com/papandreou/express-processimage/issues/14 
 */
 

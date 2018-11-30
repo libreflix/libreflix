@@ -19,17 +19,17 @@ Mas queremos incentivar um ambiente em que as pessoas digam: "Ei, essa produçã
 Não. Por mais que defendamos o direito de todos terem acesso à cultura e a informação, queremos antes criar ambientes onde não precisemos de materiais com fortes proteções ao direitos de cópia. Todos os filmes no Libreflix precisam ter uma licença permissiva de pelos menos ser livre para exibição na internet pelo proprietário do direito autoral.
 
 ## <a name="faq4" href="#faq4"> Quem ajuda a fazer o Libreflix?</a>
-O Libreflix foi inicialmente criado pelo estudante e  hacktivista [Guilmour Rossi](http://guilmour.org), e agora é mantido por ele e incríveis [voluntários](https://notabug.org/libreflix/libreflix/issues) desenvolvedores e testadores. Como o [Kassiano Resende](http://instagram.com/kassianoresende) que fez o aplicativo para Android, ou o [Matheus Mesquita](http://n2omatt.com) que fez inúmeras contribuições ao código.
+O Libreflix foi inicialmente criado pelo estudante e  hacktivista [Guilmour Rossi](http://guilmour.org), e agora é mantido por ele e incríveis [voluntários](https://libregit.org/libreflix/libreflix/issues) desenvolvedores e testadores. Como o [Kassiano Resende](http://instagram.com/kassianoresende) que fez o aplicativo para Android, ou o [Matheus Mesquita](http://n2omatt.com) que fez inúmeras contribuições ao código.
 
 ## <a name="faq5" href="#faq5"> Você conhece outros projetos parecidos com o Libreflix?</a>
 Sim, há outros projetos incríveis que se você não conhece, deveria conhecer, como: [PortalCurtas](http://portacurtas.org.br), [Afroflix](http://afroflix.com.br), [Videocamp](http://videocamp.com), [CurtaDoc](http://curtadoc.tv)...
 
 ## <a name="faq6" href="#faq6"> Onde eu posso conversar sobre o Libreflix?</a>
-Você pode conversar sobre o Libreflix no nosso pequeno [grupo de Telegram](https://t.me/joinchat/DPUEEQwX-hRfRKCSoFNUmw) para discussões rápidas. Se tiver ideias de novas abordagens não deixe de se juntar às nossas discussões no [repositório do NotaBug](https://notabug.org/libreflix/libreflix/issues). No twitter, somos [@libreflix](https://twitter.com/libreflix) e você pode usar a hashtag [#libreflix](https://twitter.com/search?q=%23libreflix&src=typdÉvocê  ).
+Você pode conversar sobre o Libreflix no nosso pequeno [grupo de Telegram](https://t.me/joinchat/DPUEEQwX-hRfRKCSoFNUmw) para discussões rápidas. Se tiver ideias de novas abordagens não deixe de se juntar às nossas discussões no [repositório do NotaBug](https://libregit.org/libreflix/libreflix/issues). No twitter, somos [@libreflix](https://twitter.com/libreflix) e você pode usar a hashtag [#libreflix](https://twitter.com/search?q=%23libreflix&src=typdÉvocê  ).
 
 ## <a name="faq7" href="#faq7"> Como eu posso ajudar o Libreflix?</a>
 O Libreflix é construído em comunidade e seria incrível contar com a sua ajuda. Você pode ajudar com:
-- **Desenvolvimento**: Se junte ao grupo de desenvolvimento no [NotaBug](https://notabug.org/libreflix/libreflix/issues).
+- **Desenvolvimento**: Se junte ao grupo de desenvolvimento no [NotaBug](https://libregit.org/libreflix/libreflix/issues).
 
 - **Indicação de Filmes**: submeta produções ao catalógo no página [Adicionar Produção](/novo).
 
@@ -42,6 +42,6 @@ O Libreflix é construído em comunidade e seria incrível contar com a sua ajud
 
 <br><br>
 <p align="right">
-  <a href="https://notabug.org/libreflix/libreflix/src/master/views/faq.md")">&#x270E; Editar</a> |
-  <a href="https://notabug.org/libreflix/libreflix/commits/master/views/faq.md")}}">&#x26C1; Versões</a>
+  <a href="https://libregit.org/libreflix/libreflix/src/master/views/faq.md")">&#x270E; Editar</a> |
+  <a href="https://libregit.org/libreflix/libreflix/commits/master/views/faq.md")}}">&#x26C1; Versões</a>
 </p>
