@@ -8,6 +8,7 @@ services:
       ports:
           - "27019:27017"
       environment:
+          - MONGODB_DATABASE="libreflix"
           - MONGODB_USER="libreflix"
           - MONGODB_PASS="PASSWORD"
 
