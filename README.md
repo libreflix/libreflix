@@ -46,6 +46,6 @@ Além do trabalho feito por incríveis voluntários para manter e melhorar o Lib
 [Doe-nos](https://acredito.me/libreflix2018)
 
 # Entre em contato
-✉️ Nosso email: [libreflix@openmailbox.org](mailto:libreflix@openmailbox.org) 
+✉️ Nosso email: [libreflix@protonmail.com](mailto:libreflix@protonmail.com) 
 
 🚀 Nosso telegram: [Amigos Libreflix](https://t.me/libreflix_org)

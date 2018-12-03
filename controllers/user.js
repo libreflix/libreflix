@@ -255,7 +255,7 @@ exports.forgotPost = function(req, res, next) {
       });
       var mailOptions = {
         to: user.email,
-        from: 'Libreflix@openmailbox.org',
+        from: 'libreflix@protonmail.com',
         subject: 'Redefinir sua senha no Libreflix',
         text: 'Oi, tudo bem?\n\n Você está recebendo esse email porque pediu para redefenir a senha da sua conta no Libreflix.\n\n' +
         'Por favor, clique no link a seguir, ou cole no seu navegador para completar esse processo:\n\n' +
@@ -333,7 +333,7 @@ exports.resetPost = function(req, res, next) {
         }
       });
       var mailOptions = {
-        from: 'Libreflix@openmailbox.org',
+        from: 'libreflix@protonmail.com',
         to: user.email,
         subject: 'Sua senha no Libreflix foi alterada',
         text: 'Olá! Tudo bem? \n\n' +

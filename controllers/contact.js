@@ -35,7 +35,7 @@ exports.contactPost = function(req, res) {
 
   var mailOptions = {
     from: req.body.name + ' ' + '<'+ req.body.email + '>',
-    to: 'guilmour@alunos.utfpr.edu.br',
+    to: 'libreflix@protonmail.com',
     subject: 'Formulário de Contato | Libreflix',
     text: req.body.message
   };
