@@ -1,0 +1,115 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+<div class="container-fluid">
+  {% if messages.success %}
+  <div role="alert" class="alert alert-success">
+    {% for success in messages.success %}
+    <div>{{ success.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.error %}
+  <div role="alert" class="alert alert-danger">
+    {% for error in messages.error %}
+    <div>{{ error.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.info %}
+  <div role="alert" class="alert alert-info">
+    {% for info in messages.info %}
+    <div>{{ info.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+</div>
+<h2>Resultados para "{{ busca }}"</h2>
+<section class="work">
+
+  {% set ok = 0%}
+
+<div class="grid">
+  <ul class="entries">
+    {% for i in q %}
+
+      <li class="col-md-3">
+        <a role="button" data-toggle="modal" style="border-bottom: 0px solid;"  data-toggle="modal" data-target="#assistir{{ loop.index }}">
+          <img src="{% if i._source.thumb480 %}{{ i._source.thumb480 }}?resize=480,270&crop=entropy {% elseif i._source.imgbg %} {{ i._source.imgbg }}?resize=480,270&crop=entropy{% endif %}" title="{{ i._source.title }}{% if i._source.subtitle %} - {{ i._source.subtitle }}{% endif %} ({{ i._source.year }})" class="fadeCatalogo" onload="this.style.opacity='1'" style="img;"/>
+          <!--<h3>{{ i._source.title }}</h3>-->
+        </a>
+      </li>
+      <div class="modal" id="assistir{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{ loop.index }}">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times-circle exitTimes"></i></button>
+              <a href="/assistir/{{ i._source.permalink }}"><button type="button" class="splash-play"><img src="/img/play.png" alt="Play"></button></a>
+              <!-- <h4 class="modal-title" id="myModalLabel{{ loop.index }}">{{ i._source.title }} {% if i._source.subtitle %} - {{ i._source.subtitle }} {% else %} {% endif %}</h4> -->
+              <a href="/assistir/{{ i._source.permalink }}"><div class="splash" style="background-image: url('{{ i._source.imgbg }}');">
+              </div></a>
+            </div>
+            <div class="modal-body">
+              <h2> {{ i._source.title }}</h2>
+
+              <h4>
+                {{ i._source.subtitle }}
+                {% if i._source.subtitle %} &middot; {%endif%} {{i._source.year}}
+                {% if i._source.classind  %} &middot; <span class="classind">{{ i._source.classind }}</span>{% endif %}
+                {% if i._source.duration  %} &middot; {{ i._source.duration }} {% endif %}
+              </h4>
+              <ul class="nav nav-pills text-right">
+                <li class="active"><a data-toggle="pill" href="#resumo{{ loop.index }}">Resumo</a></li>
+                <!-- <li><a data-toggle="pill" href="#creditos{{ loop.index }}">Créditos</a></li> -->
+                <!-- <li><a data-toggle="pill" href="#links{{ loop.index }}">Links</a></li> -->
+              </ul>
+              <div class="tab-content">
+                <div id="resumo{{ loop.index }}" class="tab-pane fade in active">
+                  <!-- <h4>Resumo</h4> -->
+                  <div class="sinopse">{{ i._source.sinopse }}</div>
+                  <h4> Tags: {% for t in i._source.tags %}<a href="/t/{{ t }}">{{ t }}</a>{%if loop.index0 < loop.length-1 %}, {%endif%}{% endfor %}</h4>
+                </div>
+                <!-- <div id="creditos{{ loop.index }}" class="tab-pane fade">
+                  <h4>Créditos e Elenco</h4>
+                  <div class="sinopse">
+
+                  </div>
+                </div> -->
+                <!-- <div id="links{{ loop.index }}" class="tab-pane fade">
+                   <h4>Links</h4>
+                   {% if i._source.license != 'false' %}<div class="sinopse">Licença:  {{ i._source.license }} </div>{%endif%}
+                  <div class="sinopse">
+
+                  </div>
+                </div> -->
+              </div>
+            </div>
+            <div class="modal-footer">
+              {% if user.mod %}<a href="/edit/{{ i._source._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
+              <button type="button" class="btn btn-default" data-dismiss="modal">Fechar <i class="fa fa-times-circle"></i></button>
+              <a href="/i/{{ i._source.permalink }}"><button type="button" class="btn btn-success">Informações <i class="fa fa-info-circle"></i></button></a>
+              <a href="/assistir/{{ i._source.permalink }}"><button type="button" class="btn btn-success">Assistir <i class="fa fa-play-circle"></i></button></a>
+            </div>
+          </div>
+        </div>
+    </div>
+    {% set ok = 1 %}
+  {% endfor %}
+  </ul>
+</div>
+
+  {% if ok == 0 %}
+      <p>
+        <b>Sua busca não retornou nenhum resultado.</b>
+      </p>
+  {% endif %}
+
+<div class="grid">
+
+</div>
+
+</section>
+
+
+{% endblock %}
