@@ -12,6 +12,7 @@ var nunjucks = require('nunjucks');
 var markdown = require('nunjucks-markdown');
 var marked = require('marked');
 var mongoose = require('mongoose');
+var elasticsearch = require('elasticsearch');
 var passport = require('passport');
 var routes = require('./routes');
 var processImage = require('express-processimage');
