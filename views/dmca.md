@@ -8,7 +8,7 @@ O Libreflix é construído de maneira colaborativa, com indicações e interaç�
 
 ### Pedido de Remoção de Conteúdo
 Se você acredita que algum trabalho que você seja dono do direito de cópia (copyright owner) esteja sem sua autorização disponível no Libreflix, você pode entrar como uma queixa de direito autoral.  Nós levamos o seu pedido e o Digital Millennium Copyright Act de forma séria, mas por favor, para que sua queixa de copyright seja legítima, informe no email as seguintes informações:
-- Email para: ```libreflix [arroba] openmailbox [ponto] org ```
+- Email para: ```libreflix [arroba] protonmail [ponto] com ```
 - Assunto do email: **"Queixa de Direito Autoral"**
 
 Preenchendo no campo do email as seguintes informações:
@@ -37,7 +37,7 @@ Libreflix respects the intellectual property rights of all content creators, whe
 
 - A written letter stating that all of the information provided in the statement above is wholly accurate, and reaffirming that the writer of said letter has been legally authorized, under penalty of perjury, to represent you, the copyright holder.
 
-The statement of complaint that you provide us, containing all of the above information, should be sent to our Designated Copyright Agent by email to the contact address: ``` libreflix [at] openmailbox [dot] org ```
+The statement of complaint that you provide us, containing all of the above information, should be sent to our Designated Copyright Agent by email to the contact address: ``` libreflix [at] protonmail [dot] com ```
 
 PLEASE REMEMBER THAT IF YOU CHOOSE TO MISREPRESENT ANY OF THE DETAILS REGARDING AN ALLEGED COPYRIGHT INFRINGEMENT, YOU WILL BE SUBJECT TO SERIOUS CIVIL PENALTIES UNDER FEDERAL LAW, INCLUDING ANY MONETARY DAMAGES, COURT COSTS AND LAWYERS FEES ACCRUED BY US, AND ANY COPYRIGHT HOLDERS OR COPYRIGHT HOLDER.S LICENSEES WHO ARE INJURED IN ANY CAPACITY FOLLOWING OUR RELIANCE ON THE VERACITY OF YOUR REPRESENTATION. YOU COULD ALSO BE CRIMINALLY PROSECUTED FOR ACTS OF PERJURY. Do not take anything outlined in this document as formal legal advice. For further information on the details required to lodge a formal DMCA notification, please refer to 17 U.S.C. 512(c)(3).
 
