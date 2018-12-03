@@ -28,6 +28,9 @@ COPY package*.json ./
 RUN npm install .
 RUN npm install express
 RUN npm install -g nodemon
+RUN npm audit fix --force
+RUN npm install elasticsearch --save
+
 COPY . /libreflix/
 
 # Define default command.
