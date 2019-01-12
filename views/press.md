@@ -4,10 +4,11 @@ O **Libreflix** já foi apresentado em **dezenas** de publicações online, jorn
 
 Confira essas e outras matérias nos links abaixo.
 ### 2018
+- **Estadão**: [Cinema nacional independente enxerga no streaming um novo caminho](https://cultura.estadao.com.br/noticias/cinema,cinema-nacional-independente-enxerga-no-streaming-um-novo-caminho,70002396444)
 - **MAGG.pt**: [Libreflix é a nova plataforma de streaming totalmente gratuita (e legal)](https://magg.pt/2018/04/16/libreflix-e-a-nova-plataforma-de-streaming-totalmente-gratuita-e-legal/)
 - **Vice**: [Na faixa e dentro da lei, Libreflix oferece bom catálogo de filmes online](https://www.vice.com/pt_br/article/wj74jn/assistir-filmes-de-graca-libreflix)
-- **UOL**: [Testamos: Libreflix, a "Netflix brasileira e gratuita", tem ótima curadoria](https://shifter.sapo.pt/2018/04/libreflix-streaming/)
-- **Shifter.pt**: [Libreflix: ficção e documentários à borla, em streaming e 100% legal](https://tecnologia.uol.com.br/noticias/redacao/2018/07/07/testamos-o-libreflix-site-brasileiro-que-quer-ser-a-netflix-gratuita.htm)
+- **UOL**: [Testamos: Libreflix, a "Netflix brasileira e gratuita", tem ótima curadoria](https://tecnologia.uol.com.br/noticias/redacao/2018/07/07/testamos-o-libreflix-site-brasileiro-que-quer-ser-a-netflix-gratuita.htm )
+- **Shifter.pt**: [Libreflix: ficção e documentários à borla, em streaming e 100% legal](https://shifter.sapo.pt/2018/04/libreflix-streaming/)
 - **Rede Brasil Atual**: [Conheça plataformas gratuitas de filmes para 'fugir' da Netflix](https://www.redebrasilatual.com.br/entretenimento/2018/03/conheca-a-libreflix-e-outras-plataformas-gratuitas-para-assistir-a-filmes-e-series)
 - **Integração Online**: [Você conhece a Libreflix?](http://integracaoonline.com.br/comunicacao/voce-conhece-libreflix/)
 - **Portal Uai**: [Surgem no Brasil novas plataformas de exibição gratuitas de audiovisual independente, com ênfase em processos colaborativos](https://www.uai.com.br/app/noticia/e-mais/2018/02/06/noticia-e-mais,221274/surgem-no-pais-novas-plataformas-de-exibicao-gratuitas-de-audiovisual.shtml)
@@ -20,9 +21,12 @@ Confira essas e outras matérias nos links abaixo.
 - **Vivo Tech**: [Conheça a Libreflix: nova concorrente gratuita e brasileira da Netflix](https://www.vivotech.com.br/libreflix-nova-concorrente-netflix/)
 - **PplWare**: [Libreflix: Um estilo de Netflix mas totalmente grátis](https://pplware.sapo.pt/multimedia-2/libreflix-a-alternativa-gratuita-ao-netflix/)
 - **Espalha Factos:** [Libreflix: uma netflix sem custos e legal](https://espalhafactos.com/2018/04/25/libreflix-uma-netflix-sem-custos/)
+
+
 ###  2017
 
 - **Canaltech**: [Conheça o Libreflix, serviço de streaming que segue o conceito de cultura livre](https://canaltech.com.br/entretenimento/conheca-o-libreflix-servico-de-streaming-que-segue-o-conceito-de-cultura-livre-102678/)
+
 - **Revista Fórum**: [Libreflix: A alternativa ao Netflix, colaborativa, gratuita e que faz pensar](https://www.revistaforum.com.br/2017/09/25/libreflix-alternativa-ao--netflix-colaborativa-gratuita-e-que-faz-pensar/)
 - **Linux Descomplicado**: [Libreflix – plataforma de streaming aberta e colaborativa](https://news.linuxdescomplicado.com.br/2017/09/libreflix-plataforma-de-streaming-aberta-e-colaborativa/)
 - **Nexo Jornal**: [Como funciona o ‘Libreflix’, uma plataforma de vídeo aberta e colaborativa](https://www.nexojornal.com.br/expresso/2017/11/27/Como-funciona-o-‘Libreflix’-uma-plataforma-de-vídeo-aberta-e-colaborativa)
