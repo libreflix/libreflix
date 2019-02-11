@@ -12,7 +12,7 @@ const authAdmin = require('../middlewares/auth-admin');
  */
 module.exports = function (router, passport) {
 
-  router.route('/list-watches')
+  router.route('/admin/list-watches')
     /** Auth Middleware applied to all routes below */
     .all(authAdmin)
     .get(userController.listWatches);

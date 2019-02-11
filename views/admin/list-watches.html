@@ -1,23 +1,24 @@
 {% set title = "Esqueci minha senha" %}
 {% extends 'layout.html' %}
 
+<link rel="stylesheet" href="/css/dataTables.bootstrap.min.css">
+<link rel="stylesheet" href="https://www.guilstconcursos.com.br/css/bootstrap.css">
+
+<style>
+.body{
+  background-color: white !important;
+}
+</style>
 {% block body %}
-<div class="container">
-  <table class="table">
+
+<div class="container-fluid">
+  <table class="table table-list" style="width:100%" id="example">
     <thead>
       <tr>
-        <th>
-          Titulo
-        </th>
-        <th>
-          Criador
-        </th>
-        <th>
-          Situação
-        </th>
-        <th>
-          Ação
-        </th>
+        <th>Titulo</th>
+        <th>Criador</th>
+        <th>Situação</th>
+        <th>Ação</th>
       </tr>
     </thead>
     <tbody>
@@ -61,5 +62,18 @@
   </table>
 
 </div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#example').DataTable({
+      language: {
+        url: '/js/Portuguese-Brasil.json'
+      },
+      "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+    });
+  } );
+</script>
+<script src="/js/jquery.dataTables.min.js" charset="utf-8"></script>
+<script src="/js/dataTables.bootstrap.min.js" charset="utf-8"></script>
 
 {% endblock %}

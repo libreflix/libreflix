@@ -8,7 +8,7 @@ exports.listWatches = (req, res) => {
     if (err) {
       console.log(err);
     } else {
-      res.render('account/list-watches', {
+      res.render('admin/list-watches', {
         title: 'List watches',
         watch: watch
       });

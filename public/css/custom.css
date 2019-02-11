@@ -85,7 +85,7 @@ transition: opacity 2s;
   box-sizing: border-box;
 }
 body {
-  background-color: #000 !important;
+  background-color: #000;
   font-family: "Source Sans Pro Regular", helvetica, sans-serif !important;
   line-height: 1.5 !important;
 	font-size: 17px !important;
@@ -93,6 +93,16 @@ body {
 	color: #AFAEAF !important;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
+}
+body.white{
+  background-color: #ffffff;
+  font-family: "Source Sans Pro Regular", helvetica, sans-serif !important;
+  line-height: 1.5 !important;
+  font-size: 17px !important;
+  margin: 0 auto !important;
+  color: #1c1b1c !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 img {
   max-width: 100%;
