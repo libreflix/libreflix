@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'layouts/layout_admin.html' %}
 
 {% set title = "Editar " + w.title %}
 
@@ -38,17 +38,6 @@
   <div class="panel panel-novo">
     <div class="panel-body">
       <form action="" class="form-horizontal">
-        <p>
-          <ul class="nav nav-pills text-right">
-            <li class="active"><a data-toggle="pill" href="#basic">Básico</a></li>
-            <li><a data-toggle="pill" href="#moreinfo">Mais Informações</a></li>
-            <li><a data-toggle="pill" href="#internal">Interno</a></li>
-            <li><a data-toggle="pill" href="#videoseimagens">Vídeos e Imagens</a></li>
-            <li><a data-toggle="pill" href="#download">Arquivos e Download</a></li>
-          </ul>
-        </p>
-
-        <div class="tab-content">
 
           <!-- Basic -->
           <div id="basic" class="tab-pane fade in active">
@@ -98,7 +87,7 @@
           </div>
 
           <!-- More Info -->
-          <div id="moreinfo" class="tab-pane fade">
+          <div id="moreinfo" >
             <legend>Mais informações</legend>
             <div class="form-group">
               <label class="col-sm-3">Descrição</label>
@@ -181,7 +170,7 @@
           </div>
 
           <!-- Internal  -->
-          <div id="internal" class="tab-pane fade">
+          <div id="internal" >
             <legend>Interno</legend>
             <div class="form-group">
               <label class="col-sm-3">Layout</label>
@@ -212,7 +201,7 @@
           </div>
 
           <!-- Videos and Images -->
-          <div id="videoseimagens" class="tab-pane fade">
+          <div id="videoseimagens" >
             <legend>Videos e Imagens</legend>
             <div class="form-group">
               <label class="col-sm-3">Url do Vídeo</label>
@@ -248,18 +237,22 @@
               <label class="col-sm-3">Imagem de Background</label>
                 <div class="col-sm-7">
                   <input type="text" name="imgbg" class="form-control" autofocus value="{{w.imgbg}}">
+                  <br>
+                  <a href="{{w.imgbg}}" target="_blank"><img src="{{w.imgbg}}" width="300px" alt=""></a>
                 </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Imagem para Thumbnail</label>
               <div class="col-sm-7">
                 <input type="text" name="thumb480" class="form-control" autofocus value="{{w.thumb480}}">
+                <br>
+                <a href="{{w.thumb480}}" target="_blank"><img src="{{w.thumb480}}" width="300px" alt=""></a>
               </div>
               <small>480x270</small>
             </div>
           </div>
           <!-- Download Files -->
-          <div id="download" class="tab-pane fade">
+          <div id="download" >
             <legend>Opções de Download</legend>
             <div class="form-group">
               <label class="col-sm-3">Arquivo pode ser copiado pelo Libreflix?</label>

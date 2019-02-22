@@ -1087,9 +1087,9 @@ html {
 }
 body {
   font-family: "Source Sans Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 13px;
+  /* font-size: 13px; */
   line-height: 1.42857143;
-  color: #777777;
+  color: #ffffff;
   background-color: #000000;
 }
 input,
@@ -2512,7 +2512,7 @@ legend {
 label {
   display: inline-block;
   max-width: 100%;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
   font-weight: bold;
 }
 input[type="search"] {
@@ -4859,7 +4859,7 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
   padding: .2em .6em .3em;
   font-size: 75%;
   font-weight: bold;
-  line-height: 1;
+  line-height: 2.1;
   color: #ffffff;
   text-align: center;
   white-space: nowrap;
