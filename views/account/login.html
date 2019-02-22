@@ -1,5 +1,5 @@
 {% set title = "Entrar" %}
-{% extends 'layout.html' %}
+{% extends 'layouts/layout.html' %}
 {% block opengraph %}
 <meta property="og:image" content="/sm-share2.jpg" />
 <meta property="og:type" content="blog" />
@@ -26,31 +26,31 @@
       </div>
       {% endif %}
       <form method="POST">
-        <legend>Entrar na sua conta</legend>
+        <legend>{{ t('Entrar na sua conta') }}</legend>
         <div class="form-group">
-          <label for="email">Email</label>
+          <label for="email">{{ t('Email') }}</label>
           <input type="email" name="email" id="email" placeholder="Email" class="form-control" autofocus>
         </div>
         <div class="form-group">
-          <label for="password">Senha</label>
+          <label for="password">{{ t('Senha') }}</label>
           <input type="password" name="password" id="password" placeholder="Password" class="form-control">
         </div>
-        <div class="form-group"><a href="/forgot"><strong>Esqueceu sua senha?</strong></a></div>
-        <button type="submit" class="btn btn-success">Entrar</button><hr>
+        <div class="form-group"><a href="/forgot"><strong>{{ t('Esqueceu sua senha?') }}</strong></a></div>
+        <button type="submit" class="btn btn-success">{{ t('Entrar') }}</button><hr>
       </form>
 
       <div class="text-center">
         <div class="text-center">
-          <a href="/auth/facebook"><button type="submit" class="btn btn-fb">Entre com o Facebook</button></a>
-          <a href="/auth/twitter"><button type="submit" class="btn btn-tw">Entre com o Twitter</button></a>
+          <a href="/auth/facebook"><button type="submit" class="btn btn-fb">{{ t('Entre com o Facebook') }}</button></a>
+          <a href="/auth/twitter"><button type="submit" class="btn btn-tw">{{ t('Entre com o Twitter') }}</button></a>
         </div>
 
       </div>
     </div>
   </div>
   <p class="text-center">
-    Ainda não tem uma conta? <br><br>
-    <a href="/signup"><button type="submit" class="btn btn-danger">Criar Uma Nova Conta</button></a>
+    {{ t('Ainda não tem uma conta?') }} <br><br>
+    <a href="/signup"><button type="submit" class="btn btn-danger">{{ t('Criar Uma Nova Conta') }}</button></a>
   </p>
 </div>
 {% endblock %}
