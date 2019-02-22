@@ -24,11 +24,14 @@ RUN apt-get update && apt-get install -y \
 # Define working directory.
 WORKDIR /libreflix
 
-COPY package*.json ./
-RUN npm install .
+COPY package.json .
+RUN npm cache clean --force
+RUN rm -rf node_modules
+RUN npm install
 RUN npm install express
+RUN npm install i18n
+RUN npm install cookie-parser
 RUN npm install -g nodemon
-RUN npm audit fix --force
 RUN npm install elasticsearch --save
 
 COPY . /libreflix/
