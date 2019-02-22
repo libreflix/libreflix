@@ -60,12 +60,19 @@ function doSearch(){
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <!-- <li><a href="/">Home</a></li> -->
-        <li><a href="/t/docs"><b>Docs</b></a></li>
+        <!-- <li><a href="/t/docs"><b>Docs </b></a></li>
         <li><a href="/t/filmes"><b>Filmes</b></a></li>
         <li><a href="/t/curtas"><b>Curtas</b></a></li>
         <li><a href="/t/series"><b>Séries</b></a></li>
         <li><a href="/t/classicos"><b>Clássicos</b></a></li>
         <li><a href="/t/nacionais"><b>Nacionais</b></a></li>
+        <li><a href="/t/kids"><b>Kids</b></a></li> -->
+        <li><a href="/"><b>Início</b></a></li>
+        <li><a href="/t/docs"><b>Documentários</b></a></li>
+        <li><a href="/t/ficção"><b>Ficção</b></a></li>
+        <li><a href="/t/seriados"><b>Seriados</b></a></li>
+        <li><a href="/t/curtas"><b>Curtas</b></a></li>
+        <li><a href="/t/classicos"><b>Clássicos</b></a></li>
         <li><a href="/t/kids"><b>Kids</b></a></li>
 
       </ul>
@@ -86,7 +93,7 @@ function doSearch(){
         </li>
 
         {% if user %}
-        <li><a href="/novo">Nova Produção</a></li>
+        <li><a href="/novo">{{ t('Nova Produção') }}</a></li>
         <li class="dropdown">
           <a href="#" data-toggle="dropdown" class="navbar-avatar dropdown-toggle">
             {% if user.twitter %}
@@ -106,23 +113,23 @@ function doSearch(){
             <i class="caret"></i>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="/u/{{ user.username }}">Meu Perfil</a></li>
-            <li><a href="/account">Editar Conta</a></li>
+            <li><a href="/u/{{ user.username }}">{{ t('Meu Perfil') }}</a></li>
+            <li><a href="/account">{{ t('Editar Conta') }}</a></li>
             {% if (user.adm) or (user.mod) %}
-            <li><a href="/admin/list-watches">Listar Filmes</a></li>
+            <li><a href="/admin/list-watches">{{ t('Listar Filmes') }}</a></li>
             {% endif %}
             <li class="divider"></li>
-            <!-- <li><a href="#">Minhas Produções</a></li>
+            <!-- <li><a href="#">{{ t('Minhas Produções') }}</a></li>
           <li class="divider"></li> -->
-            <li><a href="/logout">Sair</a></li>
+            <li><a href="/logout">{{ t('Sair') }}</a></li>
           </ul>
         </li>
         {% else %}
 
-        <li class="{% if title == 'Entrar' %}active{% endif %}"><a href="/login"><b>Entrar</b></a></li>
+        <li class="{% if title == 'Entrar' %}active{% endif %}"><a href="/login"><b> {{ t('Entrar') }} </b></a></li>
 
 
-        <!-- <li class="{% if title == 'Criar Conta' %}active{% endif %}"><a href="/signup">Criar Conta</a></li> -->
+        <!-- <li class="{% if title == 'Criar Conta' %}active{% endif %}"><a href="/signup">{{ t('Criar Conta') }}</a></li> -->
         {% endif %}
       </ul>
     </div>
