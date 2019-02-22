@@ -16,6 +16,8 @@ var elasticsearch = require('elasticsearch');
 var passport = require('passport');
 var routes = require('./routes');
 var processImage = require('express-processimage');
+var i18n = require("i18n");
+var cookieParser = require('cookie-parser')
 
 // Load environment variables from .env file
 dotenv.load();
@@ -24,6 +26,8 @@ dotenv.load();
 require('./config/passport');
 
 var app = express();
+app.use(cookieParser())
+
 
 mongoose.connect(process.env.DB_PATH);
 
@@ -40,6 +44,24 @@ var njks = nunjucks.configure('views', {
 });
 
 markdown.register(njks, marked);
+
+// i18n options
+i18n.configure({
+    locales:['pt', 'en'],
+    defaultLocale: 'pt',
+    queryParameter: 'lang',
+    cookie: 'libreflix-langs',
+    directoryPermissions: '775',
+    autoReload: true,
+    updateFiles: false,
+    directory: __dirname + '/public/locales',
+    api: {
+     '__': 't',  //now req.__ becomes req.t
+   }
+});
+
+app.use(i18n.init);
+
 
 app.set('view engine', 'html');
 app.set('port', process.env.PORT || 3998);
