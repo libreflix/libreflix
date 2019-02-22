@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 
 exports.listWatches = (req, res) => {
 
-  Watch.find({}, null, { sort: '-year' }, function (err, watch) {
+  Watch.find({}, null, { sort: '-id' }, function (err, watch) {
     if (err) {
       console.log(err);
     } else {

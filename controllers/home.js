@@ -15,7 +15,7 @@ exports.index = function(req, res) {
     } else {
       res.render('inicio', {
         title:'Início',
-        watch: watch
+        watch: watch,
       });
     }
   });
