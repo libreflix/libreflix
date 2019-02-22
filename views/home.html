@@ -4,7 +4,7 @@
   {% set title = "Tag: " + tag %}
 {% endif %}
 
-{% extends 'layout.html' %}
+{% extends 'layouts/layout.html' %}
 
 {% block body %}
 <div class="container-fluid">
@@ -53,18 +53,32 @@
 
       <li class="col-md-3">
         <a role="button" data-toggle="modal" style="border-bottom: 0px solid;"  data-toggle="modal" data-target="#assistir{{ loop.index }}">
-          <img src="{% if w.thumb480 %}{{ w.thumb480 }}?resize=480,270&crop=entropy {% elseif w.imgbg %} {{ w.imgbg }}?resize=480,270&crop=entropy{% endif %}" title="{{ w.title }}{% if w.subtitle %} - {{ w.subtitle }}{% endif %} ({{ w.year }})" class="fadeCatalogo" onload="this.style.opacity='1'" style="img;"/>
+        <div class="cover">
+            <img src="{% if w.thumb480 %}{{ w.thumb480 }}?resize=480,270&crop=entropy {% elseif w.imgbg %} {{ w.imgbg }}?resize=480,270&crop=entropy{% endif %}" title="{{ w.title }}{% if w.subtitle %} - {{ w.subtitle }}{% endif %} ({{ w.year }})" class="fadeCatalogo" onload="this.style.opacity='1'"/>
+          <div class="cover_wrap">
+            <div class="cover_info">
+              <h3>{{ w.title | truncate(45) }}</h3>
+              <h4>
+                {{ w.subtitle | truncate(35) }}
+                {% if w.subtitle %} </h4> <h4> {%endif%} {{w.year}}
+                {% if w.classind  %} &middot; <span class="classind">{{ w.classind }}</span>{% endif %}
+                {% if w.duration  %} &middot; {{ w.duration }} {% endif %}
+              </h4>
+            </div>
+          </div>
           <!--<h3>{{ w.title }}</h3>-->
+        </div>
         </a>
+
       </li>
       <div class="modal" id="assistir{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{ loop.index }}">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times-circle exitTimes"></i></button>
-              <a href="/assistir/{{ w.permalink }}"><button type="button" class="splash-play"><img src="/img/play.png" alt="Play"></button></a>
+              <a href="/i/{{ w.permalink }}"><button type="button" class="splash-play"><img src="/img/play.png" alt="Play"></button></a>
               <!-- <h4 class="modal-title" id="myModalLabel{{ loop.index }}">{{ w.title }} {% if w.subtitle %} - {{ w.subtitle }} {% else %} {% endif %}</h4> -->
-              <a href="/assistir/{{ w.permalink }}"><div class="splash" style="background-image: url('{{ w.imgbg }}');">
+              <a href="/i/{{ w.permalink }}"><div class="splash" style="background-image: url('{{ w.imgbg }}');">
               </div></a>
             </div>
             <div class="modal-body">
@@ -76,37 +90,14 @@
                 {% if w.classind  %} &middot; <span class="classind">{{ w.classind }}</span>{% endif %}
                 {% if w.duration  %} &middot; {{ w.duration }} {% endif %}
               </h4>
-              <ul class="nav nav-pills text-right">
-                <li class="active"><a data-toggle="pill" href="#resumo{{ loop.index }}">Resumo</a></li>
-                <!-- <li><a data-toggle="pill" href="#creditos{{ loop.index }}">Créditos</a></li> -->
-                <!-- <li><a data-toggle="pill" href="#links{{ loop.index }}">Links</a></li> -->
-              </ul>
-              <div class="tab-content">
-                <div id="resumo{{ loop.index }}" class="tab-pane fade in active">
-                  <!-- <h4>Resumo</h4> -->
-                  <div class="sinopse">{{ w.sinopse }}</div>
-                  <h4> Tags: {% set list1 = w.tags.split(',') %}{% for list in list1 %}<a href="/t/{{ list | trim}}">{{ list | trim}}</a>{%if loop.index0 < loop.length-1 %}, {%endif%}{% endfor %}</h4>
-                </div>
-                <!-- <div id="creditos{{ loop.index }}" class="tab-pane fade">
-                  <h4>Créditos e Elenco</h4>
-                  <div class="sinopse">
-
-                  </div>
-                </div> -->
-                <!-- <div id="links{{ loop.index }}" class="tab-pane fade">
-                   <h4>Links</h4>
-                   {% if w.license != 'false' %}<div class="sinopse">Licença:  {{ w.license }} </div>{%endif%}
-                  <div class="sinopse">
-
-                  </div>
-                </div> -->
-              </div>
+              <div class="sinopse">{{ w.sinopse | truncate(300)}}</div>
+              <h4> Tags: {% set list1 = w.tags.split(',') %}{% for list in list1 %}{% if loop.index0 < 6 %}<a href="/t/{{ list | trim}}"><span class="label label-default">{{ list | trim}}</span></a>{% endif %}{%if (loop.index0 < loop.length-1) or (loop.index0 < 6) %} {%endif%}{% endfor %}</h4>
             </div>
             <div class="modal-footer">
               {% if user.mod %}<a href="/edit/{{ w._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
-              <button type="button" class="btn btn-default" data-dismiss="modal">Fechar <i class="fa fa-times-circle"></i></button>
-              <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">Informações <i class="fa fa-info-circle"></i></button></a>
-              <a href="/assistir/{{ w.permalink }}"><button type="button" class="btn btn-success">Assistir <i class="fa fa-play-circle"></i></button></a>
+              <button type="button" class="btn btn-default" data-dismiss="modal">{{ t('Fechar') }} <i class="fa fa-times-circle"></i></button>
+              <!-- <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">{{ t('Informações') }} <i class="fa fa-info-circle"></i></button></a> -->
+              <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">{{ t('Assistir') }} <i class="fa fa-play-circle"></i></button></a>
             </div>
           </div>
         </div>
@@ -114,6 +105,7 @@
       {% endif %}
       {% endfor %}
     </ul>
+</div>
 
   <div class="centerBlock">
     <!--<a class="btn" href="#">Ver todo o conteúdo</a>-->
