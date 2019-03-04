@@ -67,9 +67,9 @@ function doSearch(){
         <li><a href="/t/classicos"><b>Clássicos</b></a></li>
         <li><a href="/t/nacionais"><b>Nacionais</b></a></li>
         <li><a href="/t/kids"><b>Kids</b></a></li> -->
-        <li><a href="/"><b>Início</b></a></li>
-        <li><a href="/t/docs"><b>Documentários</b></a></li>
-        <li><a href="/t/ficção"><b>Ficção</b></a></li>
+        <!-- <li><a href="/"><b>Início</b></a></li> -->
+        <li><a href="/explore/format/doc"><b>Documentários</b></a></li>
+        <li><a href="/explore/format/fic"><b>Ficção</b></a></li>
         <li><a href="/t/seriados"><b>Seriados</b></a></li>
         <li><a href="/t/curtas"><b>Curtas</b></a></li>
         <li><a href="/t/classicos"><b>Clássicos</b></a></li>
@@ -116,7 +116,9 @@ function doSearch(){
             <li><a href="/u/{{ user.username }}">{{ t('Meu Perfil') }}</a></li>
             <li><a href="/account">{{ t('Editar Conta') }}</a></li>
             {% if (user.adm) or (user.mod) %}
+            <li class="divider"></li>
             <li><a href="/admin/list-watches">{{ t('Listar Filmes') }}</a></li>
+            <li><a href="/admin/list-categories">{{ t('Listar Categorias') }}</a></li>
             {% endif %}
             <li class="divider"></li>
             <!-- <li><a href="#">{{ t('Minhas Produções') }}</a></li>

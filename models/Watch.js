@@ -7,8 +7,8 @@ var schemaOptions = {
   }
 };
 
-const getTags = tags => tags.join(', ');
-const setTags = tags => tags.split(', ');
+const getTags = tags => tags.join(',');
+const setTags = tags => tags.split(',');
 
 var watchSchema = new mongoose.Schema({
   /* Internal */
@@ -36,7 +36,10 @@ var watchSchema = new mongoose.Schema({
   description: String,
   license: String,
   location: {
-    country: String,
+    country:{
+      code: String,
+      name: String,
+    },
     state: String,
     city: String,
     lat: String,
@@ -72,6 +75,8 @@ var watchSchema = new mongoose.Schema({
 
   /* Categories */
   tags: { type: [], get: getTags, set: setTags },
+  categories: { type: []},
+  format: String,
 
   /* For Series */
   n_eps: Number,

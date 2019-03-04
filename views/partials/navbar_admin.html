@@ -97,7 +97,9 @@ function doSearch(){
             <li><a href="/u/{{ user.username }}">{{ t('Meu Perfil') }}</a></li>
             <li><a href="/account">{{ t('Editar Conta') }}</a></li>
             {% if (user.adm) or (user.mod) %}
+            <li class="divider"></li>
             <li><a href="/admin/list-watches">{{ t('Listar Filmes') }}</a></li>
+            <li><a href="/admin/list-categories">{{ t('Listar Categorias') }}</a></li>
             {% endif %}
             <li class="divider"></li>
             <!-- <li><a href="#">{{ t('Minhas Produções') }}</a></li>

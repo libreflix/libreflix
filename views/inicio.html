@@ -99,7 +99,7 @@
             <h4> Tags: {% set list1 = w.tags.split(',') %}{% for list in list1 %}{% if loop.index0 < 6 %}<a href="/t/{{ list | trim}}"><span class="label label-default">{{ list | trim}}</span></a>{% endif %}{%if (loop.index0 < loop.length-1) or (loop.index0 < 6) %} {%endif%}{% endfor %}</h4>
           </div>
           <div class="modal-footer">
-            {% if user.mod %}<a href="/edit/{{ w._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
+            {% if user.mod or user.adm %}<a href="/edit/{{ w._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
             <button type="button" class="btn btn-default" data-dismiss="modal">{{ t('Fechar') }} <i class="fa fa-times-circle"></i></button>
             <!-- <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">{{ t('Informações') }} <i class="fa fa-info-circle"></i></button></a> -->
             <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">{{ t('Assistir') }} <i class="fa fa-play-circle"></i></button></a>
@@ -130,7 +130,8 @@
 
     </div>
   </div>
-  <br>
+  <br><br>
+
 
   <!-- Longas Recém Chegados -->
   {{ printWatches('Longas Recém Chegados', 'new-l') }}

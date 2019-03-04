@@ -1,8 +1,10 @@
-{% if title == "Início" %}
-  {% set title = "Início" %}
-{% elseif title == "Tag" %}
-  {% set title = "Tag: " + tag %}
+{% if format == "doc" %}
+  {% set title = t('Todos os Documentários') %}
+{% elif format == "fic" %}
+  {% set title = t('Todos os Filmes') %}
 {% endif %}
+
+
 
 {% extends 'layouts/layout.html' %}
 
@@ -42,14 +44,36 @@
     {% endif %}
   </h2>
   {% if watch == "" %}
-    <p><br>Nada encontrado com a tag: {{ tag }}.</p>
+    <p><br>Nada encontrado com o formato: <i>{{ format }}</i></p>
+  {% endif %}
+
+{% for c in categories %}
+  {% set catCounter = 0 %}
+  {% for w in watch %}
+  {% for cat in w.categories %}
+    {% if cat == c.nid %}
+      {% set catCounter = loop.length %}
+    {% endif %}
+  {% endfor %}
+  {% endfor %}
+
+  {% if (catCounter > 0) %}
+    <h3>{{ c.title }}</h3>
   {% endif %}
 
   <div class="grid">
-    <p> {{ alltags }} </p>
     <ul class="entries">
       {% for w in watch %}
-      {% if w.featured == 'true' %}
+
+      <!-- Test if some of the categoies in the watch is the same as show -->
+      {% set catFlag = 0 %}
+      {% for cat in w.categories %}
+        {% if cat == c.nid %}
+          {% set catFlag = 1 %}
+        {% endif %}
+      {% endfor %}
+
+      {% if w.featured == 'true' and catFlag == 1 %}
 
       <li class="col-md-3">
         <a role="button" data-toggle="modal" style="border-bottom: 0px solid;"  data-toggle="modal" data-target="#assistir{{ loop.index }}">
@@ -106,6 +130,7 @@
       {% endfor %}
     </ul>
 </div>
+{% endfor %}
 
   <div class="centerBlock">
     <!--<a class="btn" href="#">Ver todo o conteúdo</a>-->

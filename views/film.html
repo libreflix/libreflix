@@ -101,15 +101,17 @@
 
         {% macro printSimpleField(detail, content) %}
         {% if content %}
+        <p>
         <li><b>{{ t(detail) }}</b></li>
-        <li>{{ t(content) }}</li>
-        <br>
+        <li>{{ t(content) | replace(",",", ")}}</li>
+        </p>
         {% endif %}
         {% endmacro %}
 
         {{ printSimpleField('Título Original', film.original_title) }}
         {{ printSimpleField('Direção', film.crew.director) }}
-        {{ printSimpleField('País de Origem', film.location.country) }}
+
+        {{ printSimpleField('País de Origem', film.location.country.name) }}
         {{ printSimpleField('Cidade de Origem', film.location.city) }}
         {{ printSimpleField('Estado de Origem', film.location.state) }}
         {{ printSimpleField('Lançamento', film.premiere) }}

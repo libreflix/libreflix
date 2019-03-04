@@ -35,7 +35,8 @@
     "uuid": "^3.1.0",
     "i18n": "^0.8.3",
     "cookie-parser": "^1.4.3",
-    "mongoose-intl": "^3.1.0"
+    "mongoose-intl": "^3.1.0",
+    "bluebird": "^3.5.3"
   },
   "devDependencies": {},
   "engines": {

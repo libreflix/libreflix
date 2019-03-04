@@ -3,8 +3,7 @@
 {% set title = "Editar " + w.title %}
 
 {% block body %}
-<script src="/js/jquery.tagsinput.min.js" charset="utf-8"></script>
-<link rel="stylesheet" href="/css/jquery.tagsinput.css">
+
 
 {% if user.mod or user.adm or (w.status != "approved" and w.criador == user.id) %}
 
@@ -40,7 +39,6 @@
       <form action="" class="form-horizontal">
 
           <!-- Basic -->
-          <div id="basic" class="tab-pane fade in active">
             <legend> Básico </legend>
             <div class="form-group">
               <label class="col-sm-3" for="name">Título da Produção</label>
@@ -84,7 +82,35 @@
                 <textarea class="form-control" rows="10" name="sinopse" id="textarea">{{w.sinopse}}</textarea>
               </div>
             </div>
+
+            <div class="form-group">
+              <label class="col-sm-3">Formato</label>
+              <div class="col-sm-7">
+                <label><input type="radio" value="fic" name="format" {% if w.format == "fic"%} checked {% endif %}> Filme de Ficção</label><br>
+                <label><input type="radio" value="doc" name="format" {% if w.format == "doc"%} checked {% endif %}> Documentário</label><br>
+                <label><input type="radio" value="series" name="format" {% if w.format == "series"%} checked {% endif %}> Seriado</label><br>
+              </div>
+            </div>
+
+          <div class="form-group">
+            <div class="col-sm-3"><b>Categorias</b></div>
+            <div class="col-sm-7">
+              <!-- <input id="categories" name="categories" data-role="tagsinput" class="form-control input-sm tagsInput typeahead" type="text"  value="{{ w.categories }}"> -->
+              <select class="selectpicker" name="categories[]"  width:200px; data-live-search="true" multiple data-selected-text-format="count">
+                {% for c in categories %}
+                  <option value="{{c.nid}}" {% for wc in w.categories %}{% if c.nid == wc %}SELECTED{% endif %}{% endfor %}>{{c.title}} - {{c.nid}}</option>
+                {% endfor %}
+              </select>
+            </div>
           </div>
+
+          <div class="form-group">
+            <label class="col-sm-3">Tags</label>
+            <div class="col-sm-7">
+              <input type="text" name="tags" autofocus class="form-control" value="{{w.tags}}" data-role="tagsinput">
+            </div>
+          </div>
+
 
           <!-- More Info -->
           <div id="moreinfo" >
@@ -104,7 +130,12 @@
             <div class="form-group">
               <label class="col-sm-3">País de Origem</label>
               <div class="col-sm-5">
-                <input type="text" name="location_country" class="form-control" autofocus value="{{w.location.country}}">
+                <select class="selectpicker" name="location_country" data-live-search="true">
+                  {% if w.location.country %}
+                  <option value="{{w.location.country.code}}|{{w.location.country.name}}" selected>{{w.location.country.code}} | {{w.location.country.name}}</option>
+                  {% endif %}
+                  {% include "partials/countries.html" %}
+                </select>
               </div>
             </div>
             <div class="form-group">
@@ -122,49 +153,43 @@
             <div class="form-group">
               <label class="col-sm-3">Direção</label>
               <div class="col-sm-7">
-                <input type="text" name="crew_director" class="form-control" autofocus value="{{w.crew.director}}" >
+                <input type="text" name="crew_director" class="form-control" autofocus value="{{w.crew.director}}" data-role="tagsinput">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Roteiro</label>
               <div class="col-sm-7">
-                <input type="text" name="crew_screenplay" class="form-control" autofocus value="{{w.crew.screenplay}}" >
+                <input type="text" name="crew_screenplay" class="form-control" autofocus value="{{w.crew.screenplay}}" data-role="tagsinput">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Produção</label>
               <div class="col-sm-7">
-                <input type="text" name="crew_producer" class="form-control" autofocus value="{{w.crew.producer}}" >
+                <input type="text" name="crew_producer" class="form-control" autofocus value="{{w.crew.producer}}" data-role="tagsinput">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Atores</label>
               <div class="col-sm-7">
-                <input type="text" name="crew_cast" class="form-control" autofocus value="{{w.crew.cast}}" >
+                <input type="text" name="crew_cast" class="form-control" autofocus value="{{w.crew.cast}}" data-role="tagsinput" >
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Editor</label>
               <div class="col-sm-7">
-                <input type="text" name="crew_editor" class="form-control" autofocus value="{{w.crew.editor}}" >
+                <input type="text" name="crew_editor" class="form-control" autofocus value="{{w.crew.editor}}" data-role="tagsinput">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Equipe Técnica</label>
               <div class="col-sm-7">
-                <input type="text" name="crew_other" class="form-control" autofocus value="{{w.crew.other}}" >
+                <input type="text" name="crew_other" class="form-control" autofocus value="{{w.crew.other}}" data-role="tagsinput">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Permalink</label>
               <div class="col-sm-5">
                 <input type="text" name="permalink" class="form-control" autofocus value="{{w.permalink}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Tags</label>
-              <div class="col-sm-7">
-                <input type="text" name="tags" class="form-control" autofocus value="{{w.tags}}" >
               </div>
             </div>
           </div>
@@ -307,6 +332,8 @@
 </div>
 
 {% endif %}
-<script src="/js/bootstrap-select.js"></script>
-<script src="js/upload.js"></script>
+<script src="/js/bootstrap-select.min.js"></script>
+<script src="/js/upload.js"></script>
+
+
 {% endblock %}

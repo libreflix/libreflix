@@ -1,0 +1,97 @@
+{% set title = "Admin: Categorias" %}
+{% extends 'layouts/layout_admin.html' %}
+
+<link rel="stylesheet" href="/css/dataTables.bootstrap.min.css">
+
+<style media="screen">
+.text-small{
+  font-size: 10px !important;
+}
+</style>
+
+{% block body %}
+
+<div class="container-fluid">
+  {% if messages.success %}
+  <div role="alert" class="alert alert-success">
+    {% for success in messages.success %}
+    <div>{{ success.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.error %}
+  <div role="alert" class="alert alert-danger">
+    {% for error in messages.error %}
+    <div>{{ error.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.info %}
+  <div role="alert" class="alert alert-info">
+    {% for info in messages.info %}
+    <div>{{ info.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+</div>
+
+<small>
+<div class="container-fluid">
+  {% set catNumber = 0%}
+  {% for c in categories %}
+  {% set catNumber = loop.length + 1%}
+  {% endfor %}
+  <h4>Add new category</h4>
+  <form action="/admin/list-categories">
+    <div class="form-group">
+
+      <input type="text" name="nid" placeholder="Number Id" value="{{catNumber}}">
+      <select class="" name="format">
+        <option value="doc">doc</option>
+        <option value="fic">fic</option>
+        <option value="series">series</option>
+      </select>
+      <input type="text" name="title" placeholder="Category title">
+    </div>
+    <button type="submit" class="btn btn-success" formmethod="post">Add new category</button>
+  </form>
+  <br>
+  <table class="table  table-striped table-bordered text-small"  style="width:100%" id="example">
+    <thead>
+      <tr>
+        <th>Number Id</th>
+        <th>Formato</th>
+        <th>Preposition</th>
+        <th>Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in categories %}
+      <tr>
+        <td>{{ c.nid }} </td>
+        <td>{{ c.format }} </td>
+        <td>{{ c.preposition }} </td>
+        <td>{{ c.title }} </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <br>
+</div>
+</small>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#example').DataTable({
+      language: {
+        url: '/js/Portuguese-Brasil.json'
+      },
+      "aLengthMenu": [[25, 50, 100, -1], [25, 50, 100, "All"]],
+    });
+  } );
+</script>
+<script src="/js/jquery.dataTables.min.js" charset="utf-8"></script>
+<script src="/js/dataTables.bootstrap.min.js" charset="utf-8"></script>
+
+{% endblock %}

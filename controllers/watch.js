@@ -1,4 +1,5 @@
 var Watch = require('../models/Watch');
+var Category = require('../models/Category');
 var mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
@@ -110,16 +111,19 @@ exports.tagsGet = function(req, res){
 
 //Get Edit Watch
 exports.watchEdit = function(req, res){
-  Watch.findOne({ '_id': req.params._id }, function(err, w){
+  Category.find({}, null, {sort: 'title'},function(err, categories){
+    Watch.findOne({ '_id': req.params._id }, function(err, w){
 
-    if (!w) {
-      return res.redirect('/404');
-    }
-    else{
-      res.render('edit', {
-        w: w
-      });
-    }
+      if (!w) {
+        return res.redirect('/404');
+      }
+      else{
+        res.render('edit', {
+          categories: categories,
+          w: w
+        });
+      }
+    });
   });
 };
 
@@ -136,7 +140,7 @@ var body = req.body;
     watch.layout = req.body.layout;
     watch.featured  = req.body.featured;
     if (req.user.adm) {
-      watch.criador = req.body.criador;      
+      watch.criador = req.body.criador;
       watch.top = req.body.top;
     }
     watch.mod_message = req.body.mod_message;
@@ -155,7 +159,9 @@ var body = req.body;
     /* More Info */
     watch.description = req.body.description;
     watch.license = req.body.license;
-    watch.location.country = req.body.location_country;
+    watch.location.country.code = req.body.location_country.code;
+    watch.location.country.code = req.body.location_country.split("|")[0];
+    watch.location.country.name = req.body.location_country.split("|")[1];
     watch.location.state = req.body.location_state;
     watch.location.city = req.body.location_city;
     // watch.location.lat = req.body.location.lat;
@@ -186,6 +192,8 @@ var body = req.body;
 
     /* Categories */
     watch.tags = req.body.tags;
+    watch.format = req.body.format;
+    watch.categories = req.body['categories[]'];
 
     watch.save(function(err) {
       req.flash('success', { msg: 'Alterações feitas com sucesso.' });
