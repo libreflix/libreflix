@@ -2,36 +2,38 @@
 A comunidade Libreflix gostaria de agradecer os seguintes colaboradores:
 
 ### Programming
-```
-Guilmour Rossi
-Matheus Mesquita (n2omatt)
-Júlio Lira
-Jorge Rios (jotarios)
-Drew Wilson
-Kassiano Resende
-```
+
+- Guilmour Rossi
+- Matheus Mesquita (n2omatt)
+- Júlio Lira
+- Jorge Rios (jotarios)
+- Drew Wilson
+- Kassiano Rezende
+- Ramon Saldanha
+- Augusto Silva
 
 
 ### Design
-```
-Daniel Roda
-Carlos Eduardo (cadunico)
-```
+
+- Daniel Roda
+-  Cadunico
+
 ### Ideias and valuable discussions
-```
-Luiz Celso Gomes Jr.
-Erick Soares
-Wellington Silveira
-Karolyna Gutierres
-Thales Cervi
-```
+
+- Luiz Celso Gomes Jr.
+- Erick Soares
+- Wellington Silveira
+- Karolyna Gutierres
+- Thales Cervi
+
 
 ### Donors
-```
-Claudemir Rossi
-```
+
+- Claudemir Rossi
+- Ana Yanaze
+- Leo Santos
+- Renato Martini Martins
+- Italo Bruno Souza Silva
+
 
 ### and much more... <3
-
-
-
