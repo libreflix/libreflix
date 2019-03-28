@@ -25,6 +25,7 @@
         <th>Img Bg</th>
         <th>Situação</th>
         <th>URL Video</th>
+        <th>Status</th>
         <th>Ação</th>
       </tr>
     </thead>
@@ -46,6 +47,7 @@
           {% endif %}
         </td>
         <td><textarea rows="1" cols="10" style="font-size: 10px;">{{ w.video }}</textarea></td>
+        <td>{{w.status}}</td>
         <td>
             <a href="/edit/{{ w._id }}" target="_blank">Editar</a>
         </td>

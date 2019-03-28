@@ -16,24 +16,33 @@ module.exports = function (router) {
 	* @param {string} format - Is the format of the prodction (doc, fic or series)
 	*/
 	router.route('/explore/format/:format')
-	/** GET /assistir/:format - Get porductions from that country */
+	/** GET /assistir/:format - Get porductions from that format */
 	.get(exploreController.formatGet);
 
 	/*
 	* Get a productions from that category number id
 	* @param {string} nid - Is the number id of a category
 	// */
-	// router.route('/explore/category/:nid')
-	// /** GET /assistir/:nid - Get porductions from that country */
-	// .get(exploreController.categoryGet);
-	//
-	// /*
-	//  * Get porductions from that country
-	//  * @param {string} code - Is the ISO code of that country.
-	//  */
-	// router.route('/explore/country/:code')
-	// 	/** GET /assistir/:code - Get porductions from that country */
-	// 	.get(exploreController.countryGet);
+	router.route('/explore/category/:nid')
+	/** GET /category/:nid - Get productions from that category */
+	.get(exploreController.categoryGet);
+
+
+	/*
+	 * Get porductions from that country
+	 * @param {string} code - Is the ISO code of that country.
+	 */
+	router.route('/explore/country/:code')
+		/** GET /country/:code - Get porductions from that country */
+		.get(exploreController.countryGet);
+
+	/*
+	 * Get porductions from a limit time duration
+	 * @param {string} time - Is the limit of time in seconds
+	 */
+	router.route('/explore/duration/:duration')
+		/** GET /duration/:duration - Get porductions from that duration limit (equal and below) */
+		.get(exploreController.durationGet);
 
 
 

@@ -68,11 +68,11 @@ function doSearch(){
         <li><a href="/t/nacionais"><b>Nacionais</b></a></li>
         <li><a href="/t/kids"><b>Kids</b></a></li> -->
         <!-- <li><a href="/"><b>Início</b></a></li> -->
-        <li><a href="/explore/format/doc"><b>Documentários</b></a></li>
+        <li><a href="/explore/format/doc"><b>Docs</b></a></li>
         <li><a href="/explore/format/fic"><b>Ficção</b></a></li>
-        <li><a href="/t/seriados"><b>Seriados</b></a></li>
-        <li><a href="/t/curtas"><b>Curtas</b></a></li>
-        <li><a href="/t/classicos"><b>Clássicos</b></a></li>
+        <li><a href="/explore/format/series"><b>Seriados</b></a></li>
+        <li><a href="/explore/duration/40"><b>Curtas</b></a></li>
+        <li><a href="/explore/category/32"><b>Clássicos</b></a></li>
         <li><a href="/t/kids"><b>Kids</b></a></li>
 
       </ul>
@@ -113,17 +113,18 @@ function doSearch(){
             <i class="caret"></i>
           </a>
           <ul class="dropdown-menu">
-            <li><a href="/u/{{ user.username }}">{{ t('Meu Perfil') }}</a></li>
-            <li><a href="/account">{{ t('Editar Conta') }}</a></li>
+            <li><a href="/u/{{ user.username }}"><i class="fa fa-user" aria-hidden="true"></i> {{ t('Meu Perfil') }}</a></li>
+            <li><a href="/account"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{ t('Editar Conta') }}</a></li>
+            <li><a href="/list"><i class="fa fa-file-video-o" aria-hidden="true"></i> {{ t('Obras Enviadas') }}</a></li>
             {% if (user.adm) or (user.mod) %}
             <li class="divider"></li>
-            <li><a href="/admin/list-watches">{{ t('Listar Filmes') }}</a></li>
-            <li><a href="/admin/list-categories">{{ t('Listar Categorias') }}</a></li>
+            <li><a href="/admin/list-watches"> <i class="fa fa-film" aria-hidden="true"></i> {{ t('Listar Filmes') }}</a></li>
+            <li><a href="/admin/list-categories"><i class="fa fa-list" aria-hidden="true"></i> {{ t('Listar Categorias') }}</a></li>
             {% endif %}
             <li class="divider"></li>
             <!-- <li><a href="#">{{ t('Minhas Produções') }}</a></li>
           <li class="divider"></li> -->
-            <li><a href="/logout">{{ t('Sair') }}</a></li>
+            <li><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> {{ t('Sair') }}</a></li>
           </ul>
         </li>
         {% else %}

@@ -1,6 +1,8 @@
+var async = require('async');
 var Watch = require('../models/Watch');
 var Category = require('../models/Category');
 var mongoose = require('mongoose');
+var nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 
 
@@ -123,7 +125,7 @@ exports.watchEdit = function(req, res){
           w: w
         });
       }
-    });
+    }).populate('modComments.moderator').populate('criador');
   });
 };
 
@@ -195,10 +197,43 @@ var body = req.body;
     watch.format = req.body.format;
     watch.categories = req.body['categories[]'];
 
+    /* ModComments */
+    watch.modComments.moderator = req.user.id;
+    watch.modComments.status = req.body.modComments_status;
+    watch.status = req.body.modComments_status;
+    watch.modComments.comment = req.body.modComments_comment;
+
+    if (req.body.modComments_status_old != req.body.modComments_status) {
+      async.waterfall([
+        function() {
+          var transporter = nodemailer.createTransport({
+            service: 'Mailgun',
+            auth: {
+              user: process.env.MAILGUN_USERNAME,
+              pass: process.env.MAILGUN_PASSWORD
+            }
+          });
+          var mailOptions = {
+            to: req.body.criador_email,
+            from: 'libreflix@protonmail.com',
+            subject: 'Alteração de status de obra no Libreflix',
+            html: 'Olá, amigx criador!' +
+            '<br>O status da sua obra <b>' + req.body.title + '</b> foi alterado no Libreflix.' +
+            '<br><br>Status anterior: ' + req.body.modComments_status_old +
+            '<br>Status atual: ' + req.body.modComments_status +
+            '<br><br>Comentário de um Librerian:<br> <pre>' + req.body.modComments_comment + '</pre>' +
+            '<br><br>Muito obrigado por criar o Libreflix junto com a gente.' +
+            '<br><br>Abraços Libres! <3<br>Time Libreflix<br><a href="https://libreflix.org"><img src="https://libreflix.org/libreflix.png" width="100"></a>'
+          };
+          transporter.sendMail(mailOptions, function(err) {});
+          }
+      ]);
+    }
     watch.save(function(err) {
       req.flash('success', { msg: 'Alterações feitas com sucesso.' });
       res.redirect('/edit/' + req.params._id);
     });
+
 
     });
 };

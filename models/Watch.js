@@ -17,6 +17,12 @@ var watchSchema = new mongoose.Schema({
   layout: String,
   featured: String,
   status: String,
+  modComments: {
+    moderator: { type : mongoose.Schema.ObjectId, ref : 'User'},
+    status: String, // wainting, pending, approved, rejected,
+    date: Date,
+    comment: String
+  },
   top: String,
   mod_message: String,
   downloadable: String,
@@ -28,7 +34,7 @@ var watchSchema = new mongoose.Schema({
   subtitle: String,
   original_title: String,
   year: Number,
-  duration: String,
+  duration: Number, // in minutes
   classind: String,
   sinopse: String,
 

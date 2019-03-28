@@ -2,10 +2,25 @@
 
 {% set title = "Editar " + w.title %}
 
+<script type="text/javascript">
+  function post() {
+    var commentBody = document.getElementsByName('comment_body').value;
+  }
+  $.ajax(
+  {
+    type: 'post',
+    url: '/i/{{ film.permalink}}',
+    data:
+    {
+      comment_body: commentBody
+    }
+  }
+  )
+</script>
 {% block body %}
 
 
-{% if user.mod or user.adm or (w.status != "approved" and w.criador == user.id) %}
+{% if user.mod or user.adm or (w.status == "waiting" and w.status == "pending" and w.criador.id == user.id) %}
 
 <div class="container-fluid">
   {% if messages.success %}
@@ -39,41 +54,42 @@
       <form action="" class="form-horizontal">
 
           <!-- Basic -->
+          <hr>
             <legend> Básico </legend>
             <div class="form-group">
               <label class="col-sm-3" for="name">Título da Produção</label>
               <div class="col-sm-7">
-                <input type="text" name="title" class="form-control" autofocus value="{{ w.title }}">
+                <input type="text" name="title" class="form-control"  value="{{ w.title }}">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Subtítulo da Produção</label>
               <div class="col-sm-7">
-                <input type="text" name="subtitle" class="form-control" autofocus value="{{ w.subtitle }}">
+                <input type="text" name="subtitle" class="form-control"  value="{{ w.subtitle }}">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Título Original (Se houver)</label>
               <div class="col-sm-7">
-                <input type="text" name="original_title" class="form-control" autofocus value="{{ w.original_title }}">
+                <input type="text" name="original_title" class="form-control"  value="{{ w.original_title }}">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Ano da Produção</label>
               <div class="col-sm-2">
-                <input type="text" name="year" class="form-control" autofocus value="{{ w.year }}" >
+                <input type="text" name="year" class="form-control"  value="{{ w.year }}" >
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Duração</label>
               <div class="col-sm-2">
-                <input type="text" name="duration" class="form-control" autofocus value="{{ w.duration }}" >
+                <input type="text" name="duration" class="form-control"  value="{{ w.duration }}" >
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Classificação Indicativa</label>
               <div class="col-sm-2">
-                <input type="text" name="classind" class="form-control" autofocus value="{{ w.classind }}" >
+                <input type="text" name="classind" class="form-control"  value="{{ w.classind }}" >
               </div>
             </div>
             <div class="form-group">
@@ -107,13 +123,14 @@
           <div class="form-group">
             <label class="col-sm-3">Tags</label>
             <div class="col-sm-7">
-              <input type="text" name="tags" autofocus class="form-control" value="{{w.tags}}" data-role="tagsinput">
+              <input type="text" name="tags"  class="form-control" value="{{w.tags}}" data-role="tagsinput">
             </div>
           </div>
 
 
           <!-- More Info -->
           <div id="moreinfo" >
+            <hr>
             <legend>Mais informações</legend>
             <div class="form-group">
               <label class="col-sm-3">Descrição</label>
@@ -124,7 +141,7 @@
             <div class="form-group">
               <label class="col-sm-3">Licença</label>
               <div class="col-sm-5">
-                <input type="text" name="license" class="form-control" autofocus value="{{w.license}}">
+                <input type="text" name="license" class="form-control"  value="{{w.license}}">
               </div>
             </div>
             <div class="form-group">
@@ -141,85 +158,89 @@
             <div class="form-group">
               <label class="col-sm-3">Estado/Província de Origem</label>
               <div class="col-sm-5">
-                <input type="text" name="location_state" class="form-control" autofocus value="{{w.location.state}}">
+                <input type="text" name="location_state" class="form-control"  value="{{w.location.state}}">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Cidade de Origem</label>
               <div class="col-sm-5">
-                <input type="text" name="location_city" class="form-control" autofocus value="{{w.location.city}}">
+                <input type="text" name="location_city" class="form-control"  value="{{w.location.city}}">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Direção</label>
               <div class="col-sm-7">
-                <input type="text" name="crew_director" class="form-control" autofocus value="{{w.crew.director}}" data-role="tagsinput">
+                <input type="text" name="crew_director" class="form-control"  value="{{w.crew.director}}" data-role="tagsinput">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Roteiro</label>
               <div class="col-sm-7">
-                <input type="text" name="crew_screenplay" class="form-control" autofocus value="{{w.crew.screenplay}}" data-role="tagsinput">
+                <input type="text" name="crew_screenplay" class="form-control"  value="{{w.crew.screenplay}}" data-role="tagsinput">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Produção</label>
               <div class="col-sm-7">
-                <input type="text" name="crew_producer" class="form-control" autofocus value="{{w.crew.producer}}" data-role="tagsinput">
+                <input type="text" name="crew_producer" class="form-control"  value="{{w.crew.producer}}" data-role="tagsinput">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Atores</label>
               <div class="col-sm-7">
-                <input type="text" name="crew_cast" class="form-control" autofocus value="{{w.crew.cast}}" data-role="tagsinput" >
+                <input type="text" name="crew_cast" class="form-control"  value="{{w.crew.cast}}" data-role="tagsinput" >
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Editor</label>
               <div class="col-sm-7">
-                <input type="text" name="crew_editor" class="form-control" autofocus value="{{w.crew.editor}}" data-role="tagsinput">
+                <input type="text" name="crew_editor" class="form-control"  value="{{w.crew.editor}}" data-role="tagsinput">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Equipe Técnica</label>
               <div class="col-sm-7">
-                <input type="text" name="crew_other" class="form-control" autofocus value="{{w.crew.other}}" data-role="tagsinput">
+                <input type="text" name="crew_other" class="form-control"  value="{{w.crew.other}}" data-role="tagsinput">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Permalink</label>
               <div class="col-sm-5">
-                <input type="text" name="permalink" class="form-control" autofocus value="{{w.permalink}}">
+                <input type="text" name="permalink" class="form-control"  value="{{w.permalink}}">
               </div>
             </div>
           </div>
 
           <!-- Internal  -->
           <div id="internal" >
+            <hr>
             <legend>Interno</legend>
             <div class="form-group">
               <label class="col-sm-3">Layout</label>
               <div class="col-sm-5">
-                <input type="text" name="layout" class="form-control" autofocus value="{{w.layout}}" >
+                <input type="text" name="layout" class="form-control"  value="{{w.layout}}" >
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Featured</label>
               <div class="col-sm-5">
-                <input type="text" name="featured" class="form-control" autofocus value="{{w.featured}}" >
+                <input type="text" name="featured" class="form-control"  value="{{w.featured}}" >
               </div>
             </div>
             {% if user.adm %}
             <div class="form-group">
               <label class="col-sm-3">top</label>
               <div class="col-sm-5">
-                <input type="text" name="top" class="form-control" autofocus value="{{w.top}}" >
+                <input type="text" name="top" class="form-control"  value="{{w.top}}" >
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Criador</label>
-              <div class="col-sm-7">
-                <input type="text" name="criador" class="form-control" autofocus value="{{w.criador}}" >
+              <div class="col-sm-4">
+                <input type="text" name="criador" class="form-control"  value="{{w.criador.id}}" >
+              </div>
+              <div class="col-sm-4">
+                <input type="text" name="criador_email" class="form-control"  value="{{w.criador.email}}" >
               </div>
             </div>
             {% endif %}
@@ -227,41 +248,42 @@
 
           <!-- Videos and Images -->
           <div id="videoseimagens" >
+            <hr>
             <legend>Videos e Imagens</legend>
             <div class="form-group">
               <label class="col-sm-3">Url do Vídeo</label>
               <div class="col-sm-5">
-                <input type="text" name="video" class="form-control" autofocus value="{{w.video}}" placeholder="y8fxto7ua">
+                <input type="text" name="video" class="form-control"  value="{{w.video}}" placeholder="y8fxto7ua">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Idioma do Aúdio</label>
               <div class="col-sm-5">
-                <input type="text" name="audio_language" class="form-control" autofocus value="{{w.audio_language}}" placeholder="Português">
+                <input type="text" name="audio_language" class="form-control"  value="{{w.audio_language}}" placeholder="Português">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Idioma das Legendas</label>
               <div class="col-sm-7">
-                <input type="text" name="srt_language" class="form-control" autofocus value="{{w.srt_language}}" >
+                <input type="text" name="srt_language" class="form-control"  value="{{w.srt_language}}" >
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Qualidade do Vídeo</label>
               <div class="col-sm-5">
-                <input type="text" name="quality" class="form-control" autofocus value="{{w.quality}}">
+                <input type="text" name="quality" class="form-control"  value="{{w.quality}}">
               </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Url Youtube Trailer</label>
                 <div class="col-sm-7">
-                  <input type="text" name="trailer" class="form-control" autofocus value="{{w.trailer}}">
+                  <input type="text" name="trailer" class="form-control"  value="{{w.trailer}}">
                 </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Imagem de Background</label>
                 <div class="col-sm-7">
-                  <input type="text" name="imgbg" class="form-control" autofocus value="{{w.imgbg}}">
+                  <input type="text" name="imgbg" class="form-control"  value="{{w.imgbg}}">
                   <br>
                   <a href="{{w.imgbg}}" target="_blank"><img src="{{w.imgbg}}" width="300px" alt=""></a>
                 </div>
@@ -269,7 +291,7 @@
             <div class="form-group">
               <label class="col-sm-3">Imagem para Thumbnail</label>
               <div class="col-sm-7">
-                <input type="text" name="thumb480" class="form-control" autofocus value="{{w.thumb480}}">
+                <input type="text" name="thumb480" class="form-control"  value="{{w.thumb480}}">
                 <br>
                 <a href="{{w.thumb480}}" target="_blank"><img src="{{w.thumb480}}" width="300px" alt=""></a>
               </div>
@@ -278,6 +300,7 @@
           </div>
           <!-- Download Files -->
           <div id="download" >
+            <hr>
             <legend>Opções de Download</legend>
             <div class="form-group">
               <label class="col-sm-3">Arquivo pode ser copiado pelo Libreflix?</label>
@@ -300,22 +323,46 @@
             <div class="form-group">
               <label class="col-sm-3">Arquivo Download do Filme</label>
                 <div class="col-sm-7">
-                  <input type="text" name="file_film" class="form-control" autofocus value="{{w.file.film}}">
+                  <input type="text" name="file_film" class="form-control"  value="{{w.file.film}}">
                 </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Arquivo Download do Trailer</label>
                 <div class="col-sm-7">
-                  <input type="text" name="file_trailer" class="form-control" autofocus value="{{w.file.trailer}}">
+                  <input type="text" name="file_trailer" class="form-control"  value="{{w.file.trailer}}">
                 </div>
             </div>
             <div class="form-group">
               <label class="col-sm-3">Arquivo Download das Legendas</label>
                 <div class="col-sm-7">
-                  <input type="text" name="file_srt" class="form-control" autofocus value="{{w.file.srt}}">
+                  <input type="text" name="file_srt" class="form-control"  value="{{w.file.srt}}">
                 </div>
             </div>
           </div>
+
+          <!-- COmentários dos moderadores -->
+          {% if user.adm or user.mod %}
+          <hr>
+          <legend>{{t('Comentários dos moderadores')}}</legend>
+          <div class="form-group">
+            <label class="col-sm-3">
+            <select class="selectpicker" name="modComments_status">
+              <option value="waiting" {% if w.modComments.status == 'waiting' %} SELECTED {% endif %}>waiting</option>
+              <option value="pending" {% if w.modComments.status == 'pending' %} SELECTED {% endif %}>pending</option>
+              <option value="approved" {% if w.modComments.status == 'approved' %} SELECTED {% endif %}>approved</option>
+              <option value="approved" {% if w.modComments.status == 'paused' %} SELECTED {% endif %}>approved</option>
+              <option value="nonlibre" {% if w.modComments.status == 'nonlibre' %} SELECTED {% endif %}>nonlibre</option>
+              <option value="offensive" {% if w.modComments.status == 'offensive' %} SELECTED {% endif %}>offensive</option>
+              <option value="wrongtype" {% if w.modComments.status == 'wrongtype' %} SELECTED {% endif %}>wrongtype</option>
+              <option value="striked" {% if w.modComments.status == 'striked' %} SELECTED {% endif %}>striked</option>
+            </select>
+            <input type="text" name="modComments_status_old" value="{{w.modComments.status}}" hidden>
+            </label>
+            <div class="col-sm-7">
+              <textarea type="text" class="form-control" name="modComments_comment" placeholder="Comentário">{{ w.modComments.comment }}</textarea>
+            </div>
+          </div>
+          {% endif %}
         <!-- Fim -->
         <div class="form-group">
           <!-- <small class="text-muted">Criando uma conta, você concorda com os <a href="/" target="_blank">Termos de Uso</a>.</small> -->

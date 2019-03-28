@@ -928,3 +928,37 @@ li.busca-smartphone {
     margin: auto;
   }
 }
+
+.white-text{
+  color: #ffffff;
+}
+
+
+
+/* For comments on film pages */
+.container-comment{
+  background-color: #1d1d1d;;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+.photo-comment{
+  border-radius: 100%;
+  width: 100%;
+  max-width: 75px;
+}
+.text-comment{
+  font-size: 14px;
+}
+.text-date-comment{
+  font-size: 12px;
+  color: #4d4d4d;
+  padding-left: 15px;
+}
+.new-comment{
+  width:100%;
+  background-color: #393939;
+  color: #ffffff;
+  border-style: hidden;
+  font-size: 1.3em;
+  padding: 10px;
+}

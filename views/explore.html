@@ -2,6 +2,20 @@
   {% set title = t('Todos os Documentários') %}
 {% elif format == "fic" %}
   {% set title = t('Todos os Filmes') %}
+{% elif format == "series" %}
+  {% set title = t('Todas as Séries') %}
+{% elif format == "country" %}
+  {% set country = '0' %}
+  {% for w in watch %}
+    {% if loop.first%}
+      {% set country = w.location.country.name %}
+    {% endif %}
+  {% endfor %}
+  {% set title = t('Todas as obras do ') + t(country) %}
+{% elif format == "duration" %}
+{% set title = t('Obras com duração até') + ' ' + t(duration) + ' ' + t('minutos') %}
+{% elif format == "category" %}
+{% set title = t('Obras com duração até') + ' ' + t(duration) + ' ' + t('minutos') %}
 {% endif %}
 
 
@@ -58,14 +72,16 @@
   {% endfor %}
 
   {% if (catCounter > 0) %}
-    <h3>{{ c.title }}</h3>
+    <h3><a href="/explore/category/{{ c.nid }}" class="white-text">{{ c.title }}</a></h3>
   {% endif %}
 
+  {% if (catCounter > 0) %}
   <div class="grid">
     <ul class="entries">
+  {% endif %}
       {% for w in watch %}
 
-      <!-- Test if some of the categoies in the watch is the same as show -->
+      {#  Test if some of the categories in the watch is the same as show #}
       {% set catFlag = 0 %}
       {% for cat in w.categories %}
         {% if cat == c.nid %}
@@ -86,7 +102,7 @@
                 {{ w.subtitle | truncate(35) }}
                 {% if w.subtitle %} </h4> <h4> {%endif%} {{w.year}}
                 {% if w.classind  %} &middot; <span class="classind">{{ w.classind }}</span>{% endif %}
-                {% if w.duration  %} &middot; {{ w.duration }} {% endif %}
+                {% if w.duration  %} &middot; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ w.duration }} {% endif %}
               </h4>
             </div>
           </div>
@@ -112,24 +128,26 @@
                 {{ w.subtitle }}
                 {% if w.subtitle %} &middot; {%endif%} {{w.year}}
                 {% if w.classind  %} &middot; <span class="classind">{{ w.classind }}</span>{% endif %}
-                {% if w.duration  %} &middot; {{ w.duration }} {% endif %}
+                {% if w.duration  %} &middot; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ w.duration }} {% endif %}
               </h4>
               <div class="sinopse">{{ w.sinopse | truncate(300)}}</div>
               <h4> Tags: {% set list1 = w.tags.split(',') %}{% for list in list1 %}{% if loop.index0 < 6 %}<a href="/t/{{ list | trim}}"><span class="label label-default">{{ list | trim}}</span></a>{% endif %}{%if (loop.index0 < loop.length-1) or (loop.index0 < 6) %} {%endif%}{% endfor %}</h4>
             </div>
             <div class="modal-footer">
-              {% if user.mod or user.adm %}<a href="/edit/{{ w._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
-              <button type="button" class="btn btn-default" data-dismiss="modal">{{ t('Fechar') }} <i class="fa fa-times-circle"></i></button>
-              <!-- <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">{{ t('Informações') }} <i class="fa fa-info-circle"></i></button></a> -->
-              <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">{{ t('Assistir') }} <i class="fa fa-play-circle"></i></button></a>
+              {% if user.mod or user.adm %}<a href="/edit/{{ w._id }}"><button type="button" class="btn btn-danger"><i class="fa fa-edit"></i> t('Editar') </button></a>{% endif %}
+              <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="fa fa-times-circle"></i> {{ t('Fechar') }} </button>
+              <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success"> <i class="fa fa-info-circle"></i> {{ t('Informações') }} </button></a>
+              <!-- <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">{{ t('Assistir') }} <i class="fa fa-play-circle"></i></button></a> -->
             </div>
           </div>
         </div>
       </div>
       {% endif %}
       {% endfor %}
+{% if (catCounter > 0) %}
     </ul>
 </div>
+{% endif %}
 {% endfor %}
 
   <div class="centerBlock">
