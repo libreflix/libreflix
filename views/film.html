@@ -94,7 +94,7 @@
   			<p>
         {{ film.sinopse }}
   			</p>
-        {% if user.mod or user.adm %}<a href="/edit/{{ film._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
+        {% if user.mod or user.adm %}<a href="/edit/{{ film._id }}"><button type="button" class="btn btn-danger btn-libre">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
 
 
 
@@ -206,6 +206,20 @@
           {% endif %} -->
         </ul>
         </p>
+        {%if film.links.website or film.links.wikipedia or film.links.twitter
+          or film.links.imdb or film.links.filmow or film.links.facebook or film.links.instagram %}
+        <hr>
+        <b>{{ t('External Links') }}</b>
+        <h3>
+          {%if film.links.website %} <a href="{{ film.links.website }}"><i class="fa fa-globe" aria-hidden="true"></i></a>  {% endif %}
+          {%if film.links.wikipedia %} <a href="{{ film.links.wikipedia }}"> <i class="fa fa-wikipedia-w" aria-hidden="true"></i></a> {% endif %}
+          {%if film.links.twitter %} <a href="{{ film.links.twitter }}"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>  {% endif %}
+          {%if film.links.imdb %} <a href="{{ film.links.imdb }}"><i class="fa fa-imdb" aria-hidden="true"></i></a>  {% endif %}
+          {%if film.links.filmow %} <a href="{{ film.links.filmow }}"> <i class="fa fa-film" aria-hidden="true"></i></a> {% endif %}
+          {%if film.links.facebook %} <a href="{{ film.links.facebook }}"> <i class="fa fa-facebook-square" aria-hidden="true"></i></a> {% endif %}
+          {%if film.links.instagram %} <a href="{{ film.links.instagram }}"><i class="fa fa-instagram" aria-hidden="true"></i></a> {% endif %}
+        </h3>
+         {% endif %}
   		</div>
   		<div class="col-md-7">
         <div class="row">

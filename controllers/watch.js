@@ -197,6 +197,19 @@ var body = req.body;
     watch.format = req.body.format;
     watch.categories = req.body['categories[]'];
 
+    /* External Links */
+    watch.links.website = req.body.website;
+    console.log(req.body.website);
+    console.log(watch.links.website);
+
+    watch.links.wikipedia = req.body.wikipedia;
+    watch.links.twitter = req.body.twitter;
+    watch.links.imdb = req.body.imdb;
+    watch.links.filmow = req.body.filmow;
+    watch.links.facebook = req.body.facebook;
+    watch.links.instagram = req.body.instagram;
+
+
     /* ModComments */
     watch.modComments.moderator = req.user.id;
     watch.modComments.status = req.body.modComments_status;

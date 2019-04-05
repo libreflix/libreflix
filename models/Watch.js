@@ -84,6 +84,17 @@ var watchSchema = new mongoose.Schema({
   categories: { type: []},
   format: String,
 
+  /* External links */
+  links: {
+    website: String,
+    wikipedia: String,
+    twitter: String,
+    imdb: String,
+    filmow: String,
+    facebook: String,
+    instagram: String
+  },
+
   /* For Series */
   n_eps: Number,
   eps: [{   last: Boolean,

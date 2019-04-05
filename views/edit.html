@@ -298,6 +298,7 @@
               <small>480x270</small>
             </div>
           </div>
+
           <!-- Download Files -->
           <div id="download" >
             <hr>
@@ -339,8 +340,37 @@
                 </div>
             </div>
           </div>
-
-          <!-- COmentários dos moderadores -->
+          <!-- Links Externos -->
+          <legend>{{t('Links Externos')}}</legend>
+          <div class="form-group">
+            <div class="col-sm-3">Website</div>
+            <div class="col-sm-7"><input type="text" name="website" class="form-control"  value="{{w.links.website}}"></div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3">Wikipedia</div>
+            <div class="col-sm-7"><input type="text" name="wikipedia" class="form-control"  value="{{w.links.wikipedia}}"></div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3">Twitter</div>
+            <div class="col-sm-7"><input type="text" name="twitter" class="form-control"  value="{{w.links.twitter}}"></div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3">IMDB</div>
+            <div class="col-sm-7"><input type="text" name="imdb" class="form-control"  value="{{w.links.imdb}}"></div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3">Filmow</div>
+            <div class="col-sm-7"><input type="text" name="filmow" class="form-control"  value="{{w.links.filmow}}"></div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3">Facebook</div>
+            <div class="col-sm-7"><input type="text" name="facebook" class="form-control"  value="{{w.links.facebook}}"></div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-3">Instagram</div>
+            <div class="col-sm-7"><input type="text" name="instagram" class="form-control"  value="{{w.links.instagram}}"></div>
+          </div>
+          <!-- Comentários dos moderadores -->
           {% if user.adm or user.mod %}
           <hr>
           <legend>{{t('Comentários dos moderadores')}}</legend>
