@@ -31,6 +31,8 @@ app.use(cookieParser())
 
 mongoose.connect(process.env.DB_PATH);
 
+mongoose.set('debug', true);
+
 mongoose.connection.on('error', function() {
   console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
   process.exit(1);
