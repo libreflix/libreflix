@@ -1,28 +1,28 @@
-{% if p.name %}
-{% set title = "Perfil de " + p.name %}
+{% if profile.name %}
+{% set title = "Perfil de " + profile.name %}
 {% else %}
-{% set title = "Perfil de " + p.username %}
+{% set title = "Perfil de " + profile.username %}
 {% endif %}
 
 {% extends 'layouts/layout.html' %}
 {% block opengraph %}
 <meta name="description" content='Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.'>
-<meta name="keywords"  content="libreflix, {{p.name}} Libreflix, liberflix, librefix" />
+<meta name="keywords"  content="libreflix, {{profile.name}} Libreflix, liberflix, librefix" />
 
 <meta property="og:image" content="
-{% if p.twitter %}{{ p.gravatar }}{% elseif p.picture %}{{ p.picture }}{% else %}{{ p.gravatar }}{% endif %}"/>
+{%- if profile.twitter %}{{ profile.gravatar }}{%- elseif profile.picture %}{{ profile.picture }}{%- else %}{{ profile.gravatar }}{%- endif %}"/>
 
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://libreflix.org/u/{{ p.username }}" />
-<meta property="og:title" content="{{p.name}} - Libreflix" />
-<meta property="og:description" content="Perfil de {{p.name}} no Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar." />
+<meta property="og:url" content="https://libreflix.org/u/{{ profile.username }}" />
+<meta property="og:title" content="{{profile.name}} - Libreflix" />
+<meta property="og:description" content="Perfil de {{profile.name}} no Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar." />
 <meta property="og:site_name" content="Libreflix" />
 
 <!-- twitter metatags-->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="{{p.name}} - Libreflix">
-<meta name="twitter:description" content="Perfil de {{p.name}} no Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.">
-<meta name="twitter:image" content="{% if p.twitter %}{{ p.gravatar }}{% elseif p.picture %}{{ p.picture }}{% else %}{{ p.gravatar }}{% endif %}">
+<meta name="twitter:title" content="{{profile.name}} - Libreflix">
+<meta name="twitter:description" content="Perfil de {{profile.name}} no Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.">
+<meta name="twitter:image" content="{% if profile.twitter %}{{ profile.gravatar }}{% elseif profile.picture %}{{ profile.picture }}{% else %}{{ profile.gravatar }}{% endif %}">
 {% endblock %}
 
 {% block body %}
@@ -52,29 +52,38 @@
 </div>
 
 
-{% macro printWatches(title) -%}
+{% macro printWatch(w, loop) -%}
 
-<h3>{{ title }} </h3>
-<div class="grid">
-  <p> {{ alltags }} </p>
-  <ul class="entries">
-    {% for w in watch %}
     {% if w.featured == 'true' %}
 
     <li class="col-md-3">
       <a role="button" data-toggle="modal" style="border-bottom: 0px solid;"  data-toggle="modal" data-target="#assistir{{ loop.index }}">
-        <img src="{% if w.thumb480 %}{{ w.thumb480 }}?resize=480,270&crop=entropy {% elseif w.imgbg %} {{ w.imgbg }}?resize=480,270&crop=entropy{% endif %}" title="{{ w.title }}{% if w.subtitle %} - {{ w.subtitle }}{% endif %} ({{ w.year }})" class="fadeCatalogo" onload="this.style.opacity='1'" style="img;"/>
+      <div class="cover">
+          <img src="{%- if w.thumb480 %}{{ w.thumb480 }}?resize=480,270&crop=entropy {%- elseif w.imgbg %} {{ w.imgbg }}?resize=480,270&crop=entropy{%- endif %}" title="{{ w.title }}{%- if w.subtitle %} - {{ w.subtitle }}{%- endif %} ({{ w.year }})" class="fadeCatalogo" onload="this.style.opacity='1'"/>
+        <div class="cover_wrap">
+          <div class="cover_info">
+            <h3>{{ w.title | truncate(45) }}</h3>
+            <h4>
+              {{ w.subtitle | truncate(35) }}
+              {% if w.subtitle %} </h4> <h4> {%endif%} {{w.year}}
+              {% if w.classind  %} &middot; <span class="classind">{{ w.classind }}</span>{% endif %}
+              {% if w.duration  %} &middot; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ w.duration }} {% endif %}
+            </h4>
+          </div>
+        </div>
         <!--<h3>{{ w.title }}</h3>-->
+      </div>
       </a>
+
     </li>
     <div class="modal" id="assistir{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{ loop.index }}">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times-circle exitTimes"></i></button>
-            <a href="/assistir/{{ w.permalink }}"><button type="button" class="splash-play"><img src="/img/play.png" alt="Play"></button></a>
+            <a href="/i/{{ w.permalink }}"><button type="button" class="splash-play"><img src="/img/play.png" alt="Play"></button></a>
             <!-- <h4 class="modal-title" id="myModalLabel{{ loop.index }}">{{ w.title }} {% if w.subtitle %} - {{ w.subtitle }} {% else %} {% endif %}</h4> -->
-            <a href="/assistir/{{ w.permalink }}"><div class="splash" style="background-image: url('{{ w.imgbg }}');">
+            <a href="/i/{{ w.permalink }}"><div class="splash" style="background-image: url('{{ w.imgbg }}');">
             </div></a>
           </div>
           <div class="modal-body">
@@ -84,73 +93,78 @@
               {{ w.subtitle }}
               {% if w.subtitle %} &middot; {%endif%} {{w.year}}
               {% if w.classind  %} &middot; <span class="classind">{{ w.classind }}</span>{% endif %}
-              {% if w.duration  %} &middot; {{ w.duration }} {% endif %}
+              {% if w.duration  %} &middot; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ w.duration }} {% endif %}
             </h4>
-            <ul class="nav nav-pills text-right">
-              <li class="active"><a data-toggle="pill" href="#resumo{{ loop.index }}">Resumo</a></li>
-              <!-- <li><a data-toggle="pill" href="#creditos{{ loop.index }}">Créditos</a></li> -->
-              <!-- <li><a data-toggle="pill" href="#links{{ loop.index }}">Links</a></li> -->
-            </ul>
-            <div class="tab-content">
-              <div id="resumo{{ loop.index }}" class="tab-pane fade in active">
-                <!-- <h4>Resumo</h4> -->
-                <div class="sinopse">{{ w.sinopse }}</div>
-                <h4> Tags: {% set list1 = w.tags.split(',') %}{% for list in list1 %}<a href="/t/{{ list | trim}}">{{ list | trim}}</a>{%if loop.index0 < loop.length-1 %}, {%endif%}{% endfor %}</h4>
-              </div>
-              <!-- <div id="creditos{{ loop.index }}" class="tab-pane fade">
-                <h4>Créditos e Elenco</h4>
-                <div class="sinopse">
-
-                </div>
-              </div> -->
-              <!-- <div id="links{{ loop.index }}" class="tab-pane fade">
-                 <h4>Links</h4>
-                 {% if w.license != 'false' %}<div class="sinopse">Licença:  {{ w.license }} </div>{%endif%}
-                <div class="sinopse">
-
-                </div>
-              </div> -->
-            </div>
+            <div class="sinopse">{{ w.sinopse | truncate(300)}}</div>
+            <h4> Tags: {% set list1 = w.tags.split(',') %}{% for list in list1 %}{% if loop.index0 < 6 %}<a href="/t/{{ list | trim}}"><span class="label label-default">{{ list | trim}}</span></a>{% endif %}{%if (loop.index0 < loop.length-1) or (loop.index0 < 6) %} {%endif%}{% endfor %}</h4>
           </div>
           <div class="modal-footer">
-            {% if user.mod %}<a href="/edit/{{ w._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
-            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar <i class="fa fa-times-circle"></i></button>
-            <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">Informações <i class="fa fa-info-circle"></i></button></a>
-            <a href="/assistir/{{ w.permalink }}"><button type="button" class="btn btn-success">Assistir <i class="fa fa-play-circle"></i></button></a>
+            {% if user.mod or user.adm %}<a href="/edit/{{ w._id }}"><button type="button" class="btn btn-danger"><i class="fa fa-edit"></i> t('Editar') </button></a>{% endif %}
+            <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="fa fa-times-circle"></i> {{ t('Fechar') }} </button>
+            <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success"> <i class="fa fa-info-circle"></i> {{ t('Informações') }} </button></a>
+            <!-- <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">{{ t('Assistir') }} <i class="fa fa-play-circle"></i></button></a> -->
           </div>
         </div>
       </div>
     </div>
     {% endif %}
-    {% endfor %}
-  </ul>
-</div>
+
+
 {%- endmacro %}
 
 <section class="work">
-  <div class="profile_banner" style="background: url({{ p.cover_picture}}) no-repeat center center;">
+  <div class="profile_banner" style="background: url({{ profile.cover_picture}}) no-repeat center center;">
   </div>
   <div class="profile_banner_content">
-    <img src="{% if p.twitter %}
-                {{ p.gravatar }}
-              {% elseif p.picture %}
-                {{ p.picture }}
-              {% else %}
-                {{ p.gravatar}}
-              {% endif %}"
-    alt="{{ p.username }}" class="profile_pic">
-    <h2>{% if p.name %} {{ p.name }} {% else %} {{ p.username }} {% endif %}</h2>
+    <img src="{%- if profile.twitter -%}
+                {{ profile.gravatar }}
+              {%- elseif profile.picture -%}
+                {{ profile.picture }}
+              {%- else -%}
+                {{ profile.gravatar}}
+              {%- endif -%}"
+    alt="{{ profile.username }}" class="profile_pic">
+    <h2>{% if profile.name %} {{ profile.name }} {% else %} {{ profile.username }} {% endif %}</h2>
     <h4>
-      {% if p.name %} @{{ p.username }}  {% else %} {% endif %}
-      {% if p.location %} · {{ p.location }} {% endif %}
-      {% if p.website %} · <a href="http://{{ p.website | replace("https://", "") | replace("http://", "")}}">{{ p.website | replace("https://", "") | replace("http://", "")}}</a>  {% endif %}
+      {% if profile.name %} @{{ profile.username }}  {% else %} {% endif %}
+      {% if profile.location %} · {{ profile.location }} {% endif %}
+      {% if profile.website %} · <a href="http://{{ profile.website | replace("https://", "") | replace("http://", "")}}">{{ profile.website | replace("https://", "") | replace("http://", "")}}</a>  {% endif %}
     </h4>
   </div>
 
   <!-- Longas Que o User cadastrou -->
-  {% if watch != '' %}
-  {{ printWatches('Obras Enviadas') }}
-  {% endif %}
+
+  <h3>{{t('Obras Favoritas')}}</h3>
+  <section class="work">
+  <div class="grid">
+    <ul class="entries">
+      {% for i in interactions %}
+        {% if i.favorite %}
+        {{ printWatch(i.attachedToWatch, loop) }}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  </section>
+
+  <h3>{{t('Obras Assistidas')}}</h3>
+  <section class="work">
+  <div class="grid">
+    <ul class="entries">
+      {% for i in interactions %}
+        {% if i.alreadyWatched %}
+        {{ printWatch(i.attachedToWatch, loop) }}
+        {% endif %}
+      {% endfor %}
+    </ul>
+  </div>
+  </section>
+
+
+
+
+
+
 </section>
 
 
