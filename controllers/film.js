@@ -217,5 +217,12 @@ exports.alreadyWatchedGet = function(req, res, next) {
       })
     })
   }
+}
 
+exports.downloadGet = function(req, res) {
+  Watch.findOne({'permalink': req.params.permalink}, function(err, film) {
+    res.render('download', {
+      film: film
+    })
+  })
 }

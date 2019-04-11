@@ -25,8 +25,8 @@ var watchSchema = new mongoose.Schema({
   },
   top: String,
   mod_message: String,
-  downloadable: String,
-  canwecopy: String,
+  downloadable: Boolean,
+  canwecopy: Boolean,
 
 
   /* Basic */
@@ -76,7 +76,12 @@ var watchSchema = new mongoose.Schema({
   file: {
     film: String,
     trailer: String,
-    srt: String
+    srt: String,
+    ld: String,
+    sd: String,
+    hd: String,
+    fhd: String,
+    uhd: String
   },
 
   /* Categories */

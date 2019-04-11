@@ -102,10 +102,11 @@
           <i class="fa fa-video-camera"></i> {{ t('Trailer') }}
         </button>
 
-
-        <button class="btn btn-default btn-libre" onclick="location.href='/assistir/{{ film.permalink }}'">
+        {%if not film.downloadable%}
+        <button class="btn btn-default btn-libre" onclick="location.href='/download/{{ film.permalink }}'">
           <i class="fa fa-download"></i> {{ t('Download') }}
         </button>
+        {%endif%}
 
         {% if not user %}
         <button class="btn btn-default btn-libre" id="alreadyWatched" disabled>

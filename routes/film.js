@@ -34,5 +34,9 @@ module.exports = function(router) {
     /** GET /i/:permalink - Film info navigation */
     .post(filmController.favoriteGet);
 
+  router.route('/download/:permalink')
+    /** GET /download/:permalink - Download a film (if disponible) */
+    .get(filmController.downloadGet);
+
   return router;
 }
