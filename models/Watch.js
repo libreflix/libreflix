@@ -86,6 +86,7 @@ var watchSchema = new mongoose.Schema({
 
   /* Categories */
   tags: { type: [], get: getTags, set: setTags },
+  usertags: { type: [], get: getTags, set: setTags },
   categories: { type: []},
   format: String,
 

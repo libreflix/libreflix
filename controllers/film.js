@@ -5,6 +5,7 @@ var Watch = require('../models/Watch');
 var Comment = require('../models/Comment');
 var Category = require('../models/Category');
 var Interaction = require('../models/Interaction');
+var Reference = require('../models/Reference');
 var mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
@@ -29,13 +30,16 @@ exports.filmGet = function(req, res){
       Comment.find({ 'attachedToWatch': film.id }, function(err, comments){
       Interaction.find({ 'attachedToWatch': film.id }, function(err, all_rating) {
       Interaction.findOne({ proofhash: phash }, function(err, interaction) {
+      Reference.find({ 'attachedToWatch': film.id }, function(err, reference) {
       res.render('film', {
         film: film,
         comments: comments,
         categories: categories,
         interaction: interaction,
-        all_rating: all_rating
+        all_rating: all_rating,
+        reference: reference,
       });
+    })
     })
   })
   }).populate('creator');
@@ -215,6 +219,27 @@ exports.alreadyWatchedGet = function(req, res, next) {
 
         }
       })
+    })
+  }
+}
+exports.newTags = function(req, res, next) {
+
+  if (req.xhr || req.accepts('json,html') === 'json') {
+
+    Watch.findOne({ 'permalink': req.params.permalink }, function(err, watch){
+        // If there is a interaction...
+        // Para salvar no BD
+        if (watch) {
+          // so we need to update
+          var phash = watch.tags + ',' + req.body.newtagsinput
+
+          // If bad use of the tags recommendation, we can change tags to usertags
+          watch.tags = phash
+
+          watch.save(function(err) {
+              res.send({success: true})
+          });
+        }
     })
   }
 }

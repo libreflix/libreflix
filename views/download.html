@@ -44,6 +44,8 @@
 
 <!-- Include the latest version of WebTorrent -->
 <script src="https://cdn.jsdelivr.net/webtorrent/latest/webtorrent.min.js"></script>
+<script type="text/javascript" src="https://gitcdn.xyz/repo/Stuk/jszip/master/dist/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.js"></script>
 
 <script>
 var client = new WebTorrent()
@@ -59,17 +61,17 @@ function startDownload() {
   document.getElementById('start').style.display = 'none'
 
   var torrentId = 'magnet:?xt=urn:btih:fe336864c31785d7d22f2097f04d11207bc612fa&dn=Parece+Comigo+Trailer.mp4&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=ws%3A%2F%2Fod.lk%2Fs%2FOTRfMjEwNjg0Njlf%2FParece%2520Comigo%2520Trailer.mp4&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https://spks.sfo2.cdn.digitaloceanspaces.com/libreflix/Parece%20Comigo%20Trailer.mp4&xs=https://guilmour.github.io/ventana/torrents/Parece%20Comigo%20Trailer.torrent&ws=https://od.lk/s/OTRfMjEwNjg0Njlf/Parece%20Comigo%20Trailer.mp4&ws=https://s3.wasabisys.com/libreflix/Parece%20Comigo%20Trailer.mp4'
-  log('Adding ' + torrentId)
+  //log('Adding ' + torrentId)
   client.add(torrentId, onTorrent)
 }
 
 function onTorrent(torrent) {
   log('Got torrent metadata!')
-  log(
-    'Torrent info hash: ' + torrent.infoHash + ' ' +
-    '<a href="' + torrent.magnetURI + '" target="_blank">[Magnet URI]</a> ' +
-    '<a href="' + torrent.torrentFileBlobURL + '" target="_blank" download="' + torrent.name + '.torrent">[Download .torrent]</a>'
-  )
+  // log(
+  //   'Torrent info hash: ' + torrent.infoHash + ' ' +
+  //   '<a href="' + torrent.magnetURI + '" target="_blank">[Magnet URI]</a> ' +
+  //   '<a href="' + torrent.torrentFileBlobURL + '" target="_blank" download="' + torrent.name + '.torrent">[Download .torrent]</a>'
+  // )
 
   // Print out progress every 5 seconds
   var interval = setInterval(function() {
@@ -86,7 +88,7 @@ function onTorrent(torrent) {
   torrent.files.forEach(function(file) {
 
     //file.appendTo('.log')
-    log('(Blob URLs only work if the file is loaded from a server. "http//localhost" works. "file://" does not.)')
+    //log('(Blob URLs only work if the file is loaded from a server. "http//localhost" works. "file://" does not.)')
 
     file.getBlobURL(function(err, url) {
       if (err) return log(err.message)

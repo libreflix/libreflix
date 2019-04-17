@@ -2,6 +2,7 @@
 
 /** Get controllers */
 const filmController = require('../controllers/film');
+const authMiddleware = require('../middlewares/auth');
 
 /**
  * User Profile routes
@@ -20,7 +21,7 @@ module.exports = function(router) {
 
   router.route('/i/:permalink')
     /** GET /i/:permalink - Film info navigation */
-    .post(filmController.filmPost);
+    .post(authMiddleware, filmController.filmPost);
 
   router.route('/i/:permalink')
     /** GET /i/:permalink - Film info navigation */
@@ -28,11 +29,15 @@ module.exports = function(router) {
 
   router.route('/i/:permalink/alreadyWatched')
     /** GET /i/:permalink - Film info navigation */
-    .post(filmController.alreadyWatchedGet);
+    .post(authMiddleware, filmController.alreadyWatchedGet);
 
   router.route('/i/:permalink/favorite')
     /** GET /i/:permalink - Film info navigation */
-    .post(filmController.favoriteGet);
+    .post(authMiddleware, filmController.favoriteGet);
+
+  router.route('/i/:permalink/newtags')
+    /** GET /i/:permalink - Film info navigation */
+    .post(authMiddleware, filmController.newTags);
 
   router.route('/download/:permalink')
     /** GET /download/:permalink - Download a film (if disponible) */

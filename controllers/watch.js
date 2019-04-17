@@ -1,6 +1,7 @@
 var async = require('async');
 var Watch = require('../models/Watch');
 var Category = require('../models/Category');
+var Reference = require('../models/Reference');
 var mongoose = require('mongoose');
 var nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
@@ -115,6 +116,7 @@ exports.tagsGet = function(req, res){
 exports.watchEdit = function(req, res){
   Category.find({}, null, {sort: 'title'},function(err, categories){
     Watch.findOne({ '_id': req.params._id }, function(err, w){
+    Reference.find({ 'attachedToWatch': req.params._id }, function(err, reference) {
 
       if (!w) {
         return res.redirect('/404');
@@ -122,9 +124,11 @@ exports.watchEdit = function(req, res){
       else{
         res.render('edit', {
           categories: categories,
+          reference: reference,
           w: w
         });
       }
+    });
     }).populate('modComments.moderator').populate('criador');
   });
 };
@@ -250,3 +254,32 @@ var body = req.body;
 
     });
 };
+
+exports.newReference = function(req, res, next) {
+
+  if (req.xhr || req.accepts('json,html') === 'json') {
+    console.log('OI');
+    console.log(req.body.u);
+    console.log(req.body.ref_url);
+    console.log(req.body.ref_title);
+
+    if (req.body.ref_url && req.body.ref_title) {
+      Watch.findOne({ 'permalink': req.params.permalink }, function(err, watch){
+
+           	reference = new Reference({
+              attachedToWatch: watch.id,
+              creator: req.body.u,
+              url: req.body.ref_url,
+              title: req.body.ref_title
+            });
+            reference.save(function(err) {
+                res.send({success: true})
+            });
+        })
+    } else {
+      res.send({success: false})
+    }
+
+
+  }
+}

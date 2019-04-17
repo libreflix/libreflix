@@ -11,41 +11,45 @@ const authMiddleware = require('../middlewares/auth');
  *
  * @param {Router} - express router
  */
-module.exports = function (router) {
-	/*
-	 * Get a production to watch
-	 * @param {string} permalink - Is the link to a individual production
-	 */
-	router.route('/assistir/:permalink')
-		/** GET /assistir/:permalink - Get a production to watch */
-		.get(watchController.watchGet);
+module.exports = function(router) {
+  /*
+   * Get a production to watch
+   * @param {string} permalink - Is the link to a individual production
+   */
+  router.route('/assistir/:permalink')
+    /** GET /assistir/:permalink - Get a production to watch */
+    .get(watchController.watchGet);
 
-	/*
-	 * Create a new production
-	 */
-	router.route('/novo')
-		/** GET /novo - UI for new production */
-		.get(authMiddleware, watchController.newWatchGet)
-		/** POST /novo - Create new production */
-		.post(authMiddleware, watchController.newWatchPost);
+  /*
+   * Create a new production
+   */
+  router.route('/novo')
+    /** GET /novo - UI for new production */
+    .get(authMiddleware, watchController.newWatchGet)
+    /** POST /novo - Create new production */
+    .post(authMiddleware, watchController.newWatchPost);
 
-	/**
-	 * Update a production
-	 * @param {string} - Is the identifier of the production
-	 */
-	router.route('/edit/:_id')
-		/** GET /edit/:id - Update watch */
-		.get(authMiddleware, watchController.watchEdit)
+  /**
+   * Update a production
+   * @param {string} - Is the identifier of the production
+   */
+  router.route('/edit/:_id')
+    /** GET /edit/:id - Update watch */
+    .get(authMiddleware, watchController.watchEdit)
 
-		/** GET /edit/:id - Update watch */
-		.post(authMiddleware, watchController.watchPut);
+    /** GET /edit/:id - Update watch */
+    .post(authMiddleware, watchController.watchPut);
 
-	/**
-	 * Filter productions by specified tag
-	 */
-	router.route('/t/:tags')
-		/** GET /t/:tags - Get filtered productions by specified tags */
-		.get(watchController.tagsGet);
+  /**
+   * Filter productions by specified tag
+   */
+  router.route('/t/:tags')
+    /** GET /t/:tags - Get filtered productions by specified tags */
+    .get(watchController.tagsGet);
 
-	return router;
+  router.route('/edit/:permalink/newreference')
+    /** GET /i/:permalink - Film info navigation */
+    .post(watchController.newReference);
+
+  return router;
 }

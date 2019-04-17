@@ -102,7 +102,7 @@
           <i class="fa fa-video-camera"></i> {{ t('Trailer') }}
         </button>
 
-        {%if not film.downloadable%}
+        {% if film.downloadable %}
         <button class="btn btn-default btn-libre" onclick="location.href='/download/{{ film.permalink }}'">
           <i class="fa fa-download"></i> {{ t('Download') }}
         </button>
@@ -245,11 +245,43 @@
         {% endif %}
         </div>
         <div class="row">
-        <h4>
           {% if film.tags %}
-            Tags: {% set list1 = film.tags.split(',') %}{% for list in list1 %}<a href="/t/{{ list | trim}}"><span class="label label-default">{{ list | trim}}</span></a>{%if (loop.index0 < loop.length-1) %} {%endif%}{% endfor %}
+            <h4>
+              Tags: {% set list1 = film.tags.split(',') %}{% for list in list1 %}<a href="/t/{{ list | trim}}"><span class="label label-default">{{ list | trim}}</span></a>{%if (loop.index0 < loop.length-1) %} {%endif%}{% endfor %}
+            {% if user %}
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#addTagsModal">
+                          <i class="fa fa-tag" aria-hidden="true"></i> {{ t('Sugerir tags') }}
+            </button>
+            {% endif %}
+            </h4>
+            {% if user %}
+            <!-- Button trigger modal -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="addTagsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  </div>
+                  <div class="modal-body">
+                    <h4>{{t('Sugerir tags')}}</h4>
+                    <textarea name="Text1" cols="55" rows="4" style="width: 100%;" id="newtagsinput"></textarea>
+                    <p>
+                      {{t('Digite os nomes de novas tags, separdas por vírgula')}}
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ t('Fechar' )}}</button>
+                    <button type="button" class="btn btn-success" id="newTags">{{ t('Sugerir tags' )}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
           {% endif %}
-        </h4>
+
+
         </div>
         <div class="row">
           <hr>
@@ -342,7 +374,7 @@
                </p>
                  <div class="clearfix"></div>
                   <p class="text-comment">
-                    <textarea name="comment_body" rows="5" class="new-comment" placeholder="{{ t('Para apenas avaliar, deixe o comentário em branco.')}}"></textarea>
+                    <textarea name="comment_body" rows="5" class="new-comment" placeholder="{{ t('Deixe seu comentário.')}}"></textarea>
                   </p>
                 </div>
                   <div id="doEnviar" class="collapse in" >
@@ -375,6 +407,30 @@
 
 
         <!-- coment fim -->
+        {# Inicio links externos para resenhas, notícias ou artigos sobre a obra #}
+        {%set referenceFlag = false %}
+
+        {% for r in reference %}
+          {% if loop.length > 0 %}
+          {% set referenceFlag = true %}
+          {% endif %}
+        {% endfor %}
+
+        {% if referenceFlag %}
+        <div class="row">
+          <hr>
+          <h3>  {{ t('Ligações externas') }}</h3>
+          {% for r in reference %}
+          <p>
+            <a href="{{r.url}}">
+              <i class="fa fa-external-link" aria-hidden="true"></i>
+              {{ r.title | title }}</b>
+            </a>
+          </p>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {# Fim links externos para resenhas, notícias ou artigos sobre a obra #}
   		</div>
   		<div class="col-md-1">
   		</div>
@@ -439,6 +495,31 @@
       });
     });
   });
+
+  $(document).ready(function(){
+    $('#newTags').on('click', function(evt){
+      evt.preventDefault();
+      var action = $(this).attr('action');
+      var $container = $(this).closest('#newTags');
+      $.ajax({
+        url: '/i/{{ film.permalink }}/newtags',
+        type: 'POST',
+        data: {newtagsinput: $(newtagsinput).val()},
+        dataType : 'json',
+        success: function(data){
+          if(data.success){
+            $container.toggleClass('btn-success');
+          } else {
+            $container.html('There was a problem.');
+          }
+        },
+        error: function(){
+          $container.html('There was a problem');
+        }
+      });
+    });
+  });
+
 </script>
 
 

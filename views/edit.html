@@ -307,8 +307,8 @@
               <label class="col-sm-3">Arquivo pode ser copiado pelo Libreflix?</label>
                 <div class="col-sm-7">
                   <select  class="selectpicker" name="canwecopy">
-              		  <option type='select' value="true" {% if w.canwecopy == "true" %} SELECTED="YES" {% endif %}>Sim</option>
-              		  <option type='select' value="false" {% if w.canwecopy != "true"%} SELECTED="YES" {% endif %}>Não</option>
+              		  <option type='select' value="true" {% if w.canwecopy  %} SELECTED="YES" {% endif %}>Sim</option>
+              		  <option type='select' value="false" {% if not w.canwecopy %} SELECTED="YES" {% endif %}>Não</option>
                   </select>
                 </div>
             </div>
@@ -316,8 +316,8 @@
               <label class="col-sm-3">Arquivo pode ser Baixado pelo Usuário?</label>
                 <div class="col-sm-7">
                   <select  class="selectpicker" name="downloadable">
-              		  <option type='select' value="true" {% if w.downloadable == "true" %} SELECTED="YES" {% endif %}>Sim</option>
-              		  <option type='select' value="false" {% if w.downloadable != "true"%} SELECTED="YES" {% endif %}>Não</option>
+              		  <option type='select' value="true" {% if w.downloadable %} SELECTED="YES" {% endif %}>Sim</option>
+              		  <option type='select' value="false" {% if not w.downloadable %} SELECTED="YES" {% endif %}>Não</option>
                   </select>
                 </div>
             </div>
@@ -370,6 +370,28 @@
             <div class="col-sm-3">Instagram</div>
             <div class="col-sm-7"><input type="text" name="instagram" class="form-control"  value="{{w.links.instagram}}"></div>
           </div>
+          <!-- Links Externos -->
+          <legend>{{t('Ligações Externas')}}</legend>
+          {% for r in reference %}
+          <p>
+            <a href="{{r.url}}" target="_blank">
+              <i class="fa fa-external-link" aria-hidden="true"></i>
+              {{ r.title | title }}</b>
+            </a>
+          </p>
+          {% endfor %}
+          <div class="form-group">
+            <div class="col-sm-2">Nova Referência</div>
+            <div class="col-sm-4"><input type="text" id="ref_title" class="form-control" placeholder="title"></div>
+            <div class="col-sm-4"><input type="text" id="ref_url" class="form-control" placeholder="url"></div>
+          </div>
+          <p>
+            <button class="btn btn-default" id="newReference" type="button">
+              {{ t('Adicionar Ligação Externa') }}
+            </button>
+          </p>
+
+
           <!-- Comentários dos moderadores -->
           {% if user.adm or user.mod %}
           <hr>
@@ -409,6 +431,37 @@
 </div>
 
 {% endif %}
+
+<script>
+  $(document).ready(function(){
+    $('#newReference').on('click', function(evt){
+      evt.preventDefault();
+      var action = $(this).attr('action');
+      var $container = $(this).closest('#newReference');
+      $.ajax({
+        url: '/edit/{{ w.permalink }}/newreference',
+        type: 'POST',
+        data: {
+          u: '{{user.id}}',
+          ref_url: $(ref_url).val(),
+          ref_title: $(ref_title).val()
+        },
+        dataType : 'json',
+        success: function(data){
+          if(data.success){
+            $container.toggleClass('btn-success');
+          } else {
+            $container.html('There was a problem.');
+          }
+        },
+        error: function(){
+          $container.html('There was a problem');
+        }
+      });
+    });
+  });
+</script>
+
 <script src="/js/bootstrap-select.min.js"></script>
 <script src="/js/upload.js"></script>
 
