@@ -49,6 +49,11 @@
 
 <script>
 var client = new WebTorrent()
+var zip = new JSZip()
+
+// Add somre basic files to the zip
+var promise = $.get("{{film.thumb480}}");
+zip.file("cover.jpg", promise);
 
 client.on('error', function(err) {
   console.error('ERROR: ' + err.message)
@@ -60,8 +65,10 @@ function startDownload() {
 
   document.getElementById('start').style.display = 'none'
 
-  var torrentId = 'magnet:?xt=urn:btih:fe336864c31785d7d22f2097f04d11207bc612fa&dn=Parece+Comigo+Trailer.mp4&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=ws%3A%2F%2Fod.lk%2Fs%2FOTRfMjEwNjg0Njlf%2FParece%2520Comigo%2520Trailer.mp4&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https://spks.sfo2.cdn.digitaloceanspaces.com/libreflix/Parece%20Comigo%20Trailer.mp4&xs=https://guilmour.github.io/ventana/torrents/Parece%20Comigo%20Trailer.torrent&ws=https://od.lk/s/OTRfMjEwNjg0Njlf/Parece%20Comigo%20Trailer.mp4&ws=https://s3.wasabisys.com/libreflix/Parece%20Comigo%20Trailer.mp4'
-  //log('Adding ' + torrentId)
+  // var torrentId = 'magnet:?xt=urn:btih:fe336864c31785d7d22f2097f04d11207bc612fa&dn=Parece+Comigo+Trailer.mp4&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=ws%3A%2F%2Fod.lk%2Fs%2FOTRfMjEwNjg0Njlf%2FParece%2520Comigo%2520Trailer.mp4&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https://spks.sfo2.cdn.digitaloceanspaces.com/libreflix/Parece%20Comigo%20Trailer.mp4&xs=https://guilmour.github.io/ventana/torrents/Parece%20Comigo%20Trailer.torrent&ws=https://od.lk/s/OTRfMjEwNjg0Njlf/Parece%20Comigo%20Trailer.mp4&ws=https://s3.wasabisys.com/libreflix/Parece%20Comigo%20Trailer.mp4'
+  var torrentId = 'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent'
+
+//log('Adding ' + torrentId)
   client.add(torrentId, onTorrent)
 }
 
@@ -78,11 +85,6 @@ function onTorrent(torrent) {
     log('Progress: ' + (torrent.progress * 100).toFixed(1) + '%')
   }, 1000)
 
-  torrent.on('done', function() {
-    log('Progress: 100%')
-    clearInterval(interval)
-  })
-
   //Render all files into to the page
 
   torrent.files.forEach(function(file) {
@@ -93,12 +95,33 @@ function onTorrent(torrent) {
     file.getBlobURL(function(err, url) {
       if (err) return log(err.message)
       log('File done.')
-      log('<a href="' + url + '" download="[Libreflix.org] ' + file.name + '"> <button class="btn btn-default" id="start">{{t('Salvar filme')}}</button> </a>')
+      //log('<a href="' + url + '" download="[Libreflix.org] ' + file.name + '"> <button class="btn btn-default" id="start">{{t('Salvar filme')}}</button> </a>')
+      log('<a> <button class="btn btn-default" id="start" onclick="saveZip(zip)">{{t('Salvar filme')}}</button> </a>')
+      // Add the blob file to a zip file.
+      file.getBlob(function callback (err, blob) {
+        console.log(blob);
+        console.log('Estou aqui adicionando o blob dentro do zip');
+        zip.file(file.name, blob);
+        console.log('Adicionei');
+      })
     })
+  })
+  torrent.on('done', function() {
+    log('Progress: 100%')
+    clearInterval(interval)
+    console.log('Inicio timeout');
+    // setTimeout(saveZip, 2000, zip);
+    console.log('fim timeout');
   })
 }
 
-
+function saveZip(zip){
+  console.log('Agora bora comprimir saporra');
+  zip.generateAsync({type: "blob"}).then(function(content){
+    zipfilename = "[Libreflix.org] " + "{{ film.title }}" + ".zip"
+    saveAs(content, zipfilename)
+  })
+}
 
 
 function log(str) {
