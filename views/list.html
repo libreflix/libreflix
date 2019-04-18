@@ -104,8 +104,8 @@
     {% endif %}
   <br><br>
   <a href="/edit/{{ w._id }}">
-    <button type="button" class="btn btn-danger" {% if w.status != 'pending' or w.status != 'waiting' %} disabled {% endif %}>
-      <i class="fa fa-edit"></i> {{ t('Editar Obra')}} 
+    <button type="button" class="btn btn-danger" {% if w.status != 'pending' and w.status != 'waiting' %} disabled {% endif %}>
+      <i class="fa fa-edit"></i> {{ t('Editar Obra')}}
     </button>
   </a>
   <br>
