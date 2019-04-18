@@ -21,8 +21,7 @@ const setTags = tags => tags.split(', ');
 var categorySchema = new mongoose.Schema({
   nid: {type: String, unique: true},
   format: String,
-  title: String,
-
+  title: String
 }, schemaOptions);
 
 
