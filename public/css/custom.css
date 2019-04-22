@@ -962,3 +962,34 @@ li.busca-smartphone {
   font-size: 1.3em;
   padding: 10px;
 }
+
+/* For not hiding scrollbar on showing modal */
+.modal {
+    overflow-y: scroll !important;
+}
+
+/* For the payment modal and texts and etc. */
+.price_donation{
+  color: rgb(66, 66, 66);
+  background-color: rgb(201, 201, 201);
+  border-style: hidden;
+  border-radius: 5%;
+  font-size: 25px;
+  padding-left: 5px;
+  padding-top: 3px;
+  padding-right: 3px;
+  padding-bottom: 3px;
+}
+.splash_donate{
+  height: 80px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.text_branco{
+  color: #ffffff;
+}
+.texto_grande{
+  font-size: 18px;
+}

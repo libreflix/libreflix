@@ -1,6 +1,14 @@
 {% set title = [film.title, ' (', film.year, ')'] | join  %}
 
+
+
 {% block opengraph %}
+<script type="text/javascript">
+// Thank you https://stackoverflow.com/questions/14940423/autofocus-input-in-twitter-bootstrap-modal
+$(document).on('shown.bs.modal', '.modal', function () {
+    $(this).find('[autofocus]').focus();
+});
+</script>
 <meta name="description" content='{{ film.sinopse }}'>
 <meta name="keywords"  content="{{film.tags}} - libreflix" />
 
@@ -109,33 +117,115 @@
         {%endif%}
 
         {% if not user %}
-        <button class="btn btn-default btn-libre" id="alreadyWatched" disabled>
-          <i class="fa fa-check-square"></i> {{ t('Já Vi') }}
+        <button title="{{t('Já Vi')}}" class="btn btn-default btn-libre" id="alreadyWatched" disabled>
+          &nbsp<i class="fa fa-check-square"></i>&nbsp
+          <!-- {{ t('Já Vi') }} -->
         </button>
         {% elif not interaction.alreadyWatched %}
-        <button class="btn btn-default btn-libre" id="alreadyWatched">
-          <i class="fa fa-check-square"></i> {{ t('Já Vi') }}
+        <button title="{{t('Já Vi')}}" class="btn btn-default btn-libre" id="alreadyWatched">
+          &nbsp<i class="fa fa-check-square"></i>&nbsp
+          <!-- {{ t('Já Vi') }} -->
         </button>
         {% elif interaction.alreadyWatched %}
-        <button class="btn btn-default btn-libre btn-success" id="alreadyWatched">
-          <i class="fa fa-check-square"></i> {{ t('Já Vi') }}
+        <button title="{{t('Já Vi')}}" class="btn btn-default btn-libre btn-success" id="alreadyWatched">
+          &nbsp<i class="fa fa-check-square"></i>&nbsp
+          <!-- {{ t('Já Vi') }} -->
         </button>
         {% endif %}
 
         {% if not user %}
-        <button class="btn btn-default btn-libre" id="favorite" disabled>
-          <i class="fa fa-heart"></i> {{ t('Favoritar') }}
+        <button title="{{t('Favoritar')}}" class="btn btn-default btn-libre" id="favorite" disabled>
+          &nbsp<i class="fa fa-heart"></i>&nbsp
         </button>
         {% elif not interaction.favorite %}
-        <button class="btn btn-default btn-libre" id="favorite">
-          <i class="fa fa-heart"></i> {{ t('Favoritar') }}
+        <button title="{{t('Favoritar')}}" class="btn btn-default btn-libre" id="favorite">
+          &nbsp<i class="fa fa-heart"></i>&nbsp
         </button>
         {% elif interaction.favorite %}
-        <button class="btn btn-default btn-libre btn-success" id="favorite">
-          <i class="fa fa-heart"></i> {{ t('Favoritar') }}
+        <button title="{{t('Favoritar')}}" class="btn btn-default btn-libre btn-success" id="favorite">
+          &nbsp<i class="fa fa-heart"></i>&nbsp
         </button>
         {% endif %}
 
+        {# if film.acceptDonations #}
+        <button class="btn btn-default btn-libre" data-toggle="modal" data-target="#modalDonations">
+          <i class="fa fa-usd "></i> {{ t('Retribuir') }}
+        </button>
+        <div class="modal" id="modalDonations" tabindex="-1" role="dialog" aria-labelledby="modalDonations">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times-circle exitTimes"></i></button>
+                <div class="splash_donate" style="background-image: url('{{ film.imgbg }}');"></div>
+              </div>
+              <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+              <div class="modal-body">
+              <h3> {{film.title}}</h3>
+              <h4> Retribuir diretamente para os realizadores </h4>
+              <hr>
+              <input type="hidden" name="charset" value="utf-8" />
+              <input type="hidden" name="cmd" value="_xclick">
+              <input type="hidden" name="business" value="libreflix@guilst.com">
+              <input type="hidden" name="item_name" value="{{ t('Doação Libreflix')}} - {{film.title}}">
+              <input type="hidden" name="item_number" value="1">
+              <input type="hidden" name="image_url" value="https://libreflix.org/libreflix_min.png">
+              <input type="hidden" name="custom" value="{{film.permalink}}">
+
+              Valor da sua retribuição: &nbsp
+              <input id="amount" name="amount" min="1" size="2" autocomplete="off" class="price_donation" placeholder="R$" autofocus>
+
+              {#<select  class="selectpicker" name="currency_code">
+          		  <option value="">Select Currency</option>
+          		  <option value="AUD">Australian Dollar (AUD)</option>
+          		  <option value="BRL" SELECTED="YES">Brazilian Real (BRL)</option>
+          		  <option value="CAD">Canadian Dollar (CAD)</option>
+          		  <option value="CZK">Czech Koruna (CZK)</option>
+          		  <option value="DKK">Danish Krone (DKK)</option>
+          		  <option value="EUR">Euro (EUR)</option>
+          		  <option value="HKD">Hong Kong Dollar (HKD)</option>
+          		  <option value="HUF">Hungarian Forint (HUF)</option>
+          		  <option value="ILS">Israeli New Sheqel (ILS)</option>
+          		  <option value="JPY">Japanese Yen (JPY)</option>
+          		  <option value="MYR">Malaysian Ringgit (MYR)</option>
+          		  <option value="MXN">Mexican Peso (MXN)</option>
+          		  <option value="NOK">Norwegian Krone (NOK)</option>
+          		  <option value="NZD">New Zealand Dollar (NZD)</option>
+          		  <option value="PHP">Philippine Peso (PHP)</option>
+          		  <option value="PLN">Polish Zloty (PLN)</option>
+          		  <option value="GBP">Pound Sterling (GBP)</option>
+          		  <option value="SGD">Singapore Dollar (SGD)</option>
+          		  <option value="SEK">Swedish Krona (SEK)</option>
+          		  <option value="CHF">Swiss Franc (CHF)</option>
+          		  <option value="TWD">Taiwan New Dollar (TWD)</option>
+          		  <option value="THB">Thai Baht (THB)</option>
+          		  <option value="TRY">Turkish Lira (TRY)</option>
+          		  <option value="USD">U.S. Dollar (USD)</option>
+              </select>#}
+              <input type="hidden" name="no_shipping" value="1">
+              <input type="hidden" name="no_note" value="0">
+              <input type="hidden" name="currency_code" value="BRL">
+              <input type="hidden" name="lc" value="BR">
+              <!-- <input type="hidden" name="bn" value="PP-BuyNowBF"> -->
+              <input type="hidden" name="return" value="https://libreflix.org/i/{{film.permalink}}" />
+              <hr>
+              <p>{{t('Sua retribuição dá suporte direto às pessoas envolvidas na criação desta obra, além de fomentar um ambiente de financiamento que possibilita a realização de mais obras para o cinema e o streaming livre.')}}*
+              </p>
+              <p>
+                <small><small>
+                  *{{t('O Libreflix não fica com nenhum valor desta retribuição. Se você também quiser apoiar a plataforma, você pode visitar a nossa campanha de financiamento coletivo.')}} :)
+                </small></small>
+              </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle"></i> {{ t('Fechar') }} </button>
+                <a href="/i/{{ w.permalink }}"><button type="submit" class="btn btn-success"><i class="fa fa-handshake-o "></i> {{ t('Retribuir Agora') }} </button></a>
+                <!-- <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">{{ t('Assistir') }} <i class="fa fa-play-circle"></i></button></a> -->
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        {#endif #}
 
         <div class="btn-group">
 
