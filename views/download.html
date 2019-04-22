@@ -65,8 +65,8 @@ function startDownload() {
 
   document.getElementById('start').style.display = 'none'
 
-  // var torrentId = 'magnet:?xt=urn:btih:fe336864c31785d7d22f2097f04d11207bc612fa&dn=Parece+Comigo+Trailer.mp4&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=ws%3A%2F%2Fod.lk%2Fs%2FOTRfMjEwNjg0Njlf%2FParece%2520Comigo%2520Trailer.mp4&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https://spks.sfo2.cdn.digitaloceanspaces.com/libreflix/Parece%20Comigo%20Trailer.mp4&xs=https://guilmour.github.io/ventana/torrents/Parece%20Comigo%20Trailer.torrent&ws=https://od.lk/s/OTRfMjEwNjg0Njlf/Parece%20Comigo%20Trailer.mp4&ws=https://s3.wasabisys.com/libreflix/Parece%20Comigo%20Trailer.mp4'
-  var torrentId = 'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent'
+  var torrentId = 'magnet:?xt=urn:btih:fe336864c31785d7d22f2097f04d11207bc612fa&dn=Parece+Comigo+Trailer.mp4&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=ws%3A%2F%2Fod.lk%2Fs%2FOTRfMjEwNjg0Njlf%2FParece%2520Comigo%2520Trailer.mp4&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https://vdn.libreflix.org/libreflix/Parece%20Comigo%20Trailer.mp4&xs=https://guilmour.github.io/ventana/torrents/Parece%20Comigo%20Trailer.torrent'
+  // var torrentId = 'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent'
 
 //log('Adding ' + torrentId)
   client.add(torrentId, onTorrent)
@@ -106,6 +106,14 @@ function onTorrent(torrent) {
       })
     })
   })
+  // Function to add new weeb seed if number of peers is less than 3
+  torrent.on('download', function (bytes) {
+    console.log('just downloaded: ' + bytes)
+    console.log('total downloaded: ' + torrent.downloaded)
+    console.log('download speed: ' + torrent.downloadSpeed)
+    console.log('progress: ' + torrent.progress)
+  })
+
   torrent.on('done', function() {
     log('Progress: 100%')
     clearInterval(interval)
