@@ -11,7 +11,6 @@ var commentSchema = new mongoose.Schema({
   attachedToUser: { type : mongoose.Schema.ObjectId, ref : 'User' },
   attachedToWatch: { type : mongoose.Schema.ObjectId, ref : 'Watch' },
   creator: { type : mongoose.Schema.ObjectId, ref : 'User' },
-  stars: Number,
   date: Date,
   type: String, //public, admin, deleted
   body: String,
