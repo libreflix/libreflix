@@ -16,15 +16,15 @@ const bodyParser = require('body-parser');
 exports.filmGet = function(req, res){
 
   Watch.findOne({ 'permalink': req.params.permalink }, function(err, film){
+    if (!film) {
+      return res.redirect('/404');
+    }
     if (req.user) {
       var phash = req.user.id + film.id
     } else {
       var phash = '_' + film.id
     }
 
-    if (!film) {
-      return res.redirect('/404');
-    }
 		if (film) {
       Category.find({}, function(err, categories ){
       Comment.find({ 'attachedToWatch': film.id }, function(err, comments){

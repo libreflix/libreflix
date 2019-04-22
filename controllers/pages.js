@@ -55,3 +55,8 @@ exports.pressController = function(req, res) {
         title:'Na Mídia'
       });
 };
+
+/* GET Contribute */
+exports.contributeController = function(req, res) {
+      res.render('contribute', {});
+};
