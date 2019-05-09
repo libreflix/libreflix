@@ -101,6 +101,15 @@ var watchSchema = new mongoose.Schema({
     instagram: String
   },
 
+  /** New player options **/
+  useWatchV2: Boolean,
+  useWatchV3: Boolean,
+
+  /* Download options */
+  enableDownload: Boolean,
+  enableDonations: Boolean,
+  enableTrailer: Boolean,
+
   /* For Series */
   n_eps: Number,
   eps: [{   last: Boolean,
