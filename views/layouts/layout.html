@@ -1,15 +1,21 @@
-<!--
+<!DOCTYPE html>
+<script type="text/javascript">
 
-  _       _  _                  __  _  _
- | |     (_)| |                / _|| |(_)
- | |      _ | |__   _ __  ___ | |_ | | _ __  __
- | |     | || '_ \ | '__|/ _ \|  _|| || |\ \/ /
- | |____ | || |_) || |  |  __/| |  | || | >  <
- |______||_||_.__/ |_|   \___||_|  |_||_|/_/\_\
+  /*  _       _  _                  __  _  _
+   * | |     (_)| |                / _|| |(_)
+   * | |      _ | |__   _ __  ___ | |_ | | _ __  __
+   * | |     | || '_ \ | '__|/ _ \|  _|| || |\ \/ /
+   * | |____ | || |_) || |  |  __/| |  | || | >  <
+   * |______||_||_.__/ |_|   \___||_|  |_||_|/_/\_\
+   *
+   *
+   * Copyright by Guilmour Rossi and its contributors
+   *
+   *
+   * Hey, friend. Check out the source-code at libregit.org/libreflix
+  */
 
- Hey, friend. Check out the source-code at libregit.org/libreflix
-
- -->
+</script>
 
 <html>
 
@@ -38,7 +44,7 @@
   <script src="/js/main.js"></script>
   <script src="/js/vendor/bootstrap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js" charset="utf-8"></script>
-  {% endblock %}
+
 
   {% block opengraph %}
   <meta property="og:image" content="/sm-share2.jpg" />
@@ -63,6 +69,8 @@
 
 <body>
   <div class="container">
+    {% endblock %} {# end link_rel block#}
+
     {% block navbar %}
       {% include "partials/navbar.html" %}
     {% endblock %}
@@ -70,25 +78,27 @@
     {% endblock %}
 
     <footer>
-      <!-- <p align="center" style="font-size: 11pt; margin-top:110px;">
+      {#
+        <!-- <p align="center" style="font-size: 11pt; margin-top:110px;">
         <a href="{{ site.baseurl }}/" style="border-bottom: 0px solid;"><img src="{{ site.baseurl }}/assets/img/libreflix.png" width="118px" style="border-bottom: 0px solid;"></a><br><br>
         Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, provocativas e de livre exibição.
         <br><br>
         <a href="/sobre">Sobre</a>
         &middot;
         <a href="/novo">Adicionar produção</a>
-        <!-- &middot; <a href="">FAQ</a> &middot; <a href="/privacidade">Privacidade</a> &middot; <a href="">Quem faz</a>
+        &middot; <a href="">FAQ</a> &middot; <a href="/privacidade">Privacidade</a> &middot; <a href="">Quem faz</a>
         &middot;
         <a href="/apps">Aplicativos</a>
         &middot;
         <a href="http://blog.libreflix.org">Blog</a>
         &middot;
-        <!-- <a href="/apps" target="_blank">Comunidade</a>
+        <a href="/apps" target="_blank">Comunidade</a>
         &middot;
         <a href="http://libregit.org/libreflix" target="_blank">Código-fonte</a>
         <br><br>
           <small>Mantido com &hearts; por <a href="http://guilmour.org" target="_blank">@guilmour</a> e uma incrível <a href="https://libregit.org/libreflix/libreflix">comunidade</a>.<small>
-      </p> -->
+      </p>  -->
+      #}
 
       {% block footer %}
 
@@ -171,13 +181,13 @@
   </div>
 </div>
 <br>
-      {% endblock  %}
 
     </footer>
   </div>
 
   </div>
   <br>
+  {% endblock  %}
 
 <script type="text/javascript" charset="utf-8">
   // Creating custom :external selector
