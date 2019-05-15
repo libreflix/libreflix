@@ -1,3 +1,9 @@
+{% extends "layouts/layout.html" %}
+
+{% block footer%} {% endblock %}
+{% block navbar %}{% endblock %} {# just to overide parent navbar block#}
+{% block link_rel %}{% endblock %} {# just to overide parent link_rel block#}
+{% block body %}
 <!-- WebTorrent -->
 <script src="/js/webtorrent.min.js"></script>
 
@@ -44,7 +50,9 @@
     id="player"
     poster="{{imgbg}}"
     controls
+    crossorigin
     >
+    <track kind="captions" label="Português" src="https://vdn.libreflix.org/sintel/sintel_pt.vtt" srclang="pt" default />
     </video>
 </body>
 
@@ -55,6 +63,7 @@
 
   const player = new Plyr('#player', {
     debug: false,
+    hideControls: true,
   });
   document.getElementById("player").style.height = "100vh"
 
@@ -75,3 +84,4 @@
 
 
 </html>
+{% endblock %}
