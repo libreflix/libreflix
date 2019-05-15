@@ -17,7 +17,8 @@ var passport = require('passport');
 var routes = require('./routes');
 var processImage = require('express-processimage');
 var i18n = require("i18n");
-var cookieParser = require('cookie-parser')
+var cookieParser = require('cookie-parser');
+var minifyHTML = require('express-minify-html');
 
 // Load environment variables from .env file
 dotenv.load();
@@ -63,6 +64,21 @@ i18n.configure({
 });
 
 app.use(i18n.init);
+
+/* Minify options */
+app.use(minifyHTML({
+    override:      false,
+    exception_url: false,
+    htmlMinifier: {
+        removeComments:            true,
+        collapseWhitespace:        false,
+        collapseBooleanAttributes: false,
+        removeAttributeQuotes:     false,
+        removeEmptyAttributes:     false,
+        minifyJS:                  false
+    }
+}));
+
 
 
 app.set('view engine', 'html');
