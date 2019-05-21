@@ -79,6 +79,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
   		<div class="col-md-6 film_content_left">
         {#<h2>{{ [film.title, ' (', film.year, ')'] | join }} #}
         <h2>{{ film.title }}
+          {#
           <span class="pull-right">
             {%- set total = 4 %}
             {%- set n = 1 %}
@@ -92,6 +93,8 @@ $(document).on('shown.bs.modal', '.modal', function () {
               <span class="label label-rating right float-left">{{ (total / n) | round(1) }} </span>
             </a>
           </span>
+          #}
+
         </h2>
         <h4>
           {{ film.subtitle }}
@@ -105,50 +108,55 @@ $(document).on('shown.bs.modal', '.modal', function () {
         {% if user.mod or user.adm %}<a href="/edit/{{ film._id }}"><button type="button" class="btn btn-danger btn-libre">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
 
 
-
-        <button class="btn btn-default btn-libre" onclick="location.href='/assistir/{{ film.permalink }}'">
+        {#
+        <button class="btn btn-default btn-libre" onclick="location.href='/assistir/{{ film.permalink }}'"
+        {% if not film.enableTrailer %} disabled title="{{t('Trailer não disponível')}}"{% endif %}>
           <i class="fa fa-video-camera"></i> {{ t('Trailer') }}
         </button>
+        #}
 
-        {% if film.downloadable %}
-        <button class="btn btn-default btn-libre" onclick="location.href='/download/{{ film.permalink }}'">
+        {#
+        <button class="btn btn-default btn-libre" onclick="location.href='/download/{{ film.permalink }}'"
+        {% if not film.enableDownload %} disabled title="{{t('Infelizmente o download não está disponível para essa obra')}}"{% endif %}>
           <i class="fa fa-download"></i> {{ t('Download') }}
         </button>
-        {%endif%}
+        #}
+
 
         {% if not user %}
         <button title="{{t('Já Vi')}}" class="btn btn-default btn-libre" id="alreadyWatched" disabled>
-          &nbsp<i class="fa fa-check-square"></i>&nbsp
-          <!-- {{ t('Já Vi') }} -->
+          <i class="fa fa-check-square"></i> {{t('Já Vi')}}
+          <!-- &nbsp {{ t('Já Vi') }} -->
         </button>
         {% elif not interaction.alreadyWatched %}
         <button title="{{t('Já Vi')}}" class="btn btn-default btn-libre" id="alreadyWatched">
-          &nbsp<i class="fa fa-check-square"></i>&nbsp
+          <i class="fa fa-check-square"></i> {{t('Já Vi')}}
           <!-- {{ t('Já Vi') }} -->
         </button>
         {% elif interaction.alreadyWatched %}
         <button title="{{t('Já Vi')}}" class="btn btn-default btn-libre btn-success" id="alreadyWatched">
-          &nbsp<i class="fa fa-check-square"></i>&nbsp
+          <i class="fa fa-check-square"></i> {{t('Já Vi')}}
           <!-- {{ t('Já Vi') }} -->
         </button>
         {% endif %}
 
         {% if not user %}
         <button title="{{t('Favoritar')}}" class="btn btn-default btn-libre" id="favorite" disabled>
-          &nbsp<i class="fa fa-heart"></i>&nbsp
+          <i class="fa fa-heart"></i> {{t('Favoritar')}}
         </button>
         {% elif not interaction.favorite %}
         <button title="{{t('Favoritar')}}" class="btn btn-default btn-libre" id="favorite">
-          &nbsp<i class="fa fa-heart"></i>&nbsp
+          <i class="fa fa-heart"></i> {{t('Favoritar')}}
         </button>
         {% elif interaction.favorite %}
         <button title="{{t('Favoritar')}}" class="btn btn-default btn-libre btn-success" id="favorite">
-          &nbsp<i class="fa fa-heart"></i>&nbsp
+          <i class="fa fa-heart"></i> {{t('Favoritar')}}
         </button>
         {% endif %}
 
-        {# if film.acceptDonations #}
-        <button class="btn btn-default btn-libre" data-toggle="modal" data-target="#modalDonations">
+        {#
+        <button class="btn btn-default btn-libre" data-toggle="modal" data-target="#modalDonations"
+        {% if not film.enableDonations %} disabled title="{{t('Infelizmente as retribuições não estão disponíveis para essa obra')}}"{% endif %}>
           <i class="fa fa-usd "></i> {{ t('Retribuir') }}
         </button>
         <div class="modal" id="modalDonations" tabindex="-1" role="dialog" aria-labelledby="modalDonations">
@@ -174,7 +182,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
               Valor da sua retribuição: &nbsp
               <input id="amount" name="amount" min="1" size="2" autocomplete="off" class="price_donation" placeholder="R$" autofocus>
 
-              {#<select  class="selectpicker" name="currency_code">
+              <!-- <select  class="selectpicker" name="currency_code">
           		  <option value="">Select Currency</option>
           		  <option value="AUD">Australian Dollar (AUD)</option>
           		  <option value="BRL" SELECTED="YES">Brazilian Real (BRL)</option>
@@ -200,7 +208,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
           		  <option value="THB">Thai Baht (THB)</option>
           		  <option value="TRY">Turkish Lira (TRY)</option>
           		  <option value="USD">U.S. Dollar (USD)</option>
-              </select>#}
+              </select> -->
               <input type="hidden" name="no_shipping" value="1">
               <input type="hidden" name="no_note" value="0">
               <input type="hidden" name="currency_code" value="BRL">
@@ -225,7 +233,8 @@ $(document).on('shown.bs.modal', '.modal', function () {
             </div>
           </div>
         </div>
-        {#endif #}
+        #}
+
 
         <div class="btn-group">
 
@@ -297,6 +306,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
           {% endif %} -->
         </ul>
         </p>
+        {#
         {%if film.links.website or film.links.wikipedia or film.links.twitter
           or film.links.imdb or film.links.filmow or film.links.facebook or film.links.instagram %}
         <hr>
@@ -311,6 +321,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
           {%if film.links.instagram %} <a href="{{ film.links.instagram }}"><i class="fa fa-instagram" aria-hidden="true"></i></a> {% endif %}
         </h3>
          {% endif %}
+         #}
   		</div>
   		<div class="col-md-7">
         <div class="row">
@@ -358,7 +369,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
                     <h4>{{t('Sugerir tags')}}</h4>
                     <textarea name="Text1" cols="55" rows="4" style="width: 100%;" id="newtagsinput"></textarea>
                     <p>
-                      {{t('Digite os nomes de novas tags, separdas por vírgula')}}
+                      {{t('Digite os nomes de novas tags, separadas por vírgula')}}
                     </p>
                   </div>
                   <div class="modal-footer">
@@ -373,6 +384,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
 
 
         </div>
+        {#
         <div class="row">
           <hr>
           <h3 id="rating">Avaliações</h3>
@@ -398,9 +410,10 @@ $(document).on('shown.bs.modal', '.modal', function () {
 
           {% endif %}
         </div>
+        #}
 
 
-
+        {#
         <div class="row">
           <hr>
         <h3>{{ t('Comentários')}}</h3>
@@ -494,10 +507,11 @@ $(document).on('shown.bs.modal', '.modal', function () {
             <p class="text-comment"><a href="/login">{{ t('Você precisa estar logado poder comentar.')}}</a></p>
           </div>
         {% endif %}
+        #}
 
 
         <!-- coment fim -->
-        {# Inicio links externos para resenhas, notícias ou artigos sobre a obra #}
+        {# Inicio links externos para resenhas, notícias ou artigos sobre a obra
         {%set referenceFlag = false %}
 
         {% for r in reference %}
@@ -520,7 +534,8 @@ $(document).on('shown.bs.modal', '.modal', function () {
           {% endfor %}
         </div>
         {% endif %}
-        {# Fim links externos para resenhas, notícias ou artigos sobre a obra #}
+         Fim links externos para resenhas, notícias ou artigos sobre a obra #}
+
   		</div>
   		<div class="col-md-1">
   		</div>
