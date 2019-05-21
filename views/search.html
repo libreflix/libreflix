@@ -34,7 +34,6 @@
 
     <ul class="entries">
       {% for i in q %}
-      {% if i._source.featured == 'true' %}
 
       <li class="col-md-3">
         <a role="button" data-toggle="modal" style="border-bottom: 0px solid;"  data-toggle="modal" data-target="#assistir{{ loop.index }}">
@@ -88,7 +87,6 @@
         </div>
       </div>
       {% set ok = 1 %}
-      {% endif %}
       {% endfor %}
     </ul>
 </div>
