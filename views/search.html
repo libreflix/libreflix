@@ -1,4 +1,4 @@
-{% extends 'layouts/layout.html' %}
+{% extends 'layout.html' %}
 
 {% block body %}
 <div class="container-fluid">
@@ -30,39 +30,24 @@
 
   {% set ok = 0%}
 
-  <div class="grid">
-
-    <ul class="entries">
-      {% for i in q %}
+<div class="grid">
+  <ul class="entries">
+    {% for i in q %}
 
       <li class="col-md-3">
         <a role="button" data-toggle="modal" style="border-bottom: 0px solid;"  data-toggle="modal" data-target="#assistir{{ loop.index }}">
-        <div class="cover">
-            <img src="{% if i._source.thumb480 %}{{ i._source.thumb480 }}?resize=480,270&crop=entropy {% elseif i._source.imgbg %} {{ i._source.imgbg }}?resize=480,270&crop=entropy{% endif %}" title="{{ i._source.title }}{% if i._source.subtitle %} - {{ i._source.subtitle }}{% endif %} ({{ i._source.year }})" class="fadeCatalogo" onload="this.style.opacity='1'"/>
-          <div class="cover_wrap">
-            <div class="cover_info">
-              <h3>{{ i._source.title | truncate(45) }}</h3>
-              <h4>
-                {{ i._source.subtitle | truncate(35) }}
-                {% if i._source.subtitle %} </h4> <h4> {%endif%} {{i._source.year}}
-                {% if i._source.classind  %} &middot; <span class="classind">{{ i._source.classind }}</span>{% endif %}
-                {% if i._source.duration  %} &middot; {{ i._source.duration }} {% endif %}
-              </h4>
-            </div>
-          </div>
+          <img src="{% if i._source.thumb480 %}{{ i._source.thumb480 }}?resize=480,270&crop=entropy {% elseif i._source.imgbg %} {{ i._source.imgbg }}?resize=480,270&crop=entropy{% endif %}" title="{{ i._source.title }}{% if i._source.subtitle %} - {{ i._source.subtitle }}{% endif %} ({{ i._source.year }})" class="fadeCatalogo" onload="this.style.opacity='1'" style="img;"/>
           <!--<h3>{{ i._source.title }}</h3>-->
-        </div>
         </a>
-
       </li>
       <div class="modal" id="assistir{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{ loop.index }}">
         <div class="modal-dialog" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times-circle exitTimes"></i></button>
-              <a href="/i/{{ i._source.permalink }}"><button type="button" class="splash-play"><img src="/img/play.png" alt="Play"></button></a>
+              <a href="/assistir/{{ i._source.permalink }}"><button type="button" class="splash-play"><img src="/img/play.png" alt="Play"></button></a>
               <!-- <h4 class="modal-title" id="myModalLabel{{ loop.index }}">{{ i._source.title }} {% if i._source.subtitle %} - {{ i._source.subtitle }} {% else %} {% endif %}</h4> -->
-              <a href="/i/{{ i._source.permalink }}"><div class="splash" style="background-image: url('{{ i._source.imgbg }}');">
+              <a href="/assistir/{{ i._source.permalink }}"><div class="splash" style="background-image: url('{{ i._source.imgbg }}');">
               </div></a>
             </div>
             <div class="modal-body">
@@ -74,21 +59,44 @@
                 {% if i._source.classind  %} &middot; <span class="classind">{{ i._source.classind }}</span>{% endif %}
                 {% if i._source.duration  %} &middot; {{ i._source.duration }} {% endif %}
               </h4>
-              <div class="sinopse">{{ i._source.sinopse | truncate(300)}}</div>
-              <h4> Tags: {% set list1 = i._source.tags.split(',') %}{% for list in list1 %}{% if loop.index0 < 6 %}<a href="/t/{{ list | trim}}"><span class="label label-default">{{ list | trim}}</span></a>{% endif %}{%if (loop.index0 < loop.length-1) or (loop.index0 < 6) %} {%endif%}{% endfor %}</h4>
+              <ul class="nav nav-pills text-right">
+                <li class="active"><a data-toggle="pill" href="#resumo{{ loop.index }}">Resumo</a></li>
+                <!-- <li><a data-toggle="pill" href="#creditos{{ loop.index }}">Créditos</a></li> -->
+                <!-- <li><a data-toggle="pill" href="#links{{ loop.index }}">Links</a></li> -->
+              </ul>
+              <div class="tab-content">
+                <div id="resumo{{ loop.index }}" class="tab-pane fade in active">
+                  <!-- <h4>Resumo</h4> -->
+                  <div class="sinopse">{{ i._source.sinopse }}</div>
+                  <h4> Tags: {% for t in i._source.tags %}<a href="/t/{{ t }}">{{ t }}</a>{%if loop.index0 < loop.length-1 %}, {%endif%}{% endfor %}</h4>
+                </div>
+                <!-- <div id="creditos{{ loop.index }}" class="tab-pane fade">
+                  <h4>Créditos e Elenco</h4>
+                  <div class="sinopse">
+
+                  </div>
+                </div> -->
+                <!-- <div id="links{{ loop.index }}" class="tab-pane fade">
+                   <h4>Links</h4>
+                   {% if i._source.license != 'false' %}<div class="sinopse">Licença:  {{ i._source.license }} </div>{%endif%}
+                  <div class="sinopse">
+
+                  </div>
+                </div> -->
+              </div>
             </div>
             <div class="modal-footer">
               {% if user.mod %}<a href="/edit/{{ i._source._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
-              <button type="button" class="btn btn-default" data-dismiss="modal">{{ t('Fechar') }} <i class="fa fa-times-circle"></i></button>
-              <!-- <a href="/i/{{ i._source.permalink }}"><button type="button" class="btn btn-success">{{ t('Informações') }} <i class="fa fa-info-circle"></i></button></a> -->
-              <a href="/i/{{ i._source.permalink }}"><button type="button" class="btn btn-success">{{ t('Assistir') }} <i class="fa fa-play-circle"></i></button></a>
+              <button type="button" class="btn btn-default" data-dismiss="modal">Fechar <i class="fa fa-times-circle"></i></button>
+              <a href="/i/{{ i._source.permalink }}"><button type="button" class="btn btn-success">Informações <i class="fa fa-info-circle"></i></button></a>
+              <a href="/assistir/{{ i._source.permalink }}"><button type="button" class="btn btn-success">Assistir <i class="fa fa-play-circle"></i></button></a>
             </div>
           </div>
         </div>
-      </div>
-      {% set ok = 1 %}
-      {% endfor %}
-    </ul>
+    </div>
+    {% set ok = 1 %}
+  {% endfor %}
+  </ul>
 </div>
 
   {% if ok == 0 %}
