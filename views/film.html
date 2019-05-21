@@ -349,7 +349,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
           {% if film.tags %}
             <h4>
               Tags: {% set list1 = film.tags.split(',') %}{% for list in list1 %}<a href="/t/{{ list | trim}}"><span class="label label-default">{{ list | trim}}</span></a>{%if (loop.index0 < loop.length-1) %} {%endif%}{% endfor %}
-            {% if user %}
+            {% if user.adm %}
             <button type="button" class="btn btn-link" data-toggle="modal" data-target="#addTagsModal">
                           <i class="fa fa-tag" aria-hidden="true"></i> {{ t('Sugerir tags') }}
             </button>
