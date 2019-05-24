@@ -20,7 +20,7 @@
 {% block body %}
 
 
-{% if user.mod or user.adm or (w.status == "waiting" or w.status == "pending" and w.criador.id == user.id) %}
+{% if user.mod or user.adm or (w.criador.id == user.id and (w.status == "waiting" or w.status == "pending")) %}
 
 <div class="container-fluid">
   {% if messages.success %}
