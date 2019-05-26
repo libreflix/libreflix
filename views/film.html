@@ -122,7 +122,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
         </button>
         #}
 
-{#
+
         {% if not user %}
         <button title="{{t('Já Vi')}}" class="btn btn-default btn-libre" id="alreadyWatched" disabled>
           <i class="fa fa-check-square"></i> {{t('Já Vi')}}
@@ -153,7 +153,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
           <i class="fa fa-heart"></i> {{t('Favoritar')}}
         </button>
         {% endif %}
-#}
+
         {#
         <button class="btn btn-default btn-libre" data-toggle="modal" data-target="#modalDonations"
         {% if not film.enableDonations %} disabled title="{{t('Infelizmente as retribuições não estão disponíveis para essa obra')}}"{% endif %}>
