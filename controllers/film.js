@@ -142,9 +142,11 @@ exports.favoriteGet = function(req, res, next) {
   if (req.xhr || req.accepts('json,html') === 'json') {
     console.log('OI');
     console.log(req.body.u);
+    
+    var phash = req.user.id + watch.id
 
     Watch.findOne({ 'permalink': req.params.permalink }, function(err, watch){
-      Interaction.findOne({'attachedToWatch': watch.id}, function(err, interaction){
+      Interaction.findOne({'proofhash': phash}, function(err, interaction){
         // If there is a interaction...
         // Para salvar no BD
         if (interaction) {
@@ -185,9 +187,11 @@ exports.alreadyWatchedGet = function(req, res, next) {
   if (req.xhr || req.accepts('json,html') === 'json') {
     console.log('OI');
     console.log(req.body.u);
+    
+    var phash = req.user.id + watch.id
 
     Watch.findOne({ 'permalink': req.params.permalink }, function(err, watch){
-      Interaction.findOne({'attachedToWatch': watch.id}, function(err, interaction){
+      Interaction.findOne({'proofhash': phash}, function(err, interaction){
         // If there is a interaction...
         // Para salvar no BD
         if (interaction) {
