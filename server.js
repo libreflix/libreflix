@@ -32,7 +32,7 @@ app.use(cookieParser())
 
 mongoose.connect(process.env.DB_PATH);
 
-mongoose.set('debug', true);
+mongoose.set('debug', false);
 
 mongoose.connection.on('error', function() {
   console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
@@ -65,7 +65,7 @@ i18n.configure({
 
 app.use(i18n.init);
 
-/* Minify options */
+/* Minify options 
 app.use(minifyHTML({
     override:      false,
     exception_url: false,
@@ -77,7 +77,7 @@ app.use(minifyHTML({
         removeEmptyAttributes:     false,
         minifyJS:                  false
     }
-}));
+}));*/
 
 
 
