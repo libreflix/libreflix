@@ -34,27 +34,82 @@
   	flex-direction: column;
   	z-index:99;
   }
-
+  /* Remove anoying dot border at the link*/
+  a:active, a:active, a:focus{
+    outline: none;
+  }
   #view
   {
   width: 100%; margin: 0; padding: 0;
   -webkit-transition: -webkit-transform 0.3s;
   	transition: transform 0.3s ease, filter 0.2s ease;
    }
-
+   #exit-button {
+     border: none;
+     background: transparent;
+     position: absolute;
+     outline: none;
+     opacity: 0.9;
+     margin-left: 12%;
+     margin-top: 2%;
+     -webkit-transition: opacity .2s ease-out;
+     -ms-transition: opacity .2s ease-out;
+     transition: opacity .2s ease-out;
+     z-index: 9999999;
+     text-decoration: none;
+   }
   </style>
 </head>
 
 <body>
+  <button type="button" id="exit-button" class="exit-button" onClick="voltar()">
+    <a href="javascript:;">
+      <img src="/img/ico-exit.png">
+    </a>
+  </button>
+
     <video
     id="player"
-    poster="{{imgbg}}"
+    poster="{{w.imgbg}}"
     controls
     crossorigin
+    allowfullscreen
     >
-    <track kind="captions" label="Português" src="https://vdn.libreflix.org/sintel/sintel_pt.vtt" srclang="pt" default />
+    <track kind="captions" label="Português" src="/subs/sintel/sintel_pt.vtt" srclang="pt" default>
+    <track kind="captions" label="English" src="/subs/sintel/sintel_en.vtt" srclang="en" default>
     </video>
+
+    <!-- <div class="plyr__video-embed" id="player">
+    <iframe
+        src="https://www.youtube.com/embed/{{w.video}}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+        allowfullscreen
+        allowtransparency
+        allow="autoplay"
+    ></iframe>
+    </div> -->
+
+    <!-- <div class="plyr__video-embed" id="player">
+    <iframe
+        src="https://player.vimeo.com/video/115677771?loop=false&amp;byline=false&amp;portrait=false&amp;title=false&amp;speed=true&amp;transparent=0&amp;gesture=media"
+        allowfullscreen
+        allowtransparency
+        allow="autoplay"
+    ></iframe>
+    </div> -->
+
 </body>
+
+<script>
+  function voltar(){
+    if(history.length === 1){
+      window.location = "https://libreflix.org/i/{{w.permalink}}"
+    }
+    else{
+      // history.back();
+      window.location = "https://libreflix.org/i/{{w.permalink}}"
+    }
+  }
+</script>
 
 <script type="text/javascript">
   var client = new WebTorrent();
@@ -64,6 +119,8 @@
   const player = new Plyr('#player', {
     debug: false,
     hideControls: true,
+    quality: [1080, 720, 576, 480, 360, 240],
+    settings: ['captions', 'quality', 'speed', 'loop']
   });
   document.getElementById("player").style.height = "100vh"
 
@@ -77,9 +134,22 @@
     }, function callback() {
       console.log("ready to play!");
       document.getElementById("player").style.height = "100vh";
-      player.play();
+      setTimeout(function(){ player.play(); }, 2000);
     });
   });
+
+  player.on('play', event => {
+    setTimeout(function(){ document.getElementById("exit-button").style.opacity = "0"; }, 2000);
+  });
+
+  player.on('controlsshown', event => {
+    document.getElementById("exit-button").style.opacity = "0.9";
+  });
+
+  player.on('pause', event => {
+    document.getElementById("exit-button").style.opacity = "0.9";
+  });
+
 </script>
 
 

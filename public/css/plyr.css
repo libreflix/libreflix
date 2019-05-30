@@ -117,14 +117,20 @@
 
 @media (min-width:480px) {
   .plyr__captions {
-    font-size: 16px;
+    font-size: 18px;
     padding: 20px
   }
 }
 
 @media (min-width:768px) {
   .plyr__captions {
-    font-size: 18px
+    font-size: 26px
+  }
+}
+
+@media (min-width:1024px) {
+  .plyr__captions {
+    font-size: 32px
   }
 }
 
@@ -1078,19 +1084,19 @@
 
 @media (min-width:1024px) {
   .plyr:-webkit-full-screen .plyr__captions {
-    font-size: 21px
+    font-size: 32px
   }
 
   .plyr:-moz-full-screen .plyr__captions {
-    font-size: 21px
+    font-size: 32px
   }
 
   .plyr:-ms-fullscreen .plyr__captions {
-    font-size: 21px
+    font-size: 32px
   }
 
   .plyr:fullscreen .plyr__captions {
-    font-size: 21px
+    font-size: 32px
   }
 }
 
@@ -1180,7 +1186,7 @@
 
 @media (min-width:1024px) {
   .plyr:-moz-full-screen .plyr__captions {
-    font-size: 21px
+    font-size: 32px
   }
 }
 
