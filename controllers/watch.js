@@ -17,16 +17,7 @@ exports.watchGet = function(req, res){
     if (w.useWatchV2) {
       res.render('watchv2', {
         title: w.title,
-        layout: w.layout,
-        subtitle: w.subtitle,
-        sinopse: w.sinopse,
-        year: w.year,
-        imgbg: w.imgbg,
-        video: w.video,
-        thumb480: w.thumb480,
-        thumb130: w.thumb130,
-        runtime: w.runtime,
-        eps: w.eps
+        w: w
       })
     }
     else{

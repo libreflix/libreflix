@@ -299,7 +299,7 @@ body {
   width: 19px;
   height: 19px;
   border-radius: 5px;
-  border: 0px solid #621207;
+  border: 0px solid #0c5463;
   box-shadow: inset 0 0 10px rgba(0,0,0,.5);
 }
 
@@ -548,7 +548,7 @@ body {
 }
 
 #pl-final-info > h1 {
-  color: #cf0007;
+  color: #007ecf;
   font-size: 3.85em;
   margin: 0;
 }
@@ -916,7 +916,7 @@ div#pl-button-yes a {
   font-size: 26.17px;
   line-height: 52.34px;
   text-decoration: none;
-  background-color: #e40c19;
+  background-color: #0d9de4;
   -webkit-transition: all .3s ease-in-out;
   -ms-transition: all .3s ease-in-out;
   transition: all .3s ease-in-out;
@@ -924,7 +924,7 @@ div#pl-button-yes a {
 
 div#pl-button-yes a:hover {
   background-color: #efefef;
-  color: #e40c19;
+  color: #0db0e4;
 }
 
 div#pl-button-no {
