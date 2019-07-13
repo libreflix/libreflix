@@ -79,7 +79,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
   		<div class="col-md-6 film_content_left">
         {#<h2>{{ [film.title, ' (', film.year, ')'] | join }} #}
         <h2>{{ film.title }}
-          {#
+
           <span class="pull-right">
             {%- set total = 4 %}
             {%- set n = 1 %}
@@ -93,7 +93,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
               <span class="label label-rating right float-left">{{ (total / n) | round(1) }} </span>
             </a>
           </span>
-          #}
+
 
         </h2>
         <h4>
@@ -384,7 +384,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
 
 
         </div>
-        {#
+
         <div class="row">
           <hr>
           <h3 id="rating">Avaliações</h3>
@@ -410,7 +410,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
 
           {% endif %}
         </div>
-        #}
+
 
 
         {#
