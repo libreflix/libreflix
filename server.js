@@ -50,10 +50,10 @@ markdown.register(njks, marked);
 
 // i18n options
 i18n.configure({
-    locales:['pt', 'en'],
+    locales:['pt', 'en', 'es'],
     defaultLocale: 'pt',
     queryParameter: 'lang',
-    cookie: 'libreflix-langs',
+    cookie: 'siteLang',
     directoryPermissions: '775',
     autoReload: true,
     updateFiles: false,
@@ -65,20 +65,21 @@ i18n.configure({
 
 app.use(i18n.init);
 
-/* Minify options 
-app.use(minifyHTML({
-    override:      false,
-    exception_url: false,
-    htmlMinifier: {
-        removeComments:            true,
-        collapseWhitespace:        false,
-        collapseBooleanAttributes: false,
-        removeAttributeQuotes:     false,
-        removeEmptyAttributes:     false,
-        minifyJS:                  false
-    }
-}));*/
 
+
+/* Minify options */
+// app.use(minifyHTML({
+//     override:      true,
+//     exception_url: true,
+//     htmlMinifier: {
+//         removeComments:            false,
+//         collapseWhitespace:        false,
+//         collapseBooleanAttributes: false,
+//         removeAttributeQuotes:     false,
+//         removeEmptyAttributes:     false,
+//         minifyJS:                  true
+//     }
+// }));
 
 
 app.set('view engine', 'html');
@@ -97,6 +98,8 @@ app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();
 });
+
+
 
 /*
 * https://www.npmjs.com/package/express-processimage
