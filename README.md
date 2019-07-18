@@ -40,6 +40,9 @@ sudo docker-compose up --build
 
 Ready! Now access on your browser [http://localhost:3999](http://localhost:3999)
 
+
 # Apoio
 
-<img src="https://libregit.org/libreflix/libreflix/raw/branch/master/public/assets/friends/lablivre-logo.png" alt="LabLivre" width="250">
+<a href="http://pesquisa.ufabc.edu.br/lablivre/sobre/">
+    <img src="https://libregit.org/libreflix/libreflix/raw/branch/master/public/assets/friends/lablivre-logo.png" alt="LabLivre" width="250">
+</a>
