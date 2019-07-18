@@ -387,9 +387,9 @@ $(document).on('shown.bs.modal', '.modal', function () {
 
         <div class="row">
           <hr>
-          <h3 id="rating">Avaliações</h3>
-          Avaliação média: <span class="label label-rating right float-left">{{ (total / n) | round(1) }} </span>
-          <p class="text-comment">{{ n }} {{t('avaliações')}}.</p>
+          <h3 id="rating">{{ t('Avaliações') }}</h3>
+          {{ t('Avaliação média') }}: <span class="label label-rating right float-left">{{ (total / n) | round(1) }} </span>
+          <p class="text-comment">{{ n }} {{t('Avaliações')}}.</p>
 
           {% if user %}
           <p>
