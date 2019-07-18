@@ -43,4 +43,4 @@ Ready! Now access on your browser [http://localhost:3999](http://localhost:3999)
 
 # Apoio
 
-<a href="http://pesquisa.ufabc.edu.br/lablivre/sobre/" target="_blank"><img src="https://libregit.org/libreflix/libreflix/raw/branch/master/public/assets/friends/lablivre-logo.png" alt="LabLivre" width="250"></a>
+<a href="http://pesquisa.ufabc.edu.br/lablivre/sobre/" target="_blank"><img src="https://libregit.org/libreflix/libreflix/raw/branch/master/public/assets/friends/lablivre-logo.png" alt="LabLivre" width="200"></a>
