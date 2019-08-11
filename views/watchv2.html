@@ -142,6 +142,8 @@
       return file.name.endsWith('.mp4')
     });
 
+    torrent.addWebSeed('{{w.webseed}}')
+
     file.renderTo('video', {
       autoplay: true,
       muted: true
@@ -159,6 +161,7 @@
     // Function that add webseed if download to slow
     var addWs = true
     var removeWs = false
+    
     torrent.on('download', function (bytes) {
       // console.log('just downloaded: ' + bytes)
       // console.log('total downloaded: ' + torrent.downloaded)
