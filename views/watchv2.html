@@ -157,6 +157,10 @@
     // Print out progress every 5 seconds
     var interval = setInterval(function () {
       log('Progress: ' + (torrent.progress * 100).toFixed(1) + '%')
+      if (torrent.downloadSpeed == 0){
+        console.log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
+        torrent.addWebSeed('{{w.webseed}}')
+      }
     }, 1000)
 
     // Function that add webseed if download to slow
@@ -190,11 +194,6 @@
         removeWs = false
       }
       // console.log('progress: ' + torrent.progress)
-    })
-
-    torrent.on('noPeers', function(){
-      console.log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
-      torrent.addWebSeed('{{w.webseed}}')      
     })
   }
 
