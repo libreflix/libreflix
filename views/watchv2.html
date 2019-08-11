@@ -142,6 +142,7 @@
       return file.name.endsWith('.mp4')
     });
 
+    console.log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
     torrent.addWebSeed('{{w.webseed}}')
 
     file.renderTo('video', {
@@ -152,6 +153,9 @@
       document.getElementById("player").style.height = "100vh";
       setTimeout(function(){ player.play(); }, 2000);
     });
+
+    console.log("Tirei o WebSeed. Peers:" + torrent.numPeers);
+    torrent.removePeer('{{w.webseed}}')
 
     // Print out progress every 5 seconds
     var interval = setInterval(function () {
