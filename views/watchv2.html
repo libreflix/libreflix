@@ -122,10 +122,8 @@
   var torrentId = '{{ w.magnet }}';
 
   const player = new Plyr('#player', {
-    debug: true,
+    debug: false,
     hideControls: true,
-    autoplay: true,
-    noCookie: true,
     quality: [1080, 720, 576, 480, 360, 240],
     poster: '{{w.imgbg}}',
     settings: ['captions', 'quality', 'speed', 'loop']
