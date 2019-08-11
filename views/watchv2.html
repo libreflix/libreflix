@@ -157,31 +157,31 @@
     // Print out progress every 5 seconds
     var interval = setInterval(function () {
       log('Progress: ' + (torrent.progress * 100).toFixed(1) + '%')
+
+      // Function that add webseed if download to slow
+      var addWs = false
+      var removeWs = true
+
+      torrent.on('download', function (bytes) {
+        console.log('just downloaded: ' + bytes)
+        console.log('total downloaded: ' + torrent.downloaded)
+        console.log('download speed: ' + torrent.downloadSpeed)
+
+        if (torrent.downloadSpeed < 200000 && addWs) {
+          console.log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
+          torrent.addWebSeed('{{w.webseed}}')
+          addWs = false
+          removeWs = true
+        }
+        if (torrent.downloadSpeed >= 500000 && removeWs) {
+          console.log("Tirei o WebSeed. Peers:" + torrent.numPeers);
+          torrent.removePeer('{{w.webseed}}')
+          addWs = true
+          removeWs = false
+        }
+        // console.log('progress: ' + torrent.progress)
+      })
     }, 1000)
-
-    // Function that add webseed if download to slow
-    var addWs = false
-    var removeWs = true
-
-    torrent.on('download', function (bytes) {
-      // console.log('just downloaded: ' + bytes)
-      // console.log('total downloaded: ' + torrent.downloaded)
-      // console.log('download speed: ' + torrent.downloadSpeed)
-
-      if (torrent.downloadSpeed < 200000 && addWs) {
-        console.log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
-        torrent.addWebSeed('{{w.webseed}}')
-        addWs = false
-        removeWs = true
-      }
-      if (torrent.downloadSpeed >= 500000 && removeWs) {
-        console.log("Tirei o WebSeed. Peers:" + torrent.numPeers);
-        torrent.removePeer('{{w.webseed}}')
-        addWs = true
-        removeWs = false
-      }
-      // console.log('progress: ' + torrent.progress)
-    })
   }
 
   function log (str) {
