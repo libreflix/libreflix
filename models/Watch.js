@@ -105,6 +105,7 @@ var watchSchema = new mongoose.Schema({
   useWatchV2: Boolean,
   useWatchV3: Boolean,
   magnet: String,
+  webseed: String,
 
   /* Download options */
   enableDownload: Boolean,
