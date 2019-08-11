@@ -149,6 +149,25 @@
     document.getElementById("exit-button").style.opacity = "0.9";
   });
 
+  torrent.on('download', function (bytes) {
+    // console.log('just downloaded: ' + bytes)
+    // console.log('total downloaded: ' + torrent.downloaded)
+    // console.log('download speed: ' + torrent.downloadSpeed)
+    if (torrent.downloadSpeed < 200000 && addWs) {
+      console.log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
+      torrent.addWebSeed('https://vdn.libreflix.org/video/tchau-querida/tchau-querida.720.mp4')
+      addWs = false
+      removeWs = true
+    }
+    if (torrent.downloadSpeed >= 500000 && removeWs) {
+      console.log("Tirei o WebSeed. Peers:" + torrent.numPeers);
+      torrent.removePeer('https://vdn.libreflix.org/video/tchau-querida/tchau-querida.720.mp4')
+      addWs = true
+      removeWs = false
+    }
+    // console.log('progress: ' + torrent.progress)
+  })
+
 </script>
 
 
