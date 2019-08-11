@@ -122,16 +122,18 @@
   var torrentId = '{{ w.magnet }}';
 
   const player = new Plyr('#player', {
-    debug: false,
+    debug: true,
     hideControls: true,
+    autoplay: true,
+    noCookie: true,
     quality: [1080, 720, 576, 480, 360, 240],
-    poster: "{{w.imgbg}}",
+    poster: '{{w.imgbg}}',
     settings: ['captions', 'quality', 'speed', 'loop']
   });
 
   document.getElementById("player").style.height = "100vh"
 
-
+  {% if w.useWatchV2 %}
   client.add(torrentId, function(torrent) {
     var file = torrent.files.find(function(file) {
       return file.name.endsWith('.mp4')
@@ -145,6 +147,8 @@
       setTimeout(function(){ player.play(); }, 2000);
     });
   });
+
+  {% endif %}
 
   player.on('play', event => {
     setTimeout(function(){ document.getElementById("exit-button").style.opacity = "0"; }, 2000);
