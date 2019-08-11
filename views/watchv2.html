@@ -13,6 +13,8 @@
 
 </div>
 
+
+
   <style media="screen">
   body{
     margin: 0;
@@ -66,7 +68,6 @@
     </a>
   </button>
 
-{% if w.useWatchV2 %}
     <video
     id="player"
     poster="{{w.imgbg}}"
@@ -77,21 +78,15 @@
     <track kind="captions" label="Português" src="/subs/sintel/sintel_pt.vtt" srclang="pt" default>
     <track kind="captions" label="English" src="/subs/sintel/sintel_en.vtt" srclang="en" default>
     </video>
-{% endif %}
 
-    {% if not w.useWatchV2 %}
-    <div class="plyr__video-embed" id="player" poster="{{w.imgbg}}">
+    <!-- <div class="plyr__video-embed" id="player">
     <iframe
-        src="https://www.youtube.com/embed/{{w.video}}?origin=http://localhost:3998&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+        src="https://www.youtube.com/embed/{{w.video}}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
         allowfullscreen
         allowtransparency
         allow="autoplay"
     ></iframe>
-    <track kind="captions" label="Português" src="/subs/sintel/sintel_pt.vtt" srclang="pt" default>
-    <track kind="captions" label="English" src="/subs/sintel/sintel_en.vtt" srclang="en" default>
-    </div>
-    {% endif %}
-
+    </div> -->
 
     <!-- <div class="plyr__video-embed" id="player">
     <iframe
@@ -116,24 +111,18 @@
   }
 </script>
 
-
 <script type="text/javascript">
   var client = new WebTorrent();
-  var torrentId = '{{ w.magnet }}';
+  var torrentId = '{{ w.magnet | safe }}';
 
   const player = new Plyr('#player', {
-    debug: true,
+    debug: false,
     hideControls: true,
-    autoplay: true,
-    noCookie: true,
     quality: [1080, 720, 576, 480, 360, 240],
-    poster: '{{w.imgbg}}',
     settings: ['captions', 'quality', 'speed', 'loop']
   });
-
   document.getElementById("player").style.height = "100vh"
 
-  {% if w.useWatchV2 %}
   client.add(torrentId, function(torrent) {
     var file = torrent.files.find(function(file) {
       return file.name.endsWith('.mp4')
@@ -148,8 +137,6 @@
     });
   });
 
-  {% endif %}
-
   player.on('play', event => {
     setTimeout(function(){ document.getElementById("exit-button").style.opacity = "0"; }, 2000);
   });
@@ -161,8 +148,6 @@
   player.on('pause', event => {
     document.getElementById("exit-button").style.opacity = "0.9";
   });
-
-  document.body.style.overflow = 'hidden';
 
 </script>
 
