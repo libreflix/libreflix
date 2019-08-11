@@ -166,15 +166,13 @@
 
       if (torrent.downloadSpeed < 200000 && addWs) {
         console.log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
-        // torrent.addWebSeed('https://vdn.libreflix.org/libreflix/Parece%20Comigo%20Trailer.mp4')
-        torrent.addWebSeed('https://webtorrent.io/torrents/')
+        torrent.addWebSeed('{{w.webseed}}')
         addWs = false
         removeWs = true
       }
       if (torrent.downloadSpeed >= 500000 && removeWs) {
         console.log("Tirei o WebSeed. Peers:" + torrent.numPeers);
-        // torrent.removePeer('https://vdn.libreflix.org/libreflix/Parece%20Comigo%20Trailer.mp4')
-        torrent.removePeer('https://webtorrent.io/torrents/')
+        torrent.removePeer('{{w.webseed}}')
         addWs = true
         removeWs = false
       }
