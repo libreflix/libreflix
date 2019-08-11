@@ -191,6 +191,11 @@
       }
       // console.log('progress: ' + torrent.progress)
     })
+
+    torrent.on('noPeers', function(){
+      console.log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
+      torrent.addWebSeed('{{w.webseed}}')      
+    })
   }
 
   function log (str) {
