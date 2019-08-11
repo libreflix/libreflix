@@ -119,7 +119,7 @@
 
 <script type="text/javascript">
   var client = new WebTorrent();
-  var torrentId = '{{ w.magnet }}';
+  var torrentId = '{{ w.magnet | safe }}';
 
   const player = new Plyr('#player', {
     debug: true,
