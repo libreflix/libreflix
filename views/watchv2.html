@@ -13,8 +13,6 @@
 
 </div>
 
-
-
   <style media="screen">
   body{
     margin: 0;
@@ -68,6 +66,7 @@
     </a>
   </button>
 
+{% if w.useWatchV2 %}
     <video
     id="player"
     poster="{{w.imgbg}}"
@@ -78,15 +77,21 @@
     <track kind="captions" label="Português" src="/subs/sintel/sintel_pt.vtt" srclang="pt" default>
     <track kind="captions" label="English" src="/subs/sintel/sintel_en.vtt" srclang="en" default>
     </video>
+{% endif %}
 
-    <!-- <div class="plyr__video-embed" id="player">
+    {% if not w.useWatchV2 %}
+    <div class="plyr__video-embed" id="player" poster="{{w.imgbg}}">
     <iframe
-        src="https://www.youtube.com/embed/{{w.video}}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+        src="https://www.youtube.com/embed/{{w.video}}?origin=http://localhost:3998&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
         allowfullscreen
         allowtransparency
         allow="autoplay"
     ></iframe>
-    </div> -->
+    <track kind="captions" label="Português" src="/subs/sintel/sintel_pt.vtt" srclang="pt" default>
+    <track kind="captions" label="English" src="/subs/sintel/sintel_en.vtt" srclang="en" default>
+    </div>
+    {% endif %}
+
 
     <!-- <div class="plyr__video-embed" id="player">
     <iframe
@@ -111,19 +116,24 @@
   }
 </script>
 
+
 <script type="text/javascript">
   var client = new WebTorrent();
-  var torrentId =
-    'magnet:?xt=urn:btih:08ada5a7a6183aae1e09d831df6748d566095a10&dn=Sintel&tr=udp%3A%2F%2Fexplodie.org%3A6969&tr=udp%3A%2F%2Ftracker.coppersurfer.tk%3A6969&tr=udp%3A%2F%2Ftracker.empire-js.us%3A1337&tr=udp%3A%2F%2Ftracker.leechers-paradise.org%3A6969&tr=udp%3A%2F%2Ftracker.opentrackr.org%3A1337&tr=wss%3A%2F%2Ftracker.btorrent.xyz&tr=wss%3A%2F%2Ftracker.fastcast.nz&tr=wss%3A%2F%2Ftracker.openwebtorrent.com&ws=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2F&xs=https%3A%2F%2Fwebtorrent.io%2Ftorrents%2Fsintel.torrent';
+  var torrentId = '{{ w.magnet }}';
 
   const player = new Plyr('#player', {
-    debug: false,
+    debug: true,
     hideControls: true,
+    autoplay: true,
+    noCookie: true,
     quality: [1080, 720, 576, 480, 360, 240],
+    poster: '{{w.imgbg}}',
     settings: ['captions', 'quality', 'speed', 'loop']
   });
+
   document.getElementById("player").style.height = "100vh"
 
+  {% if w.useWatchV2 %}
   client.add(torrentId, function(torrent) {
     var file = torrent.files.find(function(file) {
       return file.name.endsWith('.mp4')
@@ -138,6 +148,8 @@
     });
   });
 
+  {% endif %}
+
   player.on('play', event => {
     setTimeout(function(){ document.getElementById("exit-button").style.opacity = "0"; }, 2000);
   });
@@ -149,6 +161,8 @@
   player.on('pause', event => {
     document.getElementById("exit-button").style.opacity = "0.9";
   });
+
+  document.body.style.overflow = 'hidden';
 
 </script>
 
