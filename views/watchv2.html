@@ -154,13 +154,15 @@
       setTimeout(function(){ player.play(); }, 2000);
     });
 
-    console.log("Tirei o WebSeed. Peers:" + torrent.numPeers);
-    torrent.removePeer('{{w.webseed}}')
-
     // Print out progress every 5 seconds
     var interval = setInterval(function () {
       log('Progress: ' + (torrent.progress * 100).toFixed(1) + '%')
     }, 1000)
+
+    if(torrent.progress > 10){
+      console.log("Tirei o WebSeed. Peers:" + torrent.numPeers);
+      torrent.removePeer('{{w.webseed}}')
+    }
 
     // Function that add webseed if download to slow
     var addWs = true
