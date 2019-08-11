@@ -167,7 +167,10 @@
       // console.log('just downloaded: ' + bytes)
       // console.log('total downloaded: ' + torrent.downloaded)
       // console.log('download speed: ' + torrent.downloadSpeed)
-
+      if ((torrent.progress * 100) > 5){
+        console.log("Removi o WebSeed. Peers:" + torrent.numPeers);
+        torrent.removePeer('{{w.webseed}}')
+      }
       if (torrent.downloadSpeed < 200000 && addWs) {
         console.log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
         torrent.addWebSeed('{{w.webseed}}')
