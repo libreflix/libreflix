@@ -142,7 +142,7 @@
       return file.name.endsWith('.mp4')
     });
 
-    torrent.addWebSeed(' {{ w.webseed }} ')
+    torrent.addWebSeed('{{w.webseed}}')
 
     file.renderTo('video', {
       autoplay: true,
@@ -169,13 +169,13 @@
 
       if (torrent.downloadSpeed < 200000 && addWs) {
         console.log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
-        torrent.addWebSeed('{{ w.webseed }}')
+        torrent.addWebSeed('{{w.webseed}}')
         addWs = false
         removeWs = true
       }
       if (torrent.downloadSpeed >= 500000 && removeWs) {
         console.log("Tirei o WebSeed. Peers:" + torrent.numPeers);
-        torrent.removePeer('{{ w.webseed }}')
+        torrent.removePeer('{{w.webseed}}')
         addWs = true
         removeWs = false
       }
