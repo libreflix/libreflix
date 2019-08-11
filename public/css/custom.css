@@ -600,12 +600,12 @@ input[type="search"]::-webkit-search-decoration {
   color: white;
   font-size: 15pt;
   text-shadow: 1px 1px 4px rgba(0,0,0,.6);
-  padding-top: 80px;
+  padding-top: 200px;
   padding-bottom: 40px;
   padding-left: 15%;
   padding-right: 15%;
   background-image: url("/ajeet-mestry-429216.jpg");
-  height: 40%;
+  height: 70%;
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -616,7 +616,7 @@ input[type="search"]::-webkit-search-decoration {
   color: white;
   font-size: 15pt;
   text-shadow: 1px 1px 4px rgba(0,0,0,.6);
-  padding-top: 80px;
+  padding-top: 200px;
   padding-bottom: 40px;
   padding-left: 15%;
   padding-right: 15%;
@@ -801,7 +801,7 @@ input[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
 	border: 0px;
 	padding-left: 48%;
-	padding-top: 270px;
+	padding-top: 160px;
   opacity: 1 !important;
   outline:none;
 }
@@ -814,7 +814,7 @@ input[type="search"]::-webkit-search-decoration {
   margin-top: -15px;
   position: static;
   width : 100%;
-  height: 600px;
+  height: 400px;
   background-size: cover !important;
   z-index: 0;
 

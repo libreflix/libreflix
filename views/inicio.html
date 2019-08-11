@@ -49,7 +49,7 @@
 
 {% macro printWatches(title, top) -%}
 
-<h3>{{ title }} </h3>
+<h3>{{ t(title) }}</h3>
 <div class="grid">
   <p> {{ alltags }} </p>
   <ul class="entries">
@@ -114,22 +114,29 @@
 {%- endmacro %}
 
 {% macro printTagCards(tagname) -%}
-<a href="/t/{{tagname}}"><div class="tagcard" style="background-image: url('https://vdn.libreflix.org/media/tags/{{tagname}}.jpg');"><p class="tagcard-text">{{ tagname | capitalize}}</p></a></div></li>
+
+
+<a href="/t/{{tagname}}"><div class="tagcard" style="background-image: url('https://vdn.libreflix.org/media/tags/{{tagname}}.jpg');"><p class="tagcard-text">{{ t(tagname) | capitalize}}</p></a></div>
+
 {%- endmacro %}
 
 <section class="work">
 
   <div class="tagcardgrab">
     <div class="tagcardcontainer">
+
       {% set tagsArray = [ 'social', 'tech', 'musica', 'sci-fi', 'ativismo', 'veganismo', 'feminismo', 'educação', 'animação', 'comédia', 'religião', 'natureza', 'ocupação'] %}
 
       <!-- Print Cards -->
-      {% for tags in tagsArray%}
-        {{ printTagCards(tags)}}
+      {% for tags in tagsArray %}
+      {{ printTagCards(tags) }}
       {% endfor %}
+
 
     </div>
   </div>
+
+
   <br><br>
 
 

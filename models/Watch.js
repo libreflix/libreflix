@@ -104,6 +104,7 @@ var watchSchema = new mongoose.Schema({
   /** New player options **/
   useWatchV2: Boolean,
   useWatchV3: Boolean,
+  magnet: String,
 
   /* Download options */
   enableDownload: Boolean,

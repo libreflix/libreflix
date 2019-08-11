@@ -61,7 +61,11 @@ $(document).on('shown.bs.modal', '.modal', function () {
 
 {% if film.status == 'approved' or user.mod or user.adm or film.featured or film.featured == 'true'%}
   <div class="film_banner" style="background: url('{{ film.imgbg }}') no-repeat center center;">
-    <a href="/assistir/{{ film.permalink }}"><button type="button" class="banner-play"><img src="/img/play.png" alt="Play"></button></a>
+    <a href="/assistir/{{ film.permalink }}">
+      <button type="button" class="banner-play">
+        <img src="/img/play.png" alt="Play">
+      </button>
+    </a>
   </div>
 
   <div class="container-fluid">
@@ -387,9 +391,9 @@ $(document).on('shown.bs.modal', '.modal', function () {
 
         <div class="row">
           <hr>
-          <h3 id="rating">Avaliações</h3>
-          Avaliação média: <span class="label label-rating right float-left">{{ (total / n) | round(1) }} </span>
-          <p class="text-comment">{{ n }} {{t('avaliações')}}.</p>
+          <h3 id="rating">{{ t('Avaliações') }}</h3>
+          {{ t('Avaliação média') }}: <span class="label label-rating right float-left">{{ (total / n) | round(1) }} </span>
+          <p class="text-comment">{{ n }} {{t('Avaliações')}}.</p>
 
           {% if user %}
           <p>

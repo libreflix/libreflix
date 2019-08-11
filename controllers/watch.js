@@ -22,6 +22,7 @@ exports.watchGet = function(req, res){
     }
     else{
       res.render('watch', {
+        w: w,
         title: w.title,
         layout: w.layout,
         subtitle: w.subtitle,
