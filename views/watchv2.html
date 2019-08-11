@@ -159,7 +159,7 @@
       log('Progress: ' + (torrent.progress * 100).toFixed(1) + '%')
     }, 1000)
 
-    if(torrent.progress > 10){
+    if(torrent.progress > 0){
       console.log("Tirei o WebSeed. Peers:" + torrent.numPeers);
       torrent.removePeer('{{w.webseed}}')
     }
