@@ -34,7 +34,7 @@ var watchSchema = new mongoose.Schema({
   subtitle: String,
   original_title: String,
   year: Number,
-  duration: Number, // in minutes
+  duration: String, // in minutes
   classind: String,
   sinopse: String,
 
