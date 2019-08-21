@@ -4,6 +4,26 @@
 {% block navbar %}{% endblock %} {# just to overide parent navbar block#}
 {% block link_rel %}{% endblock %} {# just to overide parent link_rel block#}
 {% block body %}
+{% block opengraph %}
+
+<meta name="description" content='{{ w.sinopse }}'>
+<meta name="keywords"  content="{{w.tags}} - libreflix" />
+
+<meta property="og:image" content="https://libreflix.org/{{ w.thumb480 }}" />
+<meta property="og:type" content="video.movie" />
+<meta property="og:url" content="https://libreflix.org/i/{{ w.permalink }}" />
+<meta property="og:title" content="'{{title}} - Libreflix" />
+<meta property="og:video" content="https://libreflix.org/assistir/{{ w.permalink }}" />
+<meta property="og:description" content="{{ film.sinopse }}" />
+<meta property="og:url" content="https://libreflix.org/assistir/{{ w.permalink}}" />
+<meta property="og:site_name" content="Libreflix" />
+
+<!-- twitter metatags-->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{title}} - Libreflix">
+<meta name="twitter:description" content="{{ film.sinopse }}">
+<meta name="twitter:image" content="https://libreflix.org/{{ film.thumb480 }}">
+{% endblock %}
 
 </div>
   <style media="screen">
