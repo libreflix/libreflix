@@ -310,22 +310,22 @@ $(document).on('shown.bs.modal', '.modal', function () {
           {% endif %} -->
         </ul>
         </p>
-        {#
+
         {%if film.links.website or film.links.wikipedia or film.links.twitter
           or film.links.imdb or film.links.filmow or film.links.facebook or film.links.instagram %}
         <hr>
         <b>{{ t('External Links') }}</b>
         <h3>
-          {%if film.links.website %} <a href="{{ film.links.website }}"><i class="fa fa-globe" aria-hidden="true"></i></a>  {% endif %}
-          {%if film.links.wikipedia %} <a href="{{ film.links.wikipedia }}"> <i class="fa fa-wikipedia-w" aria-hidden="true"></i></a> {% endif %}
-          {%if film.links.twitter %} <a href="{{ film.links.twitter }}"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>  {% endif %}
-          {%if film.links.imdb %} <a href="{{ film.links.imdb }}"><i class="fa fa-imdb" aria-hidden="true"></i></a>  {% endif %}
-          {%if film.links.filmow %} <a href="{{ film.links.filmow }}"> <i class="fa fa-film" aria-hidden="true"></i></a> {% endif %}
-          {%if film.links.facebook %} <a href="{{ film.links.facebook }}"> <i class="fa fa-facebook-square" aria-hidden="true"></i></a> {% endif %}
-          {%if film.links.instagram %} <a href="{{ film.links.instagram }}"><i class="fa fa-instagram" aria-hidden="true"></i></a> {% endif %}
+          {%if film.links.website %} <a href="{{ film.links.website }}" target="_blank"><i class="fa fa-globe" aria-hidden="true"></i></a>  {% endif %}
+          {%if film.links.wikipedia %} <a href="{{ film.links.wikipedia }}" target="_blank"> <i class="fa fa-wikipedia-w" aria-hidden="true"></i></a> {% endif %}
+          {%if film.links.twitter %} <a href="{{ film.links.twitter }}" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>  {% endif %}
+          {%if film.links.imdb %} <a href="{{ film.links.imdb }}" target="_blank"><i class="fa fa-imdb" aria-hidden="true"></i></a>  {% endif %}
+          {%if film.links.filmow %} <a href="{{ film.links.filmow }}" target="_blank"> <i class="fa fa-film" aria-hidden="true"></i></a> {% endif %}
+          {%if film.links.facebook %} <a href="{{ film.links.facebook }}" target="_blank"> <i class="fa fa-facebook-square" aria-hidden="true"></i></a> {% endif %}
+          {%if film.links.instagram %} <a href="{{ film.links.instagram }}" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a> {% endif %}
         </h3>
          {% endif %}
-         #}
+
   		</div>
   		<div class="col-md-7">
         <div class="row">
@@ -515,7 +515,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
 
 
         <!-- coment fim -->
-        {# Inicio links externos para resenhas, notícias ou artigos sobre a obra
+        {# Inicio links externos para resenhas, notícias ou artigos sobre a obra #}
         {%set referenceFlag = false %}
 
         {% for r in reference %}
@@ -530,7 +530,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
           <h3>  {{ t('Ligações externas') }}</h3>
           {% for r in reference %}
           <p>
-            <a href="{{r.url}}">
+            <a href="{{r.url}}" target="_blank">
               <i class="fa fa-external-link" aria-hidden="true"></i>
               {{ r.title | title }}</b>
             </a>
@@ -538,7 +538,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
           {% endfor %}
         </div>
         {% endif %}
-         Fim links externos para resenhas, notícias ou artigos sobre a obra #}
+        {# Fim links externos para resenhas, notícias ou artigos sobre a obra #}
 
   		</div>
   		<div class="col-md-1">
