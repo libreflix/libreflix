@@ -84,9 +84,13 @@
     id="player"
     poster="{{w.imgbg}}"
     controls
-    crossorigin
+    
     allowfullscreen
     >
+
+    {% if w.subs.pt_br %}<track kind="captions" label="Português" src="{{w.subs.pt_br}}" srclang="pt">{% endif %}
+    {% if w.subs.en %}<track kind="captions" label="English" src="{{ w.subs.en }}" srclang="en">{% endif %}
+    {% if w.subs.es %}<track kind="captions" label="Español" src="{{ w.subs.es }}" srclang="es">{% endif %}
     <!-- <track kind="captions" label="Português" src="/subs/sintel/sintel_pt.vtt" srclang="pt" default>
     <track kind="captions" label="English" src="/subs/sintel/sintel_en.vtt" srclang="en" default> -->
     </video>
