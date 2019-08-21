@@ -160,14 +160,13 @@
       if (torrent.downloadSpeed == 0){
         console.log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
         torrent.addWebSeed('{{w.webseed}}')
-        var addWs = false
-        var removeWs = true
-        var initialWs = true
       }
     }, 1000)
 
     // Function that add webseed if download to slow
-
+    var addWs = true
+    var removeWs = false
+    var initialWs = true
 
     torrent.on('download', function (bytes) {
       // console.log('just downloaded: ' + bytes)
