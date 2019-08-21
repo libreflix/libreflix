@@ -118,7 +118,7 @@
     console.error('ERROR: ' + err.message)
   })
 
-  var torrentId = '{{ w.magnet | safe }}';
+  var torrentId = '{{ w.magnet.sd | safe }}';
 
   const player = new Plyr('#player', {
     debug: false,

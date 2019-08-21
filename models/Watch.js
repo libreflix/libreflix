@@ -34,7 +34,7 @@ var watchSchema = new mongoose.Schema({
   subtitle: String,
   original_title: String,
   year: Number,
-  duration: Number, // in minutes
+  duration: String, // in minutes
   classind: String,
   sinopse: String,
 
@@ -104,7 +104,7 @@ var watchSchema = new mongoose.Schema({
   /** New player options **/
   useWatchV2: Boolean,
   useWatchV3: Boolean,
-  magnet: String,
+  magnet: {ld: String, sd: String, hd: String, fhd: String, uhd: String},
   webseed: String,
 
   /* Download options */
