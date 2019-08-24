@@ -90,6 +90,10 @@ function log (str) {
 player.on('play', event => {
   setTimeout(function(){ document.getElementById("exit-button").style.opacity = "0"; }, 2000);
 });
+player.on('playing', event => {
+  document.getElementById("pl-imgbg").style.visibility = "hidden";
+  document.getElementById("pl-player-title").style.visibility = "hidden";
+});
 
 player.on('controlsshown', event => {
   document.getElementById("exit-button").style.opacity = "0.9";
@@ -97,4 +101,5 @@ player.on('controlsshown', event => {
 
 player.on('pause', event => {
   document.getElementById("exit-button").style.opacity = "0.9";
+  document.getElementById("pl-player-title").style.visibility = "visible";
 });
