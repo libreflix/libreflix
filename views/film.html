@@ -12,7 +12,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
 <meta name="description" content='{{ film.sinopse }}'>
 <meta name="keywords"  content="{{film.tags}} - libreflix" />
 
-<meta property="og:image" content="https://libreflix.org/{{ film.thumb480 }}" />
+<meta property="og:image" content="{{ film.thumb480 }}" />
 <meta property="og:type" content="video.movie" />
 <meta property="og:url" content="https://libreflix.org/i/{{ film.permalink }}" />
 <meta property="og:title" content="'{{title}} - Libreflix" />

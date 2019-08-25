@@ -94,6 +94,7 @@
      background-image: url("{{ w.imgbg }}");
      background-repeat: no-repeat;
      background-size: cover;
+     background-position: center;
    }
    .titlePlayer{
    	color: 	#DCDCDC !important;
@@ -101,6 +102,7 @@
    }
    #pl-player-title,
    #pl-up-next-title {
+     font-size: 1.2vw;
      position: absolute;
      right: 100px;
      text-align: right;
@@ -113,6 +115,14 @@
      z-index: 99;
      -webkit-transition: width 4s; /* For Safari 3.1 to 6.0 */
      transition: width 4s;
+     -webkit-touch-callout: none; /* iOS Safari */
+       -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+          -moz-user-select: none; /* Firefox */
+           -ms-user-select: none; /* Internet Explorer/Edge */
+               user-select: none; /* Non-prefixed version, currently
+                                     supported by Chrome and Opera */
+
    }
 
    .loading #pl-player-title {
