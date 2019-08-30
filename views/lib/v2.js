@@ -28,7 +28,7 @@ function onTorrent (torrent) {
     return file.name.endsWith('.mp4')
   });
 
-  console.log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
+  log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
   torrent.addWebSeed('{{w.webseed.sd}}')
 
   file.renderTo('video', {
@@ -44,7 +44,7 @@ function onTorrent (torrent) {
   var interval = setInterval(function () {
     log('Progress: ' + (torrent.progress * 100).toFixed(1) + '%')
     if (torrent.downloadSpeed == 0){
-      console.log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
+      log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
       torrent.addWebSeed('{{w.webseed.sd}}')
     }
   }, 1000)
@@ -55,36 +55,38 @@ function onTorrent (torrent) {
   var initialWs = true
 
   torrent.on('download', function (bytes) {
-    // console.log('just downloaded: ' + bytes)
-    // console.log('total downloaded: ' + torrent.downloaded)
+    // log('just downloaded: ' + bytes)
+    // log('total downloaded: ' + torrent.downloaded)
 
-    console.log('download speed: ' + torrent.downloadSpeed)
+    log('download speed: ' + torrent.downloadSpeed)
 
     if ((torrent.progress * 100) > 5 && initialWs){
-      console.log("Removi o WebSeed. Peers:" + torrent.numPeers);
+      log("Removi o WebSeed. Peers:" + torrent.numPeers);
       torrent.removePeer('{{w.webseed.sd}}')
       addWs = true
       removeWs = false
       initialWs = false
     }
     if (torrent.downloadSpeed < 200000 && addWs) {
-      console.log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
+      log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
       torrent.addWebSeed('{{w.webseed.sd}}')
       addWs = false
       removeWs = true
     }
     if (torrent.downloadSpeed >= 500000 && removeWs) {
-      console.log("Removi o WebSeed. Peers:" + torrent.numPeers);
+      log("Removi o WebSeed. Peers:" + torrent.numPeers);
       torrent.removePeer('{{w.webseed.sd}}')
       addWs = true
       removeWs = false
     }
-    // console.log('progress: ' + torrent.progress)
+    // log('progress: ' + torrent.progress)
   })
 }
 
 function log (str) {
+  {% if user.mod or user.adm %}
   console.log(str);
+  {% endif %}
 }
 
 player.on('play', event => {
