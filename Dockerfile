@@ -4,7 +4,7 @@
 ############################################
 
 FROM debian
-MAINTAINER me@guilmour.org
+LABEL maintainer="me@guilmour.org"
 
 # Apt install some tools
 RUN apt-get update && apt-get install -y \
@@ -12,12 +12,12 @@ RUN apt-get update && apt-get install -y \
     unzip \
     wget \
     curl \
+    software-properties-common \
  && rm -rf /var/lib/apt/lists/*
 
  #Getting Node
- RUN wget https://deb.nodesource.com/setup_8.x
- RUN chmod +x setup_8.x
- RUN ./setup_8.x
+ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
+ RUN apt-get update
  RUN apt-get install -y nodejs
  RUN apt-get install -y build-essential
 
