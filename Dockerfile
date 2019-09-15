@@ -15,9 +15,9 @@ RUN apt-get update && apt-get install -y \
  && rm -rf /var/lib/apt/lists/*
 
  #Getting Node
- RUN wget https://deb.nodesource.com/setup_8.x
- RUN chmod +x setup_8.x
- RUN ./setup_8.x
+ RUN wget https://deb.nodesource.com/setup_10.x
+ RUN chmod +x setup_10.x
+ RUN ./setup_10.x
  RUN apt-get install -y nodejs
  RUN apt-get install -y build-essential
 
