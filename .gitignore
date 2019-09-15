@@ -9,3 +9,6 @@ public/downloads
 .env
 server.bat
 notes.md
+docker
+public/subs/
+public/wikilab/
