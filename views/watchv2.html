@@ -9,7 +9,7 @@
 <meta name="description" content='{{ w.sinopse }}'>
 <meta name="keywords"  content="{{w.tags}} - libreflix" />
 
-<meta property="og:image" content="https://libreflix.org/{{ w.thumb480 }}" />
+<meta property="og:image" content="{{ w.thumb480 }}" />
 <meta property="og:type" content="video.movie" />
 <meta property="og:url" content="https://libreflix.org/i/{{ w.permalink }}" />
 <meta property="og:title" content="'{{title}} - Libreflix" />
@@ -21,8 +21,8 @@
 <!-- twitter metatags-->
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="{{title}} - Libreflix">
-<meta name="twitter:description" content="{{ film.sinopse }}">
-<meta name="twitter:image" content="{{ film.thumb480 }}">
+<meta name="twitter:description" content="{{ w.sinopse }}">
+<meta name="twitter:image" content="{{ w.thumb480 }}">
 {% endblock %}
 
 </div>
