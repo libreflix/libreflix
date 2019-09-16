@@ -7,7 +7,7 @@ client.on('error', function (err) {
 {% if w.magnet.hd %}
 var torrentId = '{{ w.magnet.hd | safe }}';
 var webseedId = '{{ w.webseed.hd | safe }}';
-{% elif if w.magnet.sd %}
+{% elif w.magnet.sd %}
 var torrentId = '{{ w.magnet.sd | safe }}';
 var webseedId = '{{ w.magnet.sd | safe }}';
 {% endif %}
