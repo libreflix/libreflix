@@ -4,7 +4,13 @@ client.on('error', function (err) {
   console.error('ERROR: ' + err.message)
 })
 
+{% if w.magnet.hd %}
+var torrentId = '{{ w.magnet.hd | safe }}';
+var webseedId = '{{ w.webseed.hd | safe }}';
+{% elif if w.magnet.sd %}
 var torrentId = '{{ w.magnet.sd | safe }}';
+var webseedId = '{{ w.magnet.sd | safe }}';
+{% endif %}
 
 const player = new Plyr('#player', {
   debug: false,
@@ -29,7 +35,7 @@ function onTorrent (torrent) {
   });
 
   log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
-  torrent.addWebSeed('{{w.webseed.sd}}')
+  torrent.addWebSeed(webseedId)
 
   file.renderTo('video', {
     autoplay: true,
@@ -45,7 +51,7 @@ function onTorrent (torrent) {
     log('Progress: ' + (torrent.progress * 100).toFixed(1) + '%')
     if (torrent.downloadSpeed == 0){
       log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
-      torrent.addWebSeed('{{w.webseed.sd}}')
+      torrent.addWebSeed(webseedId)
     }
   }, 1000)
 
@@ -62,20 +68,20 @@ function onTorrent (torrent) {
 
     if ((torrent.progress * 100) > 5 && initialWs){
       log("Removi o WebSeed. Peers:" + torrent.numPeers);
-      torrent.removePeer('{{w.webseed.sd}}')
+      torrent.removePeer(webseedId)
       addWs = true
       removeWs = false
       initialWs = false
     }
     if (torrent.downloadSpeed < 200000 && addWs) {
       log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
-      torrent.addWebSeed('{{w.webseed.sd}}')
+      torrent.addWebSeed(webseedId)
       addWs = false
       removeWs = true
     }
     if (torrent.downloadSpeed >= 500000 && removeWs) {
       log("Removi o WebSeed. Peers:" + torrent.numPeers);
-      torrent.removePeer('{{w.webseed.sd}}')
+      torrent.removePeer(webseedId)
       addWs = true
       removeWs = false
     }
