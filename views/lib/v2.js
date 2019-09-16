@@ -9,7 +9,7 @@ var torrentId = '{{ w.magnet.hd | safe }}';
 var webseedId = '{{ w.webseed.hd | safe }}';
 {% elif w.magnet.sd %}
 var torrentId = '{{ w.magnet.sd | safe }}';
-var webseedId = '{{ w.magnet.sd | safe }}';
+var webseedId = '{{ w.webseed.sd | safe }}';
 {% endif %}
 
 const player = new Plyr('#player', {
