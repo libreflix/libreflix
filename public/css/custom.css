@@ -137,6 +137,13 @@ body {
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+::selection {
+  background: #343434; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background: #343434; /* Gecko Browsers */
+}
+
 body.white{
   background-color: #ffffff;
   font-family: "Source Sans Pro Regular", helvetica, sans-serif !important;
@@ -152,7 +159,7 @@ img {
   max-width: 100%;
 }
 a {
-  color: #AFAEAF !important;
+  color: #c6c6c6 !important;
   text-decoration: none !important;
 }
 a:hover {
