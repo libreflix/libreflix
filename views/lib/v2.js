@@ -73,13 +73,13 @@ function onTorrent (torrent) {
       removeWs = false
       initialWs = false
     }
-    if (torrent.downloadSpeed < 200000 && addWs) {
+    else if (torrent.downloadSpeed < 200000 && addWs) {
       log("Adicionei o WebSeed. Peers:" + torrent.numPeers);
       torrent.addWebSeed(webseedId)
       addWs = false
       removeWs = true
     }
-    if (torrent.downloadSpeed >= 500000 && removeWs) {
+    else if (torrent.downloadSpeed >= 500000 && removeWs) {
       log("Removi o WebSeed. Peers:" + torrent.numPeers);
       torrent.removePeer(webseedId)
       addWs = true
