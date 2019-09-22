@@ -112,6 +112,7 @@ var watchSchema = new mongoose.Schema({
   enableDownload: Boolean,
   enableDonations: Boolean,
   enableTrailer: Boolean,
+  paypal_email: String,
 
   /* For Series */
   n_eps: Number,
