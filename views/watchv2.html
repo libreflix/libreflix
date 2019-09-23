@@ -101,8 +101,7 @@
     text-shadow: 2px 2px #000 !important;
    }
    #pl-player-title,
-   #pl-up-next-title,
-   #logo-libre{
+   #pl-up-next-title{
      font-size: 1.2vw;
      position: absolute;
      right: 100px;
@@ -149,6 +148,7 @@
      bottom: 35px;
      right: 35px;
      position: absolute;
+     opacity: 1;
    }
 
   </style>
@@ -173,7 +173,7 @@
       <h1 class="titlePlayer">{{ w.title }}</h1>
       <h3 class="titlePlayer">{{ w.subtitle }}</h3>
     </div>
-    <img src="/libreflix.png" alt="" class="logo-libre">
+    <img src="/libreflix.png" alt="" class="logo-libre" id="logo-libre">
 
     {#
     <!-- <div class="plyr__video-embed" id="player">

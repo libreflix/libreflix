@@ -99,6 +99,7 @@ player.on('play', event => {
 player.on('playing', event => {
   document.getElementById("pl-imgbg").style.visibility = "hidden";
   document.getElementById("pl-player-title").style.visibility = "hidden";
+  document.getElementByClass("logo-libre").style.opacity = "0";
 });
 
 player.on('controlsshown', event => {
@@ -108,4 +109,5 @@ player.on('controlsshown', event => {
 player.on('pause', event => {
   document.getElementById("exit-button").style.opacity = "0.9";
   document.getElementById("pl-player-title").style.visibility = "visible";
+  document.getElementByClass("logo-libre").style.opacity = "1";
 });
