@@ -5,11 +5,9 @@ client.on('error', function (err) {
 })
 
 {% if w.magnet.hd %}
-var torrentId = '{{ w.magnet.hd | safe }}';
-var webseedId = '{{ w.webseed.hd | safe }}';
+var torrentId = '{{ w.magnet.hd | safe }}'; var webseedId = '{{ w.webseed.hd | safe }}';
 {% elif w.magnet.sd %}
-var torrentId = '{{ w.magnet.sd | safe }}';
-var webseedId = '{{ w.webseed.sd | safe }}';
+var torrentId = '{{ w.magnet.sd | safe }}'; var webseedId = '{{ w.webseed.sd | safe }}';
 {% endif %}
 
 const player = new Plyr('#player', {
@@ -55,7 +53,7 @@ function onTorrent (torrent) {
     }
   }, 1000)
 
-  // Function that add webseed if download to slow
+  {# Function that add webseed if download to slow #}
   var addWs = true
   var removeWs = false
   var initialWs = true

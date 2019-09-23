@@ -203,6 +203,10 @@ var body = req.body;
     watch.file.trailer = req.body.file_trailer;
     watch.file.srt = req.body.file_srt;
 
+    watch.subs.pt_br = req.body.subs_pt;
+    watch.subs.es = req.body.subs_es;
+    watch.subs.en = req.body.subs_en;
+
     /* Categories */
     watch.tags = req.body.tags;
     watch.format = req.body.format;
