@@ -153,13 +153,8 @@
     </a>
   </button>
 
-    <video
-    id="player"
-    poster="{{w.imgbg}}"
-    controls
-    crossorigin
-    allowfullscreen
-    >
+    <video id="player" poster="{{w.imgbg}}" controls crossorigin allowfullscreen>
+    <source src="{{w.webseed.hd}}" type="video/mp4">
 
     {% if w.subs.pt_br %}<track kind="captions" label="Português" src="{{w.subs.pt_br}}" srclang="pt">{% endif %}
     {% if w.subs.en %}<track kind="captions" label="English" src="{{ w.subs.en }}" srclang="en">{% endif %}
