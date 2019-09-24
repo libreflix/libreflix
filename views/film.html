@@ -103,7 +103,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
         <h4>
           {{ film.subtitle }}
           {% if film.subtitle %} &middot; {%endif%} {{film.year}}
-          {% if film.classind  %} &middot; <span class="classind">{{ film.classind }}</span>{% endif %}
+          {% if film.classind  %} &middot; <img src="/assets/classind/{{ film.classind }}.png" width="22px" alt="{{ film.classind }}">{% endif %}
           {% if film.duration  %} &middot; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ film.duration }} {% endif %}
         </h4>
   			<p>
