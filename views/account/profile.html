@@ -75,6 +75,13 @@
           </div>
         </div>
         <div class="form-group">
+          <label class="col-sm-3">Newsletter</label>
+          <div class="col-sm-4">
+            <input type="checkbox" id="allow_newsletter" name="allow_newsletter" {% if user.allowNewsletter %}checked{% endif %}>
+            <label for="allow_newsletter">Permitir Newsletter</label>
+          </div>
+        </div>
+        <div class="form-group">
           <div class="col-sm-offset-3 col-sm-4">
             <button type="submit" class="btn btn-success">Atualizar Perfil</button>
           </div>

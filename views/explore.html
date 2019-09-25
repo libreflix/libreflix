@@ -127,7 +127,7 @@
               <h4>
                 {{ w.subtitle }}
                 {% if w.subtitle %} &middot; {%endif%} {{w.year}}
-                {% if w.classind  %} &middot; <span class="classind">{{ w.classind }}</span>{% endif %}
+                {% if w.classind  %} &middot; <img src="/assets/classind/{{ w.classind }}.png" width="22px" alt="{{ w.classind }}">{% endif %}
                 {% if w.duration  %} &middot; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ w.duration }} {% endif %}
               </h4>
               <div class="sinopse">{{ w.sinopse | truncate(300)}}</div>
