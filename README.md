@@ -5,7 +5,7 @@
 Libreflix é uma plataforma de streaming livre e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.
 
 
-![](https://guilmour.org/img/blog/2018/libreflix-nacionais.jpg")
+![](https://s3-sa-east-1.amazonaws.com/cdn.br.catarse/uploads/redactor_rails/picture/data/244309/screely-1569280205294.png)
 
 
 
