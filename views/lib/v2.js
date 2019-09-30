@@ -1,4 +1,4 @@
-{% if isDesktop %}
+
 var client = new WebTorrent();
 
 client.on('error', function (err) {
@@ -94,7 +94,7 @@ function log (str) {
   {% endif %}
 }
 
-{% endif %}
+
 player.on('play', event => {
   setTimeout(function(){ document.getElementById("exit-button").style.opacity = "0"; }, 2000);
 });
