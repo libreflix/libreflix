@@ -165,13 +165,13 @@
 
     {% if isMobile %}
     {% if w.webseed.sd %}
-    <source src="{{w.webseed.sd}}" type="video/mp4" size="480"/>
+    <source src="{{ w.webseed.sd | safe }}" type="video/mp4" size="480"/>
     {% endif %}
     {% if w.webseed.hd %}
-    <source src="{{w.webseed.hd}}" type="video/mp4" size="720"/>
+    <source src="{{ w.webseed.hd | safe }}" type="video/mp4" size="720"/>
     {% endif %}
     {% if w.webseed.fhd %}
-    <source src="{{w.webseed.fhd}}" type="video/mp4" size="1080"/>
+    <source src="{{ w.webseed.fhd | safe }}" type="video/mp4" size="1080"/>
     {% endif %}
     {% endif %}
 
