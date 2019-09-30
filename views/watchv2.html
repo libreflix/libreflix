@@ -164,7 +164,15 @@
     <video id="player" poster="{{w.imgbg}}" playsinline controls>
 
     {% if isMobile %}
-    <source src="/media/small.webm" type="video/webm" size="480"/>
+    {% if w.webseed.sd %}
+    <source src="{{w.webseed.sd}}" type="video/mp4" size="480"/>
+    {% endif %}
+    {% if w.webseed.hd %}
+    <source src="{{w.webseed.hd}}" type="video/mp4" size="720"/>
+    {% endif %}
+    {% if w.webseed.fhd %}
+    <source src="{{w.webseed.fhd}}" type="video/mp4" size="1080"/>
+    {% endif %}
     {% endif %}
 
     {% if w.subs.pt_br %}<track kind="captions" label="Português" src="{{w.subs.pt_br}}" srclang="pt">{% endif %}
