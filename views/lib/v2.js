@@ -103,10 +103,6 @@ player.on('playing', event => {
   document.getElementById("logo_libre").style.opacity = "0";
 });
 
-player.on('controlsshown', event => {
-  document.getElementById("exit-button").style.opacity = "0.9";
-});
-
 player.on('pause', event => {
   document.getElementById("exit-button").style.opacity = "0.9";
   document.getElementById("pl-player-title").style.visibility = "visible";

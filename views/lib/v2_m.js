@@ -17,10 +17,6 @@ player.on('playing', event => {
   setTimeout(function(){ document.getElementById("exit-button").style.opacity = "0"; }, 2000);
 });
 
-player.on('controlsshown', event => {
-  document.getElementById("exit-button").style.opacity = "0.9";
-});
-
 player.on('pause', event => {
   document.getElementById("exit-button").style.opacity = "0.9";
   document.getElementById("pl-player-title").style.visibility = "visible";
