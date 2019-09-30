@@ -11,12 +11,23 @@ const bodyParser = require('body-parser');
 exports.watchGet = function(req, res){
   Watch.findOne({ 'permalink': req.params.permalink }, function(err, w){
 
+    var isMobile = false
+    var isDesktop = false
+    // to test if desktop
+    if (req.device.type == 'mobile') {
+      isMobile = true
+    }
+    if (req.device.type == 'desktop') {
+      isDesktop = true
+    }
+
     if (!w) {
       return res.redirect('/404');
     }
     if (w.useWatchV2) {
       res.render('watchv2', {
         title: w.title,
+        isMobile: isMobile,
         w: w
       })
     }

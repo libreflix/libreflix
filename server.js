@@ -19,6 +19,7 @@ var processImage = require('express-processimage');
 var i18n = require("i18n");
 var cookieParser = require('cookie-parser');
 var minifyHTML = require('express-minify-html');
+var device = require('express-device');
 
 // Load environment variables from .env file
 dotenv.load();
@@ -26,9 +27,9 @@ dotenv.load();
 // Passport OAuth strategies
 require('./config/passport');
 
-var app = express();
+var app = express()
 app.use(cookieParser())
-
+app.use(device.capture())
 
 mongoose.connect(process.env.DB_PATH);
 
