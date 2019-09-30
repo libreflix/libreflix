@@ -161,11 +161,10 @@
     </a>
   </button>
 
-    <video id="player" poster="{{w.imgbg}}" controls crossorigin allowfullscreen>
+    <video id="player" poster="{{w.imgbg}}" playsinline controls>
+
     {% if isMobile %}
-    <source src="{{w.webseed.sd}}" type="video/mp4" size="480"/>
-    <source src="{{w.webseed.hd}}" type="video/mp4" size="720"/>
-    <source src="{{w.webseed.fhd}}" type="video/mp4" size="1080"/>
+    <source src="/media/small.webm" type="video/webm" size="480"/>
     {% endif %}
 
     {% if w.subs.pt_br %}<track kind="captions" label="Português" src="{{w.subs.pt_br}}" srclang="pt">{% endif %}
@@ -218,11 +217,15 @@
 
 
 <script type="text/javascript">
-{% include "lib/plyr.min.js" %}
-{% if not isMobile %}
+{% if isDesktop  %}
 {% include "lib/webtorrent.min.js" %}
+{% include "lib/v2_m.js"%}
 {% endif %}
-{% include "lib/v2.js"%}
+{% if isMobile %}
+{% include "lib/plyr.min.js" %}
+{% include "lib/v2_m.js"%}
+{% endif %}
+
 </script>
 
 

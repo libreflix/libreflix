@@ -28,6 +28,7 @@ exports.watchGet = function(req, res){
       res.render('watchv2', {
         title: w.title,
         isMobile: isMobile,
+        isDesktop: isDesktop,
         w: w
       })
     }
