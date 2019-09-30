@@ -37,7 +37,8 @@
     "cookie-parser": "^1.4.3",
     "mongoose-intl": "^3.1.0",
     "bluebird": "^3.5.3",
-    "express-minify-html": "^0.12.0"
+    "express-minify-html": "^0.12.0",
+    "express-device": "^0.4.2"
   },
   "devDependencies": {},
   "engines": {

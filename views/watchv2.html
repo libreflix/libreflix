@@ -162,7 +162,11 @@
   </button>
 
     <video id="player" poster="{{w.imgbg}}" controls crossorigin allowfullscreen>
-    {# <source src="{{w.webseed.hd}}" type="video/mp4"> #}
+    {% if isMobile %}
+    <source src="{{w.webseed.sd}}" type="video/mp4" size="480"/>
+    <source src="{{w.webseed.hd}}" type="video/mp4" size="720"/>
+    <source src="{{w.webseed.fhd}}" type="video/mp4" size="1080"/>
+    {% endif %}
 
     {% if w.subs.pt_br %}<track kind="captions" label="Português" src="{{w.subs.pt_br}}" srclang="pt">{% endif %}
     {% if w.subs.en %}<track kind="captions" label="English" src="{{ w.subs.en }}" srclang="en">{% endif %}
@@ -209,9 +213,15 @@
   }
 </script>
 
+{{device}}
+
+
+
 <script type="text/javascript">
-{% include "lib/webtorrent.min.js" %}
 {% include "lib/plyr.min.js" %}
+{% if not isMobile %}
+{% include "lib/webtorrent.min.js" %}
+{% endif %}
 {% include "lib/v2.js"%}
 </script>
 
