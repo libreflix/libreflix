@@ -1,4 +1,3 @@
-
 var client = new WebTorrent();
 
 client.on('error', function (err) {
