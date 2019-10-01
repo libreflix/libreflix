@@ -4,10 +4,13 @@ client.on('error', function (err) {
   console.error('ERROR: ' + err.message)
 })
 
+var mediatype = ".mp4"
+var film_id = "{cyz6RWU>/r(tz^s"
+
 {% if w.magnet.hd %}
-var torrentId = '{{ w.magnet.hd | safe }}'; var webseedId = '{{ w.webseed.hd | safe }}';
+var torrentId = '{{ w.magnet.hd | safe }}'; var webseedId = '{{ w.webseed.hd | safe | replace(".mp4","{cyz6RWU>/r(tz^s")}}'.replace(film_id,mediatype);
 {% elif w.magnet.sd %}
-var torrentId = '{{ w.magnet.sd | safe }}'; var webseedId = '{{ w.webseed.sd | safe }}';
+var torrentId = '{{ w.magnet.sd | safe }}'; var webseedId = '{{ w.webseed.sd | safe | replace(".mp4","{cyz6RWU>/r(tz^s")}}'.replace(film_id,mediatype);
 {% endif %}
 
 const player = new Plyr('#player', {
