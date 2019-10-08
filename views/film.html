@@ -26,6 +26,9 @@ $(document).on('shown.bs.modal', '.modal', function () {
 <meta name="twitter:title" content="{{title}} - Libreflix">
 <meta name="twitter:description" content="{{ film.sinopse }}">
 <meta name="twitter:image" content="{{ film.thumb480 }}">
+
+<link rel="stylesheet" href="/css/css-stars.css">
+
 {% endblock %}
 
 
@@ -34,7 +37,6 @@ $(document).on('shown.bs.modal', '.modal', function () {
 
 
 {% block body %}
-<link rel="stylesheet" href="/css/fontawesome-stars.css">
 <div class="container-fluid">
   {% if messages.success %}
   <div role="alert" class="alert alert-success">
@@ -396,9 +398,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
           <p class="text-comment">{{ n }} {{t('Avaliações')}}.</p>
 
           {% if user %}
-          <p>
-            <b>{{t('Sua avaliação')}}:</b>
-          </p>
+          <b>{{t('Sua avaliação')}}:</b>
 
           <form action="/i/{{film.permalink}}/#rating" method="post" id="formAJAX">
           <select name="stars" id="rating_stars" autocomplete="off">
@@ -409,6 +409,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
               <option value="4" {% if interaction.stars == "4" %} selected {%endif%} >4</option>
               <option value="5" {% if interaction.stars == "5" %} selected {%endif%} >5</option>
           </select>
+          <br>
           <button type="submit" class="btn btn-default"> <i class="fa fa-check"></i> {{t('Salvar avaliação')}} </button>
           </form>
 
@@ -637,7 +638,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
 <script type="text/javascript">
    $(function() {
       $('#rating_stars').barrating({
-        theme: 'fontawesome-stars'
+        theme: 'css-stars'
       });
    });
 </script>
