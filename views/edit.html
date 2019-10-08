@@ -52,7 +52,11 @@
   <div class="panel panel-novo">
     <div class="panel-body">
       <form action="" class="form-horizontal">
-
+        <div style="right:2%; bottom:2%; position: fixed; color: white; background-color: white;
+        z-index:999">
+            <button type="submit" class="btn btn-success" formmethod="post">Salvar Alterações</button>
+            <a href="/i/{{w.permalink}}"><button class="btn btn-danger" type="button">Cancelar</button></a>
+        </div>
           <!-- Basic -->
           <hr>
             <legend> Básico </legend>
@@ -426,11 +430,6 @@
         <!-- Fim -->
         <div class="form-group">
           <!-- <small class="text-muted">Criando uma conta, você concorda com os <a href="/" target="_blank">Termos de Uso</a>.</small> -->
-        </div>
-        <div class="col-sm-3"></div>
-        <div class="col-sm-7">
-          <button type="submit" class="btn btn-success" formmethod="post">Salvar Alterações</button>
-          <a href="/"><button class="btn btn-danger" type="button">Cancelar</button></a>
         </div>
       </form>
     </div>
