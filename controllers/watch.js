@@ -25,7 +25,7 @@ exports.watchGet = function(req, res){
     if (!w) {
       return res.redirect('/404');
     }
-    if( (req.headers.referer !== "http://localhost:3998/i/"+ w.permalink) ||
+    if( (req.headers.referer !== "http://localhost:3998/i/"+ w.permalink) &&
         (req.headers.referer !== "https://libreflix.org/i/"+ w.permalink)){
       return res.redirect('/i/'+ w.permalink);
     }
