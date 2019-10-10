@@ -25,6 +25,9 @@ exports.watchGet = function(req, res){
     if (!w) {
       return res.redirect('/404');
     }
+    if(req.headers.referer !== "http://localhost:3998/i/"+ w.permalink){
+      return res.redirect('/i/'+ w.permalink);
+    }
     if (w.useWatchV2) {
       res.render('watchv2', {
         title: w.title,

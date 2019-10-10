@@ -7,15 +7,6 @@
 {% block opengraph %}
 
 
-<script type="text/javascript">
-function voltarInfo(){
-  if(document.referrer !== "https://libreflix.org/i/{{w.permalink}}"){
-    window.location = "https://libreflix.org/i/{{w.permalink}}"
-  }
-}
-window.onload = voltarInfo;
-</script>
-
 <meta name="description" content='{{ w.sinopse }}'>
 <meta name="keywords"  content="{{w.tags}} - libreflix" />
 
