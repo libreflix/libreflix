@@ -1,12 +1,3 @@
-{% extends "layouts/layout.html" %}
-
-{% block footer%} {% endblock %}
-{% block navbar %}{% endblock %} {# just to overide parent navbar block#}
-{% block link_rel %}{% endblock %} {# just to overide parent link_rel block#}
-{% block body %}
-{% block opengraph %}
-
-
 <script type="text/javascript">
 function voltarInfo(){
   if(document.referrer !== "https://libreflix.org/i/{{w.permalink}}"){
@@ -15,6 +6,15 @@ function voltarInfo(){
 }
 window.onload = voltarInfo;
 </script>
+
+{% extends "layouts/layout.html" %}
+
+{% block footer%} {% endblock %}
+{% block navbar %}{% endblock %} {# just to overide parent navbar block#}
+{% block link_rel %}{% endblock %} {# just to overide parent link_rel block#}
+{% block body %}
+{% block opengraph %}
+
 
 <meta name="description" content='{{ w.sinopse }}'>
 <meta name="keywords"  content="{{w.tags}} - libreflix" />
