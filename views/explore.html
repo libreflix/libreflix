@@ -15,7 +15,7 @@
 {% elif format == "duration" %}
 {% set title = t('Obras com duração até') + ' ' + t(duration) + ' ' + t('minutos') %}
 {% elif format == "category" %}
-{% set title = t('Obras com duração até') + ' ' + t(duration) + ' ' + t('minutos') %}
+{% set title = t(categories[0].title) %}
 {% endif %}
 
 
