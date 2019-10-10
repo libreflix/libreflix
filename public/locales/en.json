@@ -1,4 +1,5 @@
 {
+	"Início": "Home",
 	"Entrar": "Log In",
 	"Comunidade": "Community",
 	"Entrar na sua conta": "Log in",
@@ -76,5 +77,6 @@
 	"Longas Populares": "Popular Movies",
 	"Curtas Populares": "Popular Shorts",
 	"Séries Populares": "Popular Series",
-	"Curtas Recém Chegados ": "Recently Added Shorts"
+	"Curtas Recém Chegados ": "Recently Added Shorts",
+	"Sua plataforma de streaming livre": "Your free (as in freedom) streaming platform"
 }
