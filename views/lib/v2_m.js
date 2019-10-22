@@ -36,3 +36,5 @@ player.on('pause', event => {
   document.getElementById("pl-player-title").style.visibility = "visible";
   document.getElementById("logo_libre").style.opacity = "1";
 });
+
+document.getElementById("exit-button").onmouseover = document.getElementById("exit-button").style.opacity = "1";
