@@ -25,16 +25,6 @@ player.on('play', event => {
 //  setTimeout(function(){ document.getElementById("exit-button").style.opacity = "0"; }, 2000);
 });
 player.on('playing', event => {
-  var exitButton = document.getElementById("exit-button");
-
-  exitButton.addEventListener("mouseover", function() {
-      exitButton.style.opacity = 1;
-  });
-
-  exitButton.addEventListener("mouseout", function() {
-      exitButton.style.opacity = 0;
-  });
-
   document.getElementById("pl-imgbg").style.visibility = "hidden";
   document.getElementById("pl-player-title").style.visibility = "hidden";
   document.getElementById("logo_libre").style.opacity = "0";
@@ -45,4 +35,18 @@ player.on('pause', event => {
   document.getElementById("exit-button").style.opacity = "1";
   document.getElementById("pl-player-title").style.visibility = "visible";
   document.getElementById("logo_libre").style.opacity = "1";
+});
+
+
+var exitButton = document.getElementById("exit-button");
+
+exitButton.addEventListener("mouseover", function() {
+    exitButton.style.opacity = 1;
+
+});
+
+exitButton.addEventListener("mouseout", function() {
+    if (player.playing){
+      exitButton.style.opacity = 0;
+    }
 });
