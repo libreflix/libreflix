@@ -23,4 +23,6 @@ player.on('pause', event => {
   document.getElementById("logo_libre").style.opacity = "1";
 });
 
-player.on("loadeddata", _event => {player.currentTime = player.currentTime});
+player.on('loadeddata', event => {
+  player.currentTime = player.currentTime
+});
