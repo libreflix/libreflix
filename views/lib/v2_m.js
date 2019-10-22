@@ -37,4 +37,13 @@ player.on('pause', event => {
   document.getElementById("logo_libre").style.opacity = "1";
 });
 
-document.getElementById("exit-button").onmouseover = document.getElementById("exit-button").style.opacity = "1";
+
+var exitButton = document.getElementById("exit-button");
+
+exitButton.addEventListener("mouseover", function() {
+    exitButton.style.opacity = 1;
+});
+
+exitButton.addEventListener("mouesout", function() {
+    exitButton.style.opacity = 0;
+});
