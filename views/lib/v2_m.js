@@ -26,3 +26,7 @@ player.on('pause', event => {
 player.on('loadeddata', event => {
   player.currentTime = player.currentTime;
 });
+
+player.on('loadedmetadata', event => {
+  player.currentTime = player.currentTime;
+});
