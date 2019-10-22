@@ -44,6 +44,6 @@ exitButton.addEventListener("mouseover", function() {
     exitButton.style.opacity = 1;
 });
 
-exitButton.addEventListener("mouesout", function() {
+exitButton.addEventListener("mouseout", function() {
     exitButton.style.opacity = 0;
 });
