@@ -5,16 +5,17 @@ const player = new Plyr('#player', {
 });
 
 player.on('loadeddata', event => {
-  player.currentTime = 0;
+  player.currentTime = player.currentTime;
 });
 
 player.on('loadedmetadata', event => {
-  player.currentTime = 0;
+  player.currentTime = player.currentTime;
 });
 
 
 player.on('loadstart', event => {
-  document.getElementById("player").style.height = "100vh"
+  document.getElementById("player").style.height = "100vh";
+  player.currentTime = player.currentTime;
 });
 player.on('play', event => {
 //  setTimeout(function(){ document.getElementById("exit-button").style.opacity = "0"; }, 2000);
