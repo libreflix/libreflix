@@ -4,6 +4,15 @@ const player = new Plyr('#player', {
   // settings: ['captions', 'quality', 'speed', 'loop', 'controls']
 });
 
+player.on('loadeddata', event => {
+  player.currentTime = player.currentTime;
+});
+
+player.on('loadedmetadata', event => {
+  player.currentTime = player.currentTime;
+});
+
+
 player.on('loadstart', event => {
   document.getElementById("player").style.height = "100vh"
 });
@@ -21,12 +30,4 @@ player.on('pause', event => {
   document.getElementById("exit-button").style.opacity = "0.9";
   document.getElementById("pl-player-title").style.visibility = "visible";
   document.getElementById("logo_libre").style.opacity = "1";
-});
-
-player.on('loadeddata', event => {
-  player.currentTime = player.currentTime;
-});
-
-player.on('loadedmetadata', event => {
-  player.currentTime = player.currentTime;
 });
