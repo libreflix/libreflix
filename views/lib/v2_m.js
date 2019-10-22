@@ -8,7 +8,7 @@ player.on('loadeddata', event => {
   player.currentTime = player.currentTime;
 });
 
-player.on('loadedmetadata', event => {
+player.on('canplay', event => {
   player.currentTime = player.currentTime;
 });
 
