@@ -5,11 +5,11 @@ const player = new Plyr('#player', {
 });
 
 player.on('loadeddata', event => {
-  player.currentTime = player.currentTime;
+  player.currentTime = 0;
 });
 
-player.on('canplay', event => {
-  player.currentTime = player.currentTime;
+player.on('loadedmetadata', event => {
+  player.currentTime = 0;
 });
 
 
