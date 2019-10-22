@@ -4,6 +4,10 @@ const player = new Plyr('#player', {
   // settings: ['captions', 'quality', 'speed', 'loop', 'controls']
 });
 
+player.on('canplay', event => {
+  player.play();
+});
+
 player.on('loadeddata', event => {
   player.currentTime = player.currentTime;
 });
@@ -16,6 +20,7 @@ player.on('loadedmetadata', event => {
 player.on('loadstart', event => {
   document.getElementById("player").style.height = "100vh";
   player.currentTime = player.currentTime;
+
 });
 player.on('play', event => {
 //  setTimeout(function(){ document.getElementById("exit-button").style.opacity = "0"; }, 2000);
