@@ -24,5 +24,5 @@ player.on('pause', event => {
 });
 
 player.on('loadeddata', event => {
-  player.currentTime = player.currentTime
+  player.currentTime = player.currentTime;
 });
