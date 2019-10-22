@@ -20,7 +20,6 @@ player.on('loadedmetadata', event => {
 player.on('loadstart', event => {
   document.getElementById("player").style.height = "100vh";
   player.currentTime = player.currentTime;
-
 });
 player.on('play', event => {
 //  setTimeout(function(){ document.getElementById("exit-button").style.opacity = "0"; }, 2000);
