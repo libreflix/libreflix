@@ -926,7 +926,7 @@ a.plyr__control::after,a.plyr__control::before{
 }
 @media (min-width:1024px){
     .plyr:-webkit-full-screen .plyr__captions{
-        font-size:21px
+        font-size:24px
     }
 }
 .plyr:-moz-full-screen{
@@ -960,7 +960,7 @@ a.plyr__control::after,a.plyr__control::before{
 }
 @media (min-width:1024px){
     .plyr:-moz-full-screen .plyr__captions{
-        font-size:21px
+        font-size:24px
     }
 }
 .plyr:-ms-fullscreen{
