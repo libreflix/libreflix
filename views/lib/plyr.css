@@ -886,13 +886,13 @@ a.plyr__control::after,a.plyr__control::before{
 }
 @media (min-width:1024px){
     .plyr:-webkit-full-screen .plyr__captions{
-        font-size:28px
+        font-size:27px
     }
     .plyr:-ms-fullscreen .plyr__captions{
-        font-size:28px
+        font-size:27px
     }
     .plyr:fullscreen .plyr__captions{
-        font-size:28px
+        font-size:27px
     }
 }
 .plyr:-webkit-full-screen{
@@ -926,7 +926,7 @@ a.plyr__control::after,a.plyr__control::before{
 }
 @media (min-width:1024px){
     .plyr:-webkit-full-screen .plyr__captions{
-        font-size:28px
+        font-size:27px
     }
 }
 .plyr:-moz-full-screen{
@@ -960,7 +960,7 @@ a.plyr__control::after,a.plyr__control::before{
 }
 @media (min-width:1024px){
     .plyr:-moz-full-screen .plyr__captions{
-        font-size:28px
+        font-size:27px
     }
 }
 .plyr:-ms-fullscreen{
@@ -994,7 +994,7 @@ a.plyr__control::after,a.plyr__control::before{
 }
 @media (min-width:1024px){
     .plyr:-ms-fullscreen .plyr__captions{
-        font-size:28px
+        font-size:27px
     }
 }
 .plyr--fullscreen-fallback{
@@ -1034,7 +1034,7 @@ a.plyr__control::after,a.plyr__control::before{
 }
 @media (min-width:1024px){
     .plyr--fullscreen-fallback .plyr__captions{
-        font-size:28px
+        font-size:27px
     }
 }
 .plyr__ads{
