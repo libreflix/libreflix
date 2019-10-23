@@ -74,11 +74,11 @@
     bottom:0;
     color:#fff;
     display:none;
-    font-size: 22px;
+    font-size: 4vh;
     left:0;
     padding:10px;
     position:absolute;
-    text-align:center;plyr__captions
+    text-align:center;
     transition:transform .4s ease-in-out;
     width:100%
 }
@@ -99,13 +99,13 @@
 }
 @media (min-width:480px){
     .plyr__captions{
-        font-size:24px;
+        font-size:4vh;
         padding:20px
     }
 }
 @media (min-width:768px){
     .plyr__captions{
-        font-size:26px
+        font-size:4vh;
     }
 }
 .plyr--captions-active .plyr__captions{
@@ -886,13 +886,13 @@ a.plyr__control::after,a.plyr__control::before{
 }
 @media (min-width:1024px){
     .plyr:-webkit-full-screen .plyr__captions{
-        font-size:27px
+        font-size:4vh;
     }
     .plyr:-ms-fullscreen .plyr__captions{
-        font-size:27px
+        font-size:4vh;
     }
     .plyr:fullscreen .plyr__captions{
-        font-size:27px
+        font-size:4vh;
     }
 }
 .plyr:-webkit-full-screen{
@@ -926,7 +926,7 @@ a.plyr__control::after,a.plyr__control::before{
 }
 @media (min-width:1024px){
     .plyr:-webkit-full-screen .plyr__captions{
-        font-size:27px
+        font-size:4vh;
     }
 }
 .plyr:-moz-full-screen{
@@ -960,7 +960,7 @@ a.plyr__control::after,a.plyr__control::before{
 }
 @media (min-width:1024px){
     .plyr:-moz-full-screen .plyr__captions{
-        font-size:27px
+        font-size:4vh;
     }
 }
 .plyr:-ms-fullscreen{
@@ -994,7 +994,7 @@ a.plyr__control::after,a.plyr__control::before{
 }
 @media (min-width:1024px){
     .plyr:-ms-fullscreen .plyr__captions{
-        font-size:27px
+        font-size:4vh;
     }
 }
 .plyr--fullscreen-fallback{
@@ -1034,7 +1034,7 @@ a.plyr__control::after,a.plyr__control::before{
 }
 @media (min-width:1024px){
     .plyr--fullscreen-fallback .plyr__captions{
-        font-size:27px
+        font-size:4vh;
     }
 }
 .plyr__ads{
