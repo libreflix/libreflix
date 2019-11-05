@@ -61,3 +61,8 @@ exports.pressController = function(req, res) {
 exports.contributeController = function(req, res) {
       res.render('contribute', {});
 };
+
+/* GET Contribute */
+exports.contributorsController = function(req, res) {
+      res.render('contributors', {});
+};

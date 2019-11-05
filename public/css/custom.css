@@ -1016,3 +1016,25 @@ background-color: #0088AA;
 .superside > a {
 color: #FFF;
 }
+
+
+#contributors ul{
+  line-height: 32px;
+  padding: 20px 0 100px;
+  /* border: 1px solid #d7c4f4; */
+  /* background-color: #f6f2fc; */
+  /* color: #302851; */
+  overflow-y: auto;
+  padding: 30px;
+  height: 500px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#contributors ul li {
+    flex: 0 0 216px;
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}

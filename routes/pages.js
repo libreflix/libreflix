@@ -74,5 +74,12 @@ module.exports = function(router){
 			/** GET /contribute - Get contribute Page */
 			.get(pagesController.contributeController);
 
+		/**
+		 * Page with information of the contributors of Libreflix
+		 */
+		router.route('/contributors')
+			/** GET /contribute - Get contribute Page */
+			.get(pagesController.contributorsController);
+
 	return router;
 }
