@@ -261,7 +261,7 @@ exports.downloadGet = function(req, res) {
 }
 
 /**
- * DELETE some comment
+ * DELETE a comment
  */
 exports.commentDelete = function(req, res, next) {
   Comment.findOne({ _id: req.body.del }, function(err, comment){
