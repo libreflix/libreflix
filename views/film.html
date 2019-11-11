@@ -418,6 +418,32 @@ $(document).on('shown.bs.modal', '.modal', function () {
 
 
 
+        {# Inicio links externos para resenhas, notícias ou artigos sobre a obra #}
+        {%set referenceFlag = false %}
+
+        {% for r in reference %}
+          {% if loop.length > 0 %}
+          {% set referenceFlag = true %}
+          {% endif %}
+        {% endfor %}
+
+        {% if referenceFlag %}
+        <div class="row">
+          <hr>
+          <h3>  {{ t('Ligações externas') }}</h3>
+          {% for r in reference %}
+          <p>
+            <a href="{{r.url}}" target="_blank">
+              <i class="fa fa-external-link" aria-hidden="true"></i>
+              {{ r.title | title }}
+            </a>
+          </p>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {# Fim links externos para resenhas, notícias ou artigos sobre a obra #}
+
+
         <div class="row">
           <hr>
         <h3 id="comments">{{ t('Comentários')}}</h3>
@@ -520,31 +546,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
 
 
 
-        <!-- coment fim -->
-        {# Inicio links externos para resenhas, notícias ou artigos sobre a obra #}
-        {%set referenceFlag = false %}
-
-        {% for r in reference %}
-          {% if loop.length > 0 %}
-          {% set referenceFlag = true %}
-          {% endif %}
-        {% endfor %}
-
-        {% if referenceFlag %}
-        <div class="row">
-          <hr>
-          <h3>  {{ t('Ligações externas') }}</h3>
-          {% for r in reference %}
-          <p>
-            <a href="{{r.url}}" target="_blank">
-              <i class="fa fa-external-link" aria-hidden="true"></i>
-              {{ r.title | title }}
-            </a>
-          </p>
-          {% endfor %}
-        </div>
-        {% endif %}
-        {# Fim links externos para resenhas, notícias ou artigos sobre a obra #}
+        <!-- coment fim -->        
 
   		</div>
   		<div class="col-md-1">
