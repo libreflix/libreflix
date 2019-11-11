@@ -1026,7 +1026,7 @@ color: #FFF;
   /* color: #302851; */
   overflow-y: auto;
   padding: 30px;
-  height: 500px;
+  /* height: 500px; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
