@@ -133,7 +133,7 @@ body {
   line-height: 1.5 !important;
 	font-size: 17px;
   margin: 0 auto !important;
-	color: #AFAEAF !important;
+	color: #c2c2c2 !important;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -159,11 +159,11 @@ img {
   max-width: 100%;
 }
 a {
-  color: #c6c6c6 !important;
+  color: #e7e7e7 !important;
   text-decoration: none !important;
 }
 a:hover {
-  opacity: .7 !important;
+  opacity: .9 !important;
 }
 nav a {
   border-bottom: none;
@@ -1037,4 +1037,8 @@ color: #FFF;
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+}
+.institutional-page{
+  margin-left:  5% !important;
+  margin-right: 5% !important;
 }
