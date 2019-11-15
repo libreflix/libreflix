@@ -414,7 +414,7 @@
               <option value="waiting" {% if w.modComments.status == 'waiting' %} SELECTED {% endif %}>waiting</option>
               <option value="pending" {% if w.modComments.status == 'pending' %} SELECTED {% endif %}>pending</option>
               <option value="approved" {% if w.modComments.status == 'approved' %} SELECTED {% endif %}>approved</option>
-              <option value="approved" {% if w.modComments.status == 'paused' %} SELECTED {% endif %}>approved</option>
+              <option value="approved" {% if w.modComments.status == 'paused' %} SELECTED {% endif %}>paused</option>
               <option value="nonlibre" {% if w.modComments.status == 'nonlibre' %} SELECTED {% endif %}>nonlibre</option>
               <option value="offensive" {% if w.modComments.status == 'offensive' %} SELECTED {% endif %}>offensive</option>
               <option value="wrongtype" {% if w.modComments.status == 'wrongtype' %} SELECTED {% endif %}>wrongtype</option>
@@ -426,6 +426,8 @@
               <textarea type="text" class="form-control" name="modComments_comment" placeholder="Comentário">{{ w.modComments.comment }}</textarea>
             </div>
           </div>
+          {% else %}
+          <input type="text" name="modComments_status" value="pending" hidden>
           {% endif %}
         <!-- Fim -->
         <div class="form-group">
