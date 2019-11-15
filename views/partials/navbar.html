@@ -119,9 +119,10 @@ function doSearch(){
           <ul class="dropdown-menu">
             <li><a href="/u/{{ user.username }}"><i class="fa fa-user" aria-hidden="true"></i> {{ t('Meu Perfil') }}</a></li>
             <li><a href="/account"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{ t('Editar Conta') }}</a></li>
-            <!-- <li><a href="/list"><i class="fa fa-file-video-o" aria-hidden="true"></i> {{ t('Obras Enviadas') }}</a></li> -->
+            <li><a href="/list"><i class="fa fa-file-video-o" aria-hidden="true"></i> {{ t('Meus Envios') }}</a></li>
             {% if (user.adm) or (user.mod) %}
             <li class="divider"></li>
+            <li><a href="/uploader"> <i class="fa fa-cloud-upload" aria-hidden="true"></i> {{ t('Uploader') }}</a></li>
             <li><a href="/admin/list-watches"> <i class="fa fa-film" aria-hidden="true"></i> {{ t('Listar Filmes') }}</a></li>
             <li><a href="/admin/list-categories"><i class="fa fa-list" aria-hidden="true"></i> {{ t('Listar Categorias') }}</a></li>
             {% endif %}
