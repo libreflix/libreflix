@@ -105,7 +105,8 @@ var body = req.body;
       video: req.body.video,
       thumb480: req.body.thumb480,
       imgbg: req.body.imgbg,
-      tags: req.body.tags
+      tags: req.body.tags,
+      status: "pending"
     });
     watch.save(function(err) {
       //req.logIn(campanha, function(err) {
@@ -245,7 +246,9 @@ var body = req.body;
     /* ModComments */
     watch.modComments.moderator = req.user.id;
     watch.modComments.status = req.body.modComments_status;
-    watch.status = req.body.status;
+    if (req.body.modComments_status != "") {
+      watch.status = req.body.modComments_status;
+    }    
     watch.modComments.comment = req.body.modComments_comment;
 
     if (req.body.modComments_status_old != req.body.modComments_status) {
