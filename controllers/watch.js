@@ -246,7 +246,7 @@ var body = req.body;
     /* ModComments */
     watch.modComments.moderator = req.user.id;
     watch.modComments.status = req.body.modComments_status;
-    if (req.body.modComments_status == "") {
+    if (req.user.mod || req.user.adm) {
       watch.status = req.body.modComments_status;
     }
     watch.modComments.comment = req.body.modComments_comment;
