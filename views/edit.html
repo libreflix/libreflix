@@ -406,7 +406,9 @@
 
           <!-- Comentários dos moderadores -->
           {{user.adm}}
+
           {{user.mod}}
+
           {% if user.adm or user.mod %}
           <hr>
           <legend>{{t('Comentários dos moderadores')}}</legend>
@@ -428,8 +430,9 @@
               <textarea type="text" class="form-control" name="modComments_comment" placeholder="Comentário">{{ w.modComments.comment }}</textarea>
             </div>
           </div>
-          {% else %}
-          <input type="text" name="modComments_status" value="pending" hidden>
+          {% endif %}
+          {% if (user.adm or user.mod) == "" %}
+            <input type="text" name="modComments_status" value="{{w.modComments.status}}" hidden>
           {% endif %}
         <!-- Fim -->
         <div class="form-group">
