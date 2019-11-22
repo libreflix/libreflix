@@ -1042,3 +1042,9 @@ color: #FFF;
   margin-left:  5% !important;
   margin-right: 5% !important;
 }
+.ep-list{
+  width: 100%;
+}
+.ep-list td{
+  padding-bottom: 5px;
+}
