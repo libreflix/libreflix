@@ -11,6 +11,13 @@ const bodyParser = require('body-parser');
 exports.watchGet = function(req, res){
   Watch.findOne({ 'permalink': req.params.permalink }, function(err, w){
 
+    if( req.params.ep_number ){
+      ep_number = req.params.ep_number - 1;
+    }
+    else {
+      ep_number = 0;
+    }
+
     var isMobile = false
     var isDesktop = false
     // to test if desktop
@@ -22,18 +29,23 @@ exports.watchGet = function(req, res){
       isMobile = true
     }
 
-    if (!w) {
-      return res.redirect('/404');
-    }
-    if( (req.headers.referer !== "http://localhost:3998/i/"+ w.permalink) &&
-        (req.headers.referer !== "https://libreflix.org/i/"+ w.permalink)){
+
+    if(typeof req.headers.referer !== 'undefined'){
+      if( (req.headers.referer.match(/^https?:\/\/([^\/]+\.)?libreflix\.org(\/|$)/i)) &&
+          (req.headers.referer.match(/^https?:\/\/([^\/]+\.)?localhost:3998(\/|$)/i)) ){
+        return res.redirect('/i/'+ w.permalink);
+      }
+    } else {
       return res.redirect('/i/'+ w.permalink);
     }
+
     if (w.useWatchV2) {
       res.render('watchv2', {
         title: w.title,
         isMobile: isMobile,
         isDesktop: isDesktop,
+        w_eps: w.eps[ep_number],
+        next_episode: ep_number + 2,
         w: w
       })
     }

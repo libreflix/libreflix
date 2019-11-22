@@ -391,6 +391,26 @@ $(document).on('shown.bs.modal', '.modal', function () {
 
         </div>
 
+        {% if film.layout == "serie" or film.layout == "series "%}
+        <div class="row">
+          <hr>
+          <h3>{{ t('Episódios') }}</h3>
+            <table class="ep-list">
+                <tbody>
+                  {% for ep in film.eps %}
+                    <tr class="">
+                        <td><span>{{loop.index}}.</span></td>
+                        <td>
+                          <a href="/assistir/{{film.permalink}}/ep/{{loop.index}}">{{ ep.subtitle }}</a>
+                        </td>
+                        <!-- <td class="ep-list__duration" colspan="2">{{ ep.duration }} min.</td> -->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
         <div class="row">
           <hr>
           <h3 id="rating">{{ t('Avaliações') }}</h3>
@@ -546,7 +566,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
 
 
 
-        <!-- coment fim -->        
+        <!-- coment fim -->
 
   		</div>
   		<div class="col-md-1">
