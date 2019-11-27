@@ -81,5 +81,9 @@ module.exports = function(router){
 			/** GET /contribute - Get contribute Page */
 			.get(pagesController.contributorsController);
 
+		router.route('/agradecimentos')
+			/** GET /contribute - Get contribute Page */
+			.get(pagesController.contributorsController);
+
 	return router;
 }
