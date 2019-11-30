@@ -17,7 +17,7 @@
     "express-flash": "0.0.2",
     "express-processimage": "^7.9.0",
     "express-session": "^1.2.1",
-    "express-validator": "^2.20.4",
+    "express-validator": "5",
     "formidable": "^1.0.17",
     "fs-extra": "5.0.0",
     "marked": "^0.3.12",
