@@ -4,7 +4,7 @@ services:
   database:
       logging:
         driver: none
-      image: mongo:latest
+      image: mongo:4.2.1
       ports:
           - "27019:27017"
       environment:
