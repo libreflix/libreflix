@@ -116,6 +116,7 @@ player.on('pause', event => {
 
 player.on('ended', event => {
   player.destroy();
+  document.getElementById('player').style.visibility = "hidden";
 
    //é aqui {{w_eps.last}}
    //é aqui {{ not w_eps.last}}
