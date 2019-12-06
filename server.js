@@ -1,21 +1,22 @@
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var compression = require('compression');
-var methodOverride = require('method-override');
-var session = require('express-session');
-var flash = require('express-flash');
-var bodyParser = require('body-parser');
-var expressValidator = require('express-validator');
-var dotenv = require('dotenv');
-var nunjucks = require('nunjucks');
-var markdown = require('nunjucks-markdown');
-var marked = require('marked');
-var mongoose = require('mongoose');
-var elasticsearch = require('elasticsearch');
-var passport = require('passport');
-var routes = require('./routes');
-var processImage = require('express-processimage');
+import express from 'express';
+const path = require('path');
+const logger = require('morgan');
+const compression = require('compression');
+const methodOverride = require('method-override');
+const session = require('express-session');
+const flash = require('express-flash');
+const bodyParser = require('body-parser');
+const expressValidator = require('express-validator');
+const dotenv = require('dotenv');
+const nunjucks = require('nunjucks');
+const markdown = require('nunjucks-markdown');
+const marked = require('marked');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const routes = require('./routes');
+const processImage = require('express-processimage');
+import { ApolloServer } from 'apollo-server-express';
+import schema from './graphql/title.js';
 
 // Load environment variables from .env file
 dotenv.load();
@@ -23,7 +24,11 @@ dotenv.load();
 // Passport OAuth strategies
 require('./config/passport');
 
-var app = express();
+const app = express();
+
+
+const server = new ApolloServer({ schema });
+server.applyMiddleware({ app });
 
 mongoose.connect(process.env.DB_PATH);
 
@@ -53,6 +58,7 @@ app.use(session({ secret: process.env.SESSION_SECRET, resave: true, saveUninitia
 app.use(flash());
 app.use(passport.initialize());
 app.use(passport.session());
+app.set('uploadDir', path.join(__dirname, '/public/media/'));
 app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();
@@ -71,7 +77,6 @@ app.use(express.static(path.join(__dirname, 'public')));
  * Setup Routes
  */
 routes.init(app, passport);
-uploadDir = path.join(__dirname, '/public/media/');
 
 // Production error handler
 if (app.get('env') === 'production') {

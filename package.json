@@ -1,31 +1,40 @@
 {
   "name": "libreflix",
   "version": "1.0.0",
-  "description": "",
+  "description": "Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar. ",
+  "repository": "https://libregit.org/libreflix",
+  "license": "AGPL-3.0-only",
   "scripts": {
-    "start": "node server.js",
-    "start-dev": "nodemon server.js"
+    "start": "babel-node server.js",
+    "start-dev": "npx nodemon --exec 'npx babel-node server.js'"
   },
   "dependencies": {
+    "apollo-server": "^2.9.13",
+    "apollo-server-express": "^2.9.13",
     "async": "^1.5.2",
     "bcrypt-nodejs": "^0.0.3",
     "body-parser": "^1.15.1",
     "compression": "^1.6.2",
     "dotenv": "^2.0.0",
-    "elasticsearch": "^13.3.1",
-    "express": "^4.13.4",
+    "elasticsearch": "^16.5.0",
+    "esm": "^3.2.25",
+    "express": "^4.17.1",
     "express-flash": "0.0.2",
-    "express-processimage": "^7.9.0",
+    "express-processimage": "^9.0.0",
     "express-session": "^1.2.1",
     "express-validator": "5",
     "formidable": "^1.0.17",
     "fs-extra": "5.0.0",
-    "marked": "^0.3.12",
+    "graphql": "^14.5.8",
+    "graphql-compose": "^7.6.1",
+    "graphql-compose-mongoose": "^7.3.0",
+    "marked": "^0.7.0",
     "method-override": "^2.3.5",
-    "mongoose": "4.9.2",
+    "mongoose": "^5.7.13",
     "morgan": "^1.7.0",
-    "nodemailer": "^2.3.0",
-    "nunjucks": "^2.4.1",
+    "nodemailer": "^6.4.0",
+    "nodemon": "^2.0.1",
+    "nunjucks": "^3.2.0",
     "nunjucks-markdown": "^2.0.1",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
@@ -34,8 +43,10 @@
     "passport-twitter": "^1.0.4",
     "uuid": "^3.1.0"
   },
-  "devDependencies": {},
-  "engines": {
-    "node": "^6.1.0"
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/node": "^7.2.0",
+    "@babel/cli": "^7.2.0",
+    "@babel/preset-env": "^7.2.0"
   }
 }

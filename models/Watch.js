@@ -1,6 +1,6 @@
-var mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
-var schemaOptions = {
+const schemaOptions = {
   timestamps: true,
   toJSON: {
     virtuals: true
@@ -10,7 +10,7 @@ var schemaOptions = {
 const getTags = tags => tags.join(', ');
 const setTags = tags => tags.split(', ');
 
-var watchSchema = new mongoose.Schema({
+const schema = new mongoose.Schema({
   /* Internal */
   permalink: {type: String, unique: true},
   criador: { type : mongoose.Schema.ObjectId, ref : 'User' },
@@ -83,6 +83,6 @@ var watchSchema = new mongoose.Schema({
 }, schemaOptions);
 
 
-var Watch = mongoose.model('Watch', watchSchema);
+const Watch = mongoose.model('Watch', schema);
 
-module.exports = Watch;
+export default Watch;

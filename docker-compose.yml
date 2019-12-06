@@ -18,7 +18,7 @@ services:
       volumes:
         - ./:/libreflix
         - /libreflix/node_modules
-      command: nodemon -e js,html,css,md server.js
+      command: "npm run start"
       ports:
         - "3998:3998"
       links:
