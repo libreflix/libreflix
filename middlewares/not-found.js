@@ -1,6 +1,6 @@
 'use strict';
 
-const Watch = require('../models/Watch');
+import Watch from '../models/Watch';
 
 /**
  * Resolve 404 with 2 last uploaded productions

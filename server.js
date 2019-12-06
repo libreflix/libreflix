@@ -30,7 +30,7 @@ const app = express();
 const server = new ApolloServer({ schema });
 server.applyMiddleware({ app });
 
-mongoose.connect(process.env.DB_PATH);
+mongoose.connect(process.env.DB_PATH, { useNewUrlParser: true,  useUnifiedTopology: true, });
 
 mongoose.connection.on('error', function() {
   console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');

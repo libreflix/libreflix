@@ -1,4 +1,4 @@
-let Watch = require('../models/Watch');
+import Watch from '../models/Watch';
 
 /* Nunjucks custom filter */
 var nunjucks = require('nunjucks');

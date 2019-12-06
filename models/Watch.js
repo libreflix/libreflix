@@ -15,7 +15,7 @@ const schema = new mongoose.Schema({
   permalink: {type: String, unique: true},
   criador: { type : mongoose.Schema.ObjectId, ref : 'User' },
   layout: String,
-  featured: String,
+  featured: String, 
   status: String,
   top: String,
   mod_message: String,

@@ -18,7 +18,7 @@ services:
       volumes:
         - ./:/libreflix
         - /libreflix/node_modules
-      command: "npm run start"
+      command: "npm run start-dev"
       ports:
         - "3998:3998"
       links:
