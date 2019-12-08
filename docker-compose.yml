@@ -6,7 +6,7 @@ services:
         driver: none
       image: mongo:latest
       ports:
-          - "27019:27017"
+          - "27017:27017"
       environment:
           - MONGODB_DATABASE="libreflix"
           - MONGODB_USER="libreflix"

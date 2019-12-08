@@ -1,11 +1,6 @@
 'use strict';
 
-var User = require('../models/User');
-var Watch = require('../models/Watch');
-var mongoose = require('mongoose');
-const bodyParser = require('body-parser');
 var elasticsearch = require('elasticsearch');
-
 
 
 var client = new elasticsearch.Client({

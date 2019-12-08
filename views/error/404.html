@@ -49,7 +49,7 @@
 								<div class="tab-content">
 									<div id="resumo{{ loop.index }}" class="tab-pane fade in active">
 										<div class="sinopse">{{ watch.sinopse }}</div>
-										<h4> Tags: {% set list1 = watch.tags.split(',') %}{% for list in list1 %}
+										<h4> Tags: {% set list1 = watch.tags %}{% for list in list1 %}
 											<a href="/t/{{ list | trim}}">{{ list | trim}}</a>{%if loop.index0 < loop.length-1 %}, {%endif%}{% endfor %}
 										</h4>
 									</div>

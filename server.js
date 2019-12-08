@@ -16,7 +16,7 @@ const passport = require('passport');
 const routes = require('./routes');
 const processImage = require('express-processimage');
 import { ApolloServer } from 'apollo-server-express';
-import schema from './graphql/title.js';
+import schema from './graphql/schema.js';
 
 // Load environment variables from .env file
 dotenv.load();

@@ -1,15 +1,15 @@
-var crypto = require('crypto');
-var bcrypt = require('bcrypt-nodejs');
-var mongoose = require('mongoose');
+import crypto from 'crypto';
+import bcrypt from 'bcrypt-nodejs';
+import mongoose from 'mongoose';
 
-var schemaOptions = {
+const schemaOptions = {
   timestamps: true,
   toJSON: {
     virtuals: true
   }
 };
 
-var userSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   username: {type: String, unique: true},
   email: {type: String, unique: true},
   name: String,
@@ -62,4 +62,4 @@ userSchema.options.toJSON = {
 
 var User = mongoose.model('User', userSchema);
 
-module.exports = User;
+export default User;

@@ -1,8 +1,4 @@
-let Watch = require('../models/Watch');
-
-
-
-
+import Watch from '../models/Watch';
 /**
  * GET /
  */

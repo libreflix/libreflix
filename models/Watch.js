@@ -43,11 +43,11 @@ const schema = new mongoose.Schema({
     lon: String
   },
   crew: {
-    director:  { type: [], get: getTags, set: setTags },
-    screenplay:  { type: [], get: getTags, set: setTags },
-    producer:  { type: [], get: getTags, set: setTags },
-    cast:  { type: [], get: getTags, set: setTags },
-    editor:  { type: [], get: getTags, set: setTags },
+    director:  { type: [String] },
+    screenplay:  { type: [String] },
+    producer:  { type: [String] },
+    cast:  { type: [String] },
+    editor:  { type: [String] },
     other: String,
   },
 
@@ -61,7 +61,7 @@ const schema = new mongoose.Schema({
   trailer: String,
   quality: String,
   audio_language: String,
-  srt_language: { type: [], get: getTags, set: setTags },
+  srt_language: { type: [String] },
 
   /* Files and Download*/
   file: {
@@ -71,7 +71,7 @@ const schema = new mongoose.Schema({
   },
 
   /* Categories */
-  tags: { type: [], get: getTags, set: setTags },
+  tags: { type: [String] },
 
   /* For Series */
   n_eps: Number,

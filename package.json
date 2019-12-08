@@ -6,7 +6,7 @@
   "license": "AGPL-3.0-only",
   "scripts": {
     "start": "babel-node server.js",
-    "start-dev": "npx nodemon --exec 'npx babel-node server.js'"
+    "start-dev": "npx nodemon --exec 'npx babel-node --inspect server.js'"
   },
   "dependencies": {
     "apollo-server": "^2.9.13",

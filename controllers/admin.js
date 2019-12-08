@@ -1,6 +1,4 @@
-var User = require('../models/User');
-let Watch = require('../models/Watch');
-var mongoose = require('mongoose');
+import Watch from '../models/Watch';
 
 exports.listWatches = (req, res) => {
 

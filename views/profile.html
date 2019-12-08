@@ -95,7 +95,7 @@
               <div id="resumo{{ loop.index }}" class="tab-pane fade in active">
                 <!-- <h4>Resumo</h4> -->
                 <div class="sinopse">{{ w.sinopse }}</div>
-                <h4> Tags: {% set list1 = w.tags.split(',') %}{% for list in list1 %}<a href="/t/{{ list | trim}}">{{ list | trim}}</a>{%if loop.index0 < loop.length-1 %}, {%endif%}{% endfor %}</h4>
+                <h4> Tags: {% set list1 = w.tags %}{% for list in list1 %}<a href="/t/{{ list | trim}}">{{ list | trim}}</a>{%if loop.index0 < loop.length-1 %}, {%endif%}{% endfor %}</h4>
               </div>
               <!-- <div id="creditos{{ loop.index }}" class="tab-pane fade">
                 <h4>Créditos e Elenco</h4>

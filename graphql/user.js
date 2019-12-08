@@ -1,16 +1,18 @@
-import mongoose from "mongoose";
+import User from '../models/User'
+import { composeWithMongoose } from "graphql-compose-mongoose";
 
-const UserSchema = new mongoose.Schema(
-  {
-    firstName: String,
-    lastName: String,
-    pasword: String
-  },
-  {
-    timestamps: true
-  }
-);
+const customizationOptions = {
+    fields: {
+      remove: ['password','passwordResetToken', 'passwordResetExpires', '_id']
+    }
+  };
+const UserTC = composeWithMongoose(User, customizationOptions);
+UserTC.addFields({
+    id: {
+      type: 'String!',
+      resolve: source => source._id
+    }
+});
+  
 
-const User = mongoose.model("User", UserSchema);
-export default User;
-
+export default UserTC;

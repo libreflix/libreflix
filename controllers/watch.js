@@ -1,4 +1,4 @@
-var Watch = require('../models/Watch');
+import Watch from '../models/Watch';
 var mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 

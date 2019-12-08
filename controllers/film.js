@@ -1,10 +1,6 @@
 'use strict';
 
-var User = require('../models/User');
-var Watch = require('../models/Watch');
-var mongoose = require('mongoose');
-const bodyParser = require('body-parser');
-
+import Watch from '../models/Watch';
 
 /**
  * Get the Film info page

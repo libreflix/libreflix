@@ -5,7 +5,7 @@ var TwitterStrategy = require('passport-twitter').Strategy;
 var GithubStrategy = require('passport-github').Strategy;
 
 
-var User = require('../models/User');
+import User from '../models/User';
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);

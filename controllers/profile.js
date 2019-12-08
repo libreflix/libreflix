@@ -1,9 +1,7 @@
 'use strict';
 
-var User = require('../models/User');
-var Watch = require('../models/Watch');
-var mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+import User from '../models/User';
+import Watch from '../models/Watch';
 
 
 /**
