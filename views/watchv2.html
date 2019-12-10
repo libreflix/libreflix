@@ -222,16 +222,44 @@
   </style>
 </head>
 
-<body onload="startPage()">
+<body>
   <button type="button" id="exit-button" class="exit-button" onClick="voltar()">
     <a href="javascript:;">
       <img src="/img/ico-exit.png">
     </a>
   </button>
 
-    <video id="player" playsinline controls>
-    </video>
+    <video id="player" poster="{{w.imgbg}}" playsinline controls>
 
+    {% if isMobile and w.layout == "serie" %}
+    {% if w_eps.webseed.sd %}
+    <source src="{{ w_eps.webseed.sd}}" type="video/mp4" size="480" label="Baixa"/>
+    {% endif %}
+    {% if w_eps.webseed.hd %}
+    <source src="{{ w_eps.webseed.hd}}" type="video/mp4" size="720" label="Média"/>
+    {% endif %}
+    {% if w_eps.webseed.fhd %}
+    <source src="{{ w_eps.webseed.fhd}}" type="video/mp4" size="1080" label="Alta"/>
+    {% endif %}
+    {% endif %}
+
+
+    {% if isMobile and w.layout != "serie" %}
+    {% if w.webseed.sd %}
+    <source src="{{ w.webseed.sd | safe }}" type="video/mp4" size="480" label="Baixa"/>
+    {% endif %}
+    {% if w.webseed.hd %}
+    <source src="{{ w.webseed.hd | safe }}" type="video/mp4" size="720" label="Média"/>
+    {% endif %}
+    {% if w.webseed.fhd %}
+    <source src="{{ w.webseed.fhd | safe }}" type="video/mp4" size="1080" label="Alta"/>
+    {% endif %}
+    {% endif %}
+
+    {% if w.subs.pt_br %}<track kind="captions" label="Português" src="{{w.subs.pt_br}}" srclang="pt">{% endif %}
+    {% if w.subs.en %}<track kind="captions" label="English" src="{{ w.subs.en }}" srclang="en">{% endif %}
+    {% if w.subs.es %}<track kind="captions" label="Español" src="{{ w.subs.es }}" srclang="es">{% endif %}
+    </video>
     <div id="pl-imgbg" class="stretch"></div>
 
 
@@ -261,7 +289,7 @@
           </div>
         </div>
       </div>
-      <div id="pl-watch-again" class="stretch" onClick="window.location.reload()"></div>
+      <div id="pl-watch-again" class="stretch"></div>
     </div>
     {% endif %}
 
