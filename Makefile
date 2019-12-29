@@ -22,5 +22,5 @@ bash:
 logs:
 	docker-compose logs -f
 
-test:
+tests:
 	docker-compose exec libreflix npm test
