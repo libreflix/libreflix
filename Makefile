@@ -22,5 +22,5 @@ bash:
 logs:
 	docker-compose logs -f
 
-tests:
-	echo "Under development..."
+test:
+	docker-compose exec libreflix npm test
