@@ -42,34 +42,34 @@ make env
 
 Finally, use Docker to deploy:
 ``` bash
-make run
+make docker-run
 ```
 
 Pronto! Now access on your browser [http://localhost:3998](http://localhost:3998)
 
 To run unit tests and check code coverage:
 ``` bash
-make tests
+make docker-test
 ```
 
 Checking Docker containers status:
 ``` bash
-make status
+make docker-status
 ```
 
 To view logs in real time:
 ``` bash
-make logs
+make docker-logs
 ```
 
 Stopping all containers:
 ``` bash
-make down
+make docker-down
 ```
 
 Destroy all data:
 ``` bash
-make destroy
+make docker-destroy
 ```
 
 # Apoio

@@ -1,26 +1,37 @@
 env:
 	cp .env.sample .env
 
-build:
+docker-build:
 	docker-compose build
 
-run:
+docker-run:
 	docker-compose up -d
 
-down:
+docker-down:
 	docker-compose down
 
-destroy:
+docker-destroy:
 	docker-compose down -v
 
-status:
+docker-status:
 	docker-compose ps
 
-bash:
+docker-bash:
 	docker-compose exec libreflix /bin/bash
 
-logs:
+docker-logs:
 	docker-compose logs -f
 
-tests:
+docker-test:
 	docker-compose run --rm libreflix npm test
+
+npm-build:
+	npm install . 
+	npm install express
+	npm install -g nodemon
+	npm audit fix --force
+	npm install elasticsearch --save
+	npm install jest --global
+
+npm-test:
+	npm test
