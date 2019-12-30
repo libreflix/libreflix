@@ -23,4 +23,4 @@ logs:
 	docker-compose logs -f
 
 tests:
-	docker-compose exec libreflix npm test
+	docker-compose run --rm libreflix npm test
