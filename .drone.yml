@@ -2,6 +2,6 @@ pipeline:
   build:
     image: docker:stable
     commands:
-      - apk add make
+      - apk add make docker-compose
       - make env
       - make tests
