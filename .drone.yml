@@ -1,0 +1,6 @@
+pipeline:
+  build:
+    image: docker:stable
+    commands:
+      - make env
+      - make tests
