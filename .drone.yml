@@ -1,7 +1,7 @@
 pipeline:
   build:
-    image: docker:stable
+    image: node:10
     commands:
-      - apk add make docker-compose
       - make env
-      - make tests
+      - make npm-build
+      - make npm-test
