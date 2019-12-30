@@ -27,11 +27,11 @@ docker-test:
 
 npm-build:
 	npm install . 
-	npm install express
-	npm install -g nodemon
+	npm install express@4.13.4
+	npm install -g nodemon@2.0.1
 	npm audit fix --force
-	npm install elasticsearch --save
-	npm install jest --global
+	npm install elasticsearch@16.5.0 --save
+	npm install jest --global@24.9.0
 
 npm-test:
 	npm test
