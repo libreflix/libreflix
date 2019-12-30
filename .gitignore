@@ -10,3 +10,4 @@ coverage/
 .env
 server.bat
 notes.md
+coverage/
