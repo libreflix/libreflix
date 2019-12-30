@@ -1,4 +1,6 @@
 ![Logo da libreflix](assets/img/libreflix.png)
+
+[![Build Status](https://ci.ayrlabs.org/api/badges/librefix/libreflix/status.svg)](https://ci.ayrlabs.org/libreflix/libreflix)
 -----
 [![Build Status](https://ci.ayrlabs.org/api/badges/libreflix/libreflix/status.svg)](https://ci.ayrlabs.org/libreflix/libreflix)
 ## Sobre
