@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y \
  #Getting Node
  RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
  RUN apt-get update
- RUN apt-get install -y nodejs=10.17.0-1nodesource1
+ RUN apt-get install -y nodejs=10.18.1-1nodesource1
  RUN apt-get install -y build-essential=12.6
 
 # Define working directory.
