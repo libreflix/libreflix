@@ -20,7 +20,7 @@ Nós defendemos novas formas de compartilhamento da cultura. Formas que atinjam 
 
 ## Jeitos de ajudar
 - Contribua com o código-fonte do programa
-- Ajuda na nossa campanha de financiamento coletivo https://acredito.me/libreflix
+- Ajuda na nossa campanha de financiamento coletivo https://catarse.me/libreflix
 - Entre em contato para ser um moderador de conteúdo
 - Divulgue, compartilhe, baixe e mostra para os amigos sobre a paltaforma
 
