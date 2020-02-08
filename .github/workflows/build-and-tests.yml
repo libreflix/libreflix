@@ -1,0 +1,17 @@
+name: Build and Tests
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: node:10
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Generate build environment
+      run: make env
+    - name: Build dependencies
+      run: make npm-build
+    - name: Run tests
+      run: make npm-test
