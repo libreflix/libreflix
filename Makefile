@@ -1,6 +1,12 @@
 env:
 	cp .env.sample .env
 
+configure-nodejs:    
+	curl -sL https://deb.nodesource.com/setup_10.x | bash -
+	apt-get update
+	apt-get install -y nodejs=10.19.0-1nodesource1
+	rm -rf /var/lib/apt/lists/*
+
 docker-build:
 	docker-compose build
 
