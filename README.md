@@ -1,5 +1,6 @@
 ![Logo da libreflix](assets/img/libreflix.png)
 -----
+[![Build Status](https://ci.ayrlabs.org/api/badges/libreflix/libreflix/status.svg)](https://ci.ayrlabs.org/libreflix/libreflix)
 ## Sobre
 
 Libreflix é uma plataforma de streaming livre e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.
