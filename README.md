@@ -42,7 +42,7 @@ Finally, use Docker-Compose to deploy
 sudo docker-compose up --build
 ```
 
-Ready! Now access on your browser [http://localhost:3998](http://localhost:3998)
+Pronto! Now access on your browser [http://localhost:3998](http://localhost:3998)
 
 
 # Apoio
