@@ -1,4 +1,6 @@
 ![Logo da libreflix](assets/img/libreflix.png)
+
+[![Build Status](https://ci.ayrlabs.org/api/badges/librefix/libreflix/status.svg)](https://ci.ayrlabs.org/libreflix/libreflix)
 -----
 [![Build Status](https://ci.ayrlabs.org/api/badges/libreflix/libreflix/status.svg)](https://ci.ayrlabs.org/libreflix/libreflix)
 ## Sobre
@@ -33,18 +35,42 @@ git clone https://libregit.org/libreflix/libreflix
 cd libreflix
 ```
 
-Copy environment file
+Generate environment file:
 ``` bash
-cp .env.sample .env
+make env
 ```
 
-Finally, use Docker-Compose to deploy
+Finally, use Docker to deploy:
 ``` bash
-sudo docker-compose up --build
+make docker-run
 ```
 
 Pronto! Now access on your browser [http://localhost:3998](http://localhost:3998)
 
+To run unit tests and check code coverage:
+``` bash
+make docker-test
+```
+
+Checking Docker containers status:
+``` bash
+make docker-status
+```
+
+To view logs in real time:
+``` bash
+make docker-logs
+```
+
+Stopping all containers:
+``` bash
+make docker-down
+```
+
+Destroy all data:
+``` bash
+make docker-destroy
+```
 
 # Apoio
 
