@@ -142,11 +142,11 @@ exports.favoriteGet = function(req, res, next) {
   if (req.xhr || req.accepts('json,html') === 'json') {
     console.log('OI');
     console.log(req.body.u);
-    
+
     Watch.findOne({ 'permalink': req.params.permalink }, function(err, watch){
-      
+
       var phash = req.user.id + watch.id
-      
+
       Interaction.findOne({'proofhash': phash}, function(err, interaction){
         // If there is a interaction...
         // Para salvar no BD
@@ -188,13 +188,13 @@ exports.alreadyWatchedGet = function(req, res, next) {
   if (req.xhr || req.accepts('json,html') === 'json') {
     console.log('OI');
     console.log(req.body.u);
-    
-    
+
+
 
     Watch.findOne({ 'permalink': req.params.permalink }, function(err, watch){
-      
+
       var phash = req.user.id + watch.id
-      
+
       Interaction.findOne({'proofhash': phash}, function(err, interaction){
         // If there is a interaction...
         // Para salvar no BD
@@ -259,3 +259,17 @@ exports.downloadGet = function(req, res) {
     })
   })
 }
+
+/**
+ * DELETE a comment
+ */
+exports.commentDelete = function(req, res, next) {
+  Comment.findOne({ _id: req.body.del }, function(err, comment){
+    if(comment.creator == req.user.id || req.user.adm ){
+      Comment.remove({ _id: req.body.del }, function(err) {
+        req.flash('info', { msg: 'O comentário foi excluída com sucesso.' });
+        res.redirect(req.originalUrl.replace("?_method=DELETE","") + "#comments");
+      })
+    }
+  })
+};

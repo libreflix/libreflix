@@ -98,7 +98,7 @@ function log (str) {
 
 
 player.on('play', event => {
-  setTimeout(function(){ document.getElementById("exit-button").style.opacity = "0"; }, 2000);
+
 });
 player.on('playing', event => {
   document.getElementById("pl-imgbg").style.visibility = "hidden";
@@ -110,4 +110,8 @@ player.on('pause', event => {
   document.getElementById("exit-button").style.opacity = "0.9";
   document.getElementById("pl-player-title").style.visibility = "visible";
   document.getElementById("logo_libre").style.opacity = "1";
+});
+
+player.on('loadeddata', event => {
+  player.currentTime = player.currentTime;
 });

@@ -119,6 +119,10 @@ var watchSchema = new mongoose.Schema({
   eps: [{   last: Boolean,
             subtitle : String,
             video : String,
+            duration: Number,
+            magnet: {ld: String, sd: String, hd: String, fhd: String, uhd: String},
+            webseed: {ld: String, sd: String, hd: String, fhd: String, uhd: String},
+            subs: {pt_br: String, en: String, es: String},            
             thumb480 : String,
             thumb130 : String}]
 }, schemaOptions);

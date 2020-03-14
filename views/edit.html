@@ -20,7 +20,7 @@
 {% block body %}
 
 
-{% if user.mod or user.adm or (w.criador.id == user.id and (w.status == "waiting" or w.status == "pending")) %}
+{% if user.mod or user.adm or (w.criador.id == user.id and (w.modComments.status == "waiting" or w.modComments.status == "pending")) %}
 
 <div class="container-fluid">
   {% if messages.success %}
@@ -405,6 +405,10 @@
 
 
           <!-- Comentários dos moderadores -->
+          {{user.adm}}
+
+          {{user.mod}}
+
           {% if user.adm or user.mod %}
           <hr>
           <legend>{{t('Comentários dos moderadores')}}</legend>
@@ -414,7 +418,7 @@
               <option value="waiting" {% if w.modComments.status == 'waiting' %} SELECTED {% endif %}>waiting</option>
               <option value="pending" {% if w.modComments.status == 'pending' %} SELECTED {% endif %}>pending</option>
               <option value="approved" {% if w.modComments.status == 'approved' %} SELECTED {% endif %}>approved</option>
-              <option value="approved" {% if w.modComments.status == 'paused' %} SELECTED {% endif %}>approved</option>
+              <option value="approved" {% if w.modComments.status == 'paused' %} SELECTED {% endif %}>paused</option>
               <option value="nonlibre" {% if w.modComments.status == 'nonlibre' %} SELECTED {% endif %}>nonlibre</option>
               <option value="offensive" {% if w.modComments.status == 'offensive' %} SELECTED {% endif %}>offensive</option>
               <option value="wrongtype" {% if w.modComments.status == 'wrongtype' %} SELECTED {% endif %}>wrongtype</option>
@@ -426,6 +430,9 @@
               <textarea type="text" class="form-control" name="modComments_comment" placeholder="Comentário">{{ w.modComments.comment }}</textarea>
             </div>
           </div>
+          {% endif %}
+          {% if user.adm == "" or user.mod == "" %}
+            <input type="text" name="modComments_status" value="{{w.modComments.status}}" hidden>
           {% endif %}
         <!-- Fim -->
         <div class="form-group">

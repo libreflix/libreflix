@@ -80,6 +80,16 @@ module.exports = function(router){
 		router.route('/get-involved')
 			/** GET /contribute - Get contribute Page */
 			.get(pagesController.getInvolvedController);
+		 
+			// Page with information of the contributors of Libreflix
+		 
+		router.route('/thanks')
+			/** GET /contribute - Get contribute Page */
+			.get(pagesController.contributorsController);
+
+		router.route('/agradecimentos')
+			/** GET /contribute - Get contribute Page */
+			.get(pagesController.contributorsController);
 
 	return router;
 }

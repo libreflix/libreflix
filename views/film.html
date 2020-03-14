@@ -15,15 +15,15 @@ $(document).on('shown.bs.modal', '.modal', function () {
 <meta property="og:image" content="{{ film.thumb480 }}" />
 <meta property="og:type" content="video.movie" />
 <meta property="og:url" content="https://libreflix.org/i/{{ film.permalink }}" />
-<meta property="og:title" content="'{{title}} - Libreflix" />
+<meta property="og:title" content="{{t('Assista agora')}} {{title}} - Libreflix" />
 <meta property="og:video" content="https://libreflix.org/assistir/{{ film.permalink }}" />
 <meta property="og:description" content="{{ film.sinopse }}" />
 <meta property="og:url" content="https://libreflix.org/assistir/{{ film.permalink}}" />
 <meta property="og:site_name" content="Libreflix" />
 
 <!-- twitter metatags-->
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="{{title}} - Libreflix">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{t('Assista agora')}} {{title}} - Libreflix">
 <meta name="twitter:description" content="{{ film.sinopse }}">
 <meta name="twitter:image" content="{{ film.thumb480 }}">
 
@@ -423,6 +423,26 @@ a2a_config.locale = "pt-BR";
 
         </div>
 
+        {% if film.layout == "serie" or film.layout == "series "%}
+        <div class="row">
+          <hr>
+          <h3>{{ t('Episódios') }}</h3>
+            <table class="ep-list">
+                <tbody>
+                  {% for ep in film.eps %}
+                    <tr class="">
+                        <td><span>{{loop.index}}.</span></td>
+                        <td>
+                          <a href="/assistir/{{film.permalink}}/ep/{{loop.index}}">{{ ep.subtitle }}</a>
+                        </td>
+                        <!-- <td class="ep-list__duration" colspan="2">{{ ep.duration }} min.</td> -->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
         <div class="row">
           <hr>
           <h3 id="rating">{{ t('Avaliações') }}</h3>
@@ -450,12 +470,37 @@ a2a_config.locale = "pt-BR";
 
 
 
-        {#
+        {# Inicio links externos para resenhas, notícias ou artigos sobre a obra #}
+        {%set referenceFlag = false %}
+
+        {% for r in reference %}
+          {% if loop.length > 0 %}
+          {% set referenceFlag = true %}
+          {% endif %}
+        {% endfor %}
+
+        {% if referenceFlag %}
         <div class="row">
           <hr>
-        <h3>{{ t('Comentários')}}</h3>
+          <h3>  {{ t('Ligações externas') }}</h3>
+          {% for r in reference %}
+          <p>
+            <a href="{{r.url}}" target="_blank">
+              <i class="fa fa-external-link" aria-hidden="true"></i>
+              {{ r.title | title }}
+            </a>
+          </p>
+          {% endfor %}
         </div>
-        <!-- coment inicio -->
+        {% endif %}
+        {# Fim links externos para resenhas, notícias ou artigos sobre a obra #}
+
+
+        <div class="row">
+          <hr>
+        <h3 id="comments">{{ t('Comentários')}}</h3>
+        </div>
+        <!-- comment inicio -->
         {% set counter = 0 %}
         {% for c in comments %}
         {% set counter = loop.length %}
@@ -473,6 +518,12 @@ a2a_config.locale = "pt-BR";
                 <p class="text-comment">
                   {{c.body}}
                   </p>
+                  {% if c.creator.id == user.id %}
+                  <form>
+                    <button type="submit" formmethod="POST" formaction="/i/{{film.permalink}}?_method=DELETE" class="btn btn-default" value="{{ c.id }}" name="del"><i class="text fa fa-trash"></i> Excluir Comentário</button>
+                    </form>
+                  {% endif %}
+                  <p></p>
                   <span class="pull-left">
                     {% for s in range(0, c.stars)%}
                     <span class="float-left"><i class="text-warning fa fa-star"></i></span>
@@ -544,34 +595,10 @@ a2a_config.locale = "pt-BR";
             <p class="text-comment"><a href="/login">{{ t('Você precisa estar logado poder comentar.')}}</a></p>
           </div>
         {% endif %}
-        #}
+
 
 
         <!-- coment fim -->
-        {# Inicio links externos para resenhas, notícias ou artigos sobre a obra #}
-        {%set referenceFlag = false %}
-
-        {% for r in reference %}
-          {% if loop.length > 0 %}
-          {% set referenceFlag = true %}
-          {% endif %}
-        {% endfor %}
-
-        {% if referenceFlag %}
-        <div class="row">
-          <hr>
-          <h3>  {{ t('Ligações externas') }}</h3>
-          {% for r in reference %}
-          <p>
-            <a href="{{r.url}}" target="_blank">
-              <i class="fa fa-external-link" aria-hidden="true"></i>
-              {{ r.title | title }}
-            </a>
-          </p>
-          {% endfor %}
-        </div>
-        {% endif %}
-        {# Fim links externos para resenhas, notícias ou artigos sobre a obra #}
 
   		</div>
   		<div class="col-md-1">

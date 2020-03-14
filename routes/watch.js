@@ -20,6 +20,10 @@ module.exports = function(router) {
     /** GET /assistir/:permalink - Get a production to watch */
     .get(watchController.watchGet);
 
+  router.route('/assistir/:permalink/ep/:ep_number')
+    /** GET /assistir/:permalink/ep/:ep_number - Get a episode number of a series */
+    .get(watchController.watchGet);
+
   /*
    * Create a new production
    */

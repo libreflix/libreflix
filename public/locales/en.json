@@ -1,8 +1,10 @@
 {
+	"Início": "Home",
 	"Entrar": "Log In",
 	"Comunidade": "Community",
 	"Entrar na sua conta": "Log in",
 	"Senha": "Password",
+	"Contribuidores": "Contributors",
 	"Esqueceu sua senha?": "Forgot password?",
 	"Entre com o Facebook": "Log in with Facebook",
 	"Entre com o Twitter": "Log in with Twitter",
@@ -26,6 +28,7 @@
   "Fechar": "Close",
   "Informações": "More Info",
   "Assistir": "Watch Now",
+  "Assista agora": "Watch Now",
   "Descrição": "Description",
   "Direção": "Directed by",
   "País de Origem": "Country",
@@ -68,11 +71,14 @@
 	"Filmes": "Movies",
 	"Curtas": "Shorts",
 	"Séries": "Series",
+	"Ficção": "Fiction",
 	"Clássicos": "Classics",
 	"Nacionais": "Brazilian",
 	"Obras Recém Chegadas": "Recently Added",
 	"Longas Populares": "Popular Movies",
 	"Curtas Populares": "Popular Shorts",
 	"Séries Populares": "Popular Series",
-	"Curtas Recém Chegados ": "Recently Added Shorts"
+	"Curtas Recém Chegados ": "Recently Added Shorts",
+	"Sua plataforma de streaming livre": "Your free (as in freedom) streaming platform",
+	"Episódios" : "Episodes"
 }

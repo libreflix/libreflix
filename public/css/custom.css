@@ -133,7 +133,7 @@ body {
   line-height: 1.5 !important;
 	font-size: 17px;
   margin: 0 auto !important;
-	color: #AFAEAF !important;
+	color: #c2c2c2 !important;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
@@ -159,11 +159,11 @@ img {
   max-width: 100%;
 }
 a {
-  color: #c6c6c6 !important;
+  color: #e7e7e7 !important;
   text-decoration: none !important;
 }
 a:hover {
-  opacity: .7 !important;
+  opacity: .9 !important;
 }
 nav a {
   border-bottom: none;
@@ -869,6 +869,20 @@ input[type="search"]::-webkit-search-decoration {
   border-radius: 25px;
   border: 1px solid #AFAEAF;
 }
+.search-form-div{
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+.search-form-full{
+  width: 100%;
+  height: 40px;
+  padding: 5px 15px;
+  background-color: #000000;
+  box-shadow: 0 1px 1px rgba(#000000, 0.7) inset;
+  border-radius: 5px;
+  border: 1px solid #AFAEAF;
+}
 .search-form {
   text-rendering: optimizeLegibility;
   color: #AFAEAF !important;
@@ -1015,4 +1029,36 @@ background-color: #0088AA;
 
 .superside > a {
 color: #FFF;
+}
+
+
+#contributors ul{
+  line-height: 32px;
+  padding: 20px 0 100px;
+  /* border: 1px solid #d7c4f4; */
+  /* background-color: #f6f2fc; */
+  /* color: #302851; */
+  overflow-y: auto;
+  padding: 30px;
+  /* height: 500px; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+#contributors ul li {
+    flex: 0 0 216px;
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.institutional-page{
+  margin-left:  5% !important;
+  margin-right: 5% !important;
+}
+.ep-list{
+  width: 100%;
+}
+.ep-list td{
+  padding-bottom: 5px;
 }

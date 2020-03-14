@@ -6,6 +6,7 @@
 {% block body %}
 {% block opengraph %}
 
+
 <meta name="description" content='{{ w.sinopse }}'>
 <meta name="keywords"  content="{{w.tags}} - libreflix" />
 
@@ -24,6 +25,8 @@
 <meta name="twitter:description" content="{{ w.sinopse }}">
 <meta name="twitter:image" content="{{ w.thumb480 }}">
 {% endblock %}
+
+<link rel="stylesheet" type="text/css" href="/css/style.css">
 
 </div>
   <style media="screen">
@@ -85,6 +88,9 @@
      z-index: 9999999;
      text-decoration: none;
    }
+   #exit-button:hover{
+     opacity: 1;
+   }
    .stretch {
      position: absolute;
      left: 0;
@@ -145,10 +151,72 @@
    .logo-libre {
      margin-bottom: 0px;
      max-width: 100px;
-     bottom: 35px;
-     right: 35px;
+     bottom: 50px;
+     right: 20px;
      position: absolute;
      opacity: 1;
+   }
+   #pl-watch-again {
+     top: 110px;
+     left: 60px;
+     width: 384px;
+     height: 216px;
+     background: black no-repeat center / cover;
+     -webkit-animation: up-next-image .5s ease-out 0s backwards;
+     -ms-animation: up-next-image .5s ease-out 0s backwards;
+     animation: up-next-image .5s ease-out 0s backwards;
+   }
+   #pl-watch-again:after,
+   #pl-up-next-go:after,
+   #pl-final-watch-again:after {
+     content: '';
+     position: absolute;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     cursor: pointer;
+     border: 2px solid transparent;
+     box-sizing: border-box;
+     -webkit-transition: all .3s ease-out;
+     -ms-transition: all .3s ease-out;
+     transition: all .3s ease-out;
+   }
+
+   #pl-watch-again:hover:after,
+   #pl-up-next-go:hover:after,
+   #pl-final-watch-again:hover:after {
+     border-color: white;
+   }
+   #block {
+     background: #010001;
+     position: absolute;
+     right: 0;
+     bottom: 0;
+     width: 130px;
+     height: 60px;
+   }
+
+   #pl-final-watch-again {
+     top: 110px;
+     left: 5.85vw;
+     height: 270px;
+     width: 480px;
+     background: no-repeat center / cover;
+   }
+
+   #pl-final-watch-again > div {
+     position: absolute;
+     top: 100%;
+     margin-top: 13px;
+     font-size: 1.2em;
+     text-align: center;
+     width: 100%;
+   }
+   #pl-final-watch-again > div > * {
+     display: inline-block;
+     vertical-align: middle;
+     margin: 0 5px;
    }
 
   </style>
@@ -163,15 +231,28 @@
 
     <video id="player" poster="{{w.imgbg}}" playsinline controls>
 
-    {% if isMobile %}
+    {% if isMobile and w.layout == "serie" %}
+    {% if w_eps.webseed.sd %}
+    <source src="{{ w_eps.webseed.sd}}" type="video/mp4" size="480" label="Baixa"/>
+    {% endif %}
+    {% if w_eps.webseed.hd %}
+    <source src="{{ w_eps.webseed.hd}}" type="video/mp4" size="720" label="Média"/>
+    {% endif %}
+    {% if w_eps.webseed.fhd %}
+    <source src="{{ w_eps.webseed.fhd}}" type="video/mp4" size="1080" label="Alta"/>
+    {% endif %}
+    {% endif %}
+
+
+    {% if isMobile and w.layout != "serie" %}
     {% if w.webseed.sd %}
-    <source src="{{ w.webseed.sd | safe }}" type="video/mp4" size="480"/>
+    <source src="{{ w.webseed.sd | safe }}" type="video/mp4" size="480" label="Baixa"/>
     {% endif %}
     {% if w.webseed.hd %}
-    <source src="{{ w.webseed.hd | safe }}" type="video/mp4" size="720"/>
+    <source src="{{ w.webseed.hd | safe }}" type="video/mp4" size="720" label="Média"/>
     {% endif %}
     {% if w.webseed.fhd %}
-    <source src="{{ w.webseed.fhd | safe }}" type="video/mp4" size="1080"/>
+    <source src="{{ w.webseed.fhd | safe }}" type="video/mp4" size="1080" label="Alta"/>
     {% endif %}
     {% endif %}
 
@@ -180,11 +261,50 @@
     {% if w.subs.es %}<track kind="captions" label="Español" src="{{ w.subs.es }}" srclang="es">{% endif %}
     </video>
     <div id="pl-imgbg" class="stretch"></div>
+
+
+    {% if w.layout == "serie" and not w_eps.last %}
+    <div id="pl-player-title">
+      <h1 class="titlePlayer">{{ w.title }}</h1>
+      <h3 class="titlePlayer">{{ w_eps.subtitle }}</h3>
+    </div>
+    <img src="/libreflix.png" alt="" class="logo-libre" id="logo_libre">
+
+    <div id="pl-up-next" class="stretch">
+      <div>
+        <div id="pl-up-next-bg" class="stretch"></div>
+        <div id="pl-up-next-info">
+          <div id="pl-up-next-title">
+
+          </div>
+
+          <div id="pl-up-next-timer-wrap">
+            <span>O próximo episódio começa em </span>
+            <span id="pl-up-next-timer">15 segundos</span>
+          </div>
+          <div id="pl-up-next-go" onClick="nextEpisode()">
+            <div id="pl-up-next-image" class="stretch">
+              <img src="/img/ico-play-next.png">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="pl-watch-again" class="stretch"></div>
+    </div>
+    {% endif %}
+
+    {% if w.layout == "filme" or w_eps.last %}
     <div id="pl-player-title">
       <h1 class="titlePlayer">{{ w.title }}</h1>
       <h3 class="titlePlayer">{{ w.subtitle }}</h3>
     </div>
     <img src="/libreflix.png" alt="" class="logo-libre" id="logo_libre">
+
+    <div id="pl-final-screen" class="stretch">
+      <div id="pl-final-watch-again" class="stretch" onClick="window.location.reload()">
+      </div>
+    </div>
+    {% endif %}
 
     {#
     <!-- <div class="plyr__video-embed" id="player">
@@ -236,7 +356,6 @@
 {% endif %}
 
 </script>
-
 
 </html>
 {% endblock %}

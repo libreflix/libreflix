@@ -3,6 +3,11 @@
 O **Libreflix** já foi apresentado em **dezenas** de publicações online, jornais impressos e até em um programa de TV, incluido **Vice**, **UOL**, **Canaltech**, **Revista Fórum**, **Hypeness** e **Nexo Jornal**. <3
 
 Confira essas e outras matérias nos links abaixo.
+### 2019
+- **Integração da Serra**: [Libreflix: plataforma brasileira de streaming gratuita completa dois anos](http://www.integracaodaserra.com.br/2019/08/15/libreflix-plataforma-brasileira-de-streaming-gratuita-completa-dois-anos-com-media-de-85-mil-acessos-mensais-com-obras-de-diferentes-estilos/)
+- **Planeta Flix**: [Libreflix faz crownfunding por recursos para manutenção](https://www.planetaflix.com.br/noticias/libreflix-faz-crownfunding-por-recursos-para-manutencao/)
+- **Radio Mix**: [Plataforma de streaming disponibiliza filmes e séries de cultura livre gratuitamente](https://www.mixfmpoa.com.br/plataforma-de-streaming-disponibiliza-filmes-e-series-de-cultura-livre-gratuitamente/)
+
 ### 2018
 - **Estadão**: [Cinema nacional independente enxerga no streaming um novo caminho](https://cultura.estadao.com.br/noticias/cinema,cinema-nacional-independente-enxerga-no-streaming-um-novo-caminho,70002396444)
 - **MAGG.pt**: [Libreflix é a nova plataforma de streaming totalmente gratuita (e legal)](https://magg.pt/2018/04/16/libreflix-e-a-nova-plataforma-de-streaming-totalmente-gratuita-e-legal/)
@@ -26,7 +31,6 @@ Confira essas e outras matérias nos links abaixo.
 ###  2017
 
 - **Canaltech**: [Conheça o Libreflix, serviço de streaming que segue o conceito de cultura livre](https://canaltech.com.br/entretenimento/conheca-o-libreflix-servico-de-streaming-que-segue-o-conceito-de-cultura-livre-102678/)
-
 - **Revista Fórum**: [Libreflix: A alternativa ao Netflix, colaborativa, gratuita e que faz pensar](https://www.revistaforum.com.br/2017/09/25/libreflix-alternativa-ao--netflix-colaborativa-gratuita-e-que-faz-pensar/)
 - **Linux Descomplicado**: [Libreflix – plataforma de streaming aberta e colaborativa](https://news.linuxdescomplicado.com.br/2017/09/libreflix-plataforma-de-streaming-aberta-e-colaborativa/)
 - **Nexo Jornal**: [Como funciona o ‘Libreflix’, uma plataforma de vídeo aberta e colaborativa](https://www.nexojornal.com.br/expresso/2017/11/27/Como-funciona-o-‘Libreflix’-uma-plataforma-de-vídeo-aberta-e-colaborativa)
@@ -39,7 +43,7 @@ Confira essas e outras matérias nos links abaixo.
 - **O Beijo**: [Conheça Libreflix, o streaming gratuito e colaborativo](http://www.obeijo.com.br/noticias/conheca-libreflix-o-streaming-gratuito-e-colaborativo-12774491)
 - **Terra**: [Conheça o Libreflix, serviço de streaming que segue o conceito de cultura livre](https://www.terra.com.br/noticias/tecnologia/canaltech/conheca-o-libreflix-servico-de-streaming-que-segue-o-conceito-de-cultura-livre,6ced6c94b9ce0534184b2e8883ef0738l0t008g1.html)
 - **O Comprimido**: [Conheça o “libreflix”, alternativa gratuita ao netflix](https://www.ocomprimido.com/dose-diaria/conheca-o-libreflix-alternativa-gratuita-ao-netflix/)
-- **Educação Integral**: [3 plataformas de conteúdo audiovisual com potencial educativo para além do Netflix](http://educacaointegral.org.br/reportagens/3-plataformas-de-conteudo-audiovisual-com-potencial-educativo-para-alem-do-netflix/)
+- **Educação Integral**: [3 plataformas de conteúdo audiovisual com potencial educativo](http://educacaointegral.org.br/reportagens/3-plataformas-de-conteudo-audiovisual-com-potencial-educativo-para-alem-do-netflix/)
 - **Vitrini do Cariri**: [Conheça o Libreflix, a streaming brasileira que distribui obras sem custos](http://vitrinedocariri.com.br/index.php?p=noticia_int&id=45655)
 - **Rizoma**: [Libreflix: Contenidos audiovisuales abiertos de alto nivel](http://rizoma.facultadlibre.org/libreflix-contenidos-audiovisuales-abiertos-alto-nivel/)
 - **Notícias ao Minuto**: [Conheça o Libreflix, plataforma gratuita com filmes independentes](https://www.noticiasaominuto.com.br/cultura/482949/conheca-o-libreflix-plataforma-gratuita-com-filmes-independentes)

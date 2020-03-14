@@ -49,7 +49,7 @@
 
 
   {% block opengraph %}
-  <meta property="og:image" content="/sm-share2.jpg" />
+  <meta property="og:image" content="/sm-share3.jpg" />
   <meta property="og:type" content="blog" />
   <meta property="og:title" content="Libreflix" />
   <meta property="og:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar." />
@@ -60,7 +60,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="Libreflix">
   <meta name="twitter:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.">
-  <meta name="twitter:image" content="https://libreflix.org/sm-share2.jpg">
+  <meta name="twitter:image" content="https://libreflix.org/sm-share3.jpg">
   {% endblock %}
 
 
@@ -70,17 +70,17 @@
 </head>
 
 <body>
+
   <a href="https://catarse.me/libreflix">
   <div class="superside">
-  <!-- <i class="fa fa-handshake" aria-hidden="true"></i> -->
+    O Libreflix precisa da sua ajuda para continuar existindo. Ajude a partir de 1 real.
+  {#<!-- <i class="fa fa-handshake" aria-hidden="true"></i> -->
   Ajude a financiar o streaming livre e independente. Assine o Libre.
-  {#
-  <!-- O Libreflix precisa da sua ajuda para continuar existindo. Ajude a partir de 1 real. -->
   <!-- Ajude a construir o Libreflix a partir de R$ 1. -->
-  Financie o streaming livre brasileiro. Assine o Libre!
-  #}
+  <!-- Financie o streaming livre. Assine o Libre! -->#}
   </div>
   </a>
+
 
   <div class="container">
     {% endblock %} {# end link_rel block#}
@@ -141,6 +141,7 @@
       <div class="col-6 col-sm-4 col-md-2 mb-3 pr-3">
         <h4 class="">{{ t('Comunidade') }}</h4>
         <ul class="list-unstyled">
+          <li><a href="/agradecimentos">{{ t('Contribuidores') }}</a></li>
           <li><a href="/novo">{{ t('Adicionar Produção') }}</a></li>
           <li><a href="https://libregit.org/libreflix" target="_blank">{{ t('Código-Fonte') }}</a></li>
           <li><a href="/faq/#faq7">{{ t('Como Colaborar') }}</a></li>
@@ -190,9 +191,11 @@
       <a href="https://t.me/libreflix">
         <i class="fa fa-paper-plane footer-icons"></i>
       </a>
+      {#
       <a href="https://libregit.org/libreflix">
         <i class="fa fa-bug footer-icons"></i>
       </a>
+      #}
       <!-- <a href="https://libregit.org/libreflix">
         <i class="fa fa-newspaper-o footer-icons"></i>
       </a> -->
@@ -226,6 +229,21 @@
   <br>
   {% endblock  %}
 
+
+<script>
+function doSearch(){
+    if($('#searchBar').val() != ""){
+      var response = $('#searchBar').val();
+    }
+    else if($('#searchBar2').val() != ""){
+      var response = $('#searchBar2').val();
+    }
+    response = response.toString()
+    window.location.assign("/busca/" + response)
+    return false;
+}
+</script>  
+
 <script type="text/javascript" charset="utf-8">
   // Creating custom :external selector
   $.expr[':'].external = function(obj) {
@@ -257,6 +275,5 @@
   ga('send', 'pageview');
 
 </script>
-
 </body>
 </html>

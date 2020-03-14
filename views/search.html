@@ -24,7 +24,21 @@
   {% endif %}
 
 </div>
+
+
+<div>
+  <form class="search-form-div" onsubmit="return doSearch(); return false;">
+    <div class="form-group has-feedback">
+      <label for="search" class="sr-only"></label>
+      <input type="text" class="search-form-full" name="search2" id="searchBar2" placeholder="Títulos, tags, assuntos" value="{{ busca }}">
+      <span class="fa fa-search form-control-feedback"></span>
+    </div>
+  </form>  
+</div>
+
+
 <h2>Resultados para "{{ busca }}"</h2>
+
 <section class="work">
 
   {% set ok = 0%}

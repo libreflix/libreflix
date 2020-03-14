@@ -25,6 +25,10 @@ module.exports = function(router) {
 
   router.route('/i/:permalink')
     /** GET /i/:permalink - Film info navigation */
+    .delete(authMiddleware, filmController.commentDelete);
+
+  router.route('/i/:permalink')
+    /** GET /i/:permalink - Film info navigation */
     .get(filmController.filmGet);
 
   router.route('/i/:permalink/alreadyWatched')

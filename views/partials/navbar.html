@@ -1,12 +1,3 @@
-<script>
-function doSearch(){
-    var response = document.getElementById('searchBar').value;
-    response = response.toString()
-    window.location.assign("/busca/" + response)
-    return false;
-
-}
-</script>
 
 <div class="grid header">
   <!-- <div class="logo col-1-3">
@@ -61,11 +52,11 @@ function doSearch(){
       <ul class="nav navbar-nav">
         <!-- <li><a href="/">Home</a></li> -->
 
-        <li><a href="/t/docs"><b>{{ t('Docs') }}</b></a></li>
-        <li><a href="/t/filmes"><b>{{ t('Filmes') }}</b></a></li>
+        <li><a href="/explore/format/doc"><b>{{ t('Docs') }}</b></a></li>
+        <li><a href="/explore/format/fic"><b>{{ t('Ficção') }}</b></a></li>
         <li><a href="/t/curtas"><b>{{ t('Curtas') }}</b></a></li>
-        <li><a href="/t/series"><b>{{ t('Séries') }}</b></a></li>
-        <li><a href="/t/classicos"><b>{{ t('Clássicos') }}</b></a></li>
+        <li><a href="/explore/format/series"><b>{{ t('Séries') }}</b></a></li>
+        <li><a href="/explore/category/31"><b>{{ t('Clássicos') }}</b></a></li>
         <li><a href="/t/nacionais"><b>{{ t('Nacionais') }}</b></a></li>
         <li><a href="/t/kids"><b>{{ t('Kids') }}</b></a></li>
 
@@ -119,9 +110,10 @@ function doSearch(){
           <ul class="dropdown-menu">
             <li><a href="/u/{{ user.username }}"><i class="fa fa-user" aria-hidden="true"></i> {{ t('Meu Perfil') }}</a></li>
             <li><a href="/account"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{ t('Editar Conta') }}</a></li>
-            <!-- <li><a href="/list"><i class="fa fa-file-video-o" aria-hidden="true"></i> {{ t('Obras Enviadas') }}</a></li> -->
+            <li><a href="/list"><i class="fa fa-file-video-o" aria-hidden="true"></i> {{ t('Meus Envios') }}</a></li>
             {% if (user.adm) or (user.mod) %}
             <li class="divider"></li>
+            <li><a href="/uploader"> <i class="fa fa-cloud-upload" aria-hidden="true"></i> {{ t('Uploader') }}</a></li>
             <li><a href="/admin/list-watches"> <i class="fa fa-film" aria-hidden="true"></i> {{ t('Listar Filmes') }}</a></li>
             <li><a href="/admin/list-categories"><i class="fa fa-list" aria-hidden="true"></i> {{ t('Listar Categorias') }}</a></li>
             {% endif %}

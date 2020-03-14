@@ -11,6 +11,13 @@ const bodyParser = require('body-parser');
 exports.watchGet = function(req, res){
   Watch.findOne({ 'permalink': req.params.permalink }, function(err, w){
 
+    if( req.params.ep_number ){
+      ep_number = req.params.ep_number - 1;
+    }
+    else {
+      ep_number = 0;
+    }
+
     var isMobile = false
     var isDesktop = false
     // to test if desktop
@@ -22,14 +29,23 @@ exports.watchGet = function(req, res){
       isMobile = true
     }
 
-    if (!w) {
-      return res.redirect('/404');
-    }
+
+    //if(typeof req.headers.referer !== 'undefined'){
+      //if( (req.headers.referer.match(/^https?:\/\/([^\/]+\.)?libreflix\.org(\/|$)/i)) &&
+        //  (req.headers.referer.match(/^https?:\/\/([^\/]+\.)?localhost:3998(\/|$)/i)) ){
+        //return res.redirect('/i/'+ w.permalink);
+      //}
+    //} else {
+     // return res.redirect('/i/'+ w.permalink);
+    //}
+
     if (w.useWatchV2) {
       res.render('watchv2', {
         title: w.title,
         isMobile: isMobile,
         isDesktop: isDesktop,
+        w_eps: w.eps[ep_number],
+        next_episode: ep_number + 2,
         w: w
       })
     }
@@ -101,7 +117,8 @@ var body = req.body;
       video: req.body.video,
       thumb480: req.body.thumb480,
       imgbg: req.body.imgbg,
-      tags: req.body.tags
+      tags: req.body.tags,
+      status: "pending"
     });
     watch.save(function(err) {
       //req.logIn(campanha, function(err) {
@@ -240,8 +257,10 @@ var body = req.body;
 
     /* ModComments */
     watch.modComments.moderator = req.user.id;
-    watch.modComments.status = req.body.modComments_status;
-    watch.status = req.body.modComments_status;
+    if (req.user.mod == true || req.user.adm == true) {
+      watch.modComments.status = req.body.modComments_status;
+      watch.status = req.body.modComments_status;
+    }
     watch.modComments.comment = req.body.modComments_comment;
 
     if (req.body.modComments_status_old != req.body.modComments_status) {
