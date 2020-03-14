@@ -67,20 +67,20 @@ exports.countryGet = function(req, res){
   });
 }
 
-// GET film by originary country
+// GET film by duration
 exports.durationGet = function(req, res){
   Category.find({}, null, {sort: '-id'}, function(err, categories){
     if (err) {
       console.log(err);
     } else {
-    // Watch.find({ 'duration': { $lte: req.params.duration} }, null, {sort: '-id'}).exec(function(err, w){
-    Watch.where('duration').lte(req.params.duration).sort('-id').exec(function(err, w){
+    Watch.find({ 'duration': { $lte: Number(req.params.duration)} }, null, {sort: '-id'}).exec(function(err, w){
+    // Watch.where('duration').lte(Number(req.params.duration)).sort('-id').exec(function(err, w){
       if (err) {
         console.log(err);
       } else {
       res.render('explore', {
         format: 'duration',
-        duration: req.params.duration,
+        duration: Number(req.params.duration),
         categories: categories,
         watch: w
       });

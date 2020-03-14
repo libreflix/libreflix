@@ -61,6 +61,27 @@ $(document).on('shown.bs.modal', '.modal', function () {
   {% endif %}
 </div>
 
+<!-- AddToAny BEGIN -->
+<div class="a2a_kit a2a_kit_size_32 a2a_default_style a2a_vertical_style" data-a2a-url="https://libreflix.org"
+style="left:3%; top:550px; position: absolute;">
+<a class="a2a_dd" href="https://www.addtoany.com/share"></a>
+<a class="a2a_button_facebook"></a>
+<a class="a2a_button_twitter"></a>
+<a class="a2a_button_email"></a>
+<a class="a2a_button_whatsapp"></a>
+<a class="a2a_button_linkedin"></a>
+<a class="a2a_button_copy_link"></a>
+<a class="a2a_button_diaspora"></a>
+<a class="a2a_button_mastodon"></a>
+</div>
+<script>
+var a2a_config = a2a_config || {};
+a2a_config.onclick = 1;
+a2a_config.locale = "pt-BR";
+</script>
+<script async src="https://static.addtoany.com/menu/page.js"></script>
+<!-- AddToAny END -->
+
 {% if film.status == 'approved' or user.mod or user.adm or film.featured or film.featured == 'true'%}
   <div class="film_banner" style="background: url('{{ film.imgbg }}') no-repeat center center;">
     <a href="/assistir/{{ film.permalink }}">
@@ -272,6 +293,15 @@ $(document).on('shown.bs.modal', '.modal', function () {
         <p>
         <ul class="list-unstyled">
 
+          {% macro printSearchField(detail, content) %}
+          {% if content %}
+          {{t(detail)}}
+          <p>
+          {% set list1 = content.split(',') %}{% for list in list1 %}<a href='/busca/%22{{ list | trim | replace(" ", "%20")}}%22'><span class="label label-default">{{ list | trim}}</span></a>{%if (loop.index0 < loop.length-1) %} {%endif%}{% endfor %}
+          </p>
+          {% endif %}
+          {% endmacro %}
+
           {% macro printSimpleField(detail, content) %}
           {% if content %}
           <p>
@@ -281,7 +311,9 @@ $(document).on('shown.bs.modal', '.modal', function () {
           {% endif %}
           {% endmacro %}
 
-          {{ printSimpleField('Direção', film.crew.director) }}
+          {{ printSearchField('Direção', film.crew.director) }}
+
+
           {{ printSimpleField('Título Original', film.original_title) }}
 
           {% if film.location.country.code %}
