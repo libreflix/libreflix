@@ -1,12 +1,3 @@
-<script>
-function doSearch(){
-    var response = document.getElementById('searchBar').value;
-    response = response.toString()
-    window.location.assign("/busca/" + response)
-    return false;
-
-}
-</script>
 
 <div class="grid header">
   <!-- <div class="logo col-1-3">
@@ -93,7 +84,7 @@ function doSearch(){
         </li>
 
         <li class="busca-smartphone">
-          <a href="/buscar"><b>Buscar</b></a>
+          <a href="/busca/"><b>Buscar</b></a>
         </li>
 
         {% if user %}

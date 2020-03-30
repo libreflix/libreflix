@@ -869,6 +869,20 @@ input[type="search"]::-webkit-search-decoration {
   border-radius: 25px;
   border: 1px solid #AFAEAF;
 }
+.search-form-div{
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+.search-form-full{
+  width: 100%;
+  height: 40px;
+  padding: 5px 15px;
+  background-color: #000000;
+  box-shadow: 0 1px 1px rgba(#000000, 0.7) inset;
+  border-radius: 5px;
+  border: 1px solid #AFAEAF;
+}
 .search-form {
   text-rendering: optimizeLegibility;
   color: #AFAEAF !important;

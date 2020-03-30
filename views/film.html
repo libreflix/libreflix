@@ -61,6 +61,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
   {% endif %}
 </div>
 
+
 {% if film.status == 'approved' or user.mod or user.adm or film.featured or film.featured == 'true'%}
   <div class="film_banner" style="background: url('{{ film.imgbg }}') no-repeat center center;">
     <a href="/assistir/{{ film.permalink }}">
@@ -272,6 +273,15 @@ $(document).on('shown.bs.modal', '.modal', function () {
         <p>
         <ul class="list-unstyled">
 
+          {% macro printSearchField(detail, content) %}
+          {% if content %}
+          {{t(detail)}}
+          <p>
+          {% set list1 = content.split(',') %}{% for list in list1 %}<a href='/busca/%22{{ list | trim | replace(" ", "%20")}}%22'><span class="label label-default">{{ list | trim}}</span></a>{%if (loop.index0 < loop.length-1) %} {%endif%}{% endfor %}
+          </p>
+          {% endif %}
+          {% endmacro %}
+
           {% macro printSimpleField(detail, content) %}
           {% if content %}
           <p>
@@ -281,7 +291,9 @@ $(document).on('shown.bs.modal', '.modal', function () {
           {% endif %}
           {% endmacro %}
 
-          {{ printSimpleField('Direção', film.crew.director) }}
+          {{ printSearchField('Direção', film.crew.director) }}
+
+
           {{ printSimpleField('Título Original', film.original_title) }}
 
           {% if film.location.country.code %}

@@ -47,7 +47,12 @@ function doSearch(busca) {
  * Get the Search page
  */
 exports.searchGet = function(req, res){
-  var busca = req.params.busca.toString()
+  if(!req.params.busca){
+    var busca = ""
+  }
+  else{
+    var busca = req.params.busca.toString()
+  }
   doSearch(busca)
     .then(function(value) {
       console.log('Async success!', value.hits.hits)

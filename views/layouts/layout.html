@@ -74,11 +74,11 @@
 
   <a href="https://catarse.me/libreflix">
   <div class="superside">
-    O Libreflix precisa da sua ajuda para continuar existindo. Ajude a partir de 1 real.
-  {#<!-- <i class="fa fa-handshake" aria-hidden="true"></i> -->
+  <!-- O Libreflix precisa da sua ajuda para continuar existindo. Ajude a partir de 1 real. -->
+  <!-- <i class="fa fa-handshake" aria-hidden="true"></i> -->
   Ajude a financiar o streaming livre e independente. Assine o Libre.
   <!-- Ajude a construir o Libreflix a partir de R$ 1. -->
-  <!-- Financie o streaming livre. Assine o Libre! -->#}
+  <!-- Financie o streaming livre. Assine o Libre! -->
   </div>
   </a>
 
@@ -229,6 +229,21 @@
   </div>
   <br>
   {% endblock  %}
+
+
+<script>
+function doSearch(){
+    if($('#searchBar').val() != ""){
+      var response = $('#searchBar').val();
+    }
+    else if($('#searchBar2').val() != ""){
+      var response = $('#searchBar2').val();
+    }
+    response = response.toString()
+    window.location.assign("/busca/" + response)
+    return false;
+}
+</script>  
 
 <script type="text/javascript" charset="utf-8">
   // Creating custom :external selector

@@ -62,6 +62,11 @@ exports.contributeController = function(req, res) {
       res.render('contribute', {});
 };
 
+/* GET Thank you */
+exports.getInvolvedController = function(req, res) {
+      res.render('get-involved', {});
+};
+
 /* GET Contribute */
 exports.contributorsController = function(req, res) {
       res.render('contributors', {});

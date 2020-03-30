@@ -18,5 +18,9 @@ module.exports = function (router) {
 		/** GET /i/:search - Search page */
 		.get(searchController.searchGet);
 
+	router.route('/busca/')
+	/** GET /i/:search - Search page */
+	.get(searchController.searchGet);
+
 	return router;
 }
