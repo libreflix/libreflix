@@ -155,11 +155,88 @@
   <!-- Curtas Recém Chegados -->
   {{ printWatches('Curtas Recém Chegados', 'new-c') }}
 
+
   <div class="centerBlock">
     <!--<a class="btn" href="#">Ver todo o conteúdo</a>-->
   </div>
 
 </section>
+
+{#
+<div class="wrapper">
+  <section id="section1">
+    <a href="#section3">‹</a>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item cover">
+        <div class="cover">
+            <!-- <img src="{% if w.thumb480 %}{{ w.thumb480 }}?resize=480,270&crop=entropy {% elseif w.imgbg %} {{ w.imgbg }}?resize=480,270&crop=entropy{% endif %}" title="{{ w.title }}{% if w.subtitle %} - {{ w.subtitle }}{% endif %} ({{ w.year }})" class="fadeCatalogo" onload="this.style.opacity='1'"/> -->
+          <img class="fadeCatalogo" onload="this.style.opacity='1'" src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+          <div class="cover_wrap">
+            <div class="cover_info">
+              <h3>Idioma Desconhecido</h3>
+              <h4>
+                {{ w.subtitle | truncate(35) }}
+                {% if w.subtitle %} </h4> <h4> {%endif%} {{w.year}}
+                {% if w.classind  %} &middot; <span class="classind">{{ w.classind }}</span>{% endif %}
+                {% if w.duration  %} &middot; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ w.duration }} {% endif %}
+              </h4>
+            </div>
+          </div>
+          <!--<h3>{{ w.title }}</h3>-->
+        </div>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+    <a href="#section2">›</a>
+  </section>
+
+  <section id="section2">
+    <a href="#section1">‹</a>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+    <a href="#section3">›</a>
+  </section>
+
+  <section id="section3">
+    <a href="#section2">‹</a>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+    <a href="#section1">›</a>
+  </section>
+</div>
+#}
 
 
 {% endblock %}

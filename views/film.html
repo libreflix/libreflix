@@ -160,7 +160,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
         </button>
         {% endif %}
 
-        {#
+
         <button class="btn btn-default btn-libre" data-toggle="modal" data-target="#modalDonations"
         {% if not film.enableDonations %} disabled title="{{t('Infelizmente as retribuições não estão disponíveis para essa obra')}}"{% endif %}>
           <i class="fa fa-usd "></i> {{ t('Retribuir') }}
@@ -179,7 +179,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
               <hr>
               <input type="hidden" name="charset" value="utf-8" />
               <input type="hidden" name="cmd" value="_xclick">
-              <input type="hidden" name="business" value="libreflix@guilst.com">
+              <input type="hidden" name="business" value="{{film.paypal_email}}">
               <input type="hidden" name="item_name" value="{{ t('Doação Libreflix')}} - {{film.title}}">
               <input type="hidden" name="item_number" value="1">
               <input type="hidden" name="image_url" value="https://libreflix.org/libreflix_min.png">
@@ -239,7 +239,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
             </div>
           </div>
         </div>
-        #}
+
 
 
         <div class="btn-group">
