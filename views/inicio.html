@@ -4,6 +4,8 @@
   {% set title = "Tag: " + tag %}
 {% endif %}
 
+
+
 {% extends 'layouts/layout.html' %}
 
 {% block opengraph %}
@@ -47,6 +49,8 @@
 
 </div>
 
+
+
 {% macro printWatches(title, query) -%}
 
 {% set watch = query %}
@@ -59,7 +63,7 @@
     {% if w.featured %}
 
     <li class="col-md-3">
-      <a role="button" data-toggle="modal" style="border-bottom: 0px solid;"  data-toggle="modal" data-target="#assistir{{ loop.index }}">
+      <a role="button" data-toggle="modal" style="border-bottom: 0px solid;"  data-toggle="modal" data-target="#assistir{{ w.permalink }}">
       <div class="cover">
           <img src="{% if w.thumb480 %}{{ w.thumb480 }}?resize=480,270&crop=entropy {% elseif w.imgbg %} {{ w.imgbg }}?resize=480,270&crop=entropy{% endif %}" title="{{ w.title }}{% if w.subtitle %} - {{ w.subtitle }}{% endif %} ({{ w.year }})" class="fadeCatalogo" onload="this.style.opacity='1'"/>
         <div class="cover_wrap">
@@ -78,7 +82,7 @@
       </a>
 
     </li>
-    <div class="modal" id="assistir{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{ loop.index }}">
+    <div class="modal" id="assistir{{ w.permalink }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{ w.permalink }}">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -142,25 +146,12 @@
   <br><br>
 
 
-  <!-- Longas Recém Chegados -->
   {{ printWatches('Especial #DitaduraNuncaMais', ditadura) }}
-
-  <!-- Longas Recém Chegados -->
   {{ printWatches('Em Alta na Libreflix', hot) }}
-
-  <!-- Longas Recém Chegados -->
   {{ printWatches('Obras Recém Chegadas', fresh_all) }}
-
-  <!-- Longas populares -->
   {{ printWatches('Longas Populares', top_l) }}
-
-  <!-- Curtas populares -->
   {{ printWatches('Curtas Populares', top_c) }}
-
-  <!-- Séries populares -->
   {{ printWatches('Séries Populares', top_s) }}
-
-  <!-- Curtas Recém Chegados -->
   {{ printWatches('Curtas Recém Chegados', new_c) }}
 
 
