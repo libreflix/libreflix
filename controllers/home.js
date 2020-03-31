@@ -48,14 +48,28 @@ exports.index = function(req, res) {
     property = '-title'
   }
 
-  Watch.find({}, null, {sort: property}, function(err, watch){
-    if(err){
-      console.log(err);
-    } else {
-      res.render('inicio', {
-        title:'Início',
-        watch: watch,
-      });
-    }
-  });
+
+Promise.all([
+  Watch.find({ $and : [{'featured': true}, {'top': 'new-l'}]}, null, {sort: property}).limit(4*2),
+  Watch.find({'featured': true}, null, {sort: '-_id'}).limit(4),
+  Watch.find({ $and : [{'featured': true}, {'top': 'top-l'}]}, null, {sort: property}).limit(4*8),
+  Watch.find({ $and : [{'featured': true}, {'top': 'top-c'}]}, null, {sort: property}).limit(4*8),
+  Watch.find({ $and : [{'featured': true}, {'top': 'top-s'}]}, null, {sort: property}).limit(4*8),
+  Watch.find({ $and : [{'featured': true}, {'top': 'new-c'}]}, null, {sort: property}).limit(4*8)
+]).then(([
+  hot, fresh_all, top_l, top_c, top_s, new_c
+]
+) => {
+  let options = {
+    title: "Início",
+    hot: hot,
+    fresh_all: fresh_all,
+    top_l: top_l,
+    top_c: top_c,
+    top_s: top_s,
+    new_c: new_c
+  }
+  res.render('inicio', options);
+})
+
 };

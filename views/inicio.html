@@ -47,14 +47,16 @@
 
 </div>
 
-{% macro printWatches(title, top) -%}
+{% macro printWatches(title, query) -%}
+
+{% set watch = query %}
 
 <h3>{{ t(title) }}</h3>
 <div class="grid">
   <p> {{ alltags }} </p>
   <ul class="entries">
     {% for w in watch %}
-    {% if w.featured == 'true' and w.top == top %}
+    {% if w.featured %}
 
     <li class="col-md-3">
       <a role="button" data-toggle="modal" style="border-bottom: 0px solid;"  data-toggle="modal" data-target="#assistir{{ loop.index }}">
@@ -141,19 +143,22 @@
 
 
   <!-- Longas Recém Chegados -->
-  {{ printWatches('Obras Recém Chegadas', 'new-l') }}
+  {{ printWatches('Em Alta na Libreflix', hot) }}
+
+  <!-- Longas Recém Chegados -->
+  {{ printWatches('Obras Recém Chegadas', fresh_all) }}
 
   <!-- Longas populares -->
-  {{ printWatches('Longas Populares', 'top-l') }}
+  {{ printWatches('Longas Populares', top_l) }}
 
   <!-- Curtas populares -->
-  {{ printWatches('Curtas Populares', 'top-c') }}
+  {{ printWatches('Curtas Populares', top_c) }}
 
   <!-- Séries populares -->
-  {{ printWatches('Séries Populares', 'top-s') }}
+  {{ printWatches('Séries Populares', top_s) }}
 
   <!-- Curtas Recém Chegados -->
-  {{ printWatches('Curtas Recém Chegados', 'new-c') }}
+  {{ printWatches('Curtas Recém Chegados', new_c) }}
 
 
   <div class="centerBlock">

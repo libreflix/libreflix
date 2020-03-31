@@ -15,7 +15,7 @@ var watchSchema = new mongoose.Schema({
   permalink: {type: String, unique: true},
   criador: { type : mongoose.Schema.ObjectId, ref : 'User' },
   layout: String,
-  featured: String,
+  featured: Boolean,
   status: String,
   modComments: {
     moderator: { type : mongoose.Schema.ObjectId, ref : 'User'},
@@ -122,7 +122,7 @@ var watchSchema = new mongoose.Schema({
             duration: Number,
             magnet: {ld: String, sd: String, hd: String, fhd: String, uhd: String},
             webseed: {ld: String, sd: String, hd: String, fhd: String, uhd: String},
-            subs: {pt_br: String, en: String, es: String},            
+            subs: {pt_br: String, en: String, es: String},
             thumb480 : String,
             thumb130 : String}]
 }, schemaOptions);
