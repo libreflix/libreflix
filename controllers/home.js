@@ -50,6 +50,7 @@ exports.index = function(req, res) {
 
 
 Promise.all([
+  Watch.find({ $and : [{'featured': true}, {'tag': 'ditadura'}]}, null, {sort: property}).limit(4*1),
   Watch.find({ $and : [{'featured': true}, {'top': 'new-l'}]}, null, {sort: property}).limit(4*2),
   Watch.find({'featured': true}, null, {sort: '-_id'}).limit(4),
   Watch.find({ $and : [{'featured': true}, {'top': 'top-l'}]}, null, {sort: property}).limit(4*4),
@@ -57,11 +58,12 @@ Promise.all([
   Watch.find({ $and : [{'featured': true}, {'top': 'top-s'}]}, null, {sort: property}).limit(4*4),
   Watch.find({ $and : [{'featured': true}, {'top': 'new-c'}]}, null, {sort: property}).limit(4*4)
 ]).then(([
-  hot, fresh_all, top_l, top_c, top_s, new_c
+  ditadura, hot, fresh_all, top_l, top_c, top_s, new_c
 ]
 ) => {
   let options = {
     title: "Início",
+    ditadura: ditadura,
     hot: hot,
     fresh_all: fresh_all,
     top_l: top_l,
