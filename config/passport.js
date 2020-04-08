@@ -37,7 +37,7 @@ passport.use(new LocalStrategy({ usernameField: 'email' }, function(email, passw
 passport.use(new FacebookStrategy({
   clientID: process.env.FACEBOOK_ID,
   clientSecret: process.env.FACEBOOK_SECRET,
-  callbackURL: '/auth/facebook/callback',
+  callbackURL: 'https://libreflix.org/auth/facebook/callback',
   profileFields: ['name', 'email', 'gender', 'location'],
   passReqToCallback: true
 }, function(req, accessToken, refreshToken, profile, done) {

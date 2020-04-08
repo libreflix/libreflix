@@ -1,7 +1,7 @@
 'use strict';
 
 /** Get controllers */
-const userController = require('../controllers/admin');
+const adminController = require('../controllers/admin');
 const authAdmin = require('../middlewares/auth-admin');
 
 /**
@@ -12,9 +12,15 @@ const authAdmin = require('../middlewares/auth-admin');
  */
 module.exports = function (router, passport) {
 
-  router.route('/list-watches')
+  router.route('/admin/list-watches')
     /** Auth Middleware applied to all routes below */
     .all(authAdmin)
-    .get(userController.listWatches);
+    .get(adminController.listWatches);
+
+  router.route('/admin/list-categories')
+    /** Auth Middleware applied to all routes below */
+    .all(authAdmin)
+    .get(adminController.listCategoriesGet)
+    .post(adminController.listCategoriesPut);
 
 }

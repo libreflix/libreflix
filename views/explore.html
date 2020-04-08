@@ -1,0 +1,167 @@
+{% if format == "doc" %}
+  {% set title = t('Todos os Documentários') %}
+{% elif format == "fic" %}
+  {% set title = t('Todos os Filmes') %}
+{% elif format == "series" %}
+  {% set title = t('Todas as Séries') %}
+{% elif format == "country" %}
+  {% set country = '0' %}
+  {% for w in watch %}
+    {% if loop.first%}
+      {% set country = w.location.country.name %}
+    {% endif %}
+  {% endfor %}
+  {% set title = t('Todas as obras do ') + t(country) %}
+{% elif format == "duration" %}
+{% set title = t('Obras com duração até') + ' ' + t(duration) + ' ' + t('minutos') %}
+{% elif format == "category" %}
+{% set title = t(categories[0].title) %}
+{% endif %}
+
+
+
+{% extends 'layouts/layout.html' %}
+
+{% block body %}
+<div class="container-fluid">
+  {% if messages.success %}
+  <div role="alert" class="alert alert-success">
+    {% for success in messages.success %}
+    <div>{{ success.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.error %}
+  <div role="alert" class="alert alert-danger">
+    {% for error in messages.error %}
+    <div>{{ error.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if messages.info %}
+  <div role="alert" class="alert alert-info">
+    {% for info in messages.info %}
+    <div>{{ info.msg }}</div>
+    {% endfor %}
+  </div>
+  {% endif %}
+
+</div>
+
+<section class="work">
+
+  <h2>
+    {% if title == "Início" %}
+      Adicionados recentemente
+    {% elseif tag %}
+      Tag: {{tag}}
+    {% endif %}
+  </h2>
+  {% if watch == "" %}
+    <p><br>Nada encontrado com o formato: <i>{{ format }}</i></p>
+  {% endif %}
+
+{% for c in categories %}
+  {% set catCounter = 0 %}
+  {% for w in watch %}
+  {% for cat in w.categories %}
+    {% if cat == c.nid %}
+      {% set catCounter = loop.length %}
+    {% endif %}
+  {% endfor %}
+  {% endfor %}
+
+  {% if (catCounter > 0) %}
+    <h3><a href="/explore/category/{{ c.nid }}" class="white-text">{{ c.title }}</a></h3>
+  {% endif %}
+
+  {% if (catCounter > 0) %}
+  <div class="grid">
+    <ul class="entries">
+  {% endif %}
+      {% for w in watch -%}
+
+      {#  Test if some of the categories in the watch is the same as show #}
+      {% set catFlag = 0 -%}
+      {% for cat in w.categories -%}
+        {% if cat == c.nid -%}
+          {% set catFlag = 1 -%}
+        {% endif -%}
+      {% endfor -%}
+
+      {% if (w.featured == 'true'
+            or w.featured
+            and w.featured != "false"
+            and w.featured != "striked"
+            and w.status != "wrongtype"
+            and w.status != "nonlibre"
+            and w.status != "offensive"
+            and w.status != "striked" ) and catFlag == 1 -%}
+
+      <li class="col-md-3">
+        <a role="button" data-toggle="modal" style="border-bottom: 0px solid;"  data-toggle="modal" data-target="#assistir{{ loop.index }}">
+        <div class="cover">
+            <img src="{% if w.thumb480 %}{{ w.thumb480 }}?resize=480,270&crop=entropy {% elseif w.imgbg %} {{ w.imgbg }}?resize=480,270&crop=entropy{% endif %}" title="{{ w.title }}{% if w.subtitle %} - {{ w.subtitle }}{% endif %} ({{ w.year }})" class="fadeCatalogo" onload="this.style.opacity='1'"/>
+          <div class="cover_wrap">
+            <div class="cover_info">
+              <h3>{{ w.title | truncate(45) }}</h3>
+              <h4>
+                {{ w.subtitle | truncate(35) }}
+                {% if w.subtitle %} </h4> <h4> {%endif%} {{w.year}}
+                {% if w.classind  %} &middot; <span class="classind">{{ w.classind }}</span>{% endif %}
+                {% if w.duration  %} &middot; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ w.duration }} {% endif %}
+              </h4>
+            </div>
+          </div>
+          <!--<h3>{{ w.title }}</h3>-->
+        </div>
+        </a>
+
+      </li>
+      <div class="modal" id="assistir{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{ loop.index }}">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times-circle exitTimes"></i></button>
+              <a href="/i/{{ w.permalink }}"><button type="button" class="splash-play"><img src="/img/play.png" alt="Play"></button></a>
+              <!-- <h4 class="modal-title" id="myModalLabel{{ loop.index }}">{{ w.title }} {% if w.subtitle %} - {{ w.subtitle }} {% else %} {% endif %}</h4> -->
+              <a href="/i/{{ w.permalink }}"><div class="splash" style="background-image: url('{{ w.imgbg }}');">
+              </div></a>
+            </div>
+            <div class="modal-body">
+              <h2> {{ w.title }}</h2>
+
+              <h4>
+                {{ w.subtitle }}
+                {% if w.subtitle %} &middot; {%endif%} {{w.year}}
+                {% if w.classind  %} &middot; <img src="/assets/classind/{{ w.classind }}.png" width="22px" alt="{{ w.classind }}">{% endif %}
+                {% if w.duration  %} &middot; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ w.duration }} {% endif %}
+              </h4>
+              <div class="sinopse">{{ w.sinopse | truncate(300)}}</div>
+              <h4> Tags: {% set list1 = w.tags.split(',') %}{% for list in list1 %}{% if loop.index0 < 6 %}<a href="/t/{{ list | trim}}"><span class="label label-default">{{ list | trim}}</span></a>{% endif %}{%if (loop.index0 < loop.length-1) or (loop.index0 < 6) %} {%endif%}{% endfor %}</h4>
+            </div>
+            <div class="modal-footer">
+              {% if user.mod or user.adm %}<a href="/edit/{{ w._id }}"><button type="button" class="btn btn-danger"><i class="fa fa-edit"></i> t('Editar') </button></a>{% endif %}
+              <button type="button" class="btn btn-default" data-dismiss="modal"> <i class="fa fa-times-circle"></i> {{ t('Fechar') }} </button>
+              <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success"> <i class="fa fa-info-circle"></i> {{ t('Informações') }} </button></a>
+              <!-- <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">{{ t('Assistir') }} <i class="fa fa-play-circle"></i></button></a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+{% if (catCounter > 0) %}
+    </ul>
+</div>
+{% endif -%}
+{% endfor -%}
+
+  <div class="centerBlock">
+    <!--<a class="btn" href="#">Ver todo o conteúdo</a>-->
+  </div>
+
+</section>
+
+
+{% endblock %}

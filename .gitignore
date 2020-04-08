@@ -6,8 +6,9 @@ _media/
 node_modules/
 public/media/
 public/downloads
-coverage/
 .env
 server.bat
 notes.md
-coverage/
+docker
+public/subs/
+public/wikilab/

@@ -16,6 +16,10 @@ var elasticsearch = require('elasticsearch');
 var passport = require('passport');
 var routes = require('./routes');
 var processImage = require('express-processimage');
+var i18n = require("i18n");
+var cookieParser = require('cookie-parser');
+var minifyHTML = require('express-minify-html');
+var device = require('express-device');
 
 // Load environment variables from .env file
 dotenv.load();
@@ -23,9 +27,13 @@ dotenv.load();
 // Passport OAuth strategies
 require('./config/passport');
 
-var app = express();
+var app = express()
+app.use(cookieParser())
+app.use(device.capture())
 
 mongoose.connect(process.env.DB_PATH);
+
+mongoose.set('debug', false);
 
 mongoose.connection.on('error', function() {
   console.log('MongoDB Connection Error. Please make sure that MongoDB is running.');
@@ -40,6 +48,40 @@ var njks = nunjucks.configure('views', {
 });
 
 markdown.register(njks, marked);
+
+// i18n options
+i18n.configure({
+    locales:['pt', 'en', 'es'],
+    defaultLocale: 'pt',
+    queryParameter: 'lang',
+    cookie: 'siteLang',
+    directoryPermissions: '775',
+    autoReload: true,
+    updateFiles: false,
+    directory: __dirname + '/public/locales',
+    api: {
+     '__': 't',  //now req.__ becomes req.t
+   }
+});
+
+app.use(i18n.init);
+
+
+
+/* Minify options */
+// app.use(minifyHTML({
+//     override:      true,
+//     exception_url: true,
+//     htmlMinifier: {
+//         removeComments:            false,
+//         collapseWhitespace:        false,
+//         collapseBooleanAttributes: false,
+//         removeAttributeQuotes:     false,
+//         removeEmptyAttributes:     false,
+//         minifyJS:                  true
+//     }
+// }));
+
 
 app.set('view engine', 'html');
 app.set('port', process.env.PORT || 3998);
@@ -57,6 +99,8 @@ app.use(function(req, res, next) {
   res.locals.user = req.user;
   next();
 });
+
+
 
 /*
 * https://www.npmjs.com/package/express-processimage

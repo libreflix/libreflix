@@ -1,0 +1,118 @@
+<script>
+function doSearch(){
+    var response = document.getElementById('searchBar').value;
+    response = response.toString()
+    window.location.assign("/busca/" + response)
+    return false;
+
+}
+</script>
+
+<div class="grid header">
+  <!-- <div class="logo col-1-3">
+
+
+  </div>
+  <ul class="nav navbar-nav navbar-right">
+     {% if user %}
+       <li class="dropdown">
+         <a href="#" data-toggle="dropdown" class="navbar-avatar dropdown-toggle">
+           {% if user.picture %}
+             <img src="{{ user.picture }}" width="30px" style="border-radius: 100%;">
+           {% else %}
+             <img src="{{ user.gravatar }}"  width="30px" style="border-radius: 100%;">
+           {% endif %}
+           {% if user.name %}
+             {{ user.name }}
+           {% elif user.email %}
+             {{ user.email }}
+           {% else %}
+             {{ user.id }}
+           {% endif %}
+           <i class="caret"></i>
+         </a>
+         <ul class="dropdown-menu">
+           <li><a href="/account">Minha Conta</a></li>
+           <li class="divider"></li>
+           <li><a href="/logout">Sair</a></li>
+         </ul>
+       </li>
+     {% else %}
+       <li class="{% if title == 'Entrar' %}active{% endif %}"><a href="/login">Entrar</a></li>
+       <li class="{% if title == 'Criar Conta' %}active{% endif %}"><a href="/signup">Criar Conta</a></li>
+     {% endif %}
+     </ul>
+</div> -->
+
+  <nav class="navbar navbar-default ">
+    <div class="navbar-header">
+      <button type="button" data-toggle="collapse" data-target="#navbar" class="navbar-toggle collapsed">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="{{ site.baseurl }}/" style="border-bottom: 0px solid;">
+            <img src="/libreflix.png" width="110px" onload="this.style.opacity='1';">
+          </a>
+        </li>
+        <li><a href="/explore/format/doc"><b>Docs</b></a></li>
+        <li><a href="/explore/format/fic"><b>Ficção</b></a></li>
+        <li><a href="/explore/format/series"><b>Seriados</b></a></li>
+        <li><a href="/explore/duration/40"><b>Curtas</b></a></li>
+        <li><a href="/explore/category/32"><b>Clássicos</b></a></li>
+        <li><a href="/t/kids"><b>Kids</b></a></li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+
+        {% if user %}
+        <!-- <li><a href="/novo">{{ t('Nova Produção') }}</a></li> -->
+        <li class="dropdown">
+          <a href="#" data-toggle="dropdown" class="navbar-avatar dropdown-toggle">
+            {% if user.twitter %}
+            <img src="{{ user.gravatar }}" width="20px" style="border-radius: 100%;">
+            {% elseif user.picture %}
+            <img src="{{ user.picture }}" width="20px" style="border-radius: 100%;">
+            {% else %}
+            <img src="{{ user.gravatar }}" width="20px" style="border-radius: 100%;">
+            {% endif %}
+            <!-- {% if user.name %}
+            {{ user.name }}
+          {% elif user.email %}
+            {{ user.email }}
+          {% else %}
+            {{ user.id }}
+          {% endif %} -->
+            <i class="caret"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a href="/u/{{ user.username }}"><i class="fa fa-user" aria-hidden="true"></i> {{ t('Meu Perfil') }}</a></li>
+            <li><a href="/account"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> {{ t('Editar Conta') }}</a></li>
+            {% if (user.adm) or (user.mod) %}
+            <li class="divider"></li>
+            <li><a href="/admin/list-watches"> <i class="fa fa-film" aria-hidden="true"></i> {{ t('Listar Filmes') }}</a></li>
+            <li><a href="/admin/list-categories"><i class="fa fa-list" aria-hidden="true"></i> {{ t('Listar Categorias') }}</a></li>
+            {% endif %}
+            <li class="divider"></li>
+            <!-- <li><a href="#">{{ t('Minhas Produções') }}</a></li>
+          <li class="divider"></li> -->
+            <li><a href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i> {{ t('Sair') }}</a></li>
+          </ul>
+        </li>
+        {% else %}
+
+        <li class="{% if title == 'Entrar' %}active{% endif %}"><a href="/login"><b> {{ t('Entrar') }} </b></a></li>
+
+
+        <!-- <li class="{% if title == 'Criar Conta' %}active{% endif %}"><a href="/signup">{{ t('Criar Conta') }}</a></li> -->
+        {% endif %}
+      </ul>
+    </div>
+  </nav>
+</div>

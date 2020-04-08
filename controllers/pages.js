@@ -2,7 +2,8 @@
 /* GET Sobre */
 exports.sobreController = function(req, res) {
       res.render('sobre', {
-        title:'Sobre'
+        title:'Sobre',
+        siteLang: req.cookies.siteLang
       });
 };
 
@@ -54,4 +55,19 @@ exports.pressController = function(req, res) {
       res.render('press', {
         title:'Na Mídia'
       });
+};
+
+/* GET Contribute */
+exports.contributeController = function(req, res) {
+      res.render('contribute', {});
+};
+
+/* GET Thank you */
+exports.getInvolvedController = function(req, res) {
+      res.render('get-involved', {});
+};
+
+/* GET Contribute */
+exports.contributorsController = function(req, res) {
+      res.render('contributors', {});
 };

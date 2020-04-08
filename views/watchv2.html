@@ -1,0 +1,361 @@
+{% extends "layouts/layout.html" %}
+
+{% block footer%} {% endblock %}
+{% block navbar %}{% endblock %} {# just to overide parent navbar block#}
+{% block link_rel %}{% endblock %} {# just to overide parent link_rel block#}
+{% block body %}
+{% block opengraph %}
+
+
+<meta name="description" content='{{ w.sinopse }}'>
+<meta name="keywords"  content="{{w.tags}} - libreflix" />
+
+<meta property="og:image" content="{{ w.thumb480 }}" />
+<meta property="og:type" content="video.movie" />
+<meta property="og:url" content="https://libreflix.org/i/{{ w.permalink }}" />
+<meta property="og:title" content="'{{title}} - Libreflix" />
+<meta property="og:video" content="https://libreflix.org/assistir/{{ w.permalink }}" />
+<meta property="og:description" content="{{ film.sinopse }}" />
+<meta property="og:url" content="https://libreflix.org/assistir/{{ w.permalink}}" />
+<meta property="og:site_name" content="Libreflix" />
+
+<!-- twitter metatags-->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="{{title}} - Libreflix">
+<meta name="twitter:description" content="{{ w.sinopse }}">
+<meta name="twitter:image" content="{{ w.thumb480 }}">
+{% endblock %}
+
+<link rel="stylesheet" type="text/css" href="/css/style.css">
+
+</div>
+  <style media="screen">
+  {% include "lib/plyr.css" %}
+  /* source-sans-pro-regular - latin */
+  @font-face {
+    font-family: 'Source Sans Pro Regular';
+    font-style: normal;
+    font-weight: 400;
+    src: url('/fonts/source-sans-pro-v11-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Source Sans Pro Regular'), local('SourceSansPro-Regular'),
+         url('/fonts/source-sans-pro-v11-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('/fonts/source-sans-pro-v11-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('/fonts/source-sans-pro-v11-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('/fonts/source-sans-pro-v11-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('/fonts/source-sans-pro-v11-latin-regular.svg#SourceSansPro') format('svg'); /* Legacy iOS */
+  }
+  body{
+    margin: 0;
+    font-family: "Source Sans Pro Regular", helvetica, sans-serif !important;
+    line-height: 1.5 !important;
+  }
+  #wrap
+  {
+  	position: fixed;
+  	transform: translateY(-100%);
+      -webkit-transform: translateY(-100%);
+  	background: black;
+  	background:rgba(0, 0,0,0.8);
+  	align-items:center;
+  	justify-content:center;
+  	width: 100vw;
+  	height: 100vh;
+  	display: flex;
+  	flex-direction: column;
+  	z-index:99;
+  }
+  /* Remove anoying dot border at the link*/
+  a:active, a:active, a:focus{
+    outline: none;
+  }
+  #view
+  {
+  width: 100%; margin: 0; padding: 0;
+  -webkit-transition: -webkit-transform 0.3s;
+  	transition: transform 0.3s ease, filter 0.2s ease;
+   }
+   #exit-button {
+     border: none;
+     background: transparent;
+     position: absolute;
+     outline: none;
+     opacity: 0.9;
+     margin-left: 12%;
+     margin-top: 2%;
+     -webkit-transition: opacity .2s ease-out;
+     -ms-transition: opacity .2s ease-out;
+     transition: opacity .2s ease-out;
+     z-index: 9999999;
+     text-decoration: none;
+   }
+   #exit-button:hover{
+     opacity: 1;
+   }
+   .stretch {
+     position: absolute;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     background-image: url("{{ w.imgbg }}");
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-position: center;
+   }
+   .titlePlayer{
+   	color: 	#DCDCDC !important;
+    text-shadow: 2px 2px #000 !important;
+   }
+   #pl-player-title,
+   #pl-up-next-title{
+     font-size: 1.2vw;
+     position: absolute;
+     right: 100px;
+     text-align: right;
+     top: 50px;
+     color: #e4e4e4;
+     opacity: 100;
+     -webkit-transition: opacity .2s ease-out;
+     -ms-transition: opacity .2s ease-out;
+     transition: opacity .2s ease-out;
+     z-index: 99;
+     -webkit-transition: width 4s; /* For Safari 3.1 to 6.0 */
+     transition: width 4s;
+     -webkit-touch-callout: none; /* iOS Safari */
+       -webkit-user-select: none; /* Safari */
+        -khtml-user-select: none; /* Konqueror HTML */
+          -moz-user-select: none; /* Firefox */
+           -ms-user-select: none; /* Internet Explorer/Edge */
+               user-select: none; /* Non-prefixed version, currently
+                                     supported by Chrome and Opera */
+
+   }
+
+   .loading #pl-player-title {
+     opacity: 1;
+   }
+
+   #pl-player-title h1,
+   #pl-up-next-title h1 {
+     font-size: 2.6em;
+     font-weight: bold;
+     margin: 0;
+   }
+
+   #pl-player-title h3,
+   #pl-up-next-title h3 {
+     font-size: 1.85em;
+     font-weight: bold;
+     margin: 0;
+   }
+   .logo-libre {
+     margin-bottom: 0px;
+     max-width: 100px;
+     bottom: 50px;
+     right: 20px;
+     position: absolute;
+     opacity: 1;
+   }
+   #pl-watch-again {
+     top: 110px;
+     left: 60px;
+     width: 384px;
+     height: 216px;
+     background: black no-repeat center / cover;
+     -webkit-animation: up-next-image .5s ease-out 0s backwards;
+     -ms-animation: up-next-image .5s ease-out 0s backwards;
+     animation: up-next-image .5s ease-out 0s backwards;
+   }
+   #pl-watch-again:after,
+   #pl-up-next-go:after,
+   #pl-final-watch-again:after {
+     content: '';
+     position: absolute;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     cursor: pointer;
+     border: 2px solid transparent;
+     box-sizing: border-box;
+     -webkit-transition: all .3s ease-out;
+     -ms-transition: all .3s ease-out;
+     transition: all .3s ease-out;
+   }
+
+   #pl-watch-again:hover:after,
+   #pl-up-next-go:hover:after,
+   #pl-final-watch-again:hover:after {
+     border-color: white;
+   }
+   #block {
+     background: #010001;
+     position: absolute;
+     right: 0;
+     bottom: 0;
+     width: 130px;
+     height: 60px;
+   }
+
+   #pl-final-watch-again {
+     top: 110px;
+     left: 5.85vw;
+     height: 270px;
+     width: 480px;
+     background: no-repeat center / cover;
+   }
+
+   #pl-final-watch-again > div {
+     position: absolute;
+     top: 100%;
+     margin-top: 13px;
+     font-size: 1.2em;
+     text-align: center;
+     width: 100%;
+   }
+   #pl-final-watch-again > div > * {
+     display: inline-block;
+     vertical-align: middle;
+     margin: 0 5px;
+   }
+
+  </style>
+</head>
+
+<body>
+  <button type="button" id="exit-button" class="exit-button" onClick="voltar()">
+    <a href="javascript:;">
+      <img src="/img/ico-exit.png">
+    </a>
+  </button>
+
+    <video id="player" poster="{{w.imgbg}}" playsinline controls>
+
+    {% if isMobile and w.layout == "serie" %}
+    {% if w_eps.webseed.sd %}
+    <source src="{{ w_eps.webseed.sd}}" type="video/mp4" size="480" label="Baixa"/>
+    {% endif %}
+    {% if w_eps.webseed.hd %}
+    <source src="{{ w_eps.webseed.hd}}" type="video/mp4" size="720" label="Média"/>
+    {% endif %}
+    {% if w_eps.webseed.fhd %}
+    <source src="{{ w_eps.webseed.fhd}}" type="video/mp4" size="1080" label="Alta"/>
+    {% endif %}
+    {% endif %}
+
+
+    {% if isMobile and w.layout != "serie" %}
+    {% if w.webseed.sd %}
+    <source src="{{ w.webseed.sd | safe }}" type="video/mp4" size="480" label="Baixa"/>
+    {% endif %}
+    {% if w.webseed.hd %}
+    <source src="{{ w.webseed.hd | safe }}" type="video/mp4" size="720" label="Média"/>
+    {% endif %}
+    {% if w.webseed.fhd %}
+    <source src="{{ w.webseed.fhd | safe }}" type="video/mp4" size="1080" label="Alta"/>
+    {% endif %}
+    {% endif %}
+
+    {% if w.subs.pt_br %}<track kind="captions" label="Português" src="{{w.subs.pt_br}}" srclang="pt">{% endif %}
+    {% if w.subs.en %}<track kind="captions" label="English" src="{{ w.subs.en }}" srclang="en">{% endif %}
+    {% if w.subs.es %}<track kind="captions" label="Español" src="{{ w.subs.es }}" srclang="es">{% endif %}
+    </video>
+    <div id="pl-imgbg" class="stretch"></div>
+
+
+    {% if w.layout == "serie" and not w_eps.last %}
+    <div id="pl-player-title">
+      <h1 class="titlePlayer">{{ w.title }}</h1>
+      <h3 class="titlePlayer">{{ w_eps.subtitle }}</h3>
+    </div>
+    <img src="/libreflix.png" alt="" class="logo-libre" id="logo_libre">
+
+    <div id="pl-up-next" class="stretch">
+      <div>
+        <div id="pl-up-next-bg" class="stretch"></div>
+        <div id="pl-up-next-info">
+          <div id="pl-up-next-title">
+
+          </div>
+
+          <div id="pl-up-next-timer-wrap">
+            <span>O próximo episódio começa em </span>
+            <span id="pl-up-next-timer">15 segundos</span>
+          </div>
+          <div id="pl-up-next-go" onClick="nextEpisode()">
+            <div id="pl-up-next-image" class="stretch">
+              <img src="/img/ico-play-next.png">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="pl-watch-again" class="stretch"></div>
+    </div>
+    {% endif %}
+
+    {% if w.layout == "filme" or w_eps.last %}
+    <div id="pl-player-title">
+      <h1 class="titlePlayer">{{ w.title }}</h1>
+      <h3 class="titlePlayer">{{ w.subtitle }}</h3>
+    </div>
+    <img src="/libreflix.png" alt="" class="logo-libre" id="logo_libre">
+
+    <div id="pl-final-screen" class="stretch">
+      <div id="pl-final-watch-again" class="stretch" onClick="window.location.reload()">
+      </div>
+    </div>
+    {% endif %}
+
+    {#
+    <!-- <div class="plyr__video-embed" id="player">
+    <iframe
+        src="https://www.youtube.com/embed/{{w.video}}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+        allowfullscreen
+        allowtransparency
+        allow="autoplay"
+    ></iframe>
+    </div> -->
+
+    <!-- <div class="plyr__video-embed" id="player">
+    <iframe
+        src="https://player.vimeo.com/video/115677771?loop=false&amp;byline=false&amp;portrait=false&amp;title=false&amp;speed=true&amp;transparent=0&amp;gesture=media"
+        allowfullscreen
+        allowtransparency
+        allow="autoplay"
+    ></iframe>
+    </div> -->
+    #}
+
+</body>
+
+<script>
+  function voltar(){
+    if(history.length === 1){
+      window.location = "https://libreflix.org/i/{{w.permalink}}"
+    }
+    else{
+      // history.back();
+      window.location = "https://libreflix.org/i/{{w.permalink}}"
+    }
+  }
+</script>
+
+{{device}}
+
+
+
+<script type="text/javascript">
+{% if isDesktop %}
+{% include "lib/plyr.min.js" %}
+{% include "lib/webtorrent.min.js" %}
+{% include "lib/v2.js"%}
+{% endif %}
+{% if isMobile %}
+{% include "lib/plyr.min.js" %}
+{% include "lib/v2_m.js"%}
+{% endif %}
+
+</script>
+
+</html>
+{% endblock %}

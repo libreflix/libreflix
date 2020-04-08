@@ -141,6 +141,7 @@ exports.accountPut = function(req, res, next) {
       user.location = req.body.location;
       user.website = req.body.website;
       user.cover_picture = req.body.cover_picture;
+      user.allowNewsletter = req.body.allow_newsletter;
     }
     user.save(function(err) {
       if ('password' in req.body) {

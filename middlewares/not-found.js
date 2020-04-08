@@ -3,7 +3,7 @@
 const Watch = require('../models/Watch');
 
 /**
- * Resolve 404 with 2 last uploaded productions
+ * Resolve 404 with 4 last uploaded productions
  */
 module.exports = (req, res) => {
 	Watch.find({'top': 'new-l'}, null, {sort: '-_id'}, function(err, watches){

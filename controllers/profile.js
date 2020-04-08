@@ -2,6 +2,7 @@
 
 var User = require('../models/User');
 var Watch = require('../models/Watch');
+var Interaction = require('../models/Interaction');
 var mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
@@ -10,27 +11,18 @@ const bodyParser = require('body-parser');
  * Get the profile of someone
  */
 exports.profileGet = function(req, res){
-  var options = {
-    profile: [],
-    watch: []
-  }
 
-  User.findOne({ 'username': req.params.username }, function(err, p){
-    if(!p){
+  User.findOne({ 'username': req.params.username }, function(err, profile){
+    if(!profile){
       return res.redirect('/404');
     }
-		if (p) {
-			options.p = p
-      Watch.find({'criador': options.p._id}, null, {sort: '-id'}, function(err, watch){
-
-        if (watch) {
-          options.watch = watch
-        }
-        else {
-          options.watch = null
-        }
-        res.render('profile', options);
-      }).limit();
-		}
-  });
-};
+		if (profile) {
+			  Interaction.find({'creator': profile.id}, null, {sort: '-updatedAt'}, function(err, interactions){
+          res.render('profile', {
+            interactions: interactions,
+            profile: profile
+          })
+        }).populate('attachedToWatch')
+      }
+  })
+}

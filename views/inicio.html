@@ -1,24 +1,26 @@
 {% if title == "Início" %}
-  {% set title = "Início" %}
+  {% set title = t("Início") %}
 {% elseif title == "Tag" %}
   {% set title = "Tag: " + tag %}
 {% endif %}
 
-{% extends 'layout.html' %}
+
+
+{% extends 'layouts/layout.html' %}
 
 {% block opengraph %}
-<meta property="og:image" content="/sm-share2.jpg" />
+<meta property="og:image" content="/sm-share3.jpg" />
 <meta property="og:type" content="blog" />
-<meta property="og:title" content="Libreflix" />
+<meta property="og:title" content="Libreflix - {{t('Sua plataforma de streaming livre')}}" />
 <meta property="og:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar." />
 <meta property="og:url" content="https://libreflix.org" />
 <meta property="og:site_name" content="Libreflix" />
 
 <!-- twitter metatags-->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Libreflix">
+<meta name="twitter:title" content="Libreflix - {{t('Sua plataforma de streaming livre')}}">
 <meta name="twitter:description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.">
-<meta name="twitter:image" content="https://libreflix.org/sm-share2.jpg">
+<meta name="twitter:image" content="https://libreflix.org/sm-share3.jpg">
 {% endblock %}
 
 {% block body %}
@@ -47,71 +49,66 @@
 
 </div>
 
-{% macro printWatches(title, top) -%}
 
-<h3>{{ title }} </h3>
+
+{% macro printWatches(title, query) -%}
+
+{% set watch = query %}
+
+<h3>{{ t(title) }}</h3>
 <div class="grid">
   <p> {{ alltags }} </p>
   <ul class="entries">
     {% for w in watch %}
-    {% if w.featured == 'true' and w.top == top %}
+    {% if w.featured %}
 
     <li class="col-md-3">
-      <a role="button" data-toggle="modal" style="border-bottom: 0px solid;"  data-toggle="modal" data-target="#assistir{{ loop.index }}">
-        <img src="{% if w.thumb480 %}{{ w.thumb480 }}?resize=480,270&crop=entropy {% elseif w.imgbg %} {{ w.imgbg }}?resize=480,270&crop=entropy{% endif %}" title="{{ w.title }}{% if w.subtitle %} - {{ w.subtitle }}{% endif %} ({{ w.year }})" class="fadeCatalogo" onload="this.style.opacity='1'" style="img;"/>
+      <a role="button" data-toggle="modal" style="border-bottom: 0px solid;"  data-toggle="modal" data-target="#assistir{{ w.permalink }}">
+      <div class="cover">
+          <img src="{% if w.thumb480 %}{{ w.thumb480 }}?resize=480,270&crop=entropy {% elseif w.imgbg %} {{ w.imgbg }}?resize=480,270&crop=entropy{% endif %}" title="{{ w.title }}{% if w.subtitle %} - {{ w.subtitle }}{% endif %} ({{ w.year }})" class="fadeCatalogo" onload="this.style.opacity='1'"/>
+        <div class="cover_wrap">
+          <div class="cover_info">
+            <h3>{{ w.title | truncate(40) }}</h3>
+            <h4>
+              {{ w.subtitle | truncate(35) }}
+              {% if w.subtitle %} </h4> <h4> {%endif%} {{w.year}}
+              {% if w.classind  %} &middot; <span class="classind">{{ w.classind }}</span>{% endif %}
+              {% if w.duration  %} &middot; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ w.duration }} {% endif %}
+            </h4>
+          </div>
+        </div>
         <!--<h3>{{ w.title }}</h3>-->
+      </div>
       </a>
+
     </li>
-    <div class="modal" id="assistir{{ loop.index }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{ loop.index }}">
+    <div class="modal" id="assistir{{ w.permalink }}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel{{ w.permalink }}">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times-circle exitTimes"></i></button>
-            <a href="/assistir/{{ w.permalink }}"><button type="button" class="splash-play"><img src="/img/play.png" alt="Play"></button></a>
+            <a href="/i/{{ w.permalink }}"><button type="button" class="splash-play"><img src="/img/play.png" alt="Play"></button></a>
             <!-- <h4 class="modal-title" id="myModalLabel{{ loop.index }}">{{ w.title }} {% if w.subtitle %} - {{ w.subtitle }} {% else %} {% endif %}</h4> -->
-            <a href="/assistir/{{ w.permalink }}"><div class="splash" style="background-image: url('{{ w.imgbg }}');">
+            <a href="/i/{{ w.permalink }}"><div class="splash" style="background-image: url('{{ w.imgbg }}');">
             </div></a>
           </div>
           <div class="modal-body">
             <h2> {{ w.title }}</h2>
 
             <h4>
-              {{ w.subtitle }}
-              {% if w.subtitle %} &middot; {%endif%} {{w.year}}
+              {% set list1 = w.crew.director.split(',') %}{% for list in list1 %} {% if loop.first %}{{ list }}{% endif %}{% endfor %}{% if w.crew.director %}, {%endif%} {{w.year}}
               {% if w.classind  %} &middot; <span class="classind">{{ w.classind }}</span>{% endif %}
-              {% if w.duration  %} &middot; {{ w.duration }} {% endif %}
+              {% if w.duration  %} &middot; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ w.duration }} {% endif %}
             </h4>
-            <ul class="nav nav-pills text-right">
-              <li class="active"><a data-toggle="pill" href="#resumo{{ loop.index }}">Resumo</a></li>
-              <!-- <li><a data-toggle="pill" href="#creditos{{ loop.index }}">Créditos</a></li> -->
-              <!-- <li><a data-toggle="pill" href="#links{{ loop.index }}">Links</a></li> -->
-            </ul>
-            <div class="tab-content">
-              <div id="resumo{{ loop.index }}" class="tab-pane fade in active">
-                <!-- <h4>Resumo</h4> -->
-                <div class="sinopse">{{ w.sinopse }}</div>
-                <h4> Tags: {% set list1 = w.tags.split(',') %}{% for list in list1 %}<a href="/t/{{ list | trim}}">{{ list | trim}}</a>{%if loop.index0 < loop.length-1 %}, {%endif%}{% endfor %}</h4>
-              </div>
-              <!-- <div id="creditos{{ loop.index }}" class="tab-pane fade">
-                <h4>Créditos e Elenco</h4>
-                <div class="sinopse">
-
-                </div>
-              </div> -->
-              <!-- <div id="links{{ loop.index }}" class="tab-pane fade">
-                 <h4>Links</h4>
-                 {% if w.license != 'false' %}<div class="sinopse">Licença:  {{ w.license }} </div>{%endif%}
-                <div class="sinopse">
-
-                </div>
-              </div> -->
-            </div>
+            <h4></h4>
+            <div class="sinopse">{{ w.sinopse | truncate(300)}}</div>
+            <h4> Tags: {% set list1 = w.tags.split(',') %}{% for list in list1 %}{% if loop.index0 < 6 %}<a href="/t/{{ list | trim}}"><span class="label label-default">{{ list | trim}}</span></a>{% endif %}{%if (loop.index0 < loop.length-1) or (loop.index0 < 6) %} {%endif%}{% endfor %}</h4>
           </div>
           <div class="modal-footer">
-            {% if user.mod %}<a href="/edit/{{ w._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
-            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar <i class="fa fa-times-circle"></i></button>
-            <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">Informações <i class="fa fa-info-circle"></i></button></a>
-            <a href="/assistir/{{ w.permalink }}"><button type="button" class="btn btn-success">Assistir <i class="fa fa-play-circle"></i></button></a>
+            {% if user.mod or user.adm %}<a href="/edit/{{ w._id }}"><button type="button" class="btn btn-danger"> <i class="fa fa-edit"></i> Editar</button></a>{% endif %}
+            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle"></i> {{ t('Fechar') }} </button>
+            <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success"><i class="fa fa-info-circle"></i> {{ t('Informações') }} </button></a>
+            <!-- <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">{{ t('Assistir') }} <i class="fa fa-play-circle"></i></button></a> -->
           </div>
         </div>
       </div>
@@ -123,44 +120,122 @@
 {%- endmacro %}
 
 {% macro printTagCards(tagname) -%}
-<a href="/t/{{tagname}}"><div class="tagcard" style="background-image: url('/media/tags/{{tagname}}.jpg');"><p class="tagcard-text">{{ tagname | capitalize}}</p></a></div></li>
+
+
+<a href="/t/{{tagname}}"><div class="tagcard" style="background-image: url('https://vdn.libreflix.org/media/tags/{{tagname}}.jpg');"><p class="tagcard-text">{{ t(tagname) | capitalize}}</p></a></div>
+
 {%- endmacro %}
 
 <section class="work">
 
   <div class="tagcardgrab">
     <div class="tagcardcontainer">
+
       {% set tagsArray = [ 'social', 'tech', 'musica', 'sci-fi', 'ativismo', 'veganismo', 'feminismo', 'educação', 'animação', 'comédia', 'religião', 'natureza', 'ocupação'] %}
 
       <!-- Print Cards -->
-      {% for tags in tagsArray%}
-        {{ printTagCards(tags)}}
+      {% for tags in tagsArray %}
+      {{ printTagCards(tags) }}
       {% endfor %}
+
 
     </div>
   </div>
-  <br>
 
-  <!-- Longas Recém Chegados -->
-  {{ printWatches('Longas Recém Chegados', 'new-l') }}
 
-  <!-- Longas populares -->
-  {{ printWatches('Longas Populares', 'top-l') }}
+  <br><br>
 
-  <!-- Curtas populares -->
-  {{ printWatches('Curtas Populares', 'top-c') }}
 
-  <!-- Séries populares -->
-  {{ printWatches('Séries Populares', 'top-s') }}
+  {{ printWatches('Especial #DitaduraNuncaMais', ditadura) }}
+  {{ printWatches('Em Alta na Libreflix', hot) }}
+  {{ printWatches('Obras Recém Chegadas', fresh_all) }}
+  {{ printWatches('Longas Populares', top_l) }}
+  {{ printWatches('Curtas Populares', top_c) }}
+  {{ printWatches('Séries Populares', top_s) }}
+  {{ printWatches('Curtas Recém Chegados', new_c) }}
 
-  <!-- Curtas Recém Chegados -->
-  {{ printWatches('Curtas Recém Chegados', 'new-c') }}
 
   <div class="centerBlock">
     <!--<a class="btn" href="#">Ver todo o conteúdo</a>-->
   </div>
 
 </section>
+
+{#
+<div class="wrapper">
+  <section id="section1">
+    <a href="#section3">‹</a>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item cover">
+        <div class="cover">
+            <!-- <img src="{% if w.thumb480 %}{{ w.thumb480 }}?resize=480,270&crop=entropy {% elseif w.imgbg %} {{ w.imgbg }}?resize=480,270&crop=entropy{% endif %}" title="{{ w.title }}{% if w.subtitle %} - {{ w.subtitle }}{% endif %} ({{ w.year }})" class="fadeCatalogo" onload="this.style.opacity='1'"/> -->
+          <img class="fadeCatalogo" onload="this.style.opacity='1'" src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+          <div class="cover_wrap">
+            <div class="cover_info">
+              <h3>Idioma Desconhecido</h3>
+              <h4>
+                {{ w.subtitle | truncate(35) }}
+                {% if w.subtitle %} </h4> <h4> {%endif%} {{w.year}}
+                {% if w.classind  %} &middot; <span class="classind">{{ w.classind }}</span>{% endif %}
+                {% if w.duration  %} &middot; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ w.duration }} {% endif %}
+              </h4>
+            </div>
+          </div>
+          <!--<h3>{{ w.title }}</h3>-->
+        </div>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+    <a href="#section2">›</a>
+  </section>
+
+  <section id="section2">
+    <a href="#section1">‹</a>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+    <a href="#section3">›</a>
+  </section>
+
+  <section id="section3">
+    <a href="#section2">‹</a>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+      <div class="item">
+        <img src="https://libreflix.org/media/97dd66f0-43d3-11e8-a1c2-a5f3498bcf2eidioma.jpg?resize=341,192&crop=entropy"/>
+      </div>
+    <a href="#section1">›</a>
+  </section>
+</div>
+#}
 
 
 {% endblock %}

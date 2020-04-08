@@ -67,5 +67,29 @@ module.exports = function(router){
 		/** GET /uploader - Get the uploader of images */
 		.get(authMiddleware, pagesController.uploaderController);
 
+		/**
+		 * Page with information how to contribute to Libreflix
+		 */
+		router.route('/contribute')
+			/** GET /contribute - Get contribute Page */
+			.get(pagesController.contributeController);
+
+		/**
+		 * Page with information how to contribute to Libreflix
+		 */
+		router.route('/get-involved')
+			/** GET /contribute - Get contribute Page */
+			.get(pagesController.getInvolvedController);
+		 
+			// Page with information of the contributors of Libreflix
+		 
+		router.route('/thanks')
+			/** GET /contribute - Get contribute Page */
+			.get(pagesController.contributorsController);
+
+		router.route('/agradecimentos')
+			/** GET /contribute - Get contribute Page */
+			.get(pagesController.contributorsController);
+
 	return router;
 }

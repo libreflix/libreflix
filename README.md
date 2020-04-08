@@ -1,14 +1,11 @@
 ![Logo da libreflix](assets/img/libreflix.png)
-
-[![Build Status](https://ci.ayrlabs.org/api/badges/librefix/libreflix/status.svg)](https://ci.ayrlabs.org/libreflix/libreflix)
 -----
-[![Build Status](https://ci.ayrlabs.org/api/badges/libreflix/libreflix/status.svg)](https://ci.ayrlabs.org/libreflix/libreflix)
 ## Sobre
 
 Libreflix é uma plataforma de streaming livre e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.
 
 
-![](https://s3-sa-east-1.amazonaws.com/cdn.br.catarse/uploads/redactor_rails/picture/data/244309/screely-1569280205294.png)
+![](https://guilmour.org/img/blog/2018/libreflix-nacionais.jpg")
 
 
 
@@ -23,7 +20,7 @@ Nós defendemos novas formas de compartilhamento da cultura. Formas que atinjam 
 
 ## Jeitos de ajudar
 - Contribua com o código-fonte do programa
-- Ajuda na nossa campanha de financiamento coletivo https://catarse.me/libreflix
+- Ajuda na nossa campanha de financiamento coletivo https://acredito.me/libreflix
 - Entre em contato para ser um moderador de conteúdo
 - Divulgue, compartilhe, baixe e mostra para os amigos sobre a paltaforma
 
@@ -35,42 +32,18 @@ git clone https://libregit.org/libreflix/libreflix
 cd libreflix
 ```
 
-Generate environment file:
+Copy environment file
 ``` bash
-make env
+cp .env.sample .env
 ```
 
-Finally, use Docker to deploy:
+Finally, use Docker-Compose to deploy
 ``` bash
-make docker-run
+sudo docker-compose up --build
 ```
 
-Pronto! Now access on your browser [http://localhost:3998](http://localhost:3998)
+Ready! Now access on your browser [http://localhost:3999](http://localhost:3999)
 
-To run unit tests and check code coverage:
-``` bash
-make docker-test
-```
-
-Checking Docker containers status:
-``` bash
-make docker-status
-```
-
-To view logs in real time:
-``` bash
-make docker-logs
-```
-
-Stopping all containers:
-``` bash
-make docker-down
-```
-
-Destroy all data:
-``` bash
-make docker-destroy
-```
 
 # Apoio
 

@@ -38,10 +38,3 @@ O Libreflix é construído em comunidade e seria incrível contar com a sua ajud
 - **Financeiramente**: ajude a arcar com gastos nos servidores doando em nossa [página no Acredito.me](https://acredito.me/libreflix2018)
 
 - **Espalhando a palavra**: divulgue, discuta e converse com seus amigos sobre a plataforma e a importância da transmissão livre para uma sociedade melhor. Siga nas redes sociais convencionais - [twitter](https://twitter.com/libreflix), [instagram](https://instagram.com/libreflix), [facebook](https://facebook.com/libreflix), [telegram](https://t.me/libreflix).
-
-
-<br><br>
-<p align="right">
-  <a href="https://libregit.org/libreflix/libreflix/src/master/views/faq.md")">&#x270E; Editar</a> |
-  <a href="https://libregit.org/libreflix/libreflix/commits/master/views/faq.md")}}">&#x26C1; Versões</a>
-</p>

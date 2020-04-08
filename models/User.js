@@ -24,7 +24,11 @@ var userSchema = new mongoose.Schema({
   facebook: String,
   twitter: String,
   mod: Boolean,
-  adm: Boolean
+  adm: Boolean,
+
+  /* Email Settings */
+  allowNewsletter: Boolean
+
 }, schemaOptions);
 
 userSchema.pre('save', function(next) {

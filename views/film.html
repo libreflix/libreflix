@@ -1,13 +1,21 @@
-{% set title = film.title %}
+{% set title = [film.title, ' (', film.year, ')'] | join  %}
+
+<meta name="description" content="Assista no Libreflix agora o filme {{title}}: {{ film.sinopse }}">
 
 {% block opengraph %}
+<script type="text/javascript">
+// Thank you https://stackoverflow.com/questions/14940423/autofocus-input-in-twitter-bootstrap-modal
+$(document).on('shown.bs.modal', '.modal', function () {
+    $(this).find('[autofocus]').focus();
+});
+</script>
 <meta name="description" content='{{ film.sinopse }}'>
 <meta name="keywords"  content="{{film.tags}} - libreflix" />
 
-<meta property="og:image" content="https://libreflix.org/{{ film.thumb480 }}" />
+<meta property="og:image" content="{{ film.thumb480 }}" />
 <meta property="og:type" content="video.movie" />
 <meta property="og:url" content="https://libreflix.org/i/{{ film.permalink }}" />
-<meta property="og:title" content="'{{title}} - Libreflix" />
+<meta property="og:title" content="{{t('Assista agora')}} {{title}} - Libreflix" />
 <meta property="og:video" content="https://libreflix.org/assistir/{{ film.permalink }}" />
 <meta property="og:description" content="{{ film.sinopse }}" />
 <meta property="og:url" content="https://libreflix.org/assistir/{{ film.permalink}}" />
@@ -15,12 +23,18 @@
 
 <!-- twitter metatags-->
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="{{title}} - Libreflix">
+<meta name="twitter:title" content="{{t('Assista agora')}} {{title}} - Libreflix">
 <meta name="twitter:description" content="{{ film.sinopse }}">
-<meta name="twitter:image" content="https://libreflix.org/{{ film.thumb480 }}">
+<meta name="twitter:image" content="{{ film.thumb480 }}">
+
+<link rel="stylesheet" href="/css/css-stars.css">
+
 {% endblock %}
 
-{% extends 'layout.html' %}
+
+
+{% extends 'layouts/layout.html' %}
+
 
 {% block body %}
 <div class="container-fluid">
@@ -47,109 +61,624 @@
   {% endif %}
 </div>
 
-<div class="film_banner" style="background: url('{{ film.imgbg }}') no-repeat center center;">
-  <a href="/assistir/{{ film.permalink }}"><button type="button" class="banner-play"><img src="/img/play.png" alt="Play"></button></a>
-</div>
 
-<div class="container-fluid">
-	<div class="row film_content">
-		<div class="col-md-1">
-		</div>
-		<div class="col-md-4">
-			<img alt="{{ film.title }}({{ film.year }})" src="{% if film.thumb480 %}{{ film.thumb480 }}?resize=480,270&crop=entropy {% elseif film.imgbg %} {{ film.imgbg }}?resize=480,270&crop=entropy{% endif %}" class="film_pic" />
-		</div>
-		<div class="col-md-6 film_content_left">
-      <h2>{{ film.title }} ({{ film.year }})</h2>
-      <h4>
-        {{ film.subtitle }}
-        {% if film.subtitle %} &middot; {%endif%} {{film.year}}
-        {% if film.classind  %} &middot; <span class="classind">{{ film.classind }}</span>{% endif %}
-        {% if film.duration  %} &middot; {{ film.duration }} {% endif %}
-      </h4>
-			<p>
-      {{ film.sinopse }}
-			</p>
-      {% if user.mod %}<a href="/edit/{{ film._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
-			<div class="btn-group">
+{% if film.status == 'approved' or user.mod or user.adm or film.featured or film.featured == 'true'%}
+  <div class="film_banner" style="background: url('{{ film.imgbg }}') no-repeat center center;">
+    <a href="/assistir/{{ film.permalink }}">
+      <button type="button" class="banner-play">
+        <img src="/img/play.png" alt="Play">
+      </button>
+    </a>
+  </div>
 
-				<button class="btn btn-default" onclick="location.href='/assistir/{{ film.permalink }}'">
-					<i class="fa fa-play-circle"></i> Assistir
-				</button>
-				<!-- <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
-					<span class="caret"></span>
-				</button>
-				<ul class="dropdown-menu">
-					<li>
-						<a href="">  Baixar <i class="fa fa-download"></i></a>
-					</li>
-					<li class="disabled">
-						<a href="">Baixar <i class="fa fa-download"></i></a>
-					</li>
-				</ul> -->
-			</div>
-		</div>
-		<div class="col-md-1">
-		</div>
-	</div>
-  <br><br>
-  <div class="row">
-		<div class="col-md-1">
-		</div>
-		<div class="col-md-3">
-      <p>
-      <ul class="list-unstyled">
+  <div class="container-fluid">
+  	<div class="row film_content">
+  		<div class="col-md-1">
+  		</div>
+  		<div class="col-md-4">
+  			<img alt="{{ film.title }}({{ film.year }})" src="{% if film.thumb480 %}{{ film.thumb480 }}?resize=480,270&crop=entropy {% elseif film.imgbg %} {{ film.imgbg }}?resize=480,270&crop=entropy{% endif %}" class="film_pic" />
 
-        {% macro printSimpleField(detail, content) %}
-        {% if content %}
-        <li><b>{{ detail }}</b></li>
-        <li>{{ content }}</li>
+        <button class="btn btn-lg btn-block btn-default btn-libre" onclick="location.href='/assistir/{{ film.permalink }}'">
+          <i class="fa fa-play-circle"></i> {{ t('Assistir') }}
+        </button>
+
+  		</div>
+  		<div class="col-md-6 film_content_left">
+        {#<h2>{{ [film.title, ' (', film.year, ')'] | join }} #}
+        <h2>{{ film.title }}
+
+          <span class="pull-right">
+            {%- set total = 4 %}
+            {%- set n = 1 %}
+            {%- for r in all_rating %}
+              {%- if r.stars > 0 %}
+                {%- set total = total + r.stars %}
+                {%- set n = n + 1%}
+              {%- endif %}
+            {%- endfor %}
+            <a href="#rating">
+              <span class="label label-rating right float-left">{{ (total / n) | round(1) }} </span>
+            </a>
+          </span>
+
+
+        </h2>
+        <h4>
+          {{ film.subtitle }}
+          {% if film.subtitle %} &middot; {%endif%} {{film.year}}
+          {% if film.classind  %} &middot; <img src="/assets/classind/{{ film.classind }}.png" width="22px" alt="{{ film.classind }}">{% endif %}
+          {% if film.duration  %} &middot; <i class="fa fa-clock-o" aria-hidden="true"></i> {{ film.duration }} {% endif %}
+        </h4>
+  			<p>
+        {{ film.sinopse }}
+  			</p>
+        {% if user.mod or user.adm %}<a href="/edit/{{ film._id }}"><button type="button" class="btn btn-danger btn-libre">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
+
+
+        {#
+        <button class="btn btn-default btn-libre" onclick="location.href='/assistir/{{ film.permalink }}'"
+        {% if not film.enableTrailer %} disabled title="{{t('Trailer não disponível')}}"{% endif %}>
+          <i class="fa fa-video-camera"></i> {{ t('Trailer') }}
+        </button>
+        #}
+
+        {#
+        <button class="btn btn-default btn-libre" onclick="location.href='/download/{{ film.permalink }}'"
+        {% if not film.enableDownload %} disabled title="{{t('Infelizmente o download não está disponível para essa obra')}}"{% endif %}>
+          <i class="fa fa-download"></i> {{ t('Download') }}
+        </button>
+        #}
+
+
+        {% if not user %}
+        <button title="{{t('Já Vi')}}" class="btn btn-default btn-libre" id="alreadyWatched" disabled>
+          <i class="fa fa-check-square"></i> {{t('Já Vi')}}
+          <!-- &nbsp {{ t('Já Vi') }} -->
+        </button>
+        {% elif not interaction.alreadyWatched %}
+        <button title="{{t('Já Vi')}}" class="btn btn-default btn-libre" id="alreadyWatched">
+          <i class="fa fa-check-square"></i> {{t('Já Vi')}}
+          <!-- {{ t('Já Vi') }} -->
+        </button>
+        {% elif interaction.alreadyWatched %}
+        <button title="{{t('Já Vi')}}" class="btn btn-default btn-libre btn-success" id="alreadyWatched">
+          <i class="fa fa-check-square"></i> {{t('Já Vi')}}
+          <!-- {{ t('Já Vi') }} -->
+        </button>
+        {% endif %}
+
+        {% if not user %}
+        <button title="{{t('Favoritar')}}" class="btn btn-default btn-libre" id="favorite" disabled>
+          <i class="fa fa-heart"></i> {{t('Favoritar')}}
+        </button>
+        {% elif not interaction.favorite %}
+        <button title="{{t('Favoritar')}}" class="btn btn-default btn-libre" id="favorite">
+          <i class="fa fa-heart"></i> {{t('Favoritar')}}
+        </button>
+        {% elif interaction.favorite %}
+        <button title="{{t('Favoritar')}}" class="btn btn-default btn-libre btn-success" id="favorite">
+          <i class="fa fa-heart"></i> {{t('Favoritar')}}
+        </button>
+        {% endif %}
+
+
+        <button class="btn btn-default btn-libre" data-toggle="modal" data-target="#modalDonations"
+        {% if not film.enableDonations %} disabled title="{{t('Infelizmente as retribuições não estão disponíveis para essa obra')}}"{% endif %}>
+          <i class="fa fa-usd "></i> {{ t('Retribuir') }}
+        </button>
+        <div class="modal" id="modalDonations" tabindex="-1" role="dialog" aria-labelledby="modalDonations">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-times-circle exitTimes"></i></button>
+                <div class="splash_donate" style="background-image: url('{{ film.imgbg }}');"></div>
+              </div>
+              <form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
+              <div class="modal-body">
+              <h3> {{film.title}}</h3>
+              <h4> Retribuir diretamente para os realizadores </h4>
+              <hr>
+              <input type="hidden" name="charset" value="utf-8" />
+              <input type="hidden" name="cmd" value="_xclick">
+              <input type="hidden" name="business" value="{{film.paypal_email}}">
+              <input type="hidden" name="item_name" value="{{ t('Doação Libreflix')}} - {{film.title}}">
+              <input type="hidden" name="item_number" value="1">
+              <input type="hidden" name="image_url" value="https://libreflix.org/libreflix_min.png">
+              <input type="hidden" name="custom" value="{{film.permalink}}">
+
+              Valor da sua retribuição: &nbsp
+              <input id="amount" name="amount" min="1" size="2" autocomplete="off" class="price_donation" placeholder="R$" autofocus>
+
+              <!-- <select  class="selectpicker" name="currency_code">
+          		  <option value="">Select Currency</option>
+          		  <option value="AUD">Australian Dollar (AUD)</option>
+          		  <option value="BRL" SELECTED="YES">Brazilian Real (BRL)</option>
+          		  <option value="CAD">Canadian Dollar (CAD)</option>
+          		  <option value="CZK">Czech Koruna (CZK)</option>
+          		  <option value="DKK">Danish Krone (DKK)</option>
+          		  <option value="EUR">Euro (EUR)</option>
+          		  <option value="HKD">Hong Kong Dollar (HKD)</option>
+          		  <option value="HUF">Hungarian Forint (HUF)</option>
+          		  <option value="ILS">Israeli New Sheqel (ILS)</option>
+          		  <option value="JPY">Japanese Yen (JPY)</option>
+          		  <option value="MYR">Malaysian Ringgit (MYR)</option>
+          		  <option value="MXN">Mexican Peso (MXN)</option>
+          		  <option value="NOK">Norwegian Krone (NOK)</option>
+          		  <option value="NZD">New Zealand Dollar (NZD)</option>
+          		  <option value="PHP">Philippine Peso (PHP)</option>
+          		  <option value="PLN">Polish Zloty (PLN)</option>
+          		  <option value="GBP">Pound Sterling (GBP)</option>
+          		  <option value="SGD">Singapore Dollar (SGD)</option>
+          		  <option value="SEK">Swedish Krona (SEK)</option>
+          		  <option value="CHF">Swiss Franc (CHF)</option>
+          		  <option value="TWD">Taiwan New Dollar (TWD)</option>
+          		  <option value="THB">Thai Baht (THB)</option>
+          		  <option value="TRY">Turkish Lira (TRY)</option>
+          		  <option value="USD">U.S. Dollar (USD)</option>
+              </select> -->
+              <input type="hidden" name="no_shipping" value="1">
+              <input type="hidden" name="no_note" value="0">
+              <input type="hidden" name="currency_code" value="BRL">
+              <input type="hidden" name="lc" value="BR">
+              <!-- <input type="hidden" name="bn" value="PP-BuyNowBF"> -->
+              <input type="hidden" name="return" value="https://libreflix.org/i/{{film.permalink}}" />
+              <hr>
+              <p>{{t('Sua retribuição dá suporte direto às pessoas envolvidas na criação desta obra, além de fomentar um ambiente de financiamento que possibilita a realização de mais obras para o cinema e o streaming livre.')}}*
+              </p>
+              <p>
+                <small><small>
+                  *{{t('O Libreflix não fica com nenhum valor desta retribuição. Se você também quiser apoiar a plataforma, você pode visitar a nossa campanha de financiamento coletivo.')}} :)
+                </small></small>
+              </p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle"></i> {{ t('Fechar') }} </button>
+                <a href="/i/{{ w.permalink }}"><button type="submit" class="btn btn-success"><i class="fa fa-handshake-o "></i> {{ t('Retribuir Agora') }} </button></a>
+                <!-- <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">{{ t('Assistir') }} <i class="fa fa-play-circle"></i></button></a> -->
+              </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+
+
+        <div class="btn-group">
+
+
+  				<!-- <button data-toggle="dropdown" class="btn btn-default dropdown-toggle">
+  					<span class="caret"></span>
+  				</button>
+  				<ul class="dropdown-menu">
+  					<li>
+  						<a href="">  Baixar <i class="fa fa-download"></i></a>
+  					</li>
+  					<li class="disabled">
+  						<a href="">Baixar <i class="fa fa-download"></i></a>
+  					</li>
+  				</ul> -->
+  			</div>
+
+
+
+  		</div>
+  		<div class="col-md-1">
+  		</div>
+  	</div>
+    <br><br>
+    <div class="row">
+  		<div class="col-md-1">
+  		</div>
+  		<div class="col-md-3">
+        <p>
+        <ul class="list-unstyled">
+
+          {% macro printSearchField(detail, content) %}
+          {% if content %}
+          {{t(detail)}}
+          <p>
+          {% set list1 = content.split(',') %}{% for list in list1 %}<a href='/busca/%22{{ list | trim | replace(" ", "%20")}}%22'><span class="label label-default">{{ list | trim}}</span></a>{%if (loop.index0 < loop.length-1) %} {%endif%}{% endfor %}
+          </p>
+          {% endif %}
+          {% endmacro %}
+
+          {% macro printSimpleField(detail, content) %}
+          {% if content %}
+          <p>
+          <li><b>{{ t(detail) }}</b></li>
+          <li>{{ t(content) | replace(",",", ")}}</li>
+          </p>
+          {% endif %}
+          {% endmacro %}
+
+          {{ printSearchField('Direção', film.crew.director) }}
+
+
+          {{ printSimpleField('Título Original', film.original_title) }}
+
+          {% if film.location.country.code %}
+          <p>
+          <li><b>{{ t('País de Origem') }}</b></li>
+          <li><a href="/explore/country/{{film.location.country.code}}">{{ t(film.location.country.name) | replace(",",", ")}}</a></li>
+          </p>
+          {% endif %}
+
+          {{ printSimpleField('Cidade de Origem', film.location.city) }}
+          {{ printSimpleField('Estado de Origem', film.location.state) }}
+          {{ printSimpleField('Lançamento', film.premiere) }}
+          {{ printSimpleField('Qualidade', film.quality) }}
+          {{ printSimpleField('Aúdio', film.audio_language) }}
+          {{ printSimpleField('Legendas', film.srt_language) }}
+          {{ printSimpleField('Produção', film.crew.producer) }}
+          {{ printSimpleField('Roteiro', film.crew.screenplay) }}
+          {{ printSimpleField('Elenco', film.crew.cast) }}
+          {{ printSimpleField('Edição', film.crew.editor) }}
+
+          <!-- {% if film.criador %}
+          <li><b>Enviador por:</b></li>
+          <li>
+            {% if film.criador.name %}<a href="/u/{{ film.criador.username }}">{{ film.criador.name }}</a>
+            {% else %}<a href="/u/{{ film.criador.username }}">{{ film.criador.username }}</a> {% endif %}
+          </li>
+          <br>
+          {% endif %} -->
+        </ul>
+        </p>
+
+        {%if film.links.website or film.links.wikipedia or film.links.twitter
+          or film.links.imdb or film.links.filmow or film.links.facebook or film.links.instagram %}
+        <hr>
+        <b>{{ t('External Links') }}</b>
+        <h3>
+          {%if film.links.website %} <a href="{{ film.links.website }}" target="_blank"><i class="fa fa-globe" aria-hidden="true"></i></a>  {% endif %}
+          {%if film.links.wikipedia %} <a href="{{ film.links.wikipedia }}" target="_blank"> <i class="fa fa-wikipedia-w" aria-hidden="true"></i></a> {% endif %}
+          {%if film.links.twitter %} <a href="{{ film.links.twitter }}" target="_blank"><i class="fa fa-twitter-square" aria-hidden="true"></i></a>  {% endif %}
+          {%if film.links.imdb %} <a href="{{ film.links.imdb }}" target="_blank"><i class="fa fa-imdb" aria-hidden="true"></i></a>  {% endif %}
+          {%if film.links.filmow %} <a href="{{ film.links.filmow }}" target="_blank"> <i class="fa fa-film" aria-hidden="true"></i></a> {% endif %}
+          {%if film.links.facebook %} <a href="{{ film.links.facebook }}" target="_blank"> <i class="fa fa-facebook-square" aria-hidden="true"></i></a> {% endif %}
+          {%if film.links.instagram %} <a href="{{ film.links.instagram }}" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a> {% endif %}
+        </h3>
+         {% endif %}
+
+  		</div>
+  		<div class="col-md-7">
+        <div class="row">
+        {% if film.description %}
+        <h3>{{ t('Descrição')}} </h3>
+        {% markdown %}
+        {{ film.description | urlize | safe | nl2br}}
+        {% endmarkdown %}
+        {% endif %}
+        <!-- <h3>Comentários</h3> -->
+        {% if film.categories %}
+        {# This is a simple solution to show the categories of a film without changing the watchSchema, since we can populate by other than id #}
+        <b>{{ t('Categorias')}}:</b>
+        {% for c in categories  %}
+        {% for fc in film.categories %}
+        {% if c.nid == fc %}
+        <!-- <span class="label label-default">{{ t(c.title).replace(' de ', '').replace('Documentários','')}}</span></a> -->
+        <a href="/explore/category/{{c.nid}}">{{ t(c.title)}}</a>{% if not loop.last %}, {% endif %}
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+        {% endif %}
+        </div>
+        <div class="row">
+          {% if film.tags %}
+            <h4>
+              Tags: {% set list1 = film.tags.split(',') %}{% for list in list1 %}<a href="/t/{{ list | trim}}"><span class="label label-default">{{ list | trim}}</span></a>{%if (loop.index0 < loop.length-1) %} {%endif%}{% endfor %}
+            {% if user.adm %}
+            <button type="button" class="btn btn-link" data-toggle="modal" data-target="#addTagsModal">
+                          <i class="fa fa-tag" aria-hidden="true"></i> {{ t('Sugerir tags') }}
+            </button>
+            {% endif %}
+            </h4>
+            {% if user %}
+            <!-- Button trigger modal -->
+
+            <!-- Modal -->
+            <div class="modal fade" id="addTagsModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                  </div>
+                  <div class="modal-body">
+                    <h4>{{t('Sugerir tags')}}</h4>
+                    <textarea name="Text1" cols="55" rows="4" style="width: 100%;" id="newtagsinput"></textarea>
+                    <p>
+                      {{t('Digite os nomes de novas tags, separadas por vírgula')}}
+                    </p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">{{ t('Fechar' )}}</button>
+                    <button type="button" class="btn btn-success" id="newTags">{{ t('Sugerir tags' )}}</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endif %}
+          {% endif %}
+
+
+        </div>
+
+        {% if film.layout == "serie" or film.layout == "series "%}
+        <div class="row">
+          <hr>
+          <h3>{{ t('Episódios') }}</h3>
+            <table class="ep-list">
+                <tbody>
+                  {% for ep in film.eps %}
+                    <tr class="">
+                        <td><span>{{loop.index}}.</span></td>
+                        <td>
+                          <a href="/assistir/{{film.permalink}}/ep/{{loop.index}}">{{ ep.subtitle }}</a>
+                        </td>
+                        <!-- <td class="ep-list__duration" colspan="2">{{ ep.duration }} min.</td> -->
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+
+        <div class="row">
+          <hr>
+          <h3 id="rating">{{ t('Avaliações') }}</h3>
+          {{ t('Avaliação média') }}: <span class="label label-rating right float-left">{{ (total / n) | round(1) }} </span>
+          <p class="text-comment">{{ n }} {{t('Avaliações')}}.</p>
+
+          {% if user %}
+          <b>{{t('Sua avaliação')}}:</b>
+
+          <form action="/i/{{film.permalink}}/#rating" method="post" id="formAJAX">
+          <select name="stars" id="rating_stars" autocomplete="off">
+              <option value=""  {% if interaction.stars == "" %} selected {%endif%}>0</option>
+              <option value="1" {% if interaction.stars == "1" %} selected {%endif%} >1</option>
+              <option value="2" {% if interaction.stars == "2" %} selected {%endif%} >2</option>
+              <option value="3" {% if interaction.stars == "3" %} selected {%endif%} >3</option>
+              <option value="4" {% if interaction.stars == "4" %} selected {%endif%} >4</option>
+              <option value="5" {% if interaction.stars == "5" %} selected {%endif%} >5</option>
+          </select>
+          <br>
+          <button type="submit" class="btn btn-default"> <i class="fa fa-check"></i> {{t('Salvar avaliação')}} </button>
+          </form>
+
+          {% endif %}
+        </div>
+
+
+
+        {# Inicio links externos para resenhas, notícias ou artigos sobre a obra #}
+        {%set referenceFlag = false %}
+
+        {% for r in reference %}
+          {% if loop.length > 0 %}
+          {% set referenceFlag = true %}
+          {% endif %}
+        {% endfor %}
+
+        {% if referenceFlag %}
+        <div class="row">
+          <hr>
+          <h3>  {{ t('Ligações externas') }}</h3>
+          {% for r in reference %}
+          <p>
+            <a href="{{r.url}}" target="_blank">
+              <i class="fa fa-external-link" aria-hidden="true"></i>
+              {{ r.title | title }}
+            </a>
+          </p>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {# Fim links externos para resenhas, notícias ou artigos sobre a obra #}
+
+
+        <div class="row">
+          <hr>
+        <h3 id="comments">{{ t('Comentários')}}</h3>
+        </div>
+        <!-- comment inicio -->
+        {% set counter = 0 %}
+        {% for c in comments %}
+        {% set counter = loop.length %}
+        {% if c.body != "" %}
+        <div class="row container-comment">
+            <div class="col-md-10 col-lg-10">
+                <p>
+                    <a id="comment{{loop.index}}" class="float-left" href="/u/{{c.creator.username}}"><strong>{{c.creator.username}}</strong></a>
+
+                    <span class="text-date-comment pull-right">
+                      <a href="/i/{{ film.permalink }}/#comment{{loop.index}}"><i class="fa fa-calendar-o" aria-hidden="true"></i> {{c.date.getDate()}}/{{c.date.getMonth()+1}}/{{c.date.getFullYear()}}</a>
+                    </span>
+               </p>
+               <div class="clearfix"></div>
+                <p class="text-comment">
+                  {{c.body}}
+                  </p>
+                  {% if c.creator.id == user.id %}
+                  <form>
+                    <button type="submit" formmethod="POST" formaction="/i/{{film.permalink}}?_method=DELETE" class="btn btn-default" value="{{ c.id }}" name="del"><i class="text fa fa-trash"></i> Excluir Comentário</button>
+                    </form>
+                  {% endif %}
+                  <p></p>
+                  <span class="pull-left">
+                    {% for s in range(0, c.stars)%}
+                    <span class="float-left"><i class="text-warning fa fa-star"></i></span>
+                    {% endfor %}
+                  </span>
+            </div>
+            <div class="col-md-2 col-lg-2 hidden-sm hidden-xs text-center">
+              <span class="align-middle">
+                <a href="/u/{{c.creator.username}}">
+                <img src="{% if c.creator.twitter %}
+                            {{ c.creator.gravatar }}
+                          {% elseif c.creator.picture %}
+                            {{ c.creator.picture }}
+                          {% else %}
+                            {{ c.creator.gravatar}}
+                          {% endif %}"
+                alt="{{ p.username }}" class="photo-comment">
+                </a>
+              </span>
+            </div>
+        </div>
         <br>
         {% endif %}
-        {% endmacro %}
-
-        {{ printSimpleField('Título Original:', film.original_title) }}
-        {{ printSimpleField('Direção:', film.crew.director) }}
-        {{ printSimpleField('País de Origem:', film.location.country) }}
-        {{ printSimpleField('Cidade de Origem:', film.location.city) }}
-        {{ printSimpleField('Estado de Origem:', film.location.state) }}
-        {{ printSimpleField('Lançamento:', film.premiere) }}
-        {{ printSimpleField('Qualidade:', film.quality) }}
-        {{ printSimpleField('Aúdio:', film.audio_language) }}
-        {{ printSimpleField('Legendas:', film.srt_language) }}
-        {{ printSimpleField('Produção:', film.crew.producer) }}
-        {{ printSimpleField('Roteiro:', film.crew.screenplay) }}
-        {{ printSimpleField('Elenco:', film.crew.cast) }}
-        {{ printSimpleField('Edição:', film.crew.editor) }}
-
-        <!-- {% if film.criador %}
-        <li><b>Enviador por:</b></li>
-        <li>
-          {% if film.criador.name %}<a href="/u/{{ film.criador.username }}">{{ film.criador.name }}</a>
-          {% else %}<a href="/u/{{ film.criador.username }}">{{ film.criador.username }}</a> {% endif %}
-        </li>
-        <br>
-        {% endif %} -->
-      </ul>
-      </p>
-		</div>
-		<div class="col-md-7">
-      {% if film.description %}
-      <h3>Descrição</h3>
-      {% markdown %}
-      {{ film.description | urlize | safe}}
-      {% endmarkdown %}
-      {% endif %}
-      <!-- <h3>Comentários</h3> -->
-      <h4>
-        {% if film.tags %}
-          Tags:  {% set list1 = film.tags.split(',') %}{% for list in list1 %}<a href="/t/{{ list | trim}}">{{ list | trim}}</a>{%if loop.index0 < loop.length-1 %}, {%endif%}{% endfor %}
+        {% endfor %}
+        {% if counter == 0 %}
+          <div class="row">
+            <p class="text-comment">{{ t('Ainda não há comentários para essa obra.')}}</p>
+          </div>
         {% endif %}
-      </h4>
-		</div>
-		<div class="col-md-1">
-		</div>
-	</div>
-</div>
+
+        {% if user %}
+
+        <div class="row container-comment">
+            <div class="col-md-10 col-lg-10">
+            <div id="docomment" class="collapse in" >
+              <form action="/i/{{film.permalink}}/#comment{{counter+1}}" method="post">
+                <p>
+                    <a class="float-left" href="/u/{{c.creator.username}}"><strong>{{c.creator.username}}</strong></a>
+               </p>
+                 <div class="clearfix"></div>
+                  <p class="text-comment">
+                    <textarea name="comment_body" rows="5" class="new-comment" placeholder="{{ t('Deixe seu comentário.')}}"></textarea>
+                  </p>
+                </div>
+                  <div id="doEnviar" class="collapse in" >
+                  <p>
+                  <button type="submit" class="btn btn-success"> <i class="fa fa-paper-plane"></i> {{ t('Enviar') }} </button>
+                 </p>
+                 </div>
+               </form>
+            </div>
+            <div id="docomment" class="collapse in" >
+            <div class="col-md-2 col-lg-2 hidden-sm hidden-xs text-center">
+              <span class="align-middle">
+                <img src="{% if user.twitter %}
+                            {{ user.gravatar }}
+                          {% elseif user.picture %}
+                            {{ user.picture }}
+                          {% else %}
+                            {{ user.gravatar}}
+                          {% endif %}"
+                alt="{{ p.username }}" class="photo-comment">
+              </span>
+            </div>
+            </div>
+        </div>
+        {% else %}
+          <div class="row">
+            <p class="text-comment"><a href="/login">{{ t('Você precisa estar logado poder comentar.')}}</a></p>
+          </div>
+        {% endif %}
 
 
+
+        <!-- coment fim -->
+
+  		</div>
+  		<div class="col-md-1">
+  		</div>
+  	</div>
+  </div>
+{% elif film.status == 'striked' %}
+<h3>{{ t('Obra Indisponível')}} :'(</h3>
+<br>
+<p>{{ t('A obra que você está procurando não está mais disponível pelo seguinte status:')}} </p>
+<p><code>{{film.modComments.comment}}</code></p>
+
+{% else %}
+<meta http-equiv="refresh" content="0; url=/404">
+{% endif %}
+
+
+<script>
+  $(document).ready(function(){
+    $('#alreadyWatched').on('click', function(evt){
+      evt.preventDefault();
+      var action = $(this).attr('action');
+      var $container = $(this).closest('#alreadyWatched');
+      $.ajax({
+        url: '/i/{{ film.permalink }}/alreadyWatched',
+        type: 'POST',
+        data: {u: '{{user.id}}'},
+        dataType : 'json',
+        success: function(data){
+          if(data.success){
+            $container.toggleClass('btn-success');
+          } else {
+            $container.html('There was a problem.');
+          }
+        },
+        error: function(){
+          $container.html('There was a problem');
+        }
+      });
+    });
+  });
+
+  $(document).ready(function(){
+    $('#favorite').on('click', function(evt){
+      evt.preventDefault();
+      var action = $(this).attr('action');
+      var $container = $(this).closest('#favorite');
+      $.ajax({
+        url: '/i/{{ film.permalink }}/favorite',
+        type: 'POST',
+        data: {u: '{{user.id}}'},
+        dataType : 'json',
+        success: function(data){
+          if(data.success){
+            $container.toggleClass('btn-success');
+          } else {
+            $container.html('There was a problem.');
+          }
+        },
+        error: function(){
+          $container.html('There was a problem');
+        }
+      });
+    });
+  });
+
+  $(document).ready(function(){
+    $('#newTags').on('click', function(evt){
+      evt.preventDefault();
+      var action = $(this).attr('action');
+      var $container = $(this).closest('#newTags');
+      $.ajax({
+        url: '/i/{{ film.permalink }}/newtags',
+        type: 'POST',
+        data: {newtagsinput: $(newtagsinput).val()},
+        dataType : 'json',
+        success: function(data){
+          if(data.success){
+            $container.toggleClass('btn-success');
+          } else {
+            $container.html('There was a problem.');
+          }
+        },
+        error: function(){
+          $container.html('There was a problem');
+        }
+      });
+    });
+  });
+
+</script>
+
+
+
+<script src="/js/jquery.barrating.js"></script>
+<script type="text/javascript">
+   $(function() {
+      $('#rating_stars').barrating({
+        theme: 'css-stars'
+      });
+   });
+</script>
 {% endblock %}

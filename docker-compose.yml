@@ -4,7 +4,7 @@ services:
   database:
       logging:
         driver: none
-      image: mongo:4.2.1
+      image: mongo:latest
       ports:
           - "27019:27017"
       environment:
@@ -18,7 +18,7 @@ services:
       volumes:
         - ./:/libreflix
         - /libreflix/node_modules
-      command: nodemon -e js,html,css,md server.js
+      command: nodemon -e js,html,css,md,json server.js
       ports:
         - "3998:3998"
       links:

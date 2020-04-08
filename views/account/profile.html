@@ -1,5 +1,5 @@
 {% set title = "Minha Conta" %}
-{% extends 'layout.html' %}
+{% extends 'layouts/layout.html' %}
 
 {% block body %}
 <div class="container">
@@ -72,6 +72,13 @@
           <label class="col-sm-3">Gravatar</label>
           <div class="col-sm-4">
             <img src="{{ user.gravatar }}" class="profile" width="100" height="100">
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="col-sm-3">Newsletter</label>
+          <div class="col-sm-4">
+            <input type="checkbox" id="allow_newsletter" name="allow_newsletter" {% if user.allowNewsletter %}checked{% endif %}>
+            <label for="allow_newsletter">Permitir Newsletter</label>
           </div>
         </div>
         <div class="form-group">

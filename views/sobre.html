@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'layouts/layout.html' %}
 
 {% block opengraph %}
 <meta property="og:image" content="https://libreflix.org/jon-tyson-228428.jpg" />
@@ -56,57 +56,113 @@
 				</div>
 				<div class="col-md-8">
 
+          <!-- {{ siteLang }} -->
+          {% set siteLang = "pt" %}
+
 					<h2>
 						Libreflix
 					</h2>
 					<p>
-            Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.
+            {% if siteLang == "pt" %}
+              Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.
+
+            {% elif siteLang == "en" %}
+              Libreflix is an open and collaborative streaming platform that brings together independent, free-to-view and thought-provoking audiovisual productions.
+
+            {% elif siteLang == "es" %}
+              Libreflix es una plataforma de streaming abierta y colaborativa que reúne producciones audiovisuales independientes, gratuitas y estimulantes.
+            {% endif %}
+
 					</p>
           <br>
           <p>
-            Nós defendemos novas formas de compartilhamento da cultura. Formas que atinjam todas as pessoas, principalmente as que não podem pagar por ela. Formas que conectem os artistas direto com os fãs. E até formas que permitam que artistas criem algo novo à partir do trabalho de outros artistas. Cultura é ciência, é poesia e é de todo mundo.
+            {% if siteLang == "pt" %}
+              Nós defendemos novas formas de compartilhamento da cultura. Formas que atinjam todas as pessoas, principalmente as que não podem pagar por ela. Formas que conectem os artistas direto com os fãs. E até formas que permitam que artistas criem algo novo à partir do trabalho de outros artistas. Cultura é ciência, é poesia e é de todo mundo.
+
+
+            {% elif siteLang == "en" %}
+              We advocate for new ways of sharing culture. Forms that affect all people, especially those who can not afford it. Ways to connect artists directly with fans. And even ways that allow artists to create something new from the work of other artists. Culture is science, it is poetry and it belongs to everyone.
+
+
+            {% elif siteLang == "es" %}
+              Abogamos por nuevas formas de compartir la cultura. Formas que afectan a todas las personas, especialmente a quienes no pueden costearlo. Formas de conectar artistas directamente con los fans. E incluso formas que permiten a los artistas crear algo nuevo a partir del trabajo de otros artistas. Cultura es ciencia, es poesía y es de todos.
+            {% endif %}
           </p>
           <br>
           <h2>
-						Colaborativa
+						  {{ t('Colaborativa') }}
 					</h2>
 					<p>
+            {% if siteLang == "pt" %}
             Qualquer um pode adicionar uma produção ao Libreflix. Se você conhece alguma produção em que seus criadores a disponibilizaram para livre exibição ou se ainda você é um filmmaker, disponibilize sua criação. Espalhe a palavra.
+
+            {% elif siteLang == "en" %}
+            Anyone can add a production to Libreflix. If you know a production that its creators have made it available to watch on the web for free; or if you are a filmmaker, make your creation available. Spread the word.
+
+            {% elif siteLang == "es" %}
+            Cualquiera puede agregar una producción a Libreflix. Si conoce alguna producción que sus creadores han puesto a disposición de forma gratuita o si aún es un cineasta, haga que su creación esté disponible. Corre la voz.
+            {% endif %}
           </p>
           <p>
-            <a href="/novo">Adicionar nova produção »</a>
+            <a href="/novo">{{ t('Adicionar nova produção') }} »</a>
           </p>
           <br>
           <h2>
-						Código-aberto
+						{{ t('Software livre e código aberto') }}
 					</h2>
 					<p>
+          {% if siteLang == "pt" %}
           Cultura livre e o software também! Em comunidade podemos fazer muito mais. Se você é desenvolvedor ou quer aprender: <a href="https://libregit.org/libreflix/libreflix/issues">Junte-se a nós »</a>
+
+          {% elif siteLang == "en" %}
+          Free culture and software too! In community we can do much more. If you are a developer or want to learn: <a href="https://libregit.org/libreflix/libreflix/issues">Join our code contributors »</a>
+
+          {% elif siteLang == "es" %}
+          ¡Cultura libre y software también! En comunidad podemos hacer mucho más. Si eres desarrollador o quieres aprender:
+           <a href="https://libregit.org/libreflix/libreflix/issues"> Únete a nuestros colaboradores de código »</a>
+          {% endif %}
           </p>
           <br>
 					<h2>
-						Quem faz
+						{{ t('Quem faz')}}
 					</h2>
 					<p>
-            O Libreflix é feito com amor por <a href="http://guilmour.org">Guilmour Rossi</a> junto com os <a href="/juntos" target="_blank">colaboradores</a>!
+            {% if siteLang == "pt" %}
+            O Libreflix é feito com amor por <a href="http://guilmour.org">Guilmour Rossi</a> junto com os <a href="/juntos" target="_blank">colaboradores</a>.
+
+            {% elif siteLang == "en" %}
+            Libreflix is created with love by <a href="http://guilmour.org">Guilmour Rossi</a> and others <a href="/juntos" target="_blank">contributors</a>.
+
+            {% elif siteLang == "es" %}
+            Libreflix es creado con amor por <a href="http://guilmour.org">Guilmour Rossi</a> y otros <a href="/juntos" target="_blank">contribuyentes</a>.
+            {% endif %}
           </p>
           <p>
-             Mas precisamos de mais marujos a bordo! Você é muito bem-vindo. Visite nosso <a href="https://libregit.org/libreflix/libreflix/issues">Notabug</a> ou entre em contato pelo <a href="https://telegram.me/çobreflix_org">Telegram</a>.
+            {% if siteLang == "pt" %}
+             Mas precisamos de mais marujos a bordo! Você é muito bem-vindo. Visite nosso
+             <a href="https://libregit.org/libreflix/libreflix/issues">LibreGit</a> ou entre em contato pelo <a href="https://telegram.me/libreflix_org">Telegram</a>.
+
+             {% elif siteLang == "en" %}
+             But we need more sailors on board! You are very welcome. Visit our
+             <a href="https://libregit.org/libreflix/libreflix/issues">LibreGit</a> or get in touch using <a href="https://telegram.me/libreflix_org">Telegram</a>.
+
+             {% elif siteLang == "es" %}
+             ¡Pero necesitamos más marineros a bordo! Visita nuestro
+             <a href="https://libregit.org/libreflix/libreflix/issues">LibreGit</a> o póngase en contacto con el <a href="https://telegram.me/libreflix_org">Telegram</a>.
+
+             {% endif %}
           </p>
           <br>
 					<h2>
-						Patrocínio
+						{{ t('Apoio') }}
 					</h2>
 					<p>
             <a href="http://hosthp.com.br"><img src="/assets/sponsors/2018/host-hp.png" alt="HostHP" width="180" class="apoio-marcas"></a>
             <a href="http://keykong.io"><img src="/assets/sponsors/2018/logo_keykong_green.png" alt="KeyKong.io" width="200" class="apoio-marcas"></a>
 					</p>
-					<h2>
+					<!-- <h2>
 						Amigos
-					</h2>
-					<p>
-            <a href="http://baixacultura.org"><img src="/assets/friends/baixa_cultura.png" alt="BaixaCultura" width="180" class="apoio-marcas"></a>
-					</p>
+					</h2> -->
 				</div>
 				<div class="col-md-2">
 				</div>

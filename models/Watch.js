@@ -7,20 +7,26 @@ var schemaOptions = {
   }
 };
 
-const getTags = tags => tags.join(', ');
-const setTags = tags => tags.split(', ');
+const getTags = tags => tags.join(',');
+const setTags = tags => tags.split(',');
 
 var watchSchema = new mongoose.Schema({
   /* Internal */
   permalink: {type: String, unique: true},
   criador: { type : mongoose.Schema.ObjectId, ref : 'User' },
   layout: String,
-  featured: String,
+  featured: Boolean,
   status: String,
+  modComments: {
+    moderator: { type : mongoose.Schema.ObjectId, ref : 'User'},
+    status: String, // wainting, pending, approved, rejected,
+    date: Date,
+    comment: String
+  },
   top: String,
   mod_message: String,
-  downloadable: String,
-  canwecopy: String,
+  downloadable: Boolean,
+  canwecopy: Boolean,
 
 
   /* Basic */
@@ -28,7 +34,7 @@ var watchSchema = new mongoose.Schema({
   subtitle: String,
   original_title: String,
   year: Number,
-  duration: String,
+  duration: String, // in minutes
   classind: String,
   sinopse: String,
 
@@ -36,7 +42,10 @@ var watchSchema = new mongoose.Schema({
   description: String,
   license: String,
   location: {
-    country: String,
+    country:{
+      code: String,
+      name: String,
+    },
     state: String,
     city: String,
     lat: String,
@@ -67,17 +76,53 @@ var watchSchema = new mongoose.Schema({
   file: {
     film: String,
     trailer: String,
-    srt: String
+    srt: String,
+    ld: String,
+    sd: String,
+    hd: String,
+    fhd: String,
+    uhd: String
   },
 
   /* Categories */
   tags: { type: [], get: getTags, set: setTags },
+  usertags: { type: [], get: getTags, set: setTags },
+  categories: { type: []},
+  format: String,
+
+  /* External links */
+  links: {
+    website: String,
+    wikipedia: String,
+    twitter: String,
+    imdb: String,
+    filmow: String,
+    facebook: String,
+    instagram: String
+  },
+
+  /** New player options **/
+  useWatchV2: Boolean,
+  useWatchV3: Boolean,
+  magnet: {ld: String, sd: String, hd: String, fhd: String, uhd: String},
+  webseed: {ld: String, sd: String, hd: String, fhd: String, uhd: String},
+  subs: {pt_br: String, en: String, es: String},
+
+  /* Download options */
+  enableDownload: Boolean,
+  enableDonations: Boolean,
+  enableTrailer: Boolean,
+  paypal_email: String,
 
   /* For Series */
   n_eps: Number,
   eps: [{   last: Boolean,
             subtitle : String,
             video : String,
+            duration: Number,
+            magnet: {ld: String, sd: String, hd: String, fhd: String, uhd: String},
+            webseed: {ld: String, sd: String, hd: String, fhd: String, uhd: String},
+            subs: {pt_br: String, en: String, es: String},
             thumb480 : String,
             thumb130 : String}]
 }, schemaOptions);

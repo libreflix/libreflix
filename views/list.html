@@ -4,7 +4,7 @@
   {% set title = "Tag: " + tag %}
 {% endif %}
 
-{% extends 'layout.html' %}
+{% extends 'layouts/layout.html' %}
 
 {% block body %}
 <div class="container-fluid">
@@ -31,37 +31,105 @@
   {% endif %}
 
 </div>
-<h2>Obras Pendentes</h2>
+<h2>{{t('Obras Enviadas')}}</h2>
 <section class="work">
-    {% if (user.mod) or (user.adm) %}
+
+  {% macro showWatch(w) %}
+  <hr>
+  <b>Status: </b>
+  <!-- Se more at: https://libregit.org/libreflix/libreflix/issues/17#issuecomment-166 -->
+  {% if not w.status %}
+    <span class="label label-info">Waiting</span>
+    | <code>{{ w.modComments.comment }}</code>
+  {% endif %}
+  {% if w.status == 'waiting' %}
+    <span class="label label-info">Waiting</span>
+    | <code>{{ w.modComments.comment }}</code>
+  {% endif %}
+  {% if w.status == 'pending' %}
+    <span class="label label-warning">Pending</span>
+    | <code>{{ w.modComments.comment }}</code>
+  {% endif %}
+  {% if w.status == 'approved' %}
+    <span class="label label-success">Approved</span>
+    | <code>{{ w.modComments.comment }}</code>
+  {% endif %}
+  {% if w.status == 'paused' %}
+    <span class="label label-success">Paused</span>
+    | <code>{{ w.modComments.comment }}</code>
+  {% endif %}
+  {% if w.status == 'nonlibre' %}
+    <span class="label label-danger">Non-libre</span>
+    | <code>{{ w.modComments.comment }}</code>
+  {% endif %}
+  {% if w.status == 'offensive' %}
+    <span class="label label-danger">Offensive</span>
+    | <code>{{ w.modComments.comment }}</code>
+  {% endif %}
+  {% if w.status == 'wrongtype' %}
+    <span class="label label-danger">Wrong Type</span>
+    | <code>{{ w.modComments.comment }}</code>
+  {% endif %}
+  {% if w.status == 'striked' %}
+    <span class="label label-danger">Striked</span>
+    | <code>{{ w.modComments.comment }}</code>
+  {% endif %}
+  <br>
+  <b>Título: {{w.title}} </b>
+  <b>| permalink</b>: {{w.permalink}}
+  <b>| layout</b>: {{w.layout}}
+  <b>| featured</b>: {{w.featured}}
+  <b>| subtitle</b>: {{w.subtitle}} <br>
+  <b>sinopse</b>: <small>{{w.sinopse}}</small>
+  <br>
+  <b>year</b>: {{w.year}}
+  <b>| classind</b>: {{w.classind}}
+  <b>| duration</b>: {{w.duration}}
+  <b>| license</b>: {{w.license}}
+  <b>| video</b>: <a href="{{w.video}}" target="_blank">{{w.video}}</a>
+  <br>
+  <b>eps</b>: {{w.eps}}
+  <b>| tags</b>: {{w.tags}}
+  <br>
+  <b> thumb480</b>:
+    {% if w.thumb480 %}
+    <br>
+      <a href="https://libreflix.org/{{w.thumb480}}" target="_blank"><img src="{{w.thumb480}}?resize=480,270&crop=entropy" alt="" width="270"></a>
+    {% endif %}
+  <br>
+  <b>imgbg</b>:
+    {% if w.thumb480 %}
+    <br>
+      <a href="https://libreflix.org/{{w.imgbg}}" target="_blank"><img src="{{w.imgbg}}?resize=480,270&crop=entropy" alt="" width="270"></a> <br>
+    {% endif %}
+  <br><br>
+  <a href="/edit/{{ w._id }}">
+    <button type="button" class="btn btn-danger" {% if w.status != 'pending' and w.status != 'waiting' %} disabled {% endif %}>
+      <i class="fa fa-edit"></i> {{ t('Editar Obra')}}
+    </button>
+  </a>
+  <br>
+  {% endmacro %}
+
+    <!-- For the admins -->
+    {% if user.mod or user.adm %}
     <ul class="entries" style="font-size: 12pt;">
       {% for w in watch %}
-      {% if w.featured == 'false' %}
-
-      <hr>
-      <b>Título: {{w.title}} </b> |
-      <b>permalink</b>: {{w.permalink}} |
-      <b>layout</b>: {{w.layout}} |
-      <b>featured</b>: {{w.featured}} |
-      <b>subtitle</b>: {{w.subtitle}} <br>
-      <b>sinopse</b>: <small>{{w.sinopse}}</small> <br>
-      <b>year</b>: {{w.year}} |
-      <b>classind</b>: {{w.classind}} |
-      <b>duration</b>: {{w.duration}} |
-      <b>license</b>: {{w.license}} |
-      <b>video</b>: <a href="{{w.video}}" target="_blank">{{w.video}}</a> <br>
-      <b>eps</b>: {{w.eps}} |
-      <b>tags</b>: {{w.tags}} |
-      <b>thumb480</b>: <a href="https://libreflix.org/{{w.thumb480}}" target="_blank"><img src="{{w.thumb480}}" alt="" width="270"></a>
-      <b>imgbg</b>:  <a href="https://libreflix.org/{{w.imgbg}}" target="_blank"><img src="{{w.imgbg}}" alt="" width="270"></a> <br>
-      <br>
-      {% if user.mod %}<a href="/edit/{{ w._id }}"><button type="button" class="btn btn-danger">Editar <i class="fa fa-edit"></i></button></a>{% endif %}
-      <button formaction="/list" formmethod="post" class="btn btn-danger" value="">Rejeitar Produção</button>
-
-      {% endif %}
+        {% if w.featured == 'false' %}
+          {{ showWatch(w) }}
+        {% endif %}
       {% endfor %}
     </ul>
     {% endif %}
+
+    <!-- For users see the films the indicated -->
+    <ul class="entries" style="font-size: 12pt;">
+      {% for w in watch %}
+        {% if w.criador == user.id %}
+          {{ showWatch(w) }}
+        {% endif %}
+      {% endfor %}
+    </ul>
 
   <div class="centerBlock">
     <!--<a class="btn" href="#">Ver todo o conteúdo</a>-->

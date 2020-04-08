@@ -2,16 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8" />
-		<title>Repository statistics for 'libreflix'</title>
-		<script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+		<title>Repository statistics for libreflix</title>
+		<script type="application/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script type="application/javascript">
 (function($){$.extend({tablesorter:new
 function(){var parsers=[],widgets=[];this.defaults={cssHeader:"header",cssAsc:"headerSortUp",cssDesc:"headerSortDown",cssChildRow:"expand-child",sortInitialOrder:"asc",sortMultiSortKey:"shiftKey",sortForce:null,sortAppend:null,sortLocaleCompare:true,textExtraction:"simple",parsers:{},widgets:[],widgetZebra:{css:["even","odd"]},headers:{},widthFixed:false,cancelSelection:true,sortList:[],headerList:[],dateFormat:"us",decimal:'/\.|\,/g',onRenderHeader:null,selectorHeaders:'thead th',debug:false};function benchmark(s,d){log(s+","+(new Date().getTime()-d.getTime())+"ms");}this.benchmark=benchmark;function log(s){if(typeof console!="undefined"&&typeof console.debug!="undefined"){console.log(s);}else{alert(s);}}function buildParserCache(table,$headers){if(table.config.debug){var parsersDebug="";}if(table.tBodies.length==0)return;var rows=table.tBodies[0].rows;if(rows[0]){var list=[],cells=rows[0].cells,l=cells.length;for(var i=0;i<l;i++){var p=false;if($.metadata&&($($headers[i]).metadata()&&$($headers[i]).metadata().sorter)){p=getParserById($($headers[i]).metadata().sorter);}else if((table.config.headers[i]&&table.config.headers[i].sorter)){p=getParserById(table.config.headers[i].sorter);}if(!p){p=detectParserForColumn(table,rows,-1,i);}if(table.config.debug){parsersDebug+="column:"+i+" parser:"+p.id+"\n";}list.push(p);}}if(table.config.debug){log(parsersDebug);}return list;};function detectParserForColumn(table,rows,rowIndex,cellIndex){var l=parsers.length,node=false,nodeValue=false,keepLooking=true;while(nodeValue==''&&keepLooking){rowIndex++;if(rows[rowIndex]){node=getNodeFromRowAndCellIndex(rows,rowIndex,cellIndex);nodeValue=trimAndGetNodeText(table.config,node);if(table.config.debug){log('Checking if value was empty on row:'+rowIndex);}}else{keepLooking=false;}}for(var i=1;i<l;i++){if(parsers[i].is(nodeValue,table,node)){return parsers[i];}}return parsers[0];}function getNodeFromRowAndCellIndex(rows,rowIndex,cellIndex){return rows[rowIndex].cells[cellIndex];}function trimAndGetNodeText(config,node){return $.trim(getElementText(config,node));}function getParserById(name){var l=parsers.length;for(var i=0;i<l;i++){if(parsers[i].id.toLowerCase()==name.toLowerCase()){return parsers[i];}}return false;}function buildCache(table){if(table.config.debug){var cacheTime=new Date();}var totalRows=(table.tBodies[0]&&table.tBodies[0].rows.length)||0,totalCells=(table.tBodies[0].rows[0]&&table.tBodies[0].rows[0].cells.length)||0,parsers=table.config.parsers,cache={row:[],normalized:[]};for(var i=0;i<totalRows;++i){var c=$(table.tBodies[0].rows[i]),cols=[];if(c.hasClass(table.config.cssChildRow)){cache.row[cache.row.length-1]=cache.row[cache.row.length-1].add(c);continue;}cache.row.push(c);for(var j=0;j<totalCells;++j){cols.push(parsers[j].format(getElementText(table.config,c[0].cells[j]),table,c[0].cells[j]));}cols.push(cache.normalized.length);cache.normalized.push(cols);cols=null;};if(table.config.debug){benchmark("Building cache for "+totalRows+" rows:",cacheTime);}return cache;};function getElementText(config,node){var text="";if(!node)return"";if(!config.supportsTextContent)config.supportsTextContent=node.textContent||false;if(config.textExtraction=="simple"){if(config.supportsTextContent){text=node.textContent;}else{if(node.childNodes[0]&&node.childNodes[0].hasChildNodes()){text=node.childNodes[0].innerHTML;}else{text=node.innerHTML;}}}else{if(typeof(config.textExtraction)=="function"){text=config.textExtraction(node);}else{text=$(node).text();}}return text;}function appendToTable(table,cache){if(table.config.debug){var appendTime=new Date()}var c=cache,r=c.row,n=c.normalized,totalRows=n.length,checkCell=(n[0].length-1),tableBody=$(table.tBodies[0]),rows=[];for(var i=0;i<totalRows;i++){var pos=n[i][checkCell];rows.push(r[pos]);if(!table.config.appender){var l=r[pos].length;for(var j=0;j<l;j++){tableBody[0].appendChild(r[pos][j]);}}}if(table.config.appender){table.config.appender(table,rows);}rows=null;if(table.config.debug){benchmark("Rebuilt table:",appendTime);}applyWidget(table);setTimeout(function(){$(table).trigger("sortEnd");},0);};function buildHeaders(table){if(table.config.debug){var time=new Date();}var meta=($.metadata)?true:false;var header_index=computeTableHeaderCellIndexes(table);$tableHeaders=$(table.config.selectorHeaders,table).each(function(index){this.column=header_index[this.parentNode.rowIndex+"-"+this.cellIndex];this.order=formatSortingOrder(table.config.sortInitialOrder);this.count=this.order;if(checkHeaderMetadata(this)||checkHeaderOptions(table,index))this.sortDisabled=true;if(checkHeaderOptionsSortingLocked(table,index))this.order=this.lockedOrder=checkHeaderOptionsSortingLocked(table,index);if(!this.sortDisabled){var $th=$(this).addClass(table.config.cssHeader);if(table.config.onRenderHeader)table.config.onRenderHeader.apply($th);}table.config.headerList[index]=this;});if(table.config.debug){benchmark("Built headers:",time);log($tableHeaders);}return $tableHeaders;};function computeTableHeaderCellIndexes(t){var matrix=[];var lookup={};var thead=t.getElementsByTagName('THEAD')[0];var trs=thead.getElementsByTagName('TR');for(var i=0;i<trs.length;i++){var cells=trs[i].cells;for(var j=0;j<cells.length;j++){var c=cells[j];var rowIndex=c.parentNode.rowIndex;var cellId=rowIndex+"-"+c.cellIndex;var rowSpan=c.rowSpan||1;var colSpan=c.colSpan||1
 var firstAvailCol;if(typeof(matrix[rowIndex])=="undefined"){matrix[rowIndex]=[];}for(var k=0;k<matrix[rowIndex].length+1;k++){if(typeof(matrix[rowIndex][k])=="undefined"){firstAvailCol=k;break;}}lookup[cellId]=firstAvailCol;for(var k=rowIndex;k<rowIndex+rowSpan;k++){if(typeof(matrix[k])=="undefined"){matrix[k]=[];}var matrixrow=matrix[k];for(var l=firstAvailCol;l<firstAvailCol+colSpan;l++){matrixrow[l]="x";}}}}return lookup;}function checkCellColSpan(table,rows,row){var arr=[],r=table.tHead.rows,c=r[row].cells;for(var i=0;i<c.length;i++){var cell=c[i];if(cell.colSpan>1){arr=arr.concat(checkCellColSpan(table,headerArr,row++));}else{if(table.tHead.length==1||(cell.rowSpan>1||!r[row+1])){arr.push(cell);}}}return arr;};function checkHeaderMetadata(cell){if(($.metadata)&&($(cell).metadata().sorter===false)){return true;};return false;}function checkHeaderOptions(table,i){if((table.config.headers[i])&&(table.config.headers[i].sorter===false)){return true;};return false;}function checkHeaderOptionsSortingLocked(table,i){if((table.config.headers[i])&&(table.config.headers[i].lockedOrder))return table.config.headers[i].lockedOrder;return false;}function applyWidget(table){var c=table.config.widgets;var l=c.length;for(var i=0;i<l;i++){getWidgetById(c[i]).format(table);}}function getWidgetById(name){var l=widgets.length;for(var i=0;i<l;i++){if(widgets[i].id.toLowerCase()==name.toLowerCase()){return widgets[i];}}};function formatSortingOrder(v){if(typeof(v)!="Number"){return(v.toLowerCase()=="desc")?1:0;}else{return(v==1)?1:0;}}function isValueInArray(v,a){var l=a.length;for(var i=0;i<l;i++){if(a[i][0]==v){return true;}}return false;}function setHeadersCss(table,$headers,list,css){$headers.removeClass(css[0]).removeClass(css[1]);var h=[];$headers.each(function(offset){if(!this.sortDisabled){h[this.column]=$(this);}});var l=list.length;for(var i=0;i<l;i++){h[list[i][0]].addClass(css[list[i][1]]);}}function fixColumnWidth(table,$headers){var c=table.config;if(c.widthFixed){var colgroup=$('<colgroup>');$("tr:first td",table.tBodies[0]).each(function(){colgroup.append($('<col>').css('width',$(this).width()));});$(table).prepend(colgroup);};}function updateHeaderSortCount(table,sortList){var c=table.config,l=sortList.length;for(var i=0;i<l;i++){var s=sortList[i],o=c.headerList[s[0]];o.count=s[1];o.count++;}}function multisort(table,sortList,cache){if(table.config.debug){var sortTime=new Date();}var dynamicExp="var sortWrapper = function(a,b) {",l=sortList.length;for(var i=0;i<l;i++){var c=sortList[i][0];var order=sortList[i][1];var s=(table.config.parsers[c].type=="text")?((order==0)?makeSortFunction("text","asc",c):makeSortFunction("text","desc",c)):((order==0)?makeSortFunction("numeric","asc",c):makeSortFunction("numeric","desc",c));var e="e"+i;dynamicExp+="var "+e+" = "+s;dynamicExp+="if("+e+") { return "+e+"; } ";dynamicExp+="else { ";}var orgOrderCol=cache.normalized[0].length-1;dynamicExp+="return a["+orgOrderCol+"]-b["+orgOrderCol+"];";for(var i=0;i<l;i++){dynamicExp+="}; ";}dynamicExp+="return 0; ";dynamicExp+="}; ";if(table.config.debug){benchmark("Evaling expression:"+dynamicExp,new Date());}eval(dynamicExp);cache.normalized.sort(sortWrapper);if(table.config.debug){benchmark("Sorting on "+sortList.toString()+" and dir "+order+" time:",sortTime);}return cache;};function makeSortFunction(type,direction,index){var a="a["+index+"]",b="b["+index+"]";if(type=='text'&&direction=='asc'){return"("+a+" == "+b+" ? 0 : ("+a+" === null ? Number.POSITIVE_INFINITY : ("+b+" === null ? Number.NEGATIVE_INFINITY : ("+a+" < "+b+") ? -1 : 1 )));";}else if(type=='text'&&direction=='desc'){return"("+a+" == "+b+" ? 0 : ("+a+" === null ? Number.POSITIVE_INFINITY : ("+b+" === null ? Number.NEGATIVE_INFINITY : ("+b+" < "+a+") ? -1 : 1 )));";}else if(type=='numeric'&&direction=='asc'){return"("+a+" === null && "+b+" === null) ? 0 :("+a+" === null ? Number.POSITIVE_INFINITY : ("+b+" === null ? Number.NEGATIVE_INFINITY : "+a+" - "+b+"));";}else if(type=='numeric'&&direction=='desc'){return"("+a+" === null && "+b+" === null) ? 0 :("+a+" === null ? Number.POSITIVE_INFINITY : ("+b+" === null ? Number.NEGATIVE_INFINITY : "+b+" - "+a+"));";}};function makeSortText(i){return"((a["+i+"] < b["+i+"]) ? -1 : ((a["+i+"] > b["+i+"]) ? 1 : 0));";};function makeSortTextDesc(i){return"((b["+i+"] < a["+i+"]) ? -1 : ((b["+i+"] > a["+i+"]) ? 1 : 0));";};function makeSortNumeric(i){return"a["+i+"]-b["+i+"];";};function makeSortNumericDesc(i){return"b["+i+"]-a["+i+"];";};function sortText(a,b){if(table.config.sortLocaleCompare)return a.localeCompare(b);return((a<b)?-1:((a>b)?1:0));};function sortTextDesc(a,b){if(table.config.sortLocaleCompare)return b.localeCompare(a);return((b<a)?-1:((b>a)?1:0));};function sortNumeric(a,b){return a-b;};function sortNumericDesc(a,b){return b-a;};function getCachedSortType(parsers,i){return parsers[i].type;};this.construct=function(settings){return this.each(function(){if(!this.tHead||!this.tBodies)return;var $this,$document,$headers,cache,config,shiftDown=0,sortOrder;this.config={};config=$.extend(this.config,$.tablesorter.defaults,settings);$this=$(this);$.data(this,"tablesorter",config);$headers=buildHeaders(this);this.config.parsers=buildParserCache(this,$headers);cache=buildCache(this);var sortCSS=[config.cssDesc,config.cssAsc];fixColumnWidth(this);$headers.click(function(e){var totalRows=($this[0].tBodies[0]&&$this[0].tBodies[0].rows.length)||0;if(!this.sortDisabled&&totalRows>0){$this.trigger("sortStart");var $cell=$(this);var i=this.column;this.order=this.count++%2;if(this.lockedOrder)this.order=this.lockedOrder;if(!e[config.sortMultiSortKey]){config.sortList=[];if(config.sortForce!=null){var a=config.sortForce;for(var j=0;j<a.length;j++){if(a[j][0]!=i){config.sortList.push(a[j]);}}}config.sortList.push([i,this.order]);}else{if(isValueInArray(i,config.sortList)){for(var j=0;j<config.sortList.length;j++){var s=config.sortList[j],o=config.headerList[s[0]];if(s[0]==i){o.count=s[1];o.count++;s[1]=o.count%2;}}}else{config.sortList.push([i,this.order]);}};setTimeout(function(){setHeadersCss($this[0],$headers,config.sortList,sortCSS);appendToTable($this[0],multisort($this[0],config.sortList,cache));},1);return false;}}).mousedown(function(){if(config.cancelSelection){this.onselectstart=function(){return false};return false;}});$this.bind("update",function(){var me=this;setTimeout(function(){me.config.parsers=buildParserCache(me,$headers);cache=buildCache(me);},1);}).bind("updateCell",function(e,cell){var config=this.config;var pos=[(cell.parentNode.rowIndex-1),cell.cellIndex];cache.normalized[pos[0]][pos[1]]=config.parsers[pos[1]].format(getElementText(config,cell),cell);}).bind("sorton",function(e,list){$(this).trigger("sortStart");config.sortList=list;var sortList=config.sortList;updateHeaderSortCount(this,sortList);setHeadersCss(this,$headers,sortList,sortCSS);appendToTable(this,multisort(this,sortList,cache));}).bind("appendCache",function(){appendToTable(this,cache);}).bind("applyWidgetId",function(e,id){getWidgetById(id).format(this);}).bind("applyWidgets",function(){applyWidget(this);});if($.metadata&&($(this).metadata()&&$(this).metadata().sortlist)){config.sortList=$(this).metadata().sortlist;}if(config.sortList.length>0){$this.trigger("sorton",[config.sortList]);}applyWidget(this);});};this.addParser=function(parser){var l=parsers.length,a=true;for(var i=0;i<l;i++){if(parsers[i].id.toLowerCase()==parser.id.toLowerCase()){a=false;}}if(a){parsers.push(parser);};};this.addWidget=function(widget){widgets.push(widget);};this.formatFloat=function(s){var i=parseFloat(s);return(isNaN(i))?0:i;};this.formatInt=function(s){var i=parseInt(s);return(isNaN(i))?0:i;};this.isDigit=function(s,config){return/^[-+]?\d*$/.test($.trim(s.replace(/[,.']/g,'')));};this.clearTableBody=function(table){if($.browser.msie){function empty(){while(this.firstChild)this.removeChild(this.firstChild);}empty.apply(table.tBodies[0]);}else{table.tBodies[0].innerHTML="";}};}});$.fn.extend({tablesorter:$.tablesorter.construct});var ts=$.tablesorter;ts.addParser({id:"text",is:function(s){return true;},format:function(s){return $.trim(s.toLocaleLowerCase());},type:"text"});ts.addParser({id:"digit",is:function(s,table){var c=table.config;return $.tablesorter.isDigit(s,c);},format:function(s){return $.tablesorter.formatFloat(s);},type:"numeric"});ts.addParser({id:"currency",is:function(s){return/^[$?.]/.test(s);},format:function(s){return $.tablesorter.formatFloat(s.replace(new RegExp(/[$]/g),""));},type:"numeric"});ts.addParser({id:"ipAddress",is:function(s){return/^\d{2,3}[\.]\d{2,3}[\.]\d{2,3}[\.]\d{2,3}$/.test(s);},format:function(s){var a=s.split("."),r="",l=a.length;for(var i=0;i<l;i++){var item=a[i];if(item.length==2){r+="0"+item;}else{r+=item;}}return $.tablesorter.formatFloat(r);},type:"numeric"});ts.addParser({id:"url",is:function(s){return/^(https?|ftp|file):\/\/$/.test(s);},format:function(s){return jQuery.trim(s.replace(new RegExp(/(https?|ftp|file):\/\//),''));},type:"text"});ts.addParser({id:"isoDate",is:function(s){return/^\d{4}[\/-]\d{1,2}[\/-]\d{1,2}$/.test(s);},format:function(s){return $.tablesorter.formatFloat((s!="")?new Date(s.replace(new RegExp(/-/g),"/")).getTime():"0");},type:"numeric"});ts.addParser({id:"percent",is:function(s){return/\%$/.test($.trim(s));},format:function(s){return $.tablesorter.formatFloat(s.replace(new RegExp(/%/g),""));},type:"numeric"});ts.addParser({id:"usLongDate",is:function(s){return s.match(new RegExp(/^[A-Za-z]{3,10}\.? [0-9]{1,2}, ([0-9]{4}|'?[0-9]{2}) (([0-2]?[0-9]:[0-5][0-9])|([0-1]?[0-9]:[0-5][0-9]\s(AM|PM)))$/));},format:function(s){return $.tablesorter.formatFloat(new Date(s).getTime());},type:"numeric"});ts.addParser({id:"shortDate",is:function(s){return/\d{1,2}[\/\-]\d{1,2}[\/\-]\d{2,4}/.test(s);},format:function(s,table){var c=table.config;s=s.replace(/\-/g,"/");if(c.dateFormat=="us"){s=s.replace(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/,"$3/$1/$2");}else if(c.dateFormat=="uk"){s=s.replace(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{4})/,"$3/$2/$1");}else if(c.dateFormat=="dd/mm/yy"||c.dateFormat=="dd-mm-yy"){s=s.replace(/(\d{1,2})[\/\-](\d{1,2})[\/\-](\d{2})/,"$1/$2/$3");}return $.tablesorter.formatFloat(new Date(s).getTime());},type:"numeric"});ts.addParser({id:"time",is:function(s){return/^(([0-2]?[0-9]:[0-5][0-9])|([0-1]?[0-9]:[0-5][0-9]\s(am|pm)))$/.test(s);},format:function(s){return $.tablesorter.formatFloat(new Date("2000/01/01 "+s).getTime());},type:"numeric"});ts.addParser({id:"metadata",is:function(s){return false;},format:function(s,table,cell){var c=table.config,p=(!c.parserMetadataName)?'sortValue':c.parserMetadataName;return $(cell).metadata()[p];},type:"numeric"});ts.addWidget({id:"zebra",format:function(table){if(table.config.debug){var time=new Date();}var $tr,row=-1,odd;$("tr:visible",table.tBodies[0]).each(function(i){$tr=$(this);if(!$tr.hasClass(table.config.cssChildRow))row++;odd=(row%2==0);$tr.removeClass(table.config.widgetZebra.css[odd?0:1]).addClass(table.config.widgetZebra.css[odd?1:0])});if(table.config.debug){$.tablesorter.benchmark("Applying Zebra widget",time);}}});})(jQuery);
 </script>
-		<script type="application/javascript">/* Javascript plotting library for jQuery, version 0.8.3.
+		<script type="application/javascript">/* Javascript plotting library for jQuery, version 0.8.1.
 
-Copyright (c) 2007-2014 IOLA and Ole Laursen.
+Copyright (c) 2007-2013 IOLA and Ole Laursen.
 Licensed under the MIT license.
 
 */
@@ -40,7 +40,7 @@ Licensed under the MIT license.
  * V. 1.1: Fix error handling so e.g. parsing an empty string does
  * produce a color rather than just crashing.
  */
-(function($){$.color={};$.color.make=function(r,g,b,a){var o={};o.r=r||0;o.g=g||0;o.b=b||0;o.a=a!=null?a:1;o.add=function(c,d){for(var i=0;i<c.length;++i)o[c.charAt(i)]+=d;return o.normalize()};o.scale=function(c,f){for(var i=0;i<c.length;++i)o[c.charAt(i)]*=f;return o.normalize()};o.toString=function(){if(o.a>=1){return"rgb("+[o.r,o.g,o.b].join(",")+")"}else{return"rgba("+[o.r,o.g,o.b,o.a].join(",")+")"}};o.normalize=function(){function clamp(min,value,max){return value<min?min:value>max?max:value}o.r=clamp(0,parseInt(o.r),255);o.g=clamp(0,parseInt(o.g),255);o.b=clamp(0,parseInt(o.b),255);o.a=clamp(0,o.a,1);return o};o.clone=function(){return $.color.make(o.r,o.b,o.g,o.a)};return o.normalize()};$.color.extract=function(elem,css){var c;do{c=elem.css(css).toLowerCase();if(c!=""&&c!="transparent")break;elem=elem.parent()}while(elem.length&&!$.nodeName(elem.get(0),"body"));if(c=="rgba(0, 0, 0, 0)")c="transparent";return $.color.parse(c)};$.color.parse=function(str){var res,m=$.color.make;if(res=/rgb\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*\)/.exec(str))return m(parseInt(res[1],10),parseInt(res[2],10),parseInt(res[3],10));if(res=/rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]+(?:\.[0-9]+)?)\s*\)/.exec(str))return m(parseInt(res[1],10),parseInt(res[2],10),parseInt(res[3],10),parseFloat(res[4]));if(res=/rgb\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*\)/.exec(str))return m(parseFloat(res[1])*2.55,parseFloat(res[2])*2.55,parseFloat(res[3])*2.55);if(res=/rgba\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\s*\)/.exec(str))return m(parseFloat(res[1])*2.55,parseFloat(res[2])*2.55,parseFloat(res[3])*2.55,parseFloat(res[4]));if(res=/#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/.exec(str))return m(parseInt(res[1],16),parseInt(res[2],16),parseInt(res[3],16));if(res=/#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/.exec(str))return m(parseInt(res[1]+res[1],16),parseInt(res[2]+res[2],16),parseInt(res[3]+res[3],16));var name=$.trim(str).toLowerCase();if(name=="transparent")return m(255,255,255,0);else{res=lookupColors[name]||[0,0,0];return m(res[0],res[1],res[2])}};var lookupColors={aqua:[0,255,255],azure:[240,255,255],beige:[245,245,220],black:[0,0,0],blue:[0,0,255],brown:[165,42,42],cyan:[0,255,255],darkblue:[0,0,139],darkcyan:[0,139,139],darkgrey:[169,169,169],darkgreen:[0,100,0],darkkhaki:[189,183,107],darkmagenta:[139,0,139],darkolivegreen:[85,107,47],darkorange:[255,140,0],darkorchid:[153,50,204],darkred:[139,0,0],darksalmon:[233,150,122],darkviolet:[148,0,211],fuchsia:[255,0,255],gold:[255,215,0],green:[0,128,0],indigo:[75,0,130],khaki:[240,230,140],lightblue:[173,216,230],lightcyan:[224,255,255],lightgreen:[144,238,144],lightgrey:[211,211,211],lightpink:[255,182,193],lightyellow:[255,255,224],lime:[0,255,0],magenta:[255,0,255],maroon:[128,0,0],navy:[0,0,128],olive:[128,128,0],orange:[255,165,0],pink:[255,192,203],purple:[128,0,128],violet:[128,0,128],red:[255,0,0],silver:[192,192,192],white:[255,255,255],yellow:[255,255,0]}})(jQuery);
+(function(B){B.color={};B.color.make=function(F,E,C,D){var G={};G.r=F||0;G.g=E||0;G.b=C||0;G.a=D!=null?D:1;G.add=function(J,I){for(var H=0;H<J.length;++H){G[J.charAt(H)]+=I}return G.normalize()};G.scale=function(J,I){for(var H=0;H<J.length;++H){G[J.charAt(H)]*=I}return G.normalize()};G.toString=function(){if(G.a>=1){return"rgb("+[G.r,G.g,G.b].join(",")+")"}else{return"rgba("+[G.r,G.g,G.b,G.a].join(",")+")"}};G.normalize=function(){function H(J,K,I){return K<J?J:(K>I?I:K)}G.r=H(0,parseInt(G.r),255);G.g=H(0,parseInt(G.g),255);G.b=H(0,parseInt(G.b),255);G.a=H(0,G.a,1);return G};G.clone=function(){return B.color.make(G.r,G.b,G.g,G.a)};return G.normalize()};B.color.extract=function(D,C){var E;do{E=D.css(C).toLowerCase();if(E!=""&&E!="transparent"){break}D=D.parent()}while(!B.nodeName(D.get(0),"body"));if(E=="rgba(0, 0, 0, 0)"){E="transparent"}return B.color.parse(E)};B.color.parse=function(F){var E,C=B.color.make;if(E=/rgb\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*\)/.exec(F)){return C(parseInt(E[1],10),parseInt(E[2],10),parseInt(E[3],10))}if(E=/rgba\(\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]{1,3})\s*,\s*([0-9]+(?:\.[0-9]+)?)\s*\)/.exec(F)){return C(parseInt(E[1],10),parseInt(E[2],10),parseInt(E[3],10),parseFloat(E[4]))}if(E=/rgb\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*\)/.exec(F)){return C(parseFloat(E[1])*2.55,parseFloat(E[2])*2.55,parseFloat(E[3])*2.55)}if(E=/rgba\(\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\%\s*,\s*([0-9]+(?:\.[0-9]+)?)\s*\)/.exec(F)){return C(parseFloat(E[1])*2.55,parseFloat(E[2])*2.55,parseFloat(E[3])*2.55,parseFloat(E[4]))}if(E=/#([a-fA-F0-9]{2})([a-fA-F0-9]{2})([a-fA-F0-9]{2})/.exec(F)){return C(parseInt(E[1],16),parseInt(E[2],16),parseInt(E[3],16))}if(E=/#([a-fA-F0-9])([a-fA-F0-9])([a-fA-F0-9])/.exec(F)){return C(parseInt(E[1]+E[1],16),parseInt(E[2]+E[2],16),parseInt(E[3]+E[3],16))}var D=B.trim(F).toLowerCase();if(D=="transparent"){return C(255,255,255,0)}else{E=A[D]||[0,0,0];return C(E[0],E[1],E[2])}};var A={aqua:[0,255,255],azure:[240,255,255],beige:[245,245,220],black:[0,0,0],blue:[0,0,255],brown:[165,42,42],cyan:[0,255,255],darkblue:[0,0,139],darkcyan:[0,139,139],darkgrey:[169,169,169],darkgreen:[0,100,0],darkkhaki:[189,183,107],darkmagenta:[139,0,139],darkolivegreen:[85,107,47],darkorange:[255,140,0],darkorchid:[153,50,204],darkred:[139,0,0],darksalmon:[233,150,122],darkviolet:[148,0,211],fuchsia:[255,0,255],gold:[255,215,0],green:[0,128,0],indigo:[75,0,130],khaki:[240,230,140],lightblue:[173,216,230],lightcyan:[224,255,255],lightgreen:[144,238,144],lightgrey:[211,211,211],lightpink:[255,182,193],lightyellow:[255,255,224],lime:[0,255,0],magenta:[255,0,255],maroon:[128,0,0],navy:[0,0,128],olive:[128,128,0],orange:[255,165,0],pink:[255,192,203],purple:[128,0,128],violet:[128,0,128],red:[255,0,0],silver:[192,192,192],white:[255,255,255],yellow:[255,255,0]}})(jQuery);
 
 // the actual Flot code
 (function($) {
@@ -48,22 +48,6 @@ Licensed under the MIT license.
 	// Cache the prototype hasOwnProperty for faster access
 
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-    // A shim to provide 'detach' to jQuery versions prior to 1.4.  Using a DOM
-    // operation produces the same effect as detach, i.e. removing the element
-    // without touching its jQuery data.
-
-    // Do not merge this into Flot 0.9, since it requires jQuery 1.4.4+.
-
-    if (!$.fn.detach) {
-        $.fn.detach = function() {
-            return this.each(function() {
-                if (this.parentNode) {
-                    this.parentNode.removeChild( this );
-                }
-            });
-        };
-    }
 
 	///////////////////////////////////////////////////////////////////////////
 	// The Canvas object is a wrapper around an HTML5 <canvas> tag.
@@ -452,7 +436,7 @@ Licensed under the MIT license.
 			element: positions.length ? info.element.clone() : info.element,
 			x: x,
 			y: y
-		};
+		}
 
 		positions.push(position);
 
@@ -685,23 +669,6 @@ Licensed under the MIT license.
             };
         };
         plot.shutdown = shutdown;
-        plot.destroy = function () {
-            shutdown();
-            placeholder.removeData("plot").empty();
-
-            series = [];
-            options = null;
-            surface = null;
-            overlay = null;
-            eventHolder = null;
-            ctx = null;
-            octx = null;
-            xaxes = [];
-            yaxes = [];
-            hooks = null;
-            highlights = [];
-            plot = null;
-        };
         plot.resize = function () {
         	var width = placeholder.width(),
         		height = placeholder.height();
@@ -779,15 +746,15 @@ Licensed under the MIT license.
             // since the rest of the code assumes that they exist.
 
             var i, axisOptions, axisCount,
-                fontSize = placeholder.css("font-size"),
-                fontSizeDefault = fontSize ? +fontSize.replace("px", "") : 13,
                 fontDefaults = {
                     style: placeholder.css("font-style"),
-                    size: Math.round(0.8 * fontSizeDefault),
+                    size: Math.round(0.8 * (+placeholder.css("font-size").replace("px", "") || 13)),
                     variant: placeholder.css("font-variant"),
                     weight: placeholder.css("font-weight"),
                     family: placeholder.css("font-family")
                 };
+
+            fontDefaults.lineHeight = fontDefaults.size * 1.15;
 
             axisCount = options.xaxes.length || 1;
             for (i = 0; i < axisCount; ++i) {
@@ -804,9 +771,6 @@ Licensed under the MIT license.
                     axisOptions.font = $.extend({}, fontDefaults, axisOptions.font);
                     if (!axisOptions.font.color) {
                         axisOptions.font.color = axisOptions.color;
-                    }
-                    if (!axisOptions.font.lineHeight) {
-                        axisOptions.font.lineHeight = Math.round(axisOptions.font.size * 1.15);
                     }
                 }
             }
@@ -827,9 +791,6 @@ Licensed under the MIT license.
                     if (!axisOptions.font.color) {
                         axisOptions.font.color = axisOptions.color;
                     }
-                    if (!axisOptions.font.lineHeight) {
-                        axisOptions.font.lineHeight = Math.round(axisOptions.font.size * 1.15);
-                    }
                 }
             }
 
@@ -841,24 +802,10 @@ Licensed under the MIT license.
             if (options.x2axis) {
                 options.xaxes[1] = $.extend(true, {}, options.xaxis, options.x2axis);
                 options.xaxes[1].position = "top";
-                // Override the inherit to allow the axis to auto-scale
-                if (options.x2axis.min == null) {
-                    options.xaxes[1].min = null;
-                }
-                if (options.x2axis.max == null) {
-                    options.xaxes[1].max = null;
-                }
             }
             if (options.y2axis) {
                 options.yaxes[1] = $.extend(true, {}, options.yaxis, options.y2axis);
                 options.yaxes[1].position = "right";
-                // Override the inherit to allow the axis to auto-scale
-                if (options.y2axis.min == null) {
-                    options.yaxes[1].min = null;
-                }
-                if (options.y2axis.max == null) {
-                    options.yaxes[1].max = null;
-                }
             }
             if (options.grid.coloredAreas)
                 options.grid.markings = options.grid.coloredAreas;
@@ -1195,7 +1142,7 @@ Licensed under the MIT license.
                             if (val != null) {
                                 f = format[m];
                                 // extract min/max info
-                                if (f.autoscale !== false) {
+                                if (f.autoscale) {
                                     if (f.x) {
                                         updateAxis(s.xaxis, val, val);
                                     }
@@ -1282,8 +1229,11 @@ Licensed under the MIT license.
                         case "right":
                             delta = -s.bars.barWidth;
                             break;
-                        default:
+                        case "center":
                             delta = -s.bars.barWidth / 2;
+                            break;
+                        default:
+                            throw new Error("Invalid bar alignment: " + s.bars.align);
                     }
 
                     if (s.bars.horizontal) {
@@ -1314,9 +1264,7 @@ Licensed under the MIT license.
             // from a previous plot in this container that we'll try to re-use.
 
             placeholder.css("padding", 0) // padding messes up the positioning
-                .children().filter(function(){
-                    return !$(this).hasClass("flot-overlay") && !$(this).hasClass('flot-base');
-                }).remove();
+                .children(":not(.flot-base,.flot-overlay)").remove();
 
             if (placeholder.css("position") == 'static')
                 placeholder.css("position", "relative"); // for positioning labels and overlay
@@ -1413,7 +1361,7 @@ Licensed under the MIT license.
                 ticks = axis.ticks || [],
                 labelWidth = opts.labelWidth || 0,
                 labelHeight = opts.labelHeight || 0,
-                maxWidth = labelWidth || (axis.direction == "x" ? Math.floor(surface.width / (ticks.length || 1)) : null),
+                maxWidth = labelWidth || axis.direction == "x" ? Math.floor(surface.width / (ticks.length || 1)) : null;
                 legacyStyles = axis.direction + "Axis " + axis.direction + axis.n + "Axis",
                 layer = "flot-" + axis.direction + "-axis flot-" + axis.direction + axis.n + "-axis " + legacyStyles,
                 font = opts.font || "flot-tick-label tickLabel";
@@ -1445,50 +1393,37 @@ Licensed under the MIT license.
             var lw = axis.labelWidth,
                 lh = axis.labelHeight,
                 pos = axis.options.position,
-                isXAxis = axis.direction === "x",
                 tickLength = axis.options.tickLength,
                 axisMargin = options.grid.axisMargin,
                 padding = options.grid.labelMargin,
-                innermost = true,
-                outermost = true,
-                first = true,
-                found = false;
+                all = axis.direction == "x" ? xaxes : yaxes,
+                index, innermost;
 
-            // Determine the axis's position in its direction and on its side
-
-            $.each(isXAxis ? xaxes : yaxes, function(i, a) {
-                if (a && (a.show || a.reserveSpace)) {
-                    if (a === axis) {
-                        found = true;
-                    } else if (a.options.position === pos) {
-                        if (found) {
-                            outermost = false;
-                        } else {
-                            innermost = false;
-                        }
-                    }
-                    if (!found) {
-                        first = false;
-                    }
-                }
+            // determine axis margin
+            var samePosition = $.grep(all, function (a) {
+                return a && a.options.position == pos && a.reserveSpace;
             });
+            if ($.inArray(axis, samePosition) == samePosition.length - 1)
+                axisMargin = 0; // outermost
 
-            // The outermost axis on each side has no margin
-
-            if (outermost) {
-                axisMargin = 0;
-            }
-
-            // The ticks for the first axis in each direction stretch across
-
+            // determine tick length - if we're innermost, we can use "full"
             if (tickLength == null) {
-                tickLength = first ? "full" : 5;
+                var sameDirection = $.grep(all, function (a) {
+                    return a && a.reserveSpace;
+                });
+
+                innermost = $.inArray(axis, sameDirection) == 0;
+                if (innermost)
+                    tickLength = "full";
+                else
+                    tickLength = 5;
             }
 
             if (!isNaN(+tickLength))
                 padding += +tickLength;
 
-            if (isXAxis) {
+            // compute box
+            if (axis.direction == "x") {
                 lh += padding;
 
                 if (pos == "bottom") {
@@ -1538,7 +1473,7 @@ Licensed under the MIT license.
             // inside the canvas and isn't clipped off
 
             var minMargin = options.grid.minBorderMargin,
-                axis, i;
+                margins = { x: 0, y: 0 }, i, axis;
 
             // check stuff from the plot (FIXME: this should just read
             // a value from the series, otherwise it's impossible to
@@ -1549,32 +1484,21 @@ Licensed under the MIT license.
                     minMargin = Math.max(minMargin, 2 * (series[i].points.radius + series[i].points.lineWidth/2));
             }
 
-            var margins = {
-                left: minMargin,
-                right: minMargin,
-                top: minMargin,
-                bottom: minMargin
-            };
+            margins.x = margins.y = Math.ceil(minMargin);
 
             // check axis labels, note we don't check the actual
             // labels but instead use the overall width/height to not
             // jump as much around with replots
             $.each(allAxes(), function (_, axis) {
-                if (axis.reserveSpace && axis.ticks && axis.ticks.length) {
-                    if (axis.direction === "x") {
-                        margins.left = Math.max(margins.left, axis.labelWidth / 2);
-                        margins.right = Math.max(margins.right, axis.labelWidth / 2);
-                    } else {
-                        margins.bottom = Math.max(margins.bottom, axis.labelHeight / 2);
-                        margins.top = Math.max(margins.top, axis.labelHeight / 2);
-                    }
-                }
+                var dir = axis.direction;
+                if (axis.reserveSpace)
+                    margins[dir] = Math.ceil(Math.max(margins[dir], (dir == "x" ? axis.labelWidth : axis.labelHeight) / 2));
             });
 
-            plotOffset.left = Math.ceil(Math.max(margins.left, plotOffset.left));
-            plotOffset.right = Math.ceil(Math.max(margins.right, plotOffset.right));
-            plotOffset.top = Math.ceil(Math.max(margins.top, plotOffset.top));
-            plotOffset.bottom = Math.ceil(Math.max(margins.bottom, plotOffset.bottom));
+            plotOffset.left = Math.max(margins.x, plotOffset.left);
+            plotOffset.right = Math.max(margins.x, plotOffset.right);
+            plotOffset.top = Math.max(margins.y, plotOffset.top);
+            plotOffset.bottom = Math.max(margins.y, plotOffset.bottom);
         }
 
         function setupGrid() {
@@ -1600,18 +1524,20 @@ Licensed under the MIT license.
                 }
             }
 
+            // init axes
             $.each(axes, function (_, axis) {
-                var axisOpts = axis.options;
-                axis.show = axisOpts.show == null ? axis.used : axisOpts.show;
-                axis.reserveSpace = axisOpts.reserveSpace == null ? axis.show : axisOpts.reserveSpace;
+                axis.show = axis.options.show;
+                if (axis.show == null)
+                    axis.show = axis.used; // by default an axis is visible if it's got data
+
+                axis.reserveSpace = axis.show || axis.options.reserveSpace;
+
                 setRange(axis);
             });
 
             if (showGrid) {
 
-                var allocatedAxes = $.grep(axes, function (axis) {
-                    return axis.show || axis.reserveSpace;
-                });
+                var allocatedAxes = $.grep(axes, function (axis) { return axis.reserveSpace; });
 
                 $.each(allocatedAxes, function (_, axis) {
                     // make the ticks
@@ -1740,8 +1666,8 @@ Licensed under the MIT license.
             axis.tickDecimals = Math.max(0, maxDec != null ? maxDec : dec);
             axis.tickSize = opts.tickSize || size;
 
-            // Time mode was moved to a plug-in in 0.8, and since so many people use it
-            // we'll add an especially friendly reminder to make sure they included it.
+            // Time mode was moved to a plug-in in 0.8, but since so many people use this
+            // we'll add an especially friendly make sure they remembered to include it.
 
             if (opts.mode == "time" && !axis.tickGenerator) {
                 throw new Error("Time mode requires the flot.time plugin.");
@@ -1997,34 +1923,26 @@ Licensed under the MIT license.
                     yrange.from = Math.max(yrange.from, yrange.axis.min);
                     yrange.to = Math.min(yrange.to, yrange.axis.max);
 
-                    var xequal = xrange.from === xrange.to,
-                        yequal = yrange.from === yrange.to;
-
-                    if (xequal && yequal) {
+                    if (xrange.from == xrange.to && yrange.from == yrange.to)
                         continue;
-                    }
 
                     // then draw
-                    xrange.from = Math.floor(xrange.axis.p2c(xrange.from));
-                    xrange.to = Math.floor(xrange.axis.p2c(xrange.to));
-                    yrange.from = Math.floor(yrange.axis.p2c(yrange.from));
-                    yrange.to = Math.floor(yrange.axis.p2c(yrange.to));
+                    xrange.from = xrange.axis.p2c(xrange.from);
+                    xrange.to = xrange.axis.p2c(xrange.to);
+                    yrange.from = yrange.axis.p2c(yrange.from);
+                    yrange.to = yrange.axis.p2c(yrange.to);
 
-                    if (xequal || yequal) {
-                        var lineWidth = m.lineWidth || options.grid.markingsLineWidth,
-                            subPixel = lineWidth % 2 ? 0.5 : 0;
+                    if (xrange.from == xrange.to || yrange.from == yrange.to) {
+                        // draw line
                         ctx.beginPath();
                         ctx.strokeStyle = m.color || options.grid.markingsColor;
-                        ctx.lineWidth = lineWidth;
-                        if (xequal) {
-                            ctx.moveTo(xrange.to + subPixel, yrange.from);
-                            ctx.lineTo(xrange.to + subPixel, yrange.to);
-                        } else {
-                            ctx.moveTo(xrange.from, yrange.to + subPixel);
-                            ctx.lineTo(xrange.to, yrange.to + subPixel);                            
-                        }
+                        ctx.lineWidth = m.lineWidth || options.grid.markingsLineWidth;
+                        ctx.moveTo(xrange.from, yrange.from);
+                        ctx.lineTo(xrange.to, yrange.to);
                         ctx.stroke();
-                    } else {
+                    }
+                    else {
+                        // fill area
                         ctx.fillStyle = m.color || options.grid.markingsColor;
                         ctx.fillRect(xrange.from, yrange.to,
                                      xrange.to - xrange.from,
@@ -2193,20 +2111,16 @@ Licensed under the MIT license.
         function drawAxisLabels() {
 
             $.each(allAxes(), function (_, axis) {
+                if (!axis.show || axis.ticks.length == 0)
+                    return;
+
                 var box = axis.box,
                     legacyStyles = axis.direction + "Axis " + axis.direction + axis.n + "Axis",
                     layer = "flot-" + axis.direction + "-axis flot-" + axis.direction + axis.n + "-axis " + legacyStyles,
                     font = axis.options.font || "flot-tick-label tickLabel",
                     tick, x, y, halign, valign;
 
-                // Remove text before checking for axis.show and ticks.length;
-                // otherwise plugins, like flot-tickrotor, that draw their own
-                // tick labels will end up with both theirs and the defaults.
-
                 surface.removeText(layer);
-
-                if (!axis.show || axis.ticks.length == 0)
-                    return;
 
                 for (var i = 0; i < axis.ticks.length; ++i) {
 
@@ -2565,7 +2479,7 @@ Licensed under the MIT license.
             ctx.restore();
         }
 
-        function drawBar(x, y, b, barLeft, barRight, fillStyleCallback, axisx, axisy, c, horizontal, lineWidth) {
+        function drawBar(x, y, b, barLeft, barRight, offset, fillStyleCallback, axisx, axisy, c, horizontal, lineWidth) {
             var left, right, bottom, top,
                 drawLeft, drawRight, drawTop, drawBottom,
                 tmp;
@@ -2640,8 +2554,13 @@ Licensed under the MIT license.
 
             // fill the bar
             if (fillStyleCallback) {
+                c.beginPath();
+                c.moveTo(left, bottom);
+                c.lineTo(left, top);
+                c.lineTo(right, top);
+                c.lineTo(right, bottom);
                 c.fillStyle = fillStyleCallback(bottom, top);
-                c.fillRect(left, top, right - left, bottom - top)
+                c.fill();
             }
 
             // draw outline
@@ -2649,35 +2568,35 @@ Licensed under the MIT license.
                 c.beginPath();
 
                 // FIXME: inline moveTo is buggy with excanvas
-                c.moveTo(left, bottom);
+                c.moveTo(left, bottom + offset);
                 if (drawLeft)
-                    c.lineTo(left, top);
+                    c.lineTo(left, top + offset);
                 else
-                    c.moveTo(left, top);
+                    c.moveTo(left, top + offset);
                 if (drawTop)
-                    c.lineTo(right, top);
+                    c.lineTo(right, top + offset);
                 else
-                    c.moveTo(right, top);
+                    c.moveTo(right, top + offset);
                 if (drawRight)
-                    c.lineTo(right, bottom);
+                    c.lineTo(right, bottom + offset);
                 else
-                    c.moveTo(right, bottom);
+                    c.moveTo(right, bottom + offset);
                 if (drawBottom)
-                    c.lineTo(left, bottom);
+                    c.lineTo(left, bottom + offset);
                 else
-                    c.moveTo(left, bottom);
+                    c.moveTo(left, bottom + offset);
                 c.stroke();
             }
         }
 
         function drawSeriesBars(series) {
-            function plotBars(datapoints, barLeft, barRight, fillStyleCallback, axisx, axisy) {
+            function plotBars(datapoints, barLeft, barRight, offset, fillStyleCallback, axisx, axisy) {
                 var points = datapoints.points, ps = datapoints.pointsize;
 
                 for (var i = 0; i < points.length; i += ps) {
                     if (points[i] == null)
                         continue;
-                    drawBar(points[i], points[i + 1], points[i + 2], barLeft, barRight, fillStyleCallback, axisx, axisy, ctx, series.bars.horizontal, series.bars.lineWidth);
+                    drawBar(points[i], points[i + 1], points[i + 2], barLeft, barRight, offset, fillStyleCallback, axisx, axisy, ctx, series.bars.horizontal, series.bars.lineWidth);
                 }
             }
 
@@ -2697,12 +2616,15 @@ Licensed under the MIT license.
                 case "right":
                     barLeft = -series.bars.barWidth;
                     break;
-                default:
+                case "center":
                     barLeft = -series.bars.barWidth / 2;
+                    break;
+                default:
+                    throw new Error("Invalid bar alignment: " + series.bars.align);
             }
 
             var fillStyleCallback = series.bars.fill ? function (bottom, top) { return getFillStyle(series.bars, series.color, bottom, top); } : null;
-            plotBars(series.datapoints, barLeft, barLeft + series.bars.barWidth, fillStyleCallback, series.xaxis, series.yaxis);
+            plotBars(series.datapoints, barLeft, barLeft + series.bars.barWidth, 0, fillStyleCallback, series.xaxis, series.yaxis);
             ctx.restore();
         }
 
@@ -2722,15 +2644,10 @@ Licensed under the MIT license.
 
         function insertLegend() {
 
-            if (options.legend.container != null) {
-                $(options.legend.container).html("");
-            } else {
-                placeholder.find(".legend").remove();
-            }
+            placeholder.find(".legend").remove();
 
-            if (!options.legend.show) {
+            if (!options.legend.show)
                 return;
-            }
 
             var fragments = [], entries = [], rowStarted = false,
                 lf = options.legend.labelFormatter, s, label;
@@ -2891,21 +2808,8 @@ Licensed under the MIT license.
                 }
 
                 if (s.bars.show && !item) { // no other point can be nearby
-
-                    var barLeft, barRight;
-
-                    switch (s.bars.align) {
-                        case "left":
-                            barLeft = 0;
-                            break;
-                        case "right":
-                            barLeft = -s.bars.barWidth;
-                            break;
-                        default:
-                            barLeft = -s.bars.barWidth / 2;
-                    }
-
-                    barRight = barLeft + s.bars.barWidth;
+                    var barLeft = s.bars.align == "left" ? 0 : -s.bars.barWidth/2,
+                        barRight = barLeft + s.bars.barWidth;
 
                     for (j = 0; j < points.length; j += ps) {
                         var x = points[j], y = points[j + 1], b = points[j + 2];
@@ -3103,24 +3007,13 @@ Licensed under the MIT license.
         function drawBarHighlight(series, point) {
             var highlightColor = (typeof series.highlightColor === "string") ? series.highlightColor : $.color.parse(series.color).scale('a', 0.5).toString(),
                 fillStyle = highlightColor,
-                barLeft;
-
-            switch (series.bars.align) {
-                case "left":
-                    barLeft = 0;
-                    break;
-                case "right":
-                    barLeft = -series.bars.barWidth;
-                    break;
-                default:
-                    barLeft = -series.bars.barWidth / 2;
-            }
+                barLeft = series.bars.align == "left" ? 0 : -series.bars.barWidth/2;
 
             octx.lineWidth = series.bars.lineWidth;
             octx.strokeStyle = highlightColor;
 
             drawBar(point[0], point[1], point[2] || 0, barLeft, barLeft + series.bars.barWidth,
-                    function () { return fillStyle; }, series.xaxis, series.yaxis, octx, series.bars.horizontal, series.bars.lineWidth);
+                    0, function () { return fillStyle; }, series.xaxis, series.yaxis, octx, series.bars.horizontal, series.bars.lineWidth);
         }
 
         function getColorOrGradient(spec, bottom, top, defaultColor) {
@@ -3159,7 +3052,7 @@ Licensed under the MIT license.
         return plot;
     };
 
-    $.plot.version = "0.8.3";
+    $.plot.version = "0.8.1";
 
     $.plot.plugins = [];
 
@@ -3180,7 +3073,7 @@ Licensed under the MIT license.
 </script>
 		<script type="application/javascript">/* Flot plugin for rendering pie charts.
 
-Copyright (c) 2007-2014 IOLA and Ole Laursen.
+Copyright (c) 2007-2013 IOLA and Ole Laursen.
 Licensed under the MIT license.
 
 The plugin assumes that each series has a single data value, and that each
@@ -3249,7 +3142,6 @@ More detail and specific examples can be found in the included HTML file.
 
 		var canvas = null,
 			target = null,
-			options = null,
 			maxRadius = null,
 			centerLeft = null,
 			centerTop = null,
@@ -3404,16 +3296,13 @@ More detail and specific examples can be found in the included HTML file.
 			for (var i = 0; i < data.length; ++i) {
 				var value = data[i].data[0][1];
 				if (numCombined < 2 || value / total > options.series.pie.combine.threshold) {
-					newdata.push(
-						$.extend(data[i], {     /* extend to allow keeping all other original data values
-						                           and using them e.g. in labelFormatter. */
-							data: [[1, value]],
-							color: data[i].color,
-							label: data[i].label,
-							angle: value * Math.PI * 2 / total,
-							percent: value / (total / 100)
-						})
-					);
+					newdata.push({
+						data: [[1, value]],
+						color: data[i].color,
+						label: data[i].label,
+						angle: value * Math.PI * 2 / total,
+						percent: value / (total / 100)
+					});
 				}
 			}
 
@@ -3477,13 +3366,14 @@ More detail and specific examples can be found in the included HTML file.
 				} else {
 					centerLeft -= legendWidth / 2;
 				}
-				if (centerLeft < maxRadius) {
-					centerLeft = maxRadius;
-				} else if (centerLeft > canvasWidth - maxRadius) {
-					centerLeft = canvasWidth - maxRadius;
-				}
 			} else {
 				centerLeft += options.series.pie.offset.left;
+			}
+
+			if (centerLeft < maxRadius) {
+				centerLeft = maxRadius;
+			} else if (centerLeft > canvasWidth - maxRadius) {
+				centerLeft = canvasWidth - maxRadius;
 			}
 
 			var slices = plot.getData(),
@@ -4001,7 +3891,7 @@ More detail and specific examples can be found in the included HTML file.
 </script>
 		<script type="application/javascript">/* Flot plugin for automatically redrawing plots as the placeholder resizes.
 
-Copyright (c) 2007-2014 IOLA and Ole Laursen.
+Copyright (c) 2007-2013 IOLA and Ole Laursen.
 Licensed under the MIT license.
 
 It works by listening for changes on the placeholder div (through the jQuery
@@ -4020,7 +3910,8 @@ can just fix the size of their placeholders.
  * Dual licensed under the MIT and GPL licenses.
  * http://benalman.com/about/license/
  */
-(function($,e,t){"$:nomunge";var i=[],n=$.resize=$.extend($.resize,{}),a,r=false,s="setTimeout",u="resize",m=u+"-special-event",o="pendingDelay",l="activeDelay",f="throttleWindow";n[o]=200;n[l]=20;n[f]=true;$.event.special[u]={setup:function(){if(!n[f]&&this[s]){return false}var e=$(this);i.push(this);e.data(m,{w:e.width(),h:e.height()});if(i.length===1){a=t;h()}},teardown:function(){if(!n[f]&&this[s]){return false}var e=$(this);for(var t=i.length-1;t>=0;t--){if(i[t]==this){i.splice(t,1);break}}e.removeData(m);if(!i.length){if(r){cancelAnimationFrame(a)}else{clearTimeout(a)}a=null}},add:function(e){if(!n[f]&&this[s]){return false}var i;function a(e,n,a){var r=$(this),s=r.data(m)||{};s.w=n!==t?n:r.width();s.h=a!==t?a:r.height();i.apply(this,arguments)}if($.isFunction(e)){i=e;return a}else{i=e.handler;e.handler=a}}};function h(t){if(r===true){r=t||1}for(var s=i.length-1;s>=0;s--){var l=$(i[s]);if(l[0]==e||l.is(":visible")){var f=l.width(),c=l.height(),d=l.data(m);if(d&&(f!==d.w||c!==d.h)){l.trigger(u,[d.w=f,d.h=c]);r=t||true}}else{d=l.data(m);d.w=0;d.h=0}}if(a!==null){if(r&&(t==null||t-r<1e3)){a=e.requestAnimationFrame(h)}else{a=setTimeout(h,n[o]);r=false}}}if(!e.requestAnimationFrame){e.requestAnimationFrame=function(){return e.webkitRequestAnimationFrame||e.mozRequestAnimationFrame||e.oRequestAnimationFrame||e.msRequestAnimationFrame||function(t,i){return e.setTimeout(function(){t((new Date).getTime())},n[l])}}()}if(!e.cancelAnimationFrame){e.cancelAnimationFrame=function(){return e.webkitCancelRequestAnimationFrame||e.mozCancelRequestAnimationFrame||e.oCancelRequestAnimationFrame||e.msCancelRequestAnimationFrame||clearTimeout}()}})(jQuery,this);
+
+(function($,h,c){var a=$([]),e=$.resize=$.extend($.resize,{}),i,k="setTimeout",j="resize",d=j+"-special-event",b="delay",f="throttleWindow";e[b]=250;e[f]=true;$.event.special[j]={setup:function(){if(!e[f]&&this[k]){return false}var l=$(this);a=a.add(l);$.data(this,d,{w:l.width(),h:l.height()});if(a.length===1){g()}},teardown:function(){if(!e[f]&&this[k]){return false}var l=$(this);a=a.not(l);l.removeData(d);if(!a.length){clearTimeout(i)}},add:function(l){if(!e[f]&&this[k]){return false}var n;function m(s,o,p){var q=$(this),r=$.data(this,d);r.w=o!==c?o:q.width();r.h=p!==c?p:q.height();n.apply(this,arguments)}if($.isFunction(l)){n=l;return m}else{n=l.handler;l.handler=m}}};function g(){i=h[k](function(){a.each(function(){var n=$(this),m=n.width(),l=n.height(),o=$.data(this,d);if(m!==o.w||l!==o.h){n.trigger(j,[o.w=m,o.h=l])}});g()},e[b])}})(jQuery,this);
 
 (function ($) {
     var options = { }; // no options
@@ -4137,19 +4028,15 @@ can just fix the size of their placeholders.
 				}).each(function() {
 					$(this).addClass("hoverable");
 					this.innerHTML = "Show minor authors (" + this.hiddenCount + ") &or;";
-				}).click(function() {
-					this.clicked = !this.clicked;
-
-					if (this.clicked) {
-						this.innerHTML = "Hide minor authors (" + this.hiddenCount + ") &and;";
-						$(this).parent().parent().parent().find("tbody tr").show().each(colorRows);
-					} else {
-						this.innerHTML = "Show minor authors (" + this.hiddenCount + ") &or;";
-						$(this).parent().parent().parent().find("tbody tr td:last-child").filter(function() {
-							return parseFloat(this.innerHTML) < MINOR_AUTHOR_PERCENTAGE;
-						}).parent().hide();
-						$("table.git tbody tr:visible").each(colorRows);
-					}
+				}).toggle(function() {
+					this.innerHTML = "Hide minor authors (" + this.hiddenCount + ") &and;";
+					$(this).parent().parent().parent().find("tbody tr").show().each(colorRows);
+				}, function() {
+					this.innerHTML = "Show minor authors (" + this.hiddenCount + ") &or;";
+					$(this).parent().parent().parent().find("tbody tr td:last-child").filter(function() {
+						return parseFloat(this.innerHTML) < MINOR_AUTHOR_PERCENTAGE;
+					}).parent().hide();
+					$("table.git tbody tr:visible").each(colorRows);
 				});
 
 				filterResponsibilities();
@@ -4158,15 +4045,12 @@ can just fix the size of their placeholders.
 					$("div#responsibilities div h3:visible").each(colorRows);
 					$("div#responsibilities").prepend("<div class=\"button\">Show minor authors (" + hiddenResponsibilitiesCount + ") &or;</div>");
 
-					$("div#responsibilities div.button").click(function() {
-						this.clicked = !this.clicked;
-						if (this.clicked) {
-							this.innerHTML = "Hide minor authors (" + hiddenResponsibilitiesCount + ") &and;";
-							$("div#responsibilities div").show();
-						} else {
-							this.innerHTML = "Show minor authors (" + hiddenResponsibilitiesCount + ") &or;";
-							filterResponsibilities();
-						}
+					$("div#responsibilities div.button").toggle(function() {
+						this.innerHTML = "Hide minor authors (" + hiddenResponsibilitiesCount + ") &and;";
+						$("div#responsibilities div").show();
+					}, function() {
+						this.innerHTML = "Show minor authors (" + hiddenResponsibilitiesCount + ") &or;";
+						filterResponsibilities();
 					});
 				}
 
@@ -4177,16 +4061,13 @@ can just fix the size of their placeholders.
 					$("div#timeline table.git tbody tr:visible").each(colorRows);
 					$("div#timeline").prepend("<div class=\"button\">Show rows with minor work (" + hiddenTimelineCount + ") &or;</div>");
 
-					$("div#timeline div.button").click(function() {
-						this.clicked = !this.clicked;
-						if (this.clicked) {
-							this.innerHTML = "Hide rows with minor work (" + hiddenTimelineCount + ") &and;";
-							$("div#timeline table.git tbody tr").show().each(colorRows);
-						} else {
-							this.innerHTML = "Show rows with minor work (" + hiddenTimelineCount + ") &or;";
-							filterTimeLine();
-							$("div#timeline table.git tbody tr:visible").each(colorRows);
-						}
+					$("div#timeline div.button").toggle(function() {
+						this.innerHTML = "Hide rows with minor work (" + hiddenTimelineCount + ") &and;";
+						$("div#timeline table.git tbody tr").show().each(colorRows);
+					}, function() {
+						this.innerHTML = "Show rows with minor work (" + hiddenTimelineCount + ") &or;";
+						filterTimeLine();
+						$("div#timeline table.git tbody tr:visible").each(colorRows);
 					});
 				}
 
@@ -4413,12 +4294,17 @@ can just fix the size of their placeholders.
 	</head>
 	<body>
 		<div><div class="box logo">
-			<a href="https://github.com/ejwa/gitinspector"><img src="data:image/png;base64,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jLWufKctGoWnIw4AcGOjWN/y1tdsx6GxKtsJ7HPao0+f886GAQBQtmmvw4RQvUhb7HjaWFiBVcalOXiYHvK3AWhLOm5ICXL8QpQ9tVQOjkDQst3kjljKgheKswFgxfJHApMnVFxNgF8wAMqfusPPawTJ4Lcx9PdmlFLG72y/fs8UtE6wPpJ5rHMWn6z9yyKsZNk/gDMeMJhiEvVN0fR/wouoJzEUz7x8dUdqxVlH3rspmvJ3xoqHOIVkUgC+esbU4b2wmn7vso5tt332juTE8AP+aHqnz7Srh6oE2Qs7D09dHikMB4ihlaGYUkwoCCRoBhzLhhxayA/GqfK9hSMoMEDu1IjDb9/4StNyeNnEeK7Mond3vTGetu7ZNfLHjhQAHPPgX5dt/dZn25Jh9yfJgDgOJG2wNgCG1iVqnB2XA4asMOKOC8+OjHw2rcHsfjNeG5KO4xzQGOC4kZ0sRHAc7Wqt9e40/fILyzc8AyCBMqdAx4ti5NA718yf35exjaRjKrcEgXABSGB520DL0qaOGEbODWP395dMi/X0TG0diAciSbPk32f5pPBBW6ztV03t/fD6Z2K8hxj/Hwcf/wvPBJZ+9MswgwAAADt0RVh0QXV0aG9yAEFkYW0gV2FsZGVuYmVyZywgYmFzZWQgb24gdGhlIEdpdCBMb2dvIGJ5IEphc29uIExvbmdbAluwAAAAJWlUWHRDb3B5cmlnaHQAAAAAAMKpIDIwMTUgQWRhbSBXYWxkZW5iZXJn6lGO2AAAAsJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0n77u/JyBpZD0nVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkJz8+Cjx4OnhtcG1ldGEgeG1sbnM6eD0nYWRvYmU6bnM6bWV0YS8nIHg6eG1wdGs9J0ltYWdlOjpFeGlmVG9vbCA5LjI3Jz4KPHJkZjpSREYgeG1sbnM6cmRmPSdodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjJz4KCiA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0nJwogIHhtbG5zOmNjPSdodHRwOi8vY3JlYXRpdmVjb21tb25zLm9yZy9ucyMnPgogIDxjYzpsaWNlbnNlPkNyZWF0aXZlIENvbW1vbnMgQXR0cmlidXRpb24gMy4wIFVucG9ydGVkIExpY2Vuc2UuIFRoaXMgbGljZW5zZSBsZXRzIG90aGVycyBkaXN0cmlidXRlLCByZW1peCwgdHdlYWssIGFuZCBidWlsZCB1cG9uIHlvdXIgd29yaywgZXZlbiBjb21tZXJjaWFsbHksIGFzIGxvbmcgYXMgdGhleSBjcmVkaXQgeW91IGZvciB0aGUgb3JpZ2luYWwgY3JlYXRpb24uIFRoaXMgaXMgdGhlIG1vc3QgYWNjb21tb2RhdGluZyBvZiB0aGUgQ0MgbGljZW5zZXMgb2ZmZXJlZC4gUmVjb21tZW5kZWQgZm9yIG1heGltdW0gZGlzc2VtaW5hdGlvbiBhbmQgdXNlIG9mIGxpY2Vuc2VkIG1hdGVyaWFscy48L2NjOmxpY2Vuc2U+CiA8L3JkZjpEZXNjcmlwdGlvbj4KPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KPD94cGFja2V0IGVuZD0ncic/PtC9Q+UAAAAASUVORK5CYII=" /></a>
-			<p>Statistical information for the repository 'libreflix' was gathered on 2018/02/25.<br>The output has been generated by <a href="https://github.com/ejwa/gitinspector">gitinspector</a> 0.5.0dev. The statistical analysis tool for git repositories.</p>
+			<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAAXNSR0IArs4c6QAAAAZiS0dEAP8A/wD/oL2nkwAAAAlwSFlzAAAN1wAADdcBQiibeAAAAAd0SU1FB9wLDQATAE193qoAABEjSURBVGjevVprbBzXdf7OvTP75u6SFCk+JFkUJZKSbcmPSJbsyohtwQ2ch5omDYI4QYvUjpH+SFEkBYr+zI/+aX8U6R+7iIsmRosajREEbYo0jtvYiZMmsB09HD2tNyk+9sXdnZ2dmTv3nv6Yu+RKopykdrPAgofk7L3nfb5zzhLen5cAIAFkAWQAFAE4AFwADEDZdxtAACACEAPQ7/Vieo+fzYBojIARZp4AsMkK4fQJxn3vCIAHYIWIlhmogblmhdK/TQHKALYC2A1gBECOhDDpfD5202mdLRbhZjJwXBfMDB1FCIMAoeeRCkMR+r7LWgPAKoAlAOcArNjf/18FyAGYBXA3gDEhpcoPDsajU1M8PDmJ4ugossUiHNcFCQEiSlRvDNgYqCCA12igXalwbWGBqleuyND3nTiKGMAFAGcBLFhXe18FkFbj9wOYdlIpNTgxEd2xdy+N79oFN5MBM4O1htE6YbjvAgYAIkghQFKCKLnWbzaxcOYML77zDq0uLaV1FBkAx60gKzZu3rMALoA5AIcB5Iqjo925Bx+ksV274KZSiIIAzLymbQIAZrBlkjagyVpFOA7cdBp+q4XLx45h4fRptCqVHICrAN4AMG/j4101+6tc5n4AjznpNG+/555o/9GjNDQxAa0UYqXWtbwBk64xZITYUBAIARiDWCk4roux6WkMb9mC0PejwPPKJo53AGgC6Nrg/40FyAJ4EMChzMCAv/fIEZ47fJiM1oijKNE00Zrm0dMsCGnWsuJmw4aTVl3h6EEdpRQJQwD1u1TPlRiAVgq5YhETMzOkwlAHnueqINhpA9u/nRC3E8ABsB/AwXQ+793/kY+IrXv2IPA8IvR4JyJm4j7aELHLRr5VGFn98sKJg19cPvX7s0Ez/82RmbcnlJ9jgPk2nwUAozWBmcZ37YKOY9Op11mF4XYANRvY8a8jgARwJ4DHMoVCZ//HPkbjMzMIOh2Q1RoRrfl9P51h7fx8YLTxt5d+8sQhb/lILGS4NfR2HW4vjTw7tueNSeXnDEmDDT7bswYRQSuFidlZxGEIr1YTcRTdYYO61TPguwmwDcDj0nX1vU88wZNzcwg9D2R9WdhLb6QJLow4lym1v3r1zUf2eysfbDupGjFTJGR3OA62fLB1ffNz43ve2BZ6+VgII6wFNjoTRFBhiLHpaXQ9z3Tq9axWKm/dqfVuAmQAPApgeOeBA2rm4EFaY95e0PP1floAWErlu3+6+Pahh5vXP9x2UhUJCAYgQKSEDEbi7tZD7ZXy18bvfnMqbOcMiVvO6dG9u0wcY3jrVmqtrKh2rbYZQMMKEN5OgL0A7iuNjfkHjh4VcRQlpqX1bNuzRI8WbKjuZCIBpguZUuWgt7I9y7oYEymynBFAikQ4HvlTB73lwj+Mzp2YiPwcU2KEm89cl4XgpFLIl8tUv349DjudMQDLAOobCVAE8IiTTrv3fuhDKAwPwyhFfbmd1jRlaZeNOJ8peV9ePHH4gXZl27eHtp/7j+E73vpI/eo+l3VGC6Fs0AsBRiRkMBn5O+7vVPPfGJk5sUX5eU2CCZykr5vOpyQ7UWl0FIHnobm8nDFxHFsBuv0CkMU1ezdPT3fnHnxQ6CgiJmICCETEwBpts404lRtsfmnx7Q883Fx8fDLqTA2ZaPW/ihMLPy6NH/9w49r9eR0NCsA1ECqxBImIpL8l7OzaHTTk8yOzb28LOzlDwkbSrXdBCDZaU75cpvrCguq2WptsoWv2C5ADcJikzO597DHODw+TjmOb42yA9dEpsDifKbWfXj5z90frlz/hS3c1FiLY49fvG9Kq8XJpcv5UbvD09XThnflU4eJMsDrLJAw4QRSKRHd71N69O2jyiyPTZ8cjP2tIcJJR+ZZ72RjkymV4tRq3qtWsiWPfupKS1tm2ALivtHmzvvORRxAHAYQQG2QbwAXTdTcXfKp+ceYPqhc+4zmpqgALAlEgnc6+TvWAAywcyw9XrqYLrVfLEwuRkAv7vcp+LUTENmYVOf5U2NqzM2jrfx2ePjcZedkYxBtnueSVymZp+eJFjrpd16LYtrBxPwYgNTEzY4QQwC3VNaGdRPPex1avTH+qcuHTnnSrxCwAAhggMGmISIAFAJR1lLqrUy8dzw1XNJHqz+DELDrSqT/UWnr8zxePPfBGYbThMgtjg/fmiq2jCIWhIQyOj2sAQwDyAFwBwGHmSSGlHp6cJMO8BsjWXsxw2NCl9IB3tH55x2dWzn+2I51VWgODnDgwg4wgPRl5m66n8oE0hgyINRGDwQSW/c8LA+k5sn6kMf/Rv1g49sCp7GDTZSNM371rP4kgXRfFkRE46XTKCpGSAAYAPJAtFjH70EM3VMdefDtgasi0OtxeGn9m6dRTHZmqCTD1/r/+JJEmUncEnWkiLF3MFJuxEKxJ8OvFsV88vjp/SJPQ/TlfABQK6e/urt4zFAet75W3XhlT3UySnda9gIhAQkArhcqVK0IFQQTgquj1salczqTzedhOaQ0aSza04Oa79/q1TV9c/OXnO9Ktg9kqn/qSmHU7EBSJ6OO1Sx/6ZW6wfaQ5P/VQa3HyF/lNjb/act9zWRMXBMMRCd5igCAA4Qm39kTj6sf/qHJuz8n8UNNhQ9znSswMGINcsQjpuhpAoedCJQBiYGgoCZq+aiiYaSmVC/b71ZEvXT/5BV86rbXCwH2o5CZagCkU0pdg+MKNnlo+89TvNq9N/Lg4vvI3k/ueUyRCX8hW2ugCAwwGJFh2hNv4ZPXipz+/cnbPpUyxI9lQz31ABKM10oUC0tmssZkz05scUCqXIwiRQHtmYiJWIHNXtzH45fljzyQ+nxSYBDX3rHAjzcTrqMOGUyBk+yvzx59h0HMncsO1P5x55O884epnlk7dfbR++eOhkJ1EbwxPOvVPVS98WkH808vlyStlrdw1tMrMTipF0nEYRC6YpQCQAgAnleKkL2QwEUtmWnazwdNLpz8aCdkl22gxJ85/O9paghP+rUEBEQnRfXrp9O91hGOmuu3Cvk6t/PXNu09eS+fPusakerEqGOST0/xE/eLRppNWgg2BiEGJZoQQLByHyY5yBABzY5O5DqaIQAQWfYyswaLb07QW1r0IsfahluM2YhJGE3EkpC5o5TZkukGAWIsoAliQdphdh816QetPLD23skBSAYAKQ7JaAwFkAB5WQeqFkZnvpljnDWBAIDAsAtuYZmKbJNdbZDAQE8WTUWfnTHd1YNnNdhsypXJGyblgdW9MSYEDgQzIZLUq/7A08bLDLDRjLWOwbXq01sTMGkDsWAE48n1m5mQSZVFi1mj504HR5Szvef6Li798uiOdeh9T64XiRrq/5+glJgbDxBDhV6+98dTPCqM/iYRUh9rLhwSzo0HKtqOmoKPhH5UmvvfX4/t+dle3UdJE3PMAkfQJrOOYwBwDMI7F19prNJJxiHUhIkJMxFtDL/f90pb5Aa1eeLJy/klfyFUCEVOvAybcTDMzE7NMTGCTIREZQAuwfLi1eAQJxA40iQhgMhA6r9XwTwfGfvCX2w68eqC9PKiE5F5R7dWBsNNB1O1KAB0AgbCEH3Y60m+1IKRcby6YEQvJO8J2/tuD2y/84+jMC3kdDxkiTdzzn8S2tJ5G2WWTbjupRoa1bEs3IGMcBkzSB5MJSXZCkh4TaWIQg3TGxMW3CiOvfWX7wVcOtJeHesxzDxkAEFLCazRglJIWjSphu5tK6Ptuq1KBdJxbBkcxCd4etvMvDU9feGnTjhcLcTRiKAl+7klgaQcmtZLKXvncrkf/ZV+nVv5+eev89we3/lvG6AHuzY6IiZC0lCzY5HU8dDo3+MZXth/8z4PeypCdYGyYWFrVKqJuV9geORYAYiK6buJY1BcWmPo8uJ9WJM1sd3Xguc13nvzu0B3fyut4mMnCFk5yiCHSLpvMy6Wt/zMVtHOhkHpX0Cy8uGn6bUOkenVh/XmYXKwHT+UHf/7U9MPfua9THYwt8zfzwADiKEK7UiEVhoHtjyMBwHCCrTvXz54VURgmib2XRy1NBCiQuduvlZ7dvOf4vw9tfymn1SATGZBNFYlX8UjcHYhImKyOJQGiFEcpYpYgWyuIYYhMWuvcuWzpF1+Yfvg7v9Ne3qRA5uZ7e9p3UimsLi2hsbQkAVSs6ythfb0CoNZpNt2VS5eQyuUowTuJe/doAKRAPNtdLX5t/K63flge/14+VkO9UizAMhTS/2Bz4ZFx5WePFYZX38xvqv/Z4okPGyKN9QLNWaOK19IDZ5+ZfvilA+3EbdB31833SsehpQsXWAVB2g6Ab+jINABmY+biKIomZ2fJWoGT3gg30FoIM6787IvDO89NR614utu6UwnRTTIGsQCJJxpXDj/aXNz6x8tnHi/F0UhMIiSADEFnTVy8lh44++TMkX8+4K0MmV452eAuJmLhONSuVHDp2DF4tVoA4E077Orhc7Adoo6HnU4pVy6boclJ1koRAWzBVNLvJRWQDBFvUZ3ct4amz0+HLbMjaO+OhOySYAEQKxKqpMNhJuKYhBLExETGNSaznMpd/uzMoy8c8CpDOmklbzy/j2atKZXN8tnXX0fl0qW0ieMTtif2b55KRHa8t8tvNNSW3btJ9DLSTdNnsn7JIJ5Qfvabo7On9/nV1LbQm4tIdHso3pDQSYOeeEXK6HzVzc5/duaxb9zbqQ2yxTe9M/vP79FuJoOVixdx+fhx8ptN347fF243F/IAFMNOZzwKw3hybg5aqT6gQ7fQMQneEnZyz2/effL+TiW7JfJ3xiQDSnzYQjli1+hcw80sPjlz5Pl9nVqZkwq74Zn9M6LQ93H6Rz9C/dq1PIAf25H7bQdbyppmsl2rZRzH4dGpKcRRlIz8ehWxvzomaJDviLzcN0ZmT97XqWYno850JGRXMEskyNb1HLf+ybnHn93n1watj99yzg00AMdxcPKVV7h65Uo2Vuo0gPMAqr9qNuoD8NmY2WalYtLZLEanpqDC8MY9gNVYz9SaBG+LOrlnx/YcP9ReKU+G3k4lZJg2OteWbu1zM4/+/Z7uanGtBe1fiPTRPSiTzudx8pVXePnChVTgeasAfg5g8Wb0vJEAxuIjP46imfrionJcV4xs3444iqiXHdbdldaMHwuht0Ze7uub547d06llhuJwU8XJLvzJ9OFvbgu8vEiSyy2f7dEMkJCShOPg5A9+gMXz511/dbUL4DXLfPibrJiydlb6ULpQUDs/8AHeeeBAknOVWh/49pX5niZdY8TlzEDHAKxJ8FTYzvc/cwtNBGMMUpkMuu02Tr36KlevXUv5q6s+gP+2zLd/0w1NbItFS0fRjubysmzXaro0Nkb5UilZ5vUanx7zNqMYIbgYR+5wHKTKOkr1mvP+Z9A3tJKOAzeTwfLFizj12mtcu3o1G7TbTQCvvhvzv86OLLIj7YqO45HWykq5euWKMlojPzSEbKGwtkKlvnUTUQKiDdazys0rKQLguC6cdBrtahVnX38dl48dE/X5+ZxW6gyAn1nmO+/HmlUAGLfbyrul61JpdDQc37mTJmZnKVcu37gT7rPODXsEKQEpQczQcYzVxUUsvvOOqc3Pi1a1mtJR5Nvt5PUe2ny/F90Fu8GZAzAlXRfZgYF4aHJSl8fGuDg6StmBAWQLhRv2wcwMrRS6rRY6jQba1Soay8vUXFoSURCkVBB0AZwBcNmmyV97Y/9//arBoP2KwU5rmZKQUqbz+dhJpYybTmsnnYbjuklTpBTiKIIKQxlHkQx9X5o4VhZVXreMN/sXF7+NL3v0VlKb7HBs1L5zdvDafzbb9NyxKbq3ZWnbGOvevLz7bQnQv5Z17c+MfbsbfN0msLlc9/3tPb3+FxuOVUhZatL/AAAAAElFTkSuQmCC" />
+			<p>Statistical information for the repository 'libreflix' was gathered on 2019/02/21.<br>The output has been generated by <a href="https://gitinspector.googlecode.com">gitinspector</a> 0.3.2. The statistical analysis tool for git repositories.</p>
 		</div></div>
 
-<div><div class="box"><p>The following historical commit information, by author, was found.</p><div><table id="changes" class="git"><thead><tr> <th>Author</th> <th>Commits</th> <th>Insertions</th> <th>Deletions</th> <th>% of changes</th></tr></thead><tbody><tr ><td><img src="https://www.gravatar.com/avatar/df354948385c9e431161d4f3196bd099?default=identicon&size=20"/>Guilmour</td><td>3</td><td>3</td><td>3</td><td>0.01</td></tr><tr class="odd"><td><img src="https://www.gravatar.com/avatar/df354948385c9e431161d4f3196bd099?default=identicon&size=20"/>Guilmour Rossi</td><td>102</td><td>52156</td><td>18141</td><td>99.00</td></tr><tr ><td><img src="https://www.gravatar.com/avatar/b2be9029d6abe24857ac6d48e5ce1833?default=identicon&size=20"/>Julio Lira</td><td>7</td><td>29</td><td>13</td><td>0.06</td></tr><tr class="odd"><td><img src="https://www.gravatar.com/avatar/be138933daf832aec3fe27868b78b96c?default=identicon&size=20"/>jotarios</td><td>3</td><td>504</td><td>81</td><td>0.82</td></tr><tr ><td><img src="https://www.gravatar.com/avatar/016902e45ab8b7238990dca4576a9a20?default=identicon&size=20"/>n2omatt</td><td>3</td><td>66</td><td>11</td><td>0.11</td></tr><tfoot><tr> <td colspan="5">&nbsp;</td> </tr></tfoot></tbody></table><div class="chart" id="changes_chart"></div></div><script type="text/javascript">    changes_plot = $.plot($("#changes_chart"), [{label: "Guilmour", data: 0.01}, {label: "Guilmour Rossi", data: 99.00}, {label: "Julio Lira", data: 0.06}, {label: "jotarios", data: 0.82}, {label: "n2omatt", data: 0.11}], {        series: {            pie: {                innerRadius: 0.4,                show: true,                combine: {                    threshold: 0.01,                    label: "Minor Authors"                }            }        }, grid: {            hoverable: true        }    });</script></div></div>
-<div><div class="box"><p>Below are the number of rows from each author that have survived and are still intact in the current revision.</p><div><table id="blame" class="git"><thead><tr> <th>Author</th> <th>Rows</th> <th>Stability</th> <th>Age</th> <th>% in comments</th> </tr></thead><tbody><tr ><td><img src="https://www.gravatar.com/avatar/df354948385c9e431161d4f3196bd099?default=identicon&size=20"/>Guilmour Rossi</td><td>33898</td><td>65.0</td><td>6.5</td><td>5.90</td><td style="display: none">98.29</td></tr><tr class="odd"><td><img src="https://www.gravatar.com/avatar/b2be9029d6abe24857ac6d48e5ce1833?default=identicon&size=20"/>Julio Lira</td><td>22</td><td>75.9</td><td>0.5</td><td>0.00</td><td style="display: none">0.06</td></tr><tr ><td><img src="https://www.gravatar.com/avatar/be138933daf832aec3fe27868b78b96c?default=identicon&size=20"/>jotarios</td><td>502</td><td>99.6</td><td>0.6</td><td>41.04</td><td style="display: none">1.46</td></tr><tr class="odd"><td><img src="https://www.gravatar.com/avatar/016902e45ab8b7238990dca4576a9a20?default=identicon&size=20"/>n2omatt</td><td>66</td><td>100.0</td><td>2.9</td><td>37.88</td><td style="display: none">0.19</td></tr><tfoot><tr> <td colspan="5">&nbsp;</td> </tr></tfoot></tbody></table><div class="chart" id="blame_chart"></div></div><script type="text/javascript">    blame_plot = $.plot($("#blame_chart"), [{label: "Guilmour Rossi", data: 98.29}, {label: "Julio Lira", data: 0.06}, {label: "jotarios", data: 1.46}, {label: "n2omatt", data: 0.19}], {        series: {            pie: {                innerRadius: 0.4,                show: true,                combine: {                    threshold: 0.01,                    label: "Minor Authors"                }            }        }, grid: {            hoverable: true        }    });</script></div></div>
+<div><div class="box"><p>The following historical commit information, by author, was found in the repository.</p><div><table id="changes" class="git"><thead><tr> <th>Author</th> <th>Commits</th> <th>Insertions</th> <th>Deletions</th> <th>% of changes</th></tr></thead><tbody><tr ><td><img src="https://www.gravatar.com/avatar/df354948385c9e431161d4f3196bd099?default=identicon&size=20"/>Guilmour</td><td>6</td><td>65</td><td>31</td><td>0.13</td></tr><tr class="odd"><td><img src="https://www.gravatar.com/avatar/df354948385c9e431161d4f3196bd099?default=identicon&size=20"/>Guilmour Rossi</td><td>124</td><td>49069</td><td>16577</td><td>92.13</td></tr><tr ><td><img src="https://www.gravatar.com/avatar/51bb47595760a01a21c10e1b174cde43?default=identicon&size=20"/>Ramon Saldanha</td><td>2</td><td>4747</td><td>5</td><td>6.67</td></tr><tr class="odd"><td><img src="https://www.gravatar.com/avatar/df354948385c9e431161d4f3196bd099?default=identicon&size=20"/>guilmour</td><td>5</td><td>11</td><td>9</td><td>0.03</td></tr><tr ><td><img src="https://www.gravatar.com/avatar/df354948385c9e431161d4f3196bd099?default=identicon&size=20"/>guilmour ross</td><td>13</td><td>52</td><td>22</td><td>0.10</td></tr><tr class="odd"><td><img src="https://www.gravatar.com/avatar/be138933daf832aec3fe27868b78b96c?default=identicon&size=20"/>jotarios</td><td>3</td><td>504</td><td>81</td><td>0.82</td></tr><tr ><td><img src="https://www.gravatar.com/avatar/016902e45ab8b7238990dca4576a9a20?default=identicon&size=20"/>n2omatt</td><td>3</td><td>66</td><td>11</td><td>0.11</td></tr><tfoot><tr> <td colspan="5">&nbsp;</td> </tr></tfoot></tbody></table><div class="chart" id="changes_chart"></div></div><script type="text/javascript">    changes_plot = $.plot($("#changes_chart"), [{label: "Guilmour", data: 0.13}, {label: "Guilmour Rossi", data: 92.13}, {label: "Ramon Saldanha", data: 6.67}, {label: "guilmour", data: 0.03}, {label: "guilmour ross", data: 0.10}, {label: "jotarios", data: 0.82}, {label: "n2omatt", data: 0.11}], {        series: {            pie: {                innerRadius: 0.4,                show: true,                combine: {                    threshold: 0.01,                    label: "Minor Authors"                }            }        }, grid: {            hoverable: true        }    });</script></div></div>
+<div><div class="box"><p>Below are the number of rows from each author that have survived and are still intact in the current revision.</p><div><table id="blame" class="git"><thead><tr> <th>Author</th> <th>Rows</th> <th>Stability</th> <th>Age</th> <th>% in comments</th> </tr></thead><tbody><tr ><td><img src="https://www.gravatar.com/avatar/df354948385c9e431161d4f3196bd099?default=identicon&size=20"/>Guilmour Rossi</td><td>33263</td><td>67.8</td><td>15.8</td><td>6.65</td><td style="display: none">88.03</td></tr><tr class="odd"><td><img src="https://www.gravatar.com/avatar/51bb47595760a01a21c10e1b174cde43?default=identicon&size=20"/>Ramon Saldanha</td><td>3960</td><td>83.4</td><td>10.0</td><td>0.40</td><td style="display: none">10.48</td></tr><tr ><td><img src="https://www.gravatar.com/avatar/be138933daf832aec3fe27868b78b96c?default=identicon&size=20"/>jotarios</td><td>500</td><td>99.2</td><td>12.5</td><td>41.20</td><td style="display: none">1.32</td></tr><tr class="odd"><td><img src="https://www.gravatar.com/avatar/016902e45ab8b7238990dca4576a9a20?default=identicon&size=20"/>n2omatt</td><td>63</td><td>95.5</td><td>14.9</td><td>39.68</td><td style="display: none">0.17</td></tr><tfoot><tr> <td colspan="5">&nbsp;</td> </tr></tfoot></tbody></table><div class="chart" id="blame_chart"></div></div><script type="text/javascript">    blame_plot = $.plot($("#blame_chart"), [{label: "Guilmour Rossi", data: 88.03}, {label: "Ramon Saldanha", data: 10.48}, {label: "jotarios", data: 1.32}, {label: "n2omatt", data: 0.17}], {        series: {            pie: {                innerRadius: 0.4,                show: true,                combine: {                    threshold: 0.01,                    label: "Minor Authors"                }            }        }, grid: {            hoverable: true        }    });</script></div></div>
+<div><div id="timeline" class="box"><p>The following history timeline has been gathered from the repository.</p>
+<table class="git full"><thead><tr><th>Author</th><th>2017-06</th><th>2017-08</th><th>2017-09</th><th>2017-10</th><th>2017-11</th><th>2017-12</th><th>2018-01</th><th>2018-02</th></tr></thead><tbody><tr><td><img src="https://www.gravatar.com/avatar/df354948385c9e431161d4f3196bd099?default=identicon&size=20"/>Guilmour</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td>.</td></tr><tr class="odd"><td><img src="https://www.gravatar.com/avatar/df354948385c9e431161d4f3196bd099?default=identicon&size=20"/>Guilmour Rossi</td><td><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td><td><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td><td><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td><td></td><td><div class="remove">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td><td><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td><td><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td><td><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td></tr><tr><td><img src="https://www.gravatar.com/avatar/be138933daf832aec3fe27868b78b96c?default=identicon&size=20"/>jotarios</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td><div class="remove">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td></tr><tr class="odd"><td><img src="https://www.gravatar.com/avatar/016902e45ab8b7238990dca4576a9a20?default=identicon&size=20"/>n2omatt</td><td></td><td></td><td></td><td><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td><td></td><td></td><td></td><td>.</td></tr><tfoot><tr><td><strong>Modified Rows:</strong></td><td>1654</td><td>57337</td><td>228</td><td>41</td><td>897</td><td>2</td><td>619</td><td>1587</td></tr></tfoot></tbody></table>
+<table class="git full"><thead><tr><th>Author</th><th>2018-04</th><th>2018-05</th><th>2018-06</th><th>2018-08</th><th>2018-09</th><th>2018-11</th><th>2018-12</th><th>2019-02</th></tr></thead><tbody><tr><td><img src="https://www.gravatar.com/avatar/df354948385c9e431161d4f3196bd099?default=identicon&size=20"/>Guilmour</td><td>.</td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr class="odd"><td><img src="https://www.gravatar.com/avatar/df354948385c9e431161d4f3196bd099?default=identicon&size=20"/>Guilmour Rossi</td><td>.</td><td><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td><td></td><td></td><td><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td><td><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td><td><div class="remove">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td><td><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td></tr><tr><td><img src="https://www.gravatar.com/avatar/51bb47595760a01a21c10e1b174cde43?default=identicon&size=20"/>Ramon Saldanha</td><td><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr><tr class="odd"><td><img src="https://www.gravatar.com/avatar/df354948385c9e431161d4f3196bd099?default=identicon&size=20"/>guilmour</td><td></td><td></td><td><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td><td><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div></td><td></td><td></td><td></td><td></td></tr><tr><td><img src="https://www.gravatar.com/avatar/df354948385c9e431161d4f3196bd099?default=identicon&size=20"/>guilmour ross</td><td></td><td></td><td></td><td></td><td><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="remove">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div><div class="insert">&nbsp;</div></td><td></td><td></td><td></td></tr><tfoot><tr><td><strong>Modified Rows:</strong></td><td>4856</td><td>33</td><td>14</td><td>6</td><td>98</td><td>49</td><td>373</td><td>3456</td></tr></tfoot></tbody></table>
+</div></div>
+<div><div class="box" id="responsibilities"><p>The following repsonsibilties, by author, were found in the current revision of the repository (comments are exluded from the line count, if possible).</p><div><h3><img src="https://www.gravatar.com/avatar/df354948385c9e431161d4f3196bd099?default=identicon&size=32"/>Guilmour Rossi is mostly responsible for</h3><div>public/js/lib/jquery.js (7719 eloc)</div><div class="odd">public/css/vendor/bootstrap.css (6954 eloc)</div><div>public/juntos/index.html (4424 eloc)</div><div class="odd">public/js/lib/bootstrap.js (2169 eloc)</div><div>public/css/style.css (1119 eloc)</div><div class="odd">public/css/custom.css (920 eloc)</div><div>package-lock.json (777 eloc)</div><div class="odd">public/css/normalize.css (527 eloc)</div><div>public/js/script2.js (511 eloc)</div><div class="odd">public/js/script.js (476 eloc)</div></div><div><h3><img src="https://www.gravatar.com/avatar/51bb47595760a01a21c10e1b174cde43?default=identicon&size=32"/>Ramon Saldanha is mostly responsible for</h3><div>package-lock.json (3875 eloc)</div><div class="odd">views/admin/list-watches.html (22 eloc)</div><div>middlewares/auth-admin.js (14 eloc)</div><div class="odd">controllers/admin.js (14 eloc)</div><div>routes/admin.js (11 eloc)</div><div class="odd">server.js (4 eloc)</div><div>package.json (2 eloc)</div><div class="odd">routes/index.js (1 eloc)</div><div>models/Comments.js (1 eloc)</div></div><div><h3><img src="https://www.gravatar.com/avatar/be138933daf832aec3fe27868b78b96c?default=identicon&size=32"/>jotarios is mostly responsible for</h3><div>views/error/404.html (69 eloc)</div><div class="odd">routes/user.js (54 eloc)</div><div>routes/pages.js (32 eloc)</div><div class="odd">routes/index.js (31 eloc)</div><div>routes/watch.js (23 eloc)</div><div class="odd">middlewares/not-found.js (17 eloc)</div><div>routes/contact.js (12 eloc)</div><div class="odd">routes/upload.js (11 eloc)</div><div>middlewares/auth.js (11 eloc)</div><div class="odd">routes/profile.js (10 eloc)</div></div><div><h3><img src="https://www.gravatar.com/avatar/016902e45ab8b7238990dca4576a9a20?default=identicon&size=32"/>n2omatt is mostly responsible for</h3><div>public/js/script.js (33 eloc)</div><div class="odd">controllers/upload.js (5 eloc)</div></div></div></div>
 	</body>
 </html>
 

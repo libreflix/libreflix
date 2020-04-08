@@ -4,7 +4,7 @@
   {% set title = "Tag: " + tag %}
 {% endif %}
 
-{% extends 'layout.html' %}
+{% extends 'layouts/layout.html' %}
 
 {% block body %}
 <div class="container-fluid">
@@ -35,7 +35,7 @@
 <section class="work">
     {% if user.mod %}
     <br><br><br>
-    <input id="upload-input3" type="file" accept="image/jpg, image/jpeg">
+    <input id="upload-input3" type="file" accept="image/jpg, image/jpeg, text/vtt">
     <img3></img3>
     {% endif %}
 
@@ -52,6 +52,10 @@
       {
           case 'jpg':
           case 'png':
+          case 'vtt':
+          case 'pt_br.vtt':
+          case 'en.vtt':
+          case 'es.vtt':
               break;
           default:
               alert('Formato de arquivo inválido.');
