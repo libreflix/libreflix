@@ -37,8 +37,13 @@
         <td> {{ w.duration }} </td>
         <td> <textarea rows="1" cols="10" style="font-size: 10px;">{{ w.criador.email }}</textarea> </td>
         <td> <textarea rows="1" cols="10" style="font-size: 10px;">{{ w.permalink }}</textarea></td>
+<<<<<<< HEAD
         <td> <a href="{{ w.thumb480 }}" target="_blank"><img src="{{ w.thumb480 }}" width="100" alt=""> </a></td>
         <td> <a href="{{ w.imgbg }}" target="_blank"><img src="{{ w.imgbg }}" width="100" alt=""></a>  </td>
+=======
+        <td> <a href="{{ w.thumb480 }}" target="_blank"><img src="{{ w.thumb480 }}" width="100" alt="" loading="lazy"> </a></td>
+        <td> <a href="{{ w.imgbg }}" target="_blank"><img src="{{ w.imgbg }}" width="100" alt="" loading="lazy"></a>  </td>
+>>>>>>> 84525efbffd4ed32f3949712bde26fab31782f7f
         <td>
           {% if w.featured == 'true' %}
             Publicado

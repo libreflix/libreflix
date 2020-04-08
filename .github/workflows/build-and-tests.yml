@@ -1,0 +1,19 @@
+name: Build and Tests
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - name: Generate build environment
+      run: make env
+    - name: Configure nodejs
+      run: sudo make configure-nodejs
+    - name: Build npm dependencies
+      run: make npm-build
+    - name: Run tests
+      run: make npm-test
