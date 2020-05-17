@@ -3,7 +3,8 @@ const player = new Plyr('#player', {
   // quality: [1080, 720, 576, 480, 360, 240],
   invertTime: false,
   quality: {
-    default: 480
+    default: 480,
+    options: [480, 720, 1080]
   },
   // previewThumbnails: {
   //   enabled: true,
@@ -105,6 +106,7 @@ player.on('loadstart', event => {
   document.getElementById("pl-final-screen").style.display = "none";
   document.getElementById("pl-up-next").style.display = "none";
 });
+
 player.on('play', event => {
 //  setTimeout(function(){ document.getElementById("exit-button").style.opacity = "0"; }, 2000);
 });
@@ -184,10 +186,15 @@ var mediatype = ".mp4"
 var film_id = "{cyz6RWU>/r(tz^s"
 
 {% if w.magnet.hd %}
-var torrentId = '{{ w.magnet.hd | safe }}'; var webseedId = '{{ w.webseed.hd | safe | replace(".mp4","{cyz6RWU>/r(tz^s")}}'.replace(film_id,mediatype);
+var torrentId_hd = '{{ w.magnet.hd | safe }}'; var webseedId_hd = '{{ w.webseed.hd | safe | replace(".mp4","{cyz6RWU>/r(tz^s")}}'.replace(film_id,mediatype);
 {% elif w.magnet.sd %}
-var torrentId = '{{ w.magnet.sd | safe }}'; var webseedId = '{{ w.webseed.sd | safe | replace(".mp4","{cyz6RWU>/r(tz^s")}}'.replace(film_id,mediatype);
+var torrentId_sd = '{{ w.magnet.sd | safe }}'; var webseedId_sd = '{{ w.webseed.sd | safe | replace(".mp4","{cyz6RWU>/r(tz^s")}}'.replace(film_id,mediatype);
+{% elif w.magnet.fd %}
+var torrentId_fhd = '{{ w.magnet.fhd | safe }}'; var webseedId_fhd = '{{ w.webseed.fhd | safe | replace(".mp4","{cyz6RWU>/r(tz^s")}}'.replace(film_id,mediatype);
 {% endif %}
+
+var torrentId = torrentId_sd;
+var webseedId = webseedId_sd;
 
 client.add(torrentId, onTorrent)
 
@@ -266,4 +273,26 @@ function log (str) {
 
 player.on('loadeddata', event => {
   player.currentTime = player.currentTime;
+});
+
+player.on('qualitychange', event => {
+  console.log('oi ' + player.quality);
+  if (player.quality == '480') {
+    client.remove(torrentId)
+    torrentId = torrentId_sd
+    webseedId = webseedId_sd
+    client.add(torrentId, onTorrent)
+  }
+  else if (player.quality == '720') {
+    client.remove(torrentId)
+    torrentId = torrentId_hd
+    webseedId = webseedId_hd
+    client.add(torrentId, onTorrent)
+  }
+  else if (player.quality == '1080') {
+    client.remove(torrentId)
+    torrentId = torrentId_fhd
+    webseedId = webseedId_fhd
+    client.add(torrentId, onTorrent)
+  }
 });

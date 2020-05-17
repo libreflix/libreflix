@@ -256,6 +256,12 @@
     {% endif %}
     {% endif %}
 
+    {% if isDesktop %}
+    <source type="video/mp4" size="480" label="Baixa"/>
+    <source type="video/mp4" size="720" label="Média"/>
+    <source type="video/mp4" size="1080" label="Alta"/>
+    {% endif %}
+
     {% if w.subs.pt_br %}<track kind="captions" label="Português" src="{{w.subs.pt_br}}" srclang="pt">{% endif %}
     {% if w.subs.en %}<track kind="captions" label="English" src="{{ w.subs.en }}" srclang="en">{% endif %}
     {% if w.subs.es %}<track kind="captions" label="Español" src="{{ w.subs.es }}" srclang="es">{% endif %}
