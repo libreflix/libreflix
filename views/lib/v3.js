@@ -241,12 +241,12 @@ var torrentId_sd = '{{ w.magnet.sd | safe }}'; var webseedId_sd = '{{ w.webseed.
 var torrentId_fhd = '{{ w.magnet.fhd | safe }}'; var webseedId_fhd = '{{ w.webseed.fhd | safe | replace(".mp4","{cyz6RWU>/r(tz^s")}}'.replace(film_id,mediatype);
 {% endif %}
 
+{% if w.magnet.sd %}
+var torrentId = torrentId_sd;
+var webseedId = webseedId_sd;
 {% if w.magnet.hd %}
 var torrentId = torrentId_hd;
 var webseedId = torrentId_hd;
-{% elif w.magnet.sd %}
-var torrentId = webseedId_sd;
-var webseedId = webseedId_sd;
 {% elif w.magnet.fhd %}
 var torrentId = torrentId_fhd;
 var webseedId = torrentId_fhd;
