@@ -256,10 +256,10 @@
     {% endif %}
     {% endif %}
 
-    {% if isDesktop %}
-    <source src="{{ w.webseed.sd | safe }}" type="video/mp4" size="480" label="Baixa"/>
+    {% if isDesktop and w.layout != "serie" %}
+    <!-- <source src="{{ w.webseed.sd | safe }}" type="video/mp4" size="480" label="Baixa"/>
     <source src="{{ w.webseed.sd | safe }}" type="video/mp4" size="720" label="Média"/>
-    <source src="{{ w.webseed.sd | safe }}" type="video/mp4" size="1080" label="Alta"/>
+    <source src="{{ w.webseed.sd | safe }}" type="video/mp4" size="1080" label="Alta"/> -->
     {% endif %}
 
     {% if w.subs.pt_br %}<track kind="captions" label="Português" src="{{w.subs.pt_br}}" srclang="pt">{% endif %}

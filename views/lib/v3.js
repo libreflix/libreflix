@@ -80,6 +80,52 @@ const player = new Plyr('#player', {
   },
 });
 
+{#
+player.source = {
+  sources: [
+    {% if w.webseed.sd %}
+    {
+      src: '{{ w.webseed.sd | safe }}',
+      type: 'video/mp4',
+      size: 480,
+    },
+    {% endif %}
+    {% if w.webseed.hd %}
+    {
+      src: '{{ w.webseed.hd | safe }}',
+      type: 'video/mp4',
+      size: 720,
+    },
+    {% endif %}
+    {% if w.webseed.fhd %}
+    {
+      src: '{{ w.webseed.fhd | safe }}',
+      type: 'video/mp4',
+      size: 1080,
+    },
+    {% endif %}
+  ],
+  // previewThumbnails: {
+  //   src: '/path/to/thumbnails.vtt',
+  // },
+  // tracks: [
+  //   {
+  //     kind: 'captions',
+  //     label: 'English',
+  //     srclang: 'en',
+  //     src: '/path/to/captions.en.vtt',
+  //     default: true,
+  //   },
+  //   {
+  //     kind: 'captions',
+  //     label: 'French',
+  //     srclang: 'fr',
+  //     src: '/path/to/captions.fr.vtt',
+  //   },
+  // ],
+};
+#}
+
 document.getElementById("player").style.height = "100vh"
 
 player.on('canplay', event => {
@@ -187,14 +233,26 @@ var film_id = "{cyz6RWU>/r(tz^s"
 
 {% if w.magnet.hd %}
 var torrentId_hd = '{{ w.magnet.hd | safe }}'; var webseedId_hd = '{{ w.webseed.hd | safe | replace(".mp4","{cyz6RWU>/r(tz^s")}}'.replace(film_id,mediatype);
-{% elif w.magnet.sd %}
+{% endif %}
+{% if w.magnet.sd %}
 var torrentId_sd = '{{ w.magnet.sd | safe }}'; var webseedId_sd = '{{ w.webseed.sd | safe | replace(".mp4","{cyz6RWU>/r(tz^s")}}'.replace(film_id,mediatype);
-{% elif w.magnet.fd %}
+{% endif %}
+{% if w.magnet.fhd %}
 var torrentId_fhd = '{{ w.magnet.fhd | safe }}'; var webseedId_fhd = '{{ w.webseed.fhd | safe | replace(".mp4","{cyz6RWU>/r(tz^s")}}'.replace(film_id,mediatype);
 {% endif %}
 
+{% if w.magnet.sd %}
 var torrentId = torrentId_sd;
 var webseedId = webseedId_sd;
+{% elif w.magnet.hd %}
+var torrentId = torrentId_hd;
+var webseedId = torrentId_hd;
+{% elif w.magnet.fhd %}
+var torrentId = torrentId_fhd;
+var webseedId = torrentId_fhd;
+{% endif %}
+
+
 
 client.add(torrentId, onTorrent)
 
