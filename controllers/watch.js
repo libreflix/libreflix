@@ -24,7 +24,7 @@ exports.watchGet = function(req, res){
     if (req.device.type == 'phone') {
       isMobile = true
     }
-    else if (req.device.type == 'desktop' and !w.useWatchV3) {
+    else if (req.device.type == 'desktop' && !w.useWatchV3) {
       // isDesktop = true
       isMobile = true
     }
