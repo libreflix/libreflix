@@ -244,7 +244,7 @@ var torrentId_fhd = '{{ w.magnet.fhd | safe }}'; var webseedId_fhd = '{{ w.webse
 
 {% if w.magnet.fhd %}
 var torrentId = torrentId_fhd;
-var webseedId = torrentId_fhd;
+var webseedId = webseedId_fhd;
 {% endif %}
 
 {% if w.magnet.sd %}
@@ -255,7 +255,7 @@ var webseedId = webseedId_sd;
 
 {% if w.magnet.hd %}
 var torrentId = torrentId_hd;
-var webseedId = torrentId_hd;
+var webseedId = webseedId_hd;
 {% endif %}
 
 
