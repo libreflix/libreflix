@@ -239,7 +239,7 @@
     <source src="{{ w_eps.webseed.hd}}" type="video/mp4" size="720" label="Média"/>
     {% endif %}
     {% if w_eps.webseed.fhd %}
-    <source src="{{ w_eps.webseed.fhd}}" type="video/mp4" size="1080" label="Alta"/>
+    {# <source src="{{ w_eps.webseed.fhd}}" type="video/mp4" size="1080" label="Alta"/> #}
     {% endif %}
     {% endif %}
 
@@ -252,7 +252,7 @@
     <source src="{{ w.webseed.hd | safe }}" type="video/mp4" size="720" label="Média"/>
     {% endif %}
     {% if w.webseed.fhd %}
-    <source src="{{ w.webseed.fhd | safe }}" type="video/mp4" size="1080" label="Alta"/>
+    {# <source src="{{ w.webseed.fhd | safe }}" type="video/mp4" size="1080" label="Alta"/> #}
     {% endif %}
     {% endif %}
 
@@ -347,8 +347,8 @@
 <script type="text/javascript">
 {% if isDesktop %}
 {% include "lib/plyr.min.js" %}
-{% include "lib/webtorrent.min.js" %}
-{% include "lib/v2.js"%}
+{# include "lib/webtorrent.min.js" #}
+{% include "lib/v3.js"%}
 {% endif %}
 {% if isMobile %}
 {% include "lib/plyr.min.js" %}

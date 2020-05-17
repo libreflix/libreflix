@@ -28,6 +28,10 @@ exports.watchGet = function(req, res){
       // isDesktop = true
       isMobile = true
     }
+    if (w.useWatchV3) {
+      isDesktop = true
+      // isMobile = true
+    }
 
 
     if(typeof req.headers.referer !== 'undefined'){
