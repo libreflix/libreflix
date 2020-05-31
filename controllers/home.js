@@ -53,22 +53,22 @@ Promise.all([
   Watch.find({ $and : [{'featured': true}, {'top': 'hot'}]}, null, {sort: property}).limit(4),
   Watch.find({ $and : [{'featured': true}, {'tags': 'diadotrabalhador'}]}, null, {sort: property}).limit(4),
   Watch.find({ $and : [{'featured': true}, {'tags': 'ditadura'}]}, null, {sort: property}).limit(4*2),
-  Watch.find({ $and : [{'featured': true}, {'top': 'new-l'}]}, null, {sort: property}).limit(4*4),
+  Watch.find({ $and : [{'featured': true}, {'top': 'new-l'}]}, null, {sort: property}).limit(4*2),
   Watch.find({'featured': true}, null, {sort: '-createdAt'}).limit(8),
   Watch.find({ $and : [{'featured': true}, {'top': 'top-l'}]}, null, {sort: property}).limit(4*4),
   Watch.find({ $and : [{'featured': true}, {'top': 'top-c'}]}, null, {sort: property}).limit(4*4),
   Watch.find({ $and : [{'featured': true}, {'top': 'top-s'}]}, null, {sort: property}).limit(4*4),
   Watch.find({ $and : [{'featured': true}, {'top': 'new-c'}]}, null, {sort: property}).limit(4*3)
 ]).then(([
-  hot, diadotrabalhador, ditadura, new_l, fresh_all, top_l, top_c, top_s, new_c
+hot, diadotrabalhador, ditadura, new_l, fresh_all, top_l, top_c, top_s, new_c
 ]
 ) => {
   let options = {
     title: "Início",
-    diadotrabalhador: diadotrabalhador,
-    new_l: new_l,
-    todaypick: todaypick,
     hot: hot,
+    diadotrabalhador: diadotrabalhador,
+    ditadura: ditadura,
+    new_l: new_l,
     fresh_all: fresh_all,
     top_l: top_l,
     top_c: top_c,
