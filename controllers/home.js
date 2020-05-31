@@ -52,7 +52,7 @@ exports.index = function(req, res) {
 Promise.all([
   Watch.find({ $and : [{'featured': true}, {'tags': 'diadotrabalhador'}]}, null, {sort: property}).limit(4),
   Watch.find({ $and : [{'featured': true}, {'tags': 'ditadura'}]}, null, {sort: property}).limit(4*2),
-  Watch.find({ $and : [{'featured': true}, {'top': 'new-l'}]}, null, {sort: property}).limit(4*2),
+  Watch.find({ $and : [{'featured': true}, {'top': 'new-l'}]}, null, {sort: property}).limit(4*4),
   Watch.find({'featured': true}, null, {sort: '-createdAt'}).limit(8),
   Watch.find({ $and : [{'featured': true}, {'top': 'top-l'}]}, null, {sort: property}).limit(4*4),
   Watch.find({ $and : [{'featured': true}, {'top': 'top-c'}]}, null, {sort: property}).limit(4*4),
