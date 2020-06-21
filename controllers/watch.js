@@ -34,8 +34,11 @@ exports.watchGet = function(req, res){
 
 
     if(typeof req.headers.referer !== 'undefined'){
-      if( (req.headers.referer.match(/^https?:\/\/([^\/]+\.)?libreflix\.org(\/|$)/i)) &&
-         (req.headers.referer.match(/^https?:\/\/([^\/]+\.)?localhost:3998(\/|$)/i)) ){
+      if( (req.headers.referer.match(/^https?:\/\/([^\/]+\.)?libreflix\.org(\/|$)/i)) ||
+         (req.headers.referer.match(/^https?:\/\/([^\/]+\.)?localhost:3998(\/|$)/i)) )
+      {
+
+      } else {
         return res.redirect('/i/'+ w.permalink);
       }
     } else {
