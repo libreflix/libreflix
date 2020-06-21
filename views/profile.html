@@ -54,7 +54,7 @@
 
 {% macro printWatch(w, loop) -%}
 
-    {% if w.featured == 'true' %}
+    {% if w.featured == 'true' or w.featured %}
 
     <li class="col-md-3">
       <a role="button" data-toggle="modal" style="border-bottom: 0px solid;"  data-toggle="modal" data-target="#assistir{{ loop.index }}">
@@ -160,11 +160,6 @@
     </ul>
   </div>
   </section>
-
-
-
-
-
 
 </section>
 
