@@ -19,7 +19,7 @@ exports.watchGet = function(req, res){
     }
 
     var isMobile = false;
-    var isDesktop = true;
+    var isDesktop = false;
     // to test if desktop
     if (req.device.type == 'phone') {
       isMobile = true
