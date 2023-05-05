@@ -20,7 +20,7 @@ var i18n = require("i18n");
 var cookieParser = require('cookie-parser');
 var minifyHTML = require('express-minify-html');
 var device = require('express-device');
-var pjson = require('./package.json');
+const pjson = require('./package.json');
 
 // Load environment variables from .env file
 dotenv.load();
