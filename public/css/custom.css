@@ -798,7 +798,7 @@ input[type="search"]::-webkit-search-decoration {
     text-shadow: 0 0 8px rgba(0, 0, 0, .3);
     text-transform: capitalize;
     display: block;
-    background-color: #1A1A1A;
+    background-color: #00000085;
     transition: background-color .15s ease-in-out;
     padding: 13px;
     padding-left: 4px;
@@ -952,8 +952,8 @@ input[type="search"]::-webkit-search-decoration {
     transition: all 0.35s, border-radius 0s;
     width: 32px;
     height: 32px;
-    background-color: #1A1A1A;
-    box-shadow: 0 1px 1px rgba(#1A1A1A, 0.7) inset;
+    background-color: #000000;
+    box-shadow: 0 1px 1px rgba(#000000, 0.7) inset;
     border-radius: 25px;
     border: 1px solid #AFAEAF;
 }
@@ -968,8 +968,8 @@ input[type="search"]::-webkit-search-decoration {
     width: 100%;
     height: 40px;
     padding: 5px 15px;
-    background-color: #1A1A1A;
-    box-shadow: 0 1px 1px rgba(#1A1A1A, 0.7) inset;
+    background-color: #000000;
+    box-shadow: 0 1px 1px rgba(#000000, 0.7) inset;
     border-radius: 5px;
     border: 1px solid #AFAEAF;
 }

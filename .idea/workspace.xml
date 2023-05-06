@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0ca42de8-e185-49f0-b235-88f6e48eeab1" name="Default Changelist" comment="Revert &quot;New black&quot;&#10;&#10;This reverts commit 74474081">
-      <change afterPath="$PROJECT_DIR$/.idea/libreflix.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="0ca42de8-e185-49f0-b235-88f6e48eeab1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/public/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/custom.css" afterDir="false" />
     </list>
     <list id="3a860e33-602a-43a0-9d71-36827616f483" name="Revert &quot;New black&quot;" comment="Revert &quot;New black&quot;&#10;&#10;This reverts commit 74474081" />
@@ -59,7 +55,7 @@
       <workItem from="1618082803823" duration="219000" />
       <workItem from="1618083043923" duration="399000" />
       <workItem from="1618083454938" duration="1255000" />
-      <workItem from="1683320064811" duration="9700000" />
+      <workItem from="1683320064811" duration="9947000" />
     </task>
     <task id="LOCAL-00001" summary="Init cinefront branch">
       <created>1618083333093</created>
@@ -145,7 +141,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683332539983</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="rever new black">
+      <created>1683332891093</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1683332891093</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -187,6 +190,7 @@
     <MESSAGE value="Disabling high def streaming" />
     <MESSAGE value="New black" />
     <MESSAGE value="Revert &quot;New black&quot;&#10;&#10;This reverts commit 74474081" />
-    <option name="LAST_COMMIT_MESSAGE" value="Revert &quot;New black&quot;&#10;&#10;This reverts commit 74474081" />
+    <MESSAGE value="rever new black" />
+    <option name="LAST_COMMIT_MESSAGE" value="rever new black" />
   </component>
 </project>
