@@ -798,20 +798,21 @@ input[type="search"]::-webkit-search-decoration {
 }
 
 /****************** Film Info Page ********************/
-.film_pic{
-  width: 100%;
-  align-content: center;
+.film_pic {
+    width: 100%;
+    align-content: center;
+    border: 9px;
 }
 
-.banner-play{
-  position: static;
-	background: transparent;
-  -webkit-appearance: none;
-	border: 0px;
-	padding-left: 48%;
-	padding-top: 160px;
-  opacity: 1 !important;
-  outline:none;
+.banner-play {
+    position: static;
+    background: transparent;
+    -webkit-appearance: none;
+    border: 0px;
+    padding-left: 48%;
+    padding-top: 160px;
+    opacity: 1 !important;
+    outline: none;
 }
 .banner-play:hover,
 .banner-play:focus {
