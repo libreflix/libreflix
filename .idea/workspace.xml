@@ -4,7 +4,6 @@
     <list default="true" id="0ca42de8-e185-49f0-b235-88f6e48eeab1" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/custom.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/vendor/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/vendor/bootstrap.css" afterDir="false" />
     </list>
     <list id="3a860e33-602a-43a0-9d71-36827616f483" name="Revert &quot;New black&quot;" comment="Revert &quot;New black&quot;&#10;&#10;This reverts commit 74474081" />
     <option name="SHOW_DIALOG" value="false" />
@@ -57,7 +56,7 @@
       <workItem from="1618082803823" duration="219000" />
       <workItem from="1618083043923" duration="399000" />
       <workItem from="1618083454938" duration="1255000" />
-      <workItem from="1683320064811" duration="11063000" />
+      <workItem from="1683320064811" duration="11539000" />
     </task>
     <task id="LOCAL-00001" summary="Init cinefront branch">
       <created>1618083333093</created>
@@ -157,7 +156,14 @@
       <option name="project" value="LOCAL" />
       <updated>1683333178653</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="rever new black 3">
+      <created>1683335668412</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1683335668412</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -201,6 +207,7 @@
     <MESSAGE value="Revert &quot;New black&quot;&#10;&#10;This reverts commit 74474081" />
     <MESSAGE value="rever new black" />
     <MESSAGE value="rever new black 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="rever new black 2" />
+    <MESSAGE value="rever new black 3" />
+    <option name="LAST_COMMIT_MESSAGE" value="rever new black 3" />
   </component>
 </project>
