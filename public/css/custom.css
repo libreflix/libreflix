@@ -772,7 +772,7 @@ input[type="search"]::-webkit-search-decoration {
     height: 100%;
     pointer-events: none;
     content: "";
-    background: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 0, #000 95%, #000)
+    background: linear-gradient(90deg, hsla(0, 0%, 100%, 0) 0, var(--black-bg) 95%, var(--black-bg))
 }
 
 .tagcardcontainer {
