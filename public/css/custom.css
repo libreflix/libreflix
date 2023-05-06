@@ -1,4 +1,10 @@
+:root {
+    --black-bg: #1D1923;
+    --white: #ffffff;
+}
+
 /* fonts */
+
 
 /* source-sans-pro, available at https://github.com/adobe-fonts/source-sans-pro */
 @font-face {
@@ -130,7 +136,7 @@
 
 body {
     background-color: #000;
-    font-family: "Source Sans Pro Regular", helvetica, sans-serif !important;
+    font-family: "Source Sans Pro", helvetica, sans-serif !important;
     line-height: 1.5 !important;
     font-size: 17px;
     margin: 0 auto !important;
@@ -912,9 +918,9 @@ input[type="search"]::-webkit-search-decoration {
     background-size: cover !important;
     z-index: 0;
 
-    -webkit-box-shadow: inset 0px 0px 96px 95px rgba(0, 0, 0, 1);
-    -moz-box-shadow: inset 0px 0px 96px 95px rgba(0, 0, 0, 1);
-    box-shadow: inset 0px 0px 96px 95px rgba(0, 0, 0, 1);
+    -webkit-box-shadow: inset 0 0 96px 95px var(--black-bg);
+    -moz-box-shadow: inset 0 0 96px 95px var(--black-bg);
+    box-shadow: inset 0 0 96px 95px var(--black-bg);
 
     filter: opacity(75%);
     -moz-filter: opacity(75%);

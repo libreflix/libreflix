@@ -12,6 +12,12 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+:root {
+    --black-bg: #1D1923;
+    --white: #ffffff;
+}
+
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -1090,7 +1096,7 @@ body {
   /* font-size: 13px; */
   line-height: 1.42857143;
   color: #ffffff;
-  background-color: #000000;
+  background-color: var(--black-bg);
 }
 input,
 button,
@@ -4505,8 +4511,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: #000;
-  border-color: #000;
+  background-color: var(--black-bg);
+  border-color: var(--black-bg);
 }
 .navbar-default .navbar-brand {
   color: #c8c8c8;
