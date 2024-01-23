@@ -41,3 +41,9 @@ npm-build:
 
 npm-test:
 	npm test
+
+bash:
+	docker compose exec libreflix bash
+
+up:
+	docker compose up
