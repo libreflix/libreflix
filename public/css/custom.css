@@ -963,7 +963,7 @@ input[type="search"]::-webkit-search-decoration {
     transition: all 0.35s, border-radius 0s;
     width: 32px;
     height: 32px;
-    background-color: #000000;
+    background-color: var(--black-bg);
     box-shadow: 0 1px 1px rgba(#000000, 0.7) inset;
     border-radius: 25px;
     border: 1px solid #AFAEAF;
@@ -979,7 +979,7 @@ input[type="search"]::-webkit-search-decoration {
     width: 100%;
     height: 40px;
     padding: 5px 15px;
-    background-color: #000000;
+    background-color: var(--black-bg);
     box-shadow: 0 1px 1px rgba(#000000, 0.7) inset;
     border-radius: 5px;
     border: 1px solid #AFAEAF;
