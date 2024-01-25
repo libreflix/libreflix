@@ -47,3 +47,9 @@ bash:
 
 up:
 	docker compose up
+
+build:
+	docker compose up
+
+serve:
+	nodemon -e js,html,css,md,json server.js
