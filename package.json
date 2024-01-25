@@ -1,6 +1,6 @@
 {
-  "name": "libreflix",
-  "version": "1.0.0",
+  "name": "Libreflix",
+  "version": "2.0.0",
   "description": "",
   "scripts": {
     "start": "node server.js",

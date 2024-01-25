@@ -20,6 +20,7 @@ var i18n = require("i18n");
 var cookieParser = require('cookie-parser');
 var minifyHTML = require('express-minify-html');
 var device = require('express-device');
+const pjson = require('./package.json');
 
 // Load environment variables from .env file
 dotenv.load();
@@ -97,6 +98,8 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(function(req, res, next) {
   res.locals.user = req.user;
+  res.locals.baseurl = process.env.BASEURL;
+  res.locals.appVersion = pjson.version;
   next();
 });
 
