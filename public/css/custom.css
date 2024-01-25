@@ -1,6 +1,7 @@
 :root {
     --black-bg: #14181C;
     --white: #ffffff;
+    --img-border-radius: 9px;
 }
 
 /* fonts */
@@ -891,16 +892,17 @@ input[type="search"]::-webkit-search-decoration {
 .film_pic {
     width: 100%;
     align-content: center;
-    border: 9px;
+    border-radius: var(--img-border-radius);
 }
 
 .banner-play {
-    position: static;
+    position: absolute;
     background: transparent;
     -webkit-appearance: none;
     border: 0px;
     padding-left: 48%;
     padding-top: 160px;
+    top: 0;
     opacity: 1 !important;
     outline: none;
 }
@@ -911,22 +913,25 @@ input[type="search"]::-webkit-search-decoration {
 }
 
 .film_banner {
-    margin-top: -15px;
+    margin-top: -98px;
     position: static;
     width: 100%;
     height: 450px;
     background-size: cover !important;
     z-index: 0;
 
-    -webkit-box-shadow: inset 0 0 96px 95px var(--black-bg);
-    -moz-box-shadow: inset 0 0 96px 95px var(--black-bg);
     box-shadow: inset 0 0 96px 95px var(--black-bg);
-
     filter: opacity(75%);
     -moz-filter: opacity(75%);
     -webkit-filter: opacity(75%);
     -o-filter: opacity(75%);
 }
+
+.film_banner--fade {
+    width: 100%;
+    height: 650px;
+    background-image: linear-gradient(90deg,#14181d 0,rgba(20,24,29,.986) .97%,rgba(20,24,29,.945) 2.07833333%,rgba(20,24,29,.883) 3.29666667%,rgba(20,24,29,.803) 4.60166667%,rgba(20,24,29,.711) 5.96666667%,rgba(20,24,29,.61) 7.365%,rgba(20,24,29,.504) 8.77166667%,rgba(20,24,29,.398) 10.16%,rgba(20,24,29,.296) 11.505%,rgba(20,24,29,.203) 12.78%,rgba(20,24,29,.122) 13.95833333%,rgba(20,24,29,.059) 15.01666667%,rgba(20,24,29,.016) 15.92833333%,rgba(20,24,29,0) 16.66666667%,rgba(20,24,29,0) 83.33333333%,rgba(20,24,29,.016) 84.07166667%,rgba(20,24,29,.059) 84.98333333%,rgba(20,24,29,.122) 86.04166667%,rgba(20,24,29,.203) 87.22%,rgba(20,24,29,.296) 88.495%,rgba(20,24,29,.398) 89.84%,rgba(20,24,29,.504) 91.22833333%,rgba(20,24,29,.61) 92.635%,rgba(20,24,29,.711) 94.03333333%,rgba(20,24,29,.803) 95.39833333%,rgba(20,24,29,.883) 96.70333333%,rgba(20,24,29,.945) 97.92166667%,rgba(20,24,29,.986) 99.03%,#14181d),linear-gradient(0deg,#14181d 0,#14181d 21.48148148%,rgba(20,24,29,.986) 23.63703704%,rgba(20,24,29,.945) 26.1%,rgba(20,24,29,.883) 28.80740741%,rgba(20,24,29,.803) 31.70740741%,rgba(20,24,29,.711) 34.74074074%,rgba(20,24,29,.61) 37.84814815%,rgba(20,24,29,.504) 40.97407407%,rgba(20,24,29,.398) 44.05925926%,rgba(20,24,29,.296) 47.04814815%,rgba(20,24,29,.203) 49.88148148%,rgba(20,24,29,.122) 52.5%,rgba(20,24,29,.059) 54.85185185%,rgba(20,24,29,.016) 56.87777778%,rgba(20,24,29,0) 58.51851852%);
+  }
 
 @media screen and (max-width: 992px) {
     .film_banner {
@@ -940,7 +945,7 @@ input[type="search"]::-webkit-search-decoration {
 }
 
 .film_content {
-    margin-top: -50px;
+    margin-top: -100px;
 }
 
 .film_content_left {

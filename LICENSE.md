@@ -1,7 +1,7 @@
 Libreflix is an open and collaborative streaming platform that brings together 
 independent, free-to-air and thought-provoking audiovisual productions. 
 
-Copyright (C) 2017-2018 by Guilmour Rossi and its contributors.
+Copyright (C) 2017-2024 by Guilmour Rossi and its contributors.
 
 The license is the AGPL License below. Thank you for your interest. <3
   

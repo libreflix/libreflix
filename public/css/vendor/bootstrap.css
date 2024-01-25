@@ -4511,8 +4511,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-default {
-  background-color: var(--black-bg);
-  border-color: var(--black-bg);
+  /* background-color: var(--black-bg);
+  border-color: var(--black-bg); */
+  z-index: 500;
 }
 .navbar-default .navbar-brand {
   color: #c8c8c8;
