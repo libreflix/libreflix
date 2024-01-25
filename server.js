@@ -98,6 +98,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 app.use(function(req, res, next) {
   res.locals.user = req.user;
+  res.locals.baseurl = process.env.BASEURL;
   res.locals.appVersion = pjson.version;
   next();
 });
