@@ -64,6 +64,7 @@ $(document).on('shown.bs.modal', '.modal', function () {
 
 {% if film.status == 'approved' or user.mod or user.adm or film.featured or film.featured == 'true'%}
   <div class="film_banner" style="background: url('{{ film.imgbg }}') no-repeat center center;">
+    <div class="film_banner--fade"></div>
     <a href="/assistir/{{ film.permalink }}">
       <button type="button" class="banner-play">
         <img src="/img/play.png" alt="Play">

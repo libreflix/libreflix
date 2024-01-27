@@ -24,11 +24,14 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title> {{ title }} | Libreflix </title>
-  <link rel="icon" type="image/png" href="/libre-icon.png" />
+  <!-- <link rel="icon" type="image/png" href="/libre-icon.png" /> -->
   <link rel="shortcut icon" href="//libreflix.org/libre-icon.png">
   <meta name="description" content="Libreflix é uma plataforma de streaming aberta e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
   {% block link_rel %}
   <link rel="stylesheet" href="/css/normalize.css">
   <link rel="stylesheet" href="/css/main.css">
@@ -37,8 +40,6 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/brands.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/v4-shims.min.css">
   <link rel="stylesheet" href="/css/vendor/bootstrap.css">
-  <!-- <link rel="stylesheet" href="https://bootswatch.com/3/darkly/bootstrap.min.css"> -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.ui.min.js">
 
 
   <script src="/js/vendor/modernizr-2.8.3.min.js"></script>
@@ -46,7 +47,6 @@
   <link rel="stylesheet" href="/css/bootstrap-select.css">
   <script src="/js/main.js"></script>
   <script src="/js/vendor/bootstrap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/velocity/1.5.0/velocity.min.js" charset="utf-8"></script>
 
 
   {% block opengraph %}
@@ -72,15 +72,17 @@
 
 <body>
 
+  {#
   <a href="https://catarse.me/libreflix">
   <div class="superside">
-  <!-- O Libreflix precisa da sua ajuda para continuar existindo. Ajude a partir de 1 real. -->
-  <!-- <i class="fa fa-handshake" aria-hidden="true"></i> -->
+  O Libreflix precisa da sua ajuda para continuar existindo. Ajude a partir de 1 real.
+  <i class="fa fa-handshake" aria-hidden="true"></i>
   Ajude a financiar o streaming livre e independente. Assine o Libre.
-  <!-- Ajude a construir o Libreflix a partir de R$ 1. -->
-  <!-- Financie o streaming livre. Assine o Libre! -->
+  Ajude a construir o Libreflix a partir de R$ 1.
+  Financie o streaming livre. Assine o Libre!
   </div>
   </a>
+  #}
 
 
   <div class="container">
@@ -119,14 +121,13 @@
       {% block footer %}
 
 <div class="container-fluid">
-
   <div class="mt-6 footer2">
     <div class="mb-5">
       <div class="col-12 col-md-2 mb-3">
         <p class="text-medium">
-          <a href="/"><img src="/libreflix.png" alt="" width="100px"></a>
+          <a href="/"><img src="/assets/libreflix-logo-24.png" alt="" width="100px"></a>
           <br>
-          <span class="copyleft">&copy;</span> 2017 - 2019
+          <span class="copyleft">&copy;</span> 2017 - 2024
         </p>
       </div>
       <div class="col-6 col-sm-4 col-md-2 mb-3 pr-3">
@@ -174,29 +175,27 @@
 <div class="container">
   <div class="row">
     <div class="text-center">
-      <a href="https://mastodon.social/@libreflix">
-        <i class="fab fa-mastodon footer-icons"></i>
-      </a>
-      <a href="https://diasporabrazil.org/people/78e821c025fd0136f91900163c5e21ed">
-        <i class="fa fa-asterisk footer-icons"></i>
+      <a href="https://instagram.com/libreflix">
+        <i class="fa fa-instagram footer-icons"></i>
       </a>
       <a href="https://twitter.com/libreflix">
         <i class="fa fa-twitter footer-icons"></i>
       </a>
-      <a href="https://www.facebook.com/libreflix/">
-        <i class="fa fa-facebook footer-icons"></i>
-      </a>
-      <a href="https://instagram.com/libreflix">
-        <i class="fa fa-instagram footer-icons"></i>
-      </a>
       <a href="https://t.me/libreflix">
         <i class="fa fa-paper-plane footer-icons"></i>
       </a>
-      {#
-      <a href="https://libregit.org/libreflix">
+      <a href="https://mastodon.social/@libreflix">
+        <i class="fab fa-mastodon footer-icons"></i>
+      </a>
+      <a href="https://www.facebook.com/libreflix/">
+        <i class="fa fa-facebook footer-icons"></i>
+      </a>
+      <a href="https://github.com/libreflix/libreflix">
+        <i class="fa fa-github footer-icons"></i>
+      </a>
+      <a href="https://notabug.org/libreflix">
         <i class="fa fa-bug footer-icons"></i>
       </a>
-      #}
       <!-- <a href="https://libregit.org/libreflix">
         <i class="fa fa-newspaper-o footer-icons"></i>
       </a> -->
@@ -207,11 +206,15 @@
 
 <small>
   <p align="center">
-    Feito com &hearts; por <a href="https://twitter.com/guilmour">Guilmour Rossi </a>e contribuidores.
+    Feito com &hearts; por <a href="https://guilmour.org">Guilmour Rossi </a>e <a href="https://github.com/libreflix/libreflix/graphs/contributors">contribuidores</a>.
     <br>
     <small>
       Exceto quando citado, informações e artes de capa são liçenciados por © LibreFlix e contribuidores <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">(CC BY-NC-SA)</a>.
       Obras e suas imagens são licenciadas por seus respectivos realizadores.
+    </small>
+    <br>
+    <small>
+      v{{ appVersion }}
     </small>
   </p>
   {#<p align="center">

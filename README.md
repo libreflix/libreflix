@@ -7,8 +7,6 @@ Libreflix é uma plataforma de streaming livre e colaborativa que reúne produç
 
 ![](https://guilmour.org/img/blog/2018/libreflix-nacionais.jpg")
 
-
-
 Nós defendemos novas formas de compartilhamento da cultura. Formas que atinjam todas as pessoas, principalmente as que não podem pagar por ela. Formas que conectem os artistas direto com os fãs. E até formas que permitam que artistas criem algo novo à partir do trabalho de outros artistas. Cultura é ciência, é poesia e é de todo mundo.
 
 ## Acessar
@@ -28,7 +26,6 @@ Nós defendemos novas formas de compartilhamento da cultura. Formas que atinjam 
 **Deploying (Using Docker)**
 First, clone the repository.
 ``` bash
-git clone https://libregit.org/libreflix/libreflix
 cd libreflix
 ```
 
@@ -42,7 +39,7 @@ Finally, use Docker-Compose to deploy
 sudo docker-compose up --build
 ```
 
-Ready! Now access on your browser [http://localhost:3999](http://localhost:3999)
+Ready! Now access on your browser [http://localhost:3998](http://localhost:3998)
 
 
 # Apoio
