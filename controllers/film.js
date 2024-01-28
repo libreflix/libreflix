@@ -42,7 +42,7 @@ exports.filmGet = function(req, res){
     })
     })
   })
-  }).populate('creator');
+  }).sort({ date: 'desc' }).populate('creator');
     })
 		}
   }).populate('criador');
