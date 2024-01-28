@@ -34,14 +34,19 @@ Copy environment file
 cp .env.sample .env
 ```
 
-Finally, use Docker-Compose to deploy
+Finally, use make commands to build and up the containers
 ``` bash
-sudo docker-compose up --build
+make up
+```
+then, in another shell, you'll need to enther the `libreflix` container:
+``` bash
+make bash
+```
+then initiate the node server inside the container:
+``` bash
+make server
 ```
 
-Ready! Now access on your browser [http://localhost:3998](http://localhost:3998)
+Ready! If everything is working fine, just access on your browser [http://localhost:3998](http://localhost:3998).
+If you have any problem, feel free to open an [issue](https://github.com/libreflix/libreflix/issues).
 
-
-# Apoio
-
-<a href="http://pesquisa.ufabc.edu.br/lablivre/sobre/" target="_blank"><img src="https://libregit.org/libreflix/libreflix/raw/branch/master/public/assets/friends/lablivre-logo.png" alt="LabLivre" width="200"></a>
