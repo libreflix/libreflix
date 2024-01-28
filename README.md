@@ -24,29 +24,29 @@ Nós defendemos novas formas de compartilhamento da cultura. Formas que atinjam 
 
 ## Desenvolvimento
 **Deploying (Using Docker)**
-First, clone the repository.
+0. First, clone the repository.
 ``` bash
 cd libreflix
 ```
 
-Copy environment file
+1. Copy environment file
 ``` bash
 cp .env.sample .env
 ```
 
-Finally, use make commands to build and up the containers
+2. Finally, use make commands to build and up the containers:
 ``` bash
 make up
 ```
-then, in another shell, you'll need to enther the `libreflix` container:
+3. In another shell, you'll need to enter the `libreflix` container:
 ``` bash
 make bash
 ```
-then initiate the node server inside the container:
+4. Initiate the node server inside the container:
 ``` bash
 make server
 ```
 
 Ready! If everything is working fine, just access on your browser [http://localhost:3998](http://localhost:3998).
-If you have any problem, feel free to open an [issue](https://github.com/libreflix/libreflix/issues).
+If you have any problem, feel free to open an [issue](https://github.com/libreflix/libreflix/issues/new).
 
