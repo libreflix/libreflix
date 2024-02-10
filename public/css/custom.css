@@ -938,6 +938,7 @@ input[type="search"]::-webkit-search-decoration {
     .film_banner {
         height: 400px;
         margin-bottom: -300px;
+        margin-top: 0;
     }
 
     .banner-play {
