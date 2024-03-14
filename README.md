@@ -5,7 +5,7 @@
 Libreflix é uma plataforma de streaming livre e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.
 
 
-![](https://guilmour.org/img/blog/2018/libreflix-nacionais.jpg")
+![](https://guilmour.org/img/blog/2018/libreflix-nacionais.jpg)
 
 Nós defendemos novas formas de compartilhamento da cultura. Formas que atinjam todas as pessoas, principalmente as que não podem pagar por ela. Formas que conectem os artistas direto com os fãs. E até formas que permitam que artistas criem algo novo à partir do trabalho de outros artistas. Cultura é ciência, é poesia e é de todo mundo.
 
@@ -24,24 +24,29 @@ Nós defendemos novas formas de compartilhamento da cultura. Formas que atinjam 
 
 ## Desenvolvimento
 **Deploying (Using Docker)**
-First, clone the repository.
+0. First, clone the repository.
 ``` bash
 cd libreflix
 ```
 
-Copy environment file
+1. Copy environment file
 ``` bash
 cp .env.sample .env
 ```
 
-Finally, use Docker-Compose to deploy
+2. Finally, use make commands to build and up the containers:
 ``` bash
-sudo docker-compose up --build
+make up
+```
+3. In another shell, you'll need to enter the `libreflix` container:
+``` bash
+make bash
+```
+4. Initiate the node server inside the container:
+``` bash
+make server
 ```
 
-Ready! Now access on your browser [http://localhost:3998](http://localhost:3998)
+Ready! If everything is working fine, just access on your browser [http://localhost:3998](http://localhost:3998).
+If you have any problem, feel free to open an [issue](https://github.com/libreflix/libreflix/issues/new).
 
-
-# Apoio
-
-<a href="http://pesquisa.ufabc.edu.br/lablivre/sobre/" target="_blank"><img src="https://libregit.org/libreflix/libreflix/raw/branch/master/public/assets/friends/lablivre-logo.png" alt="LabLivre" width="200"></a>

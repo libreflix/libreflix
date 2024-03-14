@@ -663,6 +663,7 @@ input[type="search"]::-webkit-search-decoration {
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+    border-radius: 9px 9px 0 0;
 }
 
 .splash-play {
@@ -937,6 +938,7 @@ input[type="search"]::-webkit-search-decoration {
     .film_banner {
         height: 400px;
         margin-bottom: -300px;
+        margin-top: 0;
     }
 
     .banner-play {
@@ -1099,6 +1101,10 @@ li.busca-smartphone {
 /* For not hiding scrollbar on showing modal */
 .modal {
     overflow-y: scroll !important;
+}
+
+.modal-content{
+    border-radius: var(--img-border-radius) !important;
 }
 
 /* For the payment modal and texts and etc. */
