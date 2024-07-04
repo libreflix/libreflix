@@ -3,19 +3,20 @@
 {% set title = "Editar " + w.title %}
 
 <script type="text/javascript">
-  function post() {
-    var commentBody = document.getElementsByName('comment_body').value;
-  }
-  $.ajax(
-  {
-    type: 'post',
-    url: '/i/{{ film.permalink}}',
-    data:
-    {
-      comment_body: commentBody
+    function post() {
+        var commentBody = document.getElementsByName('comment_body').value;
     }
-  }
-  )
+
+    $.ajax(
+        {
+            type: 'post',
+            url: '/i/{{ film.permalink}}',
+            data:
+                {
+                    comment_body: commentBody
+                }
+        }
+    )
 </script>
 {% block body %}
 
@@ -23,424 +24,475 @@
 {% if user.mod or user.adm or (w.criador.id == user.id and (w.modComments.status == "waiting" or w.modComments.status == "pending")) %}
 
 <div class="container-fluid">
-  {% if messages.success %}
-  <div role="alert" class="alert alert-success">
-    {% for success in messages.success %}
-    <div>{{ success.msg }}</div>
-    {% endfor %}
-  </div>
-  {% endif %}
-  {% if messages.error %}
-  <div role="alert" class="alert alert-danger">
-    {% for error in messages.error %}
-    <div>{{ error.msg }}</div>
-    {% endfor %}
-  </div>
-  {% endif %}
-  {% if messages.info %}
-  <div role="alert" class="alert alert-info">
-    {% for info in messages.info %}
-    <div>{{ info.msg }}</div>
-    {% endfor %}
-  </div>
-  {% endif %}
+    {% if messages.success %}
+    <div role="alert" class="alert alert-success">
+        {% for success in messages.success %}
+        <div>{{ success.msg }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if messages.error %}
+    <div role="alert" class="alert alert-danger">
+        {% for error in messages.error %}
+        <div>{{ error.msg }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+    {% if messages.info %}
+    <div role="alert" class="alert alert-info">
+        {% for info in messages.info %}
+        <div>{{ info.msg }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
 
 </div>
 
 <h1>Editar produção</h1>
 <div class="container">
-  <div class="panel panel-novo">
-    <div class="panel-body">
-      <form action="" class="form-horizontal">
-        <div style="right:2%; bottom:2%; position: fixed; color: white; background-color: white;
+    <div class="panel panel-novo">
+        <div class="panel-body">
+            <form action="" class="form-horizontal">
+                <div style="right:2%; bottom:2%; position: fixed; color: white; background-color: white;
         z-index:999">
-            <button type="submit" class="btn btn-success" formmethod="post">Salvar Alterações</button>
-            <a href="/i/{{w.permalink}}"><button class="btn btn-danger" type="button">Cancelar</button></a>
-        </div>
-          <!-- Basic -->
-          <hr>
-            <legend> Básico </legend>
-            <div class="form-group">
-              <label class="col-sm-3" for="name">Título da Produção</label>
-              <div class="col-sm-7">
-                <input type="text" name="title" class="form-control"  value="{{ w.title }}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Subtítulo da Produção</label>
-              <div class="col-sm-7">
-                <input type="text" name="subtitle" class="form-control"  value="{{ w.subtitle }}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Título Original (Se houver)</label>
-              <div class="col-sm-7">
-                <input type="text" name="original_title" class="form-control"  value="{{ w.original_title }}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Ano da Produção</label>
-              <div class="col-sm-2">
-                <input type="text" name="year" class="form-control"  value="{{ w.year }}" >
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Duração</label>
-              <div class="col-sm-2">
-                <input type="text" name="duration" class="form-control"  value="{{ w.duration }}" >
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Classificação Indicativa</label>
-              <div class="col-sm-2">
-                <input type="text" name="classind" class="form-control"  value="{{ w.classind }}" >
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Sinopse</label>
-              <div class="col-sm-7">
-                <textarea class="form-control" rows="10" name="sinopse" id="textarea">{{w.sinopse}}</textarea>
-              </div>
-            </div>
+                    <button type="submit" class="btn btn-success" formmethod="post">Salvar Alterações</button>
+                    <a href="/i/{{w.permalink}}">
+                        <button class="btn btn-danger" type="button">Cancelar</button>
+                    </a>
+                </div>
+                <!-- Basic -->
+                <hr>
+                <legend> Básico</legend>
+                <div class="form-group">
+                    <label class="col-sm-3" for="name">Título da Produção</label>
+                    <div class="col-sm-7">
+                        <input type="text" name="title" class="form-control" value="{{ w.title }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Subtítulo da Produção</label>
+                    <div class="col-sm-7">
+                        <input type="text" name="subtitle" class="form-control" value="{{ w.subtitle }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Título Original (Se houver)</label>
+                    <div class="col-sm-7">
+                        <input type="text" name="original_title" class="form-control" value="{{ w.original_title }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Ano da Produção</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="year" class="form-control" value="{{ w.year }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Duração</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="duration" class="form-control" value="{{ w.duration }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Classificação Indicativa</label>
+                    <div class="col-sm-2">
+                        <input type="text" name="classind" class="form-control" value="{{ w.classind }}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Sinopse</label>
+                    <div class="col-sm-7">
+                        <textarea class="form-control" rows="10" name="sinopse" id="textarea">{{w.sinopse}}</textarea>
+                    </div>
+                </div>
 
-            <div class="form-group">
-              <label class="col-sm-3">Formato</label>
-              <div class="col-sm-7">
-                <label><input type="radio" value="fic" name="format" {% if w.format == "fic"%} checked {% endif %}> Filme de Ficção</label><br>
-                <label><input type="radio" value="doc" name="format" {% if w.format == "doc"%} checked {% endif %}> Documentário</label><br>
-                <label><input type="radio" value="series" name="format" {% if w.format == "series"%} checked {% endif %}> Seriado</label><br>
-              </div>
-            </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Formato</label>
+                    <div class="col-sm-7">
+                        <label><input type="radio" value="fic" name="format" {% if w.format== "fic"%} checked {% endif
+                            %}> Filme de Ficção</label><br>
+                        <label><input type="radio" value="doc" name="format" {% if w.format== "doc"%} checked {% endif
+                            %}> Documentário</label><br>
+                        <label><input type="radio" value="series" name="format" {% if w.format== "series"%} checked {%
+                            endif %}> Seriado</label><br>
+                    </div>
+                </div>
 
-          <div class="form-group">
-            <div class="col-sm-3"><b>Categorias</b></div>
-            <div class="col-sm-7">
-              <!-- <input id="categories" name="categories" data-role="tagsinput" class="form-control input-sm tagsInput typeahead" type="text"  value="{{ w.categories }}"> -->
-              <select class="selectpicker" name="categories[]"  width:200px; data-live-search="true" multiple data-selected-text-format="count">
-                {% for c in categories %}
-                  <option value="{{c.nid}}" {% for wc in w.categories %}{% if c.nid == wc %}SELECTED{% endif %}{% endfor %}>{{c.title}} - {{c.nid}}</option>
+                <div class="form-group">
+                    <div class="col-sm-3"><b>Categorias</b></div>
+                    <div class="col-sm-7">
+                        <!-- <input id="categories" name="categories" data-role="tagsinput" class="form-control input-sm tagsInput typeahead" type="text"  value="{{ w.categories }}"> -->
+                        <select class="selectpicker" name="categories[]" width:200px; data-live-search="true" multiple
+                                data-selected-text-format="count">
+                            {% for c in categories %}
+                            <option value="{{c.nid}}" {% for wc in w.categories %}{% if c.nid== wc %}SELECTED{% endif
+                                    %}{% endfor %}>{{c.title}} - {{c.nid}}
+                            </option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3">Tags</label>
+                    <div class="col-sm-7">
+                        <input type="text" name="tags" class="form-control" value="{{w.tags}}" data-role="tagsinput">
+                    </div>
+                </div>
+
+
+                <!-- More Info -->
+                <div id="moreinfo">
+                    <hr>
+                    <legend>Mais informações</legend>
+                    <div class="form-group">
+                        <label class="col-sm-3">Descrição</label>
+                        <div class="col-sm-7">
+                            <textarea class="form-control" rows="10" name="description"
+                                      id="textarea">{{w.description}}</textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Licença</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="license" class="form-control" value="{{w.license}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">País de Origem</label>
+                        <div class="col-sm-5">
+                            <select class="selectpicker" name="location_country" data-live-search="true">
+                                {% if w.location.country %}
+                                <option value="{{w.location.country.code}}|{{w.location.country.name}}" selected>
+                                    {{w.location.country.code}} | {{w.location.country.name}}
+                                </option>
+                                {% endif %}
+                                {% include "partials/countries.html" %}
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Estado/Província de Origem</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="location_state" class="form-control" value="{{w.location.state}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Cidade de Origem</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="location_city" class="form-control" value="{{w.location.city}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Direção</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="crew_director" class="form-control" value="{{w.crew.director}}"
+                                   data-role="tagsinput">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Roteiro</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="crew_screenplay" class="form-control" value="{{w.crew.screenplay}}"
+                                   data-role="tagsinput">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Produção</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="crew_producer" class="form-control" value="{{w.crew.producer}}"
+                                   data-role="tagsinput">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Atores</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="crew_cast" class="form-control" value="{{w.crew.cast}}"
+                                   data-role="tagsinput">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Editor</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="crew_editor" class="form-control" value="{{w.crew.editor}}"
+                                   data-role="tagsinput">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Equipe Técnica</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="crew_other" class="form-control" value="{{w.crew.other}}"
+                                   data-role="tagsinput">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Permalink</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="permalink" class="form-control" value="{{w.permalink}}">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Internal  -->
+                <div id="internal">
+                    <hr>
+                    <legend>Interno</legend>
+                    <div class="form-group">
+                        <label class="col-sm-3">Layout</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="layout" class="form-control" value="{{w.layout}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Featured</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="featured" class="form-control" value="{{w.featured}}">
+                        </div>
+                    </div>
+                    {% if user.adm %}
+                    <div class="form-group">
+                        <label class="col-sm-3">top</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="top" class="form-control" value="{{w.top}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Criador</label>
+                        <div class="col-sm-4">
+                            <input type="text" name="criador" class="form-control" value="{{w.criador.id}}">
+                        </div>
+                        <div class="col-sm-4">
+                            <input type="text" name="criador_email" class="form-control" value="{{w.criador.email}}">
+                        </div>
+                    </div>
+                    {% endif %}
+                </div>
+
+                <!-- Videos and Images -->
+                <div id="videoseimagens">
+                    <hr>
+                    <legend>Videos e Imagens</legend>
+                    <div class="form-group">
+                        <label class="col-sm-3">Url do Vídeo</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="video" class="form-control" value="{{w.video}}"
+                                   placeholder="y8fxto7ua">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Idioma do Aúdio</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="audio_language" class="form-control" value="{{w.audio_language}}"
+                                   placeholder="Português">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Legendas (pt, en, es)</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="subs_pt" class="form-control" value="{{w.subs.pt_br}}"
+                                   placeholder="URL .vtt pt">
+                            <input type="text" name="subs_es" class="form-control" value="{{w.subs.es}}"
+                                   placeholder="URL .vtt es">
+                            <input type="text" name="subs_en" class="form-control" value="{{w.subs.en}}"
+                                   placeholder="URL .vtt en">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Idioma das Legendas</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="srt_language" class="form-control" value="{{w.srt_language}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Qualidade do Vídeo</label>
+                        <div class="col-sm-5">
+                            <input type="text" name="quality" class="form-control" value="{{w.quality}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Url Youtube Trailer</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="trailer" class="form-control" value="{{w.trailer}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Imagem de Background</label>
+                        <div class="col-sm-7">
+                            <input type="file" id="imgbgFile" class="form-control" accept="image/jpg">
+                            <input type="text" id="imgbg" name="imgbg" class="form-control" value="{{w.imgbg}}">
+                            <br>
+                            <a href="{{w.imgbg}}" target="_blank">
+                                <img id="imgbgImg" src="{{w.imgbg}}" width="300px" alt="" style="display: block">
+                            </a>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Imagem para Thumbnail</label>
+                        <div class="col-sm-7">
+                            <input type="file" id="thumb480File" class="form-control" accept="image/jpg">
+                            <input type="text" id="thumb480" name="thumb480" class="form-control" value="{{w.thumb480}}">
+                            <br>
+                            <a href="{{w.thumb480}}" target="_blank">
+                                <img id="thumb480Img" src="{{w.thumb480}}" width="300px" alt="" style="display: block">
+                            </a>
+                        </div>
+                        <small>480x270</small>
+                    </div>
+                </div>
+
+                <!-- Download Files -->
+                <div id="download">
+                    <hr>
+                    <legend>Opções de Download</legend>
+                    <div class="form-group">
+                        <label class="col-sm-3">Arquivo pode ser copiado pelo Libreflix?</label>
+                        <div class="col-sm-7">
+                            <select class="selectpicker" name="canwecopy">
+                                <option type='select' value="true" {% if w.canwecopy %} SELECTED="YES" {% endif %}>Sim
+                                </option>
+                                <option type='select' value="false" {% if not w.canwecopy %} SELECTED="YES" {% endif %}>
+                                    Não
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Arquivo pode ser Baixado pelo Usuário?</label>
+                        <div class="col-sm-7">
+                            <select class="selectpicker" name="downloadable">
+                                <option type='select' value="true" {% if w.downloadable %} SELECTED="YES" {% endif %}>
+                                    Sim
+                                </option>
+                                <option type='select' value="false" {% if not w.downloadable %} SELECTED="YES" {% endif
+                                        %}>Não
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Arquivo Download do Filme</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="file_film" class="form-control" value="{{w.file.film}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Arquivo Download do Trailer</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="file_trailer" class="form-control" value="{{w.file.trailer}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3">Arquivo Download das Legendas</label>
+                        <div class="col-sm-7">
+                            <input type="text" name="file_srt" class="form-control" value="{{w.file.srt}}">
+                        </div>
+                    </div>
+                </div>
+                <!-- Links Externos -->
+                <legend>{{t('Links Externos')}}</legend>
+                <div class="form-group">
+                    <div class="col-sm-3">Website</div>
+                    <div class="col-sm-7"><input type="text" name="website" class="form-control"
+                                                 value="{{w.links.website}}"></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">Wikipedia</div>
+                    <div class="col-sm-7"><input type="text" name="wikipedia" class="form-control"
+                                                 value="{{w.links.wikipedia}}"></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">Twitter</div>
+                    <div class="col-sm-7"><input type="text" name="twitter" class="form-control"
+                                                 value="{{w.links.twitter}}"></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">IMDB</div>
+                    <div class="col-sm-7"><input type="text" name="imdb" class="form-control" value="{{w.links.imdb}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">Filmow</div>
+                    <div class="col-sm-7"><input type="text" name="filmow" class="form-control"
+                                                 value="{{w.links.filmow}}"></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">Facebook</div>
+                    <div class="col-sm-7"><input type="text" name="facebook" class="form-control"
+                                                 value="{{w.links.facebook}}"></div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-3">Instagram</div>
+                    <div class="col-sm-7"><input type="text" name="instagram" class="form-control"
+                                                 value="{{w.links.instagram}}"></div>
+                </div>
+                <!-- Links Externos -->
+                <legend>{{t('Ligações Externas')}}</legend>
+                {% for r in reference %}
+                <p>
+                    <a href="{{r.url}}" target="_blank">
+                        <i class="fa fa-external-link" aria-hidden="true"></i>
+                        {{ r.title | title }}</b>
+                    </a>
+                </p>
                 {% endfor %}
-              </select>
-            </div>
-          </div>
-
-          <div class="form-group">
-            <label class="col-sm-3">Tags</label>
-            <div class="col-sm-7">
-              <input type="text" name="tags"  class="form-control" value="{{w.tags}}" data-role="tagsinput">
-            </div>
-          </div>
-
-
-          <!-- More Info -->
-          <div id="moreinfo" >
-            <hr>
-            <legend>Mais informações</legend>
-            <div class="form-group">
-              <label class="col-sm-3">Descrição</label>
-              <div class="col-sm-7">
-                <textarea class="form-control" rows="10" name="description" id="textarea">{{w.description}}</textarea>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Licença</label>
-              <div class="col-sm-5">
-                <input type="text" name="license" class="form-control"  value="{{w.license}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">País de Origem</label>
-              <div class="col-sm-5">
-                <select class="selectpicker" name="location_country" data-live-search="true">
-                  {% if w.location.country %}
-                  <option value="{{w.location.country.code}}|{{w.location.country.name}}" selected>{{w.location.country.code}} | {{w.location.country.name}}</option>
-                  {% endif %}
-                  {% include "partials/countries.html" %}
-                </select>
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Estado/Província de Origem</label>
-              <div class="col-sm-5">
-                <input type="text" name="location_state" class="form-control"  value="{{w.location.state}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Cidade de Origem</label>
-              <div class="col-sm-5">
-                <input type="text" name="location_city" class="form-control"  value="{{w.location.city}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Direção</label>
-              <div class="col-sm-7">
-                <input type="text" name="crew_director" class="form-control"  value="{{w.crew.director}}" data-role="tagsinput">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Roteiro</label>
-              <div class="col-sm-7">
-                <input type="text" name="crew_screenplay" class="form-control"  value="{{w.crew.screenplay}}" data-role="tagsinput">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Produção</label>
-              <div class="col-sm-7">
-                <input type="text" name="crew_producer" class="form-control"  value="{{w.crew.producer}}" data-role="tagsinput">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Atores</label>
-              <div class="col-sm-7">
-                <input type="text" name="crew_cast" class="form-control"  value="{{w.crew.cast}}" data-role="tagsinput" >
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Editor</label>
-              <div class="col-sm-7">
-                <input type="text" name="crew_editor" class="form-control"  value="{{w.crew.editor}}" data-role="tagsinput">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Equipe Técnica</label>
-              <div class="col-sm-7">
-                <input type="text" name="crew_other" class="form-control"  value="{{w.crew.other}}" data-role="tagsinput">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Permalink</label>
-              <div class="col-sm-5">
-                <input type="text" name="permalink" class="form-control"  value="{{w.permalink}}">
-              </div>
-            </div>
-          </div>
-
-          <!-- Internal  -->
-          <div id="internal" >
-            <hr>
-            <legend>Interno</legend>
-            <div class="form-group">
-              <label class="col-sm-3">Layout</label>
-              <div class="col-sm-5">
-                <input type="text" name="layout" class="form-control"  value="{{w.layout}}" >
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Featured</label>
-              <div class="col-sm-5">
-                <input type="text" name="featured" class="form-control"  value="{{w.featured}}" >
-              </div>
-            </div>
-            {% if user.adm %}
-            <div class="form-group">
-              <label class="col-sm-3">top</label>
-              <div class="col-sm-5">
-                <input type="text" name="top" class="form-control"  value="{{w.top}}" >
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Criador</label>
-              <div class="col-sm-4">
-                <input type="text" name="criador" class="form-control"  value="{{w.criador.id}}" >
-              </div>
-              <div class="col-sm-4">
-                <input type="text" name="criador_email" class="form-control"  value="{{w.criador.email}}" >
-              </div>
-            </div>
-            {% endif %}
-          </div>
-
-          <!-- Videos and Images -->
-          <div id="videoseimagens" >
-            <hr>
-            <legend>Videos e Imagens</legend>
-            <div class="form-group">
-              <label class="col-sm-3">Url do Vídeo</label>
-              <div class="col-sm-5">
-                <input type="text" name="video" class="form-control"  value="{{w.video}}" placeholder="y8fxto7ua">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Idioma do Aúdio</label>
-              <div class="col-sm-5">
-                <input type="text" name="audio_language" class="form-control"  value="{{w.audio_language}}" placeholder="Português">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Legendas (pt, en, es)</label>
-              <div class="col-sm-5">
-                <input type="text" name="subs_pt" class="form-control"  value="{{w.subs.pt_br}}" placeholder="URL .vtt pt">
-                <input type="text" name="subs_es" class="form-control"  value="{{w.subs.es}}" placeholder="URL .vtt es">
-                <input type="text" name="subs_en" class="form-control"  value="{{w.subs.en}}" placeholder="URL .vtt en">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Idioma das Legendas</label>
-              <div class="col-sm-7">
-                <input type="text" name="srt_language" class="form-control"  value="{{w.srt_language}}" >
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Qualidade do Vídeo</label>
-              <div class="col-sm-5">
-                <input type="text" name="quality" class="form-control"  value="{{w.quality}}">
-              </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Url Youtube Trailer</label>
-                <div class="col-sm-7">
-                  <input type="text" name="trailer" class="form-control"  value="{{w.trailer}}">
+                <div class="form-group">
+                    <div class="col-sm-2">Nova Referência</div>
+                    <div class="col-sm-4"><input type="text" id="ref_title" class="form-control" placeholder="title">
+                    </div>
+                    <div class="col-sm-4"><input type="text" id="ref_url" class="form-control" placeholder="url"></div>
                 </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Imagem de Background</label>
-                <div class="col-sm-7">
-                  <input type="text" name="imgbg" class="form-control"  value="{{w.imgbg}}">
-                  <br>
-                  <a href="{{w.imgbg}}" target="_blank"><img src="{{w.imgbg}}" width="300px" alt=""></a>
-                </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Imagem para Thumbnail</label>
-              <div class="col-sm-7">
-                <input type="text" name="thumb480" class="form-control"  value="{{w.thumb480}}">
-                <br>
-                <a href="{{w.thumb480}}" target="_blank"><img src="{{w.thumb480}}" width="300px" alt=""></a>
-              </div>
-              <small>480x270</small>
-            </div>
-          </div>
-
-          <!-- Download Files -->
-          <div id="download" >
-            <hr>
-            <legend>Opções de Download</legend>
-            <div class="form-group">
-              <label class="col-sm-3">Arquivo pode ser copiado pelo Libreflix?</label>
-                <div class="col-sm-7">
-                  <select  class="selectpicker" name="canwecopy">
-              		  <option type='select' value="true" {% if w.canwecopy  %} SELECTED="YES" {% endif %}>Sim</option>
-              		  <option type='select' value="false" {% if not w.canwecopy %} SELECTED="YES" {% endif %}>Não</option>
-                  </select>
-                </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Arquivo pode ser Baixado pelo Usuário?</label>
-                <div class="col-sm-7">
-                  <select  class="selectpicker" name="downloadable">
-              		  <option type='select' value="true" {% if w.downloadable %} SELECTED="YES" {% endif %}>Sim</option>
-              		  <option type='select' value="false" {% if not w.downloadable %} SELECTED="YES" {% endif %}>Não</option>
-                  </select>
-                </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Arquivo Download do Filme</label>
-                <div class="col-sm-7">
-                  <input type="text" name="file_film" class="form-control"  value="{{w.file.film}}">
-                </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Arquivo Download do Trailer</label>
-                <div class="col-sm-7">
-                  <input type="text" name="file_trailer" class="form-control"  value="{{w.file.trailer}}">
-                </div>
-            </div>
-            <div class="form-group">
-              <label class="col-sm-3">Arquivo Download das Legendas</label>
-                <div class="col-sm-7">
-                  <input type="text" name="file_srt" class="form-control"  value="{{w.file.srt}}">
-                </div>
-            </div>
-          </div>
-          <!-- Links Externos -->
-          <legend>{{t('Links Externos')}}</legend>
-          <div class="form-group">
-            <div class="col-sm-3">Website</div>
-            <div class="col-sm-7"><input type="text" name="website" class="form-control"  value="{{w.links.website}}"></div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-3">Wikipedia</div>
-            <div class="col-sm-7"><input type="text" name="wikipedia" class="form-control"  value="{{w.links.wikipedia}}"></div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-3">Twitter</div>
-            <div class="col-sm-7"><input type="text" name="twitter" class="form-control"  value="{{w.links.twitter}}"></div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-3">IMDB</div>
-            <div class="col-sm-7"><input type="text" name="imdb" class="form-control"  value="{{w.links.imdb}}"></div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-3">Filmow</div>
-            <div class="col-sm-7"><input type="text" name="filmow" class="form-control"  value="{{w.links.filmow}}"></div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-3">Facebook</div>
-            <div class="col-sm-7"><input type="text" name="facebook" class="form-control"  value="{{w.links.facebook}}"></div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-3">Instagram</div>
-            <div class="col-sm-7"><input type="text" name="instagram" class="form-control"  value="{{w.links.instagram}}"></div>
-          </div>
-          <!-- Links Externos -->
-          <legend>{{t('Ligações Externas')}}</legend>
-          {% for r in reference %}
-          <p>
-            <a href="{{r.url}}" target="_blank">
-              <i class="fa fa-external-link" aria-hidden="true"></i>
-              {{ r.title | title }}</b>
-            </a>
-          </p>
-          {% endfor %}
-          <div class="form-group">
-            <div class="col-sm-2">Nova Referência</div>
-            <div class="col-sm-4"><input type="text" id="ref_title" class="form-control" placeholder="title"></div>
-            <div class="col-sm-4"><input type="text" id="ref_url" class="form-control" placeholder="url"></div>
-          </div>
-          <p>
-            <button class="btn btn-default" id="newReference" type="button">
-              {{ t('Adicionar Ligação Externa') }}
-            </button>
-          </p>
+                <p>
+                    <button class="btn btn-default" id="newReference" type="button">
+                        {{ t('Adicionar Ligação Externa') }}
+                    </button>
+                </p>
 
 
-          <!-- Comentários dos moderadores -->
-          {{user.adm}}
+                <!-- Comentários dos moderadores -->
+                {{user.adm}}
 
-          {{user.mod}}
+                {{user.mod}}
 
-          {% if user.adm or user.mod %}
-          <hr>
-          <legend>{{t('Comentários dos moderadores')}}</legend>
-          <div class="form-group">
-            <label class="col-sm-3">
-            <select class="selectpicker" name="modComments_status">
-              <option value="waiting" {% if w.modComments.status == 'waiting' %} SELECTED {% endif %}>waiting</option>
-              <option value="pending" {% if w.modComments.status == 'pending' %} SELECTED {% endif %}>pending</option>
-              <option value="approved" {% if w.modComments.status == 'approved' %} SELECTED {% endif %}>approved</option>
-              <option value="approved" {% if w.modComments.status == 'paused' %} SELECTED {% endif %}>paused</option>
-              <option value="nonlibre" {% if w.modComments.status == 'nonlibre' %} SELECTED {% endif %}>nonlibre</option>
-              <option value="offensive" {% if w.modComments.status == 'offensive' %} SELECTED {% endif %}>offensive</option>
-              <option value="wrongtype" {% if w.modComments.status == 'wrongtype' %} SELECTED {% endif %}>wrongtype</option>
-              <option value="striked" {% if w.modComments.status == 'striked' %} SELECTED {% endif %}>striked</option>
-            </select>
-            <input type="text" name="modComments_status_old" value="{{w.modComments.status}}" hidden>
-            </label>
-            <div class="col-sm-7">
-              <textarea type="text" class="form-control" name="modComments_comment" placeholder="Comentário">{{ w.modComments.comment }}</textarea>
-            </div>
-          </div>
-          {% endif %}
-          {% if user.adm == "" or user.mod == "" %}
-            <input type="text" name="modComments_status" value="{{w.modComments.status}}" hidden>
-          {% endif %}
-        <!-- Fim -->
-        <div class="form-group">
-          <!-- <small class="text-muted">Criando uma conta, você concorda com os <a href="/" target="_blank">Termos de Uso</a>.</small> -->
+                {% if user.adm or user.mod %}
+                <hr>
+                <legend>{{t('Comentários dos moderadores')}}</legend>
+                <div class="form-group">
+                    <label class="col-sm-3">
+                        <select class="selectpicker" name="modComments_status">
+                            <option value="waiting" {% if w.modComments.status==
+                            'waiting' %} SELECTED {% endif %}>waiting</option>
+                            <option value="pending" {% if w.modComments.status==
+                            'pending' %} SELECTED {% endif %}>pending</option>
+                            <option value="approved" {% if w.modComments.status==
+                            'approved' %} SELECTED {% endif %}>approved</option>
+                            <option value="approved" {% if w.modComments.status==
+                            'paused' %} SELECTED {% endif %}>paused</option>
+                            <option value="nonlibre" {% if w.modComments.status==
+                            'nonlibre' %} SELECTED {% endif %}>nonlibre</option>
+                            <option value="offensive" {% if w.modComments.status==
+                            'offensive' %} SELECTED {% endif %}>offensive</option>
+                            <option value="wrongtype" {% if w.modComments.status==
+                            'wrongtype' %} SELECTED {% endif %}>wrongtype</option>
+                            <option value="striked" {% if w.modComments.status==
+                            'striked' %} SELECTED {% endif %}>striked</option>
+                        </select>
+                        <input type="text" name="modComments_status_old" value="{{w.modComments.status}}" hidden>
+                    </label>
+                    <div class="col-sm-7">
+                        <textarea type="text" class="form-control" name="modComments_comment" placeholder="Comentário">{{ w.modComments.comment }}</textarea>
+                    </div>
+                </div>
+                {% endif %}
+                {% if user.adm == "" or user.mod == "" %}
+                <input type="text" name="modComments_status" value="{{w.modComments.status}}" hidden>
+                {% endif %}
+                <!-- Fim -->
+                <div class="form-group">
+                    <!-- <small class="text-muted">Criando uma conta, você concorda com os <a href="/" target="_blank">Termos de Uso</a>.</small> -->
+                </div>
+            </form>
         </div>
-      </form>
     </div>
-  </div>
 </div>
 </div>
 
@@ -449,33 +501,33 @@
 {% endif %}
 
 <script>
-  $(document).ready(function(){
-    $('#newReference').on('click', function(evt){
-      evt.preventDefault();
-      var action = $(this).attr('action');
-      var $container = $(this).closest('#newReference');
-      $.ajax({
-        url: '/edit/{{ w.permalink }}/newreference',
-        type: 'POST',
-        data: {
-          u: '{{user.id}}',
-          ref_url: $(ref_url).val(),
-          ref_title: $(ref_title).val()
-        },
-        dataType : 'json',
-        success: function(data){
-          if(data.success){
-            $container.toggleClass('btn-success');
-          } else {
-            $container.html('There was a problem.');
-          }
-        },
-        error: function(){
-          $container.html('There was a problem');
-        }
-      });
+    $(document).ready(function () {
+        $('#newReference').on('click', function (evt) {
+            evt.preventDefault();
+            var action = $(this).attr('action');
+            var $container = $(this).closest('#newReference');
+            $.ajax({
+                url: '/edit/{{ w.permalink }}/newreference',
+                type: 'POST',
+                data: {
+                    u: '{{user.id}}',
+                    ref_url: $(ref_url).val(),
+                    ref_title: $(ref_title).val()
+                },
+                dataType: 'json',
+                success: function (data) {
+                    if (data.success) {
+                        $container.toggleClass('btn-success');
+                    } else {
+                        $container.html('There was a problem.');
+                    }
+                },
+                error: function () {
+                    $container.html('There was a problem');
+                }
+            });
+        });
     });
-  });
 </script>
 
 <script src="/js/bootstrap-select.min.js"></script>
