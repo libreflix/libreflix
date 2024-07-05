@@ -1238,3 +1238,9 @@ li.busca-smartphone {
 .ep-list td {
     padding-bottom: 5px;
 }
+
+
+/* Film Festival */
+.festival_row {
+    position: relative;
+}

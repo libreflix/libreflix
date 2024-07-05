@@ -122,7 +122,7 @@
                     <div class="col-sm-3"><b>Categorias</b></div>
                     <div class="col-sm-7">
                         <!-- <input id="categories" name="categories" data-role="tagsinput" class="form-control input-sm tagsInput typeahead" type="text"  value="{{ w.categories }}"> -->
-                        <select class="selectpicker" name="categories[]" width:200px; data-live-search="true" multiple
+                        <select class="selectpicker" name="categories[]" data-live-search="true" multiple
                                 data-selected-text-format="count">
                             {% for c in categories %}
                             <option value="{{c.nid}}" {% for wc in w.categories %}{% if c.nid== wc %}SELECTED{% endif
@@ -136,7 +136,7 @@
                 <div class="form-group">
                     <label class="col-sm-3">Tags</label>
                     <div class="col-sm-7">
-                        <input type="text" name="tags" class="form-control" value="{{w.tags}}" data-role="tagsinput">
+                        <input type="text" name="tags" class="form-control" value="{{w.tags}}" data-role="tagsinput" style="width: 500px;">
                     </div>
                 </div>
 
@@ -246,7 +246,12 @@
                     <div class="form-group">
                         <label class="col-sm-3">Featured</label>
                         <div class="col-sm-5">
-                            <input type="text" name="featured" class="form-control" value="{{w.featured}}">
+                            <label>
+                                <input type="radio" name="featured" value="true" {%if w.featured %} checked {% endif %}> True
+                            </label>
+                            <label>
+                                <input type="radio" name="featured" value="false" {%if not w.featured %} checked {% endif %}> False
+                            </label>
                         </div>
                     </div>
                     {% if user.adm %}

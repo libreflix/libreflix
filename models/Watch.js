@@ -15,7 +15,7 @@ const watchSchema = new mongoose.Schema({
     permalink: {type: String, unique: true},
     criador: {type: mongoose.Schema.ObjectId, ref: 'User'},
     layout: String,
-    featured: Boolean,
+    featured: { type: Boolean, default: false },
     status: String,
     modComments: {
         moderator: {type: mongoose.Schema.ObjectId, ref: 'User'},
