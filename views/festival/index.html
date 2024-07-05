@@ -63,14 +63,14 @@
                 {% endif -%}
                 {% endfor -%}
 
-                {% if (w.featured == 'true'
+                {#%-- if (w.featured == 'true'
                 or w.featured
                 and w.featured != "false"
                 and w.featured != "striked"
                 and w.status != "wrongtype"
                 and w.status != "nonlibre"
                 and w.status != "offensive"
-                and w.status != "striked" ) and catFlag == 1 -%}
+                and w.status != "striked" ) and catFlag == 1 -%#}
 
                 <li class="col-md-3">
                     <a role="button" data-toggle="modal" style="border-bottom: 0px solid;" data-toggle="modal"
@@ -151,7 +151,7 @@
                         </div>
                     </div>
                 </div>
-                {% endif %}
+                {#%-- endif --%#}
                 {% endfor %}
                 {% if (catCounter > 0) %}
             </ul>
