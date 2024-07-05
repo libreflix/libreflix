@@ -174,6 +174,7 @@ exports.watchPut = function (req, res, next) {
         watch.permalink = req.body.permalink;
         watch.layout = req.body.layout;
         watch.featured = req.body.featured;
+        watch.useWatchV2 = req.body.useWatchV2;
         if (req.user.adm) {
             watch.criador = req.body.criador;
             watch.top = req.body.top;
