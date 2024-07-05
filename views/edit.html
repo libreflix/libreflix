@@ -136,8 +136,39 @@
                 <div class="form-group">
                     <label class="col-sm-3">Tags</label>
                     <div class="col-sm-7">
-                        <input type="text" name="tags" class="form-control" value="{{w.tags}}" data-role="tagsinput" style="width: 500px;">
+                        <input type="text" name="tags" class="form-control" value="{{w.tags}}" data-role="tagsinput"
+                               style="width: 500px;">
                     </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-3">Permalink</label>
+                    <div class="col-sm-5">
+                        <input type="text" name="permalink" class="form-control" value="{{w.permalink}}">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Imagem de Background</label>
+                    <div class="col-sm-7">
+                        <input type="file" id="imgbgFile" class="form-control" accept="image/jpg">
+                        <input type="text" id="imgbg" name="imgbg" class="form-control" value="{{w.imgbg}}">
+                        <br>
+                        <a href="{{w.imgbg}}" target="_blank">
+                            <img id="imgbgImg" src="{{w.imgbg}}" width="300px" alt="" style="display: block">
+                        </a>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3">Imagem para Thumbnail</label>
+                    <div class="col-sm-7">
+                        <input type="file" id="thumb480File" class="form-control" accept="image/jpg">
+                        <input type="text" id="thumb480" name="thumb480" class="form-control" value="{{w.thumb480}}">
+                        <br>
+                        <a href="{{w.thumb480}}" target="_blank">
+                            <img id="thumb480Img" src="{{w.thumb480}}" width="300px" alt="" style="display: block">
+                        </a>
+                    </div>
+                    <small>480x270</small>
                 </div>
 
 
@@ -225,12 +256,6 @@
                                    data-role="tagsinput">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-3">Permalink</label>
-                        <div class="col-sm-5">
-                            <input type="text" name="permalink" class="form-control" value="{{w.permalink}}">
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Internal  -->
@@ -247,10 +272,12 @@
                         <label class="col-sm-3">Featured</label>
                         <div class="col-sm-5">
                             <label>
-                                <input type="radio" name="featured" value="true" {%if w.featured %} checked {% endif %}> True
+                                <input type="radio" name="featured" value="true" {%if w.featured %} checked {% endif %}>
+                                True
                             </label>
                             <label>
-                                <input type="radio" name="featured" value="false" {%if not w.featured %} checked {% endif %}> False
+                                <input type="radio" name="featured" value="false" {%if not w.featured %} checked {%
+                                       endif %}> False
                             </label>
                         </div>
                     </div>
@@ -320,29 +347,6 @@
                             <input type="text" name="trailer" class="form-control" value="{{w.trailer}}">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="col-sm-3">Imagem de Background</label>
-                        <div class="col-sm-7">
-                            <input type="file" id="imgbgFile" class="form-control" accept="image/jpg">
-                            <input type="text" id="imgbg" name="imgbg" class="form-control" value="{{w.imgbg}}">
-                            <br>
-                            <a href="{{w.imgbg}}" target="_blank">
-                                <img id="imgbgImg" src="{{w.imgbg}}" width="300px" alt="" style="display: block">
-                            </a>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label class="col-sm-3">Imagem para Thumbnail</label>
-                        <div class="col-sm-7">
-                            <input type="file" id="thumb480File" class="form-control" accept="image/jpg">
-                            <input type="text" id="thumb480" name="thumb480" class="form-control" value="{{w.thumb480}}">
-                            <br>
-                            <a href="{{w.thumb480}}" target="_blank">
-                                <img id="thumb480Img" src="{{w.thumb480}}" width="300px" alt="" style="display: block">
-                            </a>
-                        </div>
-                        <small>480x270</small>
-                    </div>
                 </div>
 
                 <!-- Download Files -->
@@ -393,64 +397,73 @@
                         </div>
                     </div>
                 </div>
-                <!-- Links Externos -->
-                <legend>{{t('Links Externos')}}</legend>
-                <div class="form-group">
-                    <div class="col-sm-3">Website</div>
-                    <div class="col-sm-7"><input type="text" name="website" class="form-control"
-                                                 value="{{w.links.website}}"></div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-3">Wikipedia</div>
-                    <div class="col-sm-7"><input type="text" name="wikipedia" class="form-control"
-                                                 value="{{w.links.wikipedia}}"></div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-3">Twitter</div>
-                    <div class="col-sm-7"><input type="text" name="twitter" class="form-control"
-                                                 value="{{w.links.twitter}}"></div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-3">IMDB</div>
-                    <div class="col-sm-7"><input type="text" name="imdb" class="form-control" value="{{w.links.imdb}}">
+
+                <details>
+                    <summary>
+                        <legend> &#9658; {{t('Links Externos')}}</legend>
+                    </summary>
+                    <!-- Links Externos -->
+
+                    <div class="form-group">
+                        <div class="col-sm-3">Website</div>
+                        <div class="col-sm-7"><input type="text" name="website" class="form-control"
+                                                     value="{{w.links.website}}"></div>
                     </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-3">Filmow</div>
-                    <div class="col-sm-7"><input type="text" name="filmow" class="form-control"
-                                                 value="{{w.links.filmow}}"></div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-3">Facebook</div>
-                    <div class="col-sm-7"><input type="text" name="facebook" class="form-control"
-                                                 value="{{w.links.facebook}}"></div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-3">Instagram</div>
-                    <div class="col-sm-7"><input type="text" name="instagram" class="form-control"
-                                                 value="{{w.links.instagram}}"></div>
-                </div>
-                <!-- Links Externos -->
-                <legend>{{t('Ligações Externas')}}</legend>
-                {% for r in reference %}
-                <p>
-                    <a href="{{r.url}}" target="_blank">
-                        <i class="fa fa-external-link" aria-hidden="true"></i>
-                        {{ r.title | title }}</b>
-                    </a>
-                </p>
-                {% endfor %}
-                <div class="form-group">
-                    <div class="col-sm-2">Nova Referência</div>
-                    <div class="col-sm-4"><input type="text" id="ref_title" class="form-control" placeholder="title">
+                    <div class="form-group">
+                        <div class="col-sm-3">Wikipedia</div>
+                        <div class="col-sm-7"><input type="text" name="wikipedia" class="form-control"
+                                                     value="{{w.links.wikipedia}}"></div>
                     </div>
-                    <div class="col-sm-4"><input type="text" id="ref_url" class="form-control" placeholder="url"></div>
-                </div>
-                <p>
-                    <button class="btn btn-default" id="newReference" type="button">
-                        {{ t('Adicionar Ligação Externa') }}
-                    </button>
-                </p>
+                    <div class="form-group">
+                        <div class="col-sm-3">Twitter</div>
+                        <div class="col-sm-7"><input type="text" name="twitter" class="form-control"
+                                                     value="{{w.links.twitter}}"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3">IMDB</div>
+                        <div class="col-sm-7"><input type="text" name="imdb" class="form-control"
+                                                     value="{{w.links.imdb}}">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3">Filmow</div>
+                        <div class="col-sm-7"><input type="text" name="filmow" class="form-control"
+                                                     value="{{w.links.filmow}}"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3">Facebook</div>
+                        <div class="col-sm-7"><input type="text" name="facebook" class="form-control"
+                                                     value="{{w.links.facebook}}"></div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-3">Instagram</div>
+                        <div class="col-sm-7"><input type="text" name="instagram" class="form-control"
+                                                     value="{{w.links.instagram}}"></div>
+                    </div>
+                    <!-- Links Externos -->
+                    <legend>{{t('Ligações Externas')}}</legend>
+                    {% for r in reference %}
+                    <p>
+                        <a href="{{r.url}}" target="_blank">
+                            <i class="fa fa-external-link" aria-hidden="true"></i>
+                            {{ r.title | title }}</b>
+                        </a>
+                    </p>
+                    {% endfor %}
+                    <div class="form-group">
+                        <div class="col-sm-2">Nova Referência</div>
+                        <div class="col-sm-4"><input type="text" id="ref_title" class="form-control"
+                                                     placeholder="title">
+                        </div>
+                        <div class="col-sm-4"><input type="text" id="ref_url" class="form-control" placeholder="url">
+                        </div>
+                    </div>
+                    <p>
+                        <button class="btn btn-default" id="newReference" type="button">
+                            {{ t('Adicionar Ligação Externa') }}
+                        </button>
+                    </p>
+                </details>
 
 
                 <!-- Comentários dos moderadores -->

@@ -135,7 +135,7 @@
                             </div>
                             <div class="modal-footer">
                                 {% if user.mod or user.adm %}<a href="/edit/{{ w._id }}">
-                                <button type="button" class="btn btn-danger"><i class="fa fa-edit"></i> t('Editar')
+                                <button type="button" class="btn btn-danger"><i class="fa fa-edit"></i> {{t('Editar')}}
                                 </button>
                             </a>{% endif %}
                                 <button type="button" class="btn btn-default" data-dismiss="modal"><i
@@ -160,6 +160,11 @@
         {% endfor -%}
 </section>
 
+<div class="festival-footer">
+    <div>
+        <img src="{{festival.footerImg}}" alt="">
+    </div>
+</div>
 {% endblock %}
 
 

@@ -16,9 +16,11 @@ const setTags = tags => tags.split(', ');
 
 const festivalSchema = new mongoose.Schema({
     name:  String,
+    logo: String,
     permalink: String,
     bannerImg: String,
     headerImg: String,
+    footerImg: String,
     description: String,
     internalCategories: {type: []},
 
