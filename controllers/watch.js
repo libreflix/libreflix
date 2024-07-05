@@ -22,9 +22,9 @@ exports.watchGet = function (req, res) {
             isDesktop = false;
 
         // to test if desktop
-        if (req.device.type == 'phone') {
+        if (req.device.type === 'phone') {
             isMobile = true
-        } else if (req.device.type == 'desktop' && w.layout != "serie") {
+        } else if (req.device.type === 'desktop' && w.layout !== "serie") {
             // var isDesktop = true
             isMobile = true
         } else {
@@ -245,6 +245,11 @@ exports.watchPut = function (req, res, next) {
         watch.links.filmow = req.body.filmow;
         watch.links.facebook = req.body.facebook;
         watch.links.instagram = req.body.instagram;
+
+        watch.webseed.sd = req.body.webseedSd;
+        console.log(watch.webseed.sd);
+        watch.webseed.hd = req.body.webseedHd;
+        watch.webseed.fhd = req.body.webseedFhd;
 
 
         /* ModComments */
