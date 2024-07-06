@@ -941,8 +941,16 @@ input[type="search"]::-webkit-search-decoration {
         margin-top: 0;
     }
 
+    .film_banner_festival {
+        margin-top: -100px !important;
+    }
+
     .banner-play {
         display: none;
+    }
+
+    .festival_row {
+        margin-top: 300px;
     }
 }
 
