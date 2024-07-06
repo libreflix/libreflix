@@ -19,6 +19,7 @@ const festivalSchema = new mongoose.Schema({
     logo: String,
     permalink: String,
     bannerImg: String,
+    bannerImg_mobile: String,
     headerImg: String,
     footerImg: String,
     description: String,
