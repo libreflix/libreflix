@@ -1251,7 +1251,7 @@ li.busca-smartphone {
 }
 
 .festival-header {
-    margin: 0 0 50px 0;
+    margin: 50px 0 50px 0;
     display: flex;
     justify-content: right;
     position: relative;
