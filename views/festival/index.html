@@ -33,6 +33,16 @@
     <div class="film_banner--fade"></div>
 </div>
 
+
+{% if festival.bannerImg %}
+{#
+<div class="festival-header">
+<img src="{{festival.bannerImg}}" alt="{{festival.name}}">
+</div>
+#}
+{% endif %}
+
+
 <section class="work festival_row">
 
         {% for c in categories %}
@@ -162,6 +172,8 @@
 
 <div class="festival-footer">
     <div>
+        <h3>{{festival.name}}</h3>
+        {{festival.description | safe}}
         <img src="{{festival.footerImg}}" alt="">
     </div>
 </div>

@@ -1249,3 +1249,15 @@ li.busca-smartphone {
     display: flex;
     justify-content: center;
 }
+
+.festival-header {
+    margin: 0 0 50px 0;
+    display: flex;
+    justify-content: right;
+    position: relative;
+    text-align: right;
+}
+
+.festival-header img{
+    border-radius: 9px;
+}
