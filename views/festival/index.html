@@ -170,10 +170,12 @@
         {% endfor -%}
 </section>
 
+<div class="festival-description">
+    {{festival.description | safe}}
+</div>
+
 <div class="festival-footer">
     <div>
-        <h3>{{festival.name}}</h3>
-        {{festival.description | safe}}
         <img src="{{festival.footerImg}}" alt="">
     </div>
 </div>

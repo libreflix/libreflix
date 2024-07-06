@@ -1261,3 +1261,8 @@ li.busca-smartphone {
 .festival-header img{
     border-radius: 9px;
 }
+
+.festival-description {
+    margin-top: 100px;
+    text-align: center;
+}
