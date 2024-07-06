@@ -23,7 +23,7 @@ exports.festivalPageGet = function (req, res) {
             if (err) {
                 console.log(err);
             } else {
-                Watch.find({ categories: { $in: festival.internalCategories }}, null, {sort: '-id'}, function (err, w) {
+                Watch.find({ categories: { $in: festival.internalCategories }}, null, {sort: 'title'}, function (err, w) {
                     if (err) {
                         console.log(err);
                     } else {
