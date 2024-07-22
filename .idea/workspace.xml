@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="0ca42de8-e185-49f0-b235-88f6e48eeab1" name="Default Changelist" comment="rever new black 4">
+    <list default="true" id="0ca42de8-e185-49f0-b235-88f6e48eeab1" name="Default Changelist" comment="Banner customisations">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/custom.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/custom.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/inicio.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/inicio.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/partials/navbar.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/partials/navbar.html" afterDir="false" />
     </list>
     <list id="3a860e33-602a-43a0-9d71-36827616f483" name="Revert &quot;New black&quot;" comment="Revert &quot;New black&quot;&#10;&#10;This reverts commit 74474081" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,24 +30,48 @@
       <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
     </file-type-list>
   </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="PhpWorkspaceProjectConfiguration" interpreter_name="/usr/local/Cellar/php@8.1/8.1.24/bin/php" />
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="1qzWG1HBASKphwc1uMlipBTEpwE" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
-    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="node.js.detected.package.eslint" value="true" />
-    <property name="node.js.detected.package.tslint" value="true" />
-    <property name="node.js.path.for.package.eslint" value="project" />
-    <property name="node.js.path.for.package.tslint" value="project" />
-    <property name="node.js.selected.package.eslint" value="(autodetect)" />
-    <property name="node.js.selected.package.tslint" value="(autodetect)" />
-    <property name="nodejs_package_manager_path" value="npm" />
-    <property name="vue.rearranger.settings.migration" value="true" />
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;lbx__002&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/guilmourrossi/gits/libreflix/routes&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/routes" />
+      <recent name="$PROJECT_DIR$/controllers" />
+      <recent name="$PROJECT_DIR$/models" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-74d2a5396914-JavaScript-PS-241.14494.237" />
+        <option value="bundled-php-predefined-ba97393d7c68-8f0632a2a215-com.jetbrains.php.sharedIndexes-PS-241.14494.237" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -57,6 +85,12 @@
       <workItem from="1618083043923" duration="399000" />
       <workItem from="1618083454938" duration="1255000" />
       <workItem from="1683320064811" duration="11805000" />
+      <workItem from="1720116248403" duration="318000" />
+      <workItem from="1720116574989" duration="22145000" />
+      <workItem from="1720201741864" duration="107000" />
+      <workItem from="1720213214075" duration="7093000" />
+      <workItem from="1720617557393" duration="236000" />
+      <workItem from="1721659174323" duration="38000" />
     </task>
     <task id="LOCAL-00001" summary="Init cinefront branch">
       <created>1618083333093</created>
@@ -170,7 +204,135 @@
       <option name="project" value="LOCAL" />
       <updated>1683336209962</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Converting Models">
+      <option name="closed" value="true" />
+      <created>1720116797836</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1720116797836</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Enhance upload submission and bug fixes">
+      <option name="closed" value="true" />
+      <created>1720129299883</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1720129299885</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Insert festival early Model">
+      <option name="closed" value="true" />
+      <created>1720130335913</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1720130335913</updated>
+    </task>
+    <task id="LOCAL-00020" summary="[LBX-002] Film Festival feature">
+      <option name="closed" value="true" />
+      <created>1720140350510</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1720140350510</updated>
+    </task>
+    <task id="LOCAL-00021" summary="[LBX-002] Film Festival feature">
+      <option name="closed" value="true" />
+      <created>1720143344108</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1720143344108</updated>
+    </task>
+    <task id="LOCAL-00022" summary="[LBX-002] Film Festival feature test">
+      <option name="closed" value="true" />
+      <created>1720156217364</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1720156217364</updated>
+    </task>
+    <task id="LOCAL-00023" summary="[LBX-002] Film Festival feature test">
+      <option name="closed" value="true" />
+      <created>1720190418306</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1720190418306</updated>
+    </task>
+    <task id="LOCAL-00024" summary="[LBX-002] Film Festival feature test">
+      <option name="closed" value="true" />
+      <created>1720214749360</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1720214749360</updated>
+    </task>
+    <task id="LOCAL-00025" summary="[LBX-002] Film Festival feature test">
+      <option name="closed" value="true" />
+      <created>1720215076417</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1720215076417</updated>
+    </task>
+    <task id="LOCAL-00026" summary="seda link">
+      <option name="closed" value="true" />
+      <created>1720232126457</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1720232126457</updated>
+    </task>
+    <task id="LOCAL-00027" summary="seda link 2">
+      <option name="closed" value="true" />
+      <created>1720232494295</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1720232494295</updated>
+    </task>
+    <task id="LOCAL-00028" summary="[LBX-002] Film Festival feature">
+      <option name="closed" value="true" />
+      <created>1720237635975</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1720237635975</updated>
+    </task>
+    <task id="LOCAL-00029" summary="[LBX-002] Film Festival feature">
+      <option name="closed" value="true" />
+      <created>1720237734469</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1720237734469</updated>
+    </task>
+    <task id="LOCAL-00030" summary="[LBX-002] Film Festival feature">
+      <option name="closed" value="true" />
+      <created>1720238186135</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1720238186135</updated>
+    </task>
+    <task id="LOCAL-00031" summary="Change ordination on festival page">
+      <option name="closed" value="true" />
+      <created>1720241139081</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1720241139081</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Banner customisations">
+      <option name="closed" value="true" />
+      <created>1720265052901</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1720265052902</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -198,7 +360,6 @@
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init cinefront branch" />
@@ -216,6 +377,19 @@
     <MESSAGE value="rever new black 2" />
     <MESSAGE value="rever new black 3" />
     <MESSAGE value="rever new black 4" />
-    <option name="LAST_COMMIT_MESSAGE" value="rever new black 4" />
+    <MESSAGE value="Converting Models" />
+    <MESSAGE value="Enhance upload submission and bug fixes" />
+    <MESSAGE value="Insert festival early Model" />
+    <MESSAGE value="[LBX-002] Film Festival feature test" />
+    <MESSAGE value="seda link" />
+    <MESSAGE value="seda link 2" />
+    <MESSAGE value="[LBX-002] Film Festival feature" />
+    <MESSAGE value="Change ordination on festival page" />
+    <MESSAGE value="Banner customisations" />
+    <option name="LAST_COMMIT_MESSAGE" value="Banner customisations" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
