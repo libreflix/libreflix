@@ -135,7 +135,10 @@
 
   <!-- Longas Que o User cadastrou -->
 
-  <h3>{{t('Obras Favoritas')}}</h3>
+  {% if interactions.favorite %}
+    <h3>{{t('Obras Favoritas')}}</h3>
+  {% endif %}
+
   <section class="work">
   <div class="grid">
     <ul class="entries">
@@ -148,7 +151,10 @@
   </div>
   </section>
 
-  <h3>{{t('Obras Assistidas')}}</h3>
+  {% if interactions.alreadyWatched %}
+    <h3>{{t('Obras Assistidas')}}</h3>
+  {% endif %}
+
   <section class="work">
   <div class="grid">
     <ul class="entries">

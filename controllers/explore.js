@@ -26,27 +26,27 @@ exports.formatGet = function(req, res){
 }
 
 // GET film by category
-exports.categoryGet = function(req, res){
-  Category.find({ 'nid': req.params.nid}, null, {sort: '-id'}, function(err, categories){
+exports.categoryGet = function (req, res) {
+  Category.find({'nid': req.params.nid}, null, {sort: '-id'}, function (err, categories) {
     if (err) {
       console.log(err);
     } else {
-    Watch.find({}, null, {sort: '-id'}, function(err, w){
-      if (err) {
-        console.log(err);
-      } else {
-      res.render('explore', {
-        format: 'category',
-        categories: categories,
-        watch: w,
+      Watch.find({}, null, {sort: '-id'}, function (err, w) {
+        if (err) {
+          console.log(err);
+        } else {
+          res.render('explore', {
+            format: 'category',
+            categories: categories,
+            watch: w,
+          });
+        }
       });
     }
-    });
-  }
   });
 }
 
-// GET film by originary country
+// GET film by original country
 exports.countryGet = function(req, res){
   Category.find({}, null, {sort: '-id'}, function(err, categories){
     if (err) {
