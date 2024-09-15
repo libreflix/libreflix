@@ -1,4 +1,4 @@
-![Logo da libreflix](assets/img/libreflix.png)
+![Logo da libreflix](assets/img/libreflix-logo-24.png)
 -----
 ## Sobre
 
