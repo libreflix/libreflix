@@ -48,7 +48,6 @@ make bash
 npm install
 ```
 
-```
 5. Initiate the node server inside the container:
 ``` bash
 make serve
