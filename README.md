@@ -42,9 +42,15 @@ make up
 ``` bash
 make bash
 ```
-4. Initiate the node server inside the container:
+
+4. Install the dependencies in the `libreflix` container:
+```bash
+npm install
+```
+
+5. Initiate the node server inside the container:
 ``` bash
-make server
+make serve
 ```
 
 Ready! If everything is working fine, just access on your browser [http://localhost:3998](http://localhost:3998).
