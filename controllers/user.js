@@ -66,11 +66,28 @@ exports.signupGet = function(req, res) {
 /**
  * POST /signup
  */
-exports.signupPost = function(req, res, next) {
-  req.assert('name', 'O nome não pode ficar em branco').notEmpty();
-  req.assert('email', 'O e-mail inserido não é válido').isEmail();
-  req.assert('email', 'O e-mail não pode ficar em branco').notEmpty();
-  req.assert('password', 'A senha precisa ter pelo menos 4 caracteres').len(4);
+exports.signupPost = function (req, res, next) {
+  // Classe 1 e Classe 2: Validação do Nome
+  req.assert('name', 'O nome não pode ficar em branco.').notEmpty();
+  req.assert('name', 'O nome deve conter apenas letras e espaços.').matches(/^[A-Za-zÀ-ú\s]+$/);
+
+  // Classe 3 e Classe 4: Validação do E-mail
+  req.assert('email', 'O e-mail inserido não é válido.').isEmail();
+  req.assert('email', 'O e-mail não pode ficar em branco.').notEmpty();
+
+  // Classe 5 e Classe 6: Validação da Senha
+  req.assert(
+    'password',
+    'A senha precisa ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas, números e símbolos.'
+  ).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
+
+  // Classe 9 e Classe 10: Validação do Username
+  req.assert('username', 'O username não pode ficar em branco.').notEmpty();
+  req.assert(
+    'username',
+    'O username deve ser alfanumérico, sem espaços e com comprimento entre 4 e 15 caracteres.'
+  ).matches(/^[a-zA-Z0-9]{4,15}$/);
+
   req.sanitize('email').normalizeEmail({ remove_dots: false });
 
   var errors = req.validationErrors();
@@ -80,25 +97,43 @@ exports.signupPost = function(req, res, next) {
     return res.redirect('/signup');
   }
 
-  User.findOne({ email: req.body.email }, function(err, user) {
-    	if (user) {
-      	req.flash('error', { msg: 'O e-mail inserido já está associado com outra conta.' });
-      	return res.redirect('/signup');
-    	}
-   	user = new User({
-      name: req.body.name,
-      username: req.body.username,
-      email: req.body.email,
-      password: req.body.password
-    });
-    user.save(function(err) {
-      req.logIn(user, function(err) {
-        res.redirect('/');
+  // Classe 7 e Classe 8: Verificação de e-mail único
+  User.findOne({ email: req.body.email }, function (err, user) {
+    if (user) {
+      req.flash('error', { msg: 'O e-mail inserido já está associado com outra conta.' });
+      return res.redirect('/signup');
+    }
+
+    // Verificação de username único
+    User.findOne({ username: req.body.username }, function (err, existingUsername) {
+      if (existingUsername) {
+        req.flash('error', { msg: 'O username inserido já está associado com outra conta.' });
+        return res.redirect('/signup');
+      }
+
+      // Criação do novo usuário
+      user = new User({
+        name: req.body.name,
+        username: req.body.username,
+        email: req.body.email,
+        password: req.body.password,
+      });
+
+      user.save(function (err) {
+        if (err) {
+          return next(err);
+        }
+        req.logIn(user, function (err) {
+          if (err) {
+            return next(err);
+          }
+          res.redirect('/');
+        });
       });
     });
   });
-
 };
+
 
 /**
  * GET /account
