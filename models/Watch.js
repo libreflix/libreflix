@@ -114,6 +114,10 @@ const watchSchema = new mongoose.Schema({
     enableTrailer: Boolean,
     paypal_email: String,
 
+    // Pix Donations
+    qrCodePix64: String,
+
+    
     /* For Series */
     n_eps: Number,
     eps: [{
