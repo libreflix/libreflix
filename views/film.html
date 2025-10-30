@@ -190,9 +190,10 @@ $(document).on('shown.bs.modal', '.modal', function () {
               <!--  -->
 
                   {% if film.qrCodePix64 %}
-                      Você pode doar via Pix, pelo QR-Code: 
+                      Você pode doar via Pix, pelo QR-Code:
+                      <br>
                       <center>
-                          <img src="{{film.qrCodePix64}}">
+                          <img width="200px"src="{{film.qrCodePix64}}">
                       </center>
                       
                       {% else %}
