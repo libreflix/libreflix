@@ -130,7 +130,8 @@ player.on('ended', event => {
   document.getElementById("pl-up-next").style.display = "block";
   document.getElementById("pl-up-next-bg").style.backgroundImage = 'url("{{w.imgbg}}")';
   document.getElementById("pl-watch-again").style.backgroundImage = 'url("{{w.thumb480}}")';
-  document.getElementById("pl-up-next-image").style.backgroundImage = 'url("{{w.thumb480}}")';
+  document.getElementById("pl-up-next-image").style.backgroundImage = 'url("{{ w_eps.thumb480 or w.thumb480 }}")';
+
 
   var time = 15;
   this.timerToNext = setInterval((function() {
