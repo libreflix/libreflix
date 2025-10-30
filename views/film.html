@@ -187,8 +187,18 @@ $(document).on('shown.bs.modal', '.modal', function () {
               <input type="hidden" name="image_url" value="https://libreflix.org/libreflix_min.png">
               <input type="hidden" name="custom" value="{{film.permalink}}">
 
-              Valor da sua retribuição: &nbsp
-              <input id="amount" name="amount" min="1" size="2" autocomplete="off" class="price_donation" placeholder="R$" autofocus>
+              <!--  -->
+
+                  {% if film.qrCodePix64 %}
+                      Você pode doar via Pix, pelo QR-Code: 
+                      <center>
+                          <img src="{{film.qrCodePix64}}">
+                      </center>
+                      
+                      {% else %}
+                        Valor da sua retribuição: &nbsp
+                          <input id="amount" name="amount" min="1" size="2" autocomplete="off" class="price_donation" placeholder="R$" autofocus>
+                  {% endif %}
 
               <!-- <select  class="selectpicker" name="currency_code">
           		  <option value="">Select Currency</option>
@@ -234,7 +244,9 @@ $(document).on('shown.bs.modal', '.modal', function () {
               </div>
               <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times-circle"></i> {{ t('Fechar') }} </button>
-                <a href="/i/{{ w.permalink }}"><button type="submit" class="btn btn-success"><i class="fa fa-handshake-o "></i> {{ t('Retribuir Agora') }} </button></a>
+                  {% if not film.qrCodePix64 %}
+                    <a href="/i/{{ w.permalink }}"><button type="submit" class="btn btn-success"><i class="fa fa-handshake-o "></i> {{ t('Retribuir Agora') }} </button></a>
+                  {% endif %}
                 <!-- <a href="/i/{{ w.permalink }}"><button type="button" class="btn btn-success">{{ t('Assistir') }} <i class="fa fa-play-circle"></i></button></a> -->
               </div>
               </form>
