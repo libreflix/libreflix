@@ -5,7 +5,8 @@ var Reference = require('../models/Reference');
 var mongoose = require('mongoose');
 var nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
-
+var { validarFormulario } = require("../src/validacoes"); // Importa as validações
+var Watch = require("../models/Watch");
 
 // Get Movie or Series
 exports.watchGet = function(req, res){
@@ -87,33 +88,28 @@ exports.newWatchGet = function(req, res) {
 };
 
 // POST New Production
-exports.newWatchPost = function(req, res, next) {
+var { validarFormulario } = require("../src/validacoes"); // Importa as validações
+var Watch = require("../models/Watch");
 
+exports.newWatchPost = function (req, res, next) {
+  var erro = validarFormulario(req.body);
 
-var body = req.body;
-
-  // para retornar depois do erro
-  var form = {
-  };
-
-  var errors = req.validationErrors();
-
-  if (errors) {
-    req.flash('error', errors);
-    return res.render('novo', {form: form});
+  if (erro) {
+    req.flash("error", { msg: erro });
+    return res.redirect("/novo"); // Impede o cadastro e retorna erro
   }
 
-  Watch.findOne({ permalink: req.body.permalink }, function(err, watch) {
-    	if (watch) {
-      	req.flash('error', { msg: 'O permalink inserido já existe. Tente outro.' });
-      	return res.redirect('/novo');
-    	}
-      // Para salvar no BD
-   	watch = new Watch({
+  Watch.findOne({ permalink: req.body.permalink }, function (err, watch) {
+    if (watch) {
+      req.flash("error", { msg: "O permalink inserido já existe. Tente outro." });
+      return res.redirect("/novo");
+    }
+
+    var newWatch = new Watch({
       criador: req.user.id,
       permalink: req.body.permalink,
-      layout: 'filme',
-      featured : false,
+      layout: "filme",
+      featured: false,
       title: req.body.title,
       subtitle: req.body.subtitle,
       sinopse: req.body.sinopse,
@@ -124,16 +120,18 @@ var body = req.body;
       thumb480: req.body.thumb480,
       imgbg: req.body.imgbg,
       tags: req.body.tags,
-      status: "pending"
+      status: "pending",
     });
-    watch.save(function(err) {
-      //req.logIn(campanha, function(err) {
-        req.flash('success', { msg: 'Muito obrigado por sua colaboração. Em breve a produção estará no ar. <3' });
-        res.redirect('/');
-      //});
+
+    newWatch.save(function (err) {
+      if (err) {
+        req.flash("error", { msg: "Erro ao salvar no banco de dados." });
+        return res.redirect("/novo");
+      }
+      req.flash("success", { msg: "Muito obrigado por sua colaboração. Em breve a produção estará no ar. <3" });
+      res.redirect("/");
     });
   });
-
 };
 
 
