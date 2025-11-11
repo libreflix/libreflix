@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "start": "node server.js",
-    "start-dev": "nodemon server.js"
+    "start-dev": "nodemon server.js",
+    "test": "nyc mocha"
   },
   "dependencies": {
     "async": "^1.5.2",
@@ -40,7 +41,9 @@
     "passport-twitter": "^1.0.4",
     "uuid": "^3.1.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "mocha": "^3.5.3"
+  },
   "engines": {
     "node": "^6.1.0"
   }

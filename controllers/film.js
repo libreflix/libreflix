@@ -140,14 +140,24 @@ exports.filmPost = function(req, res, next) {
 exports.favoriteGet = function(req, res, next) {
 
   if (req.xhr || req.accepts('json,html') === 'json') {
-    console.log('OI');
-    console.log(req.body.u);
+
 
     Watch.findOne({ 'permalink': req.params.permalink }, function(err, watch){
+
+      if (err) {
+        return next(err); // Trate o erro se houver
+      }
+
+      if (!watch) {
+        return res.status(404).send({ success: false, message: 'Watch not found' });
+      }
 
       var phash = req.user.id + watch.id
 
       Interaction.findOne({'proofhash': phash}, function(err, interaction){
+        if (err) {
+          return next(err); // Trate o erro se houver
+        }
         // If there is a interaction...
         // Para salvar no BD
         if (interaction) {
@@ -172,6 +182,7 @@ exports.favoriteGet = function(req, res, next) {
             proofhash: phash,
             date: Date.now()
           });
+
           interaction.save(function(err) {
               res.send({success: true})
           });
@@ -186,10 +197,7 @@ exports.favoriteGet = function(req, res, next) {
 exports.alreadyWatchedGet = function(req, res, next) {
 
   if (req.xhr || req.accepts('json,html') === 'json') {
-    console.log('OI');
     console.log(req.body.u);
-
-
 
     Watch.findOne({ 'permalink': req.params.permalink }, function(err, watch){
 
@@ -230,6 +238,7 @@ exports.alreadyWatchedGet = function(req, res, next) {
     })
   }
 }
+
 exports.newTags = function(req, res, next) {
 
   if (req.xhr || req.accepts('json,html') === 'json') {
