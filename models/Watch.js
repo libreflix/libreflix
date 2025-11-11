@@ -19,7 +19,7 @@ const watchSchema = new mongoose.Schema({
     status: String,
     modComments: {
         moderator: {type: mongoose.Schema.ObjectId, ref: 'User'},
-        status: String, // wainting, pending, approved, rejected,
+        status: String, // waiting, pending, approved, rejectedm striked
         date: Date,
         comment: String
     },
@@ -28,6 +28,7 @@ const watchSchema = new mongoose.Schema({
     downloadable: Boolean,
     canwecopy: Boolean,
 
+    views: Number,
 
     /* Basic */
     title: String,
@@ -117,7 +118,6 @@ const watchSchema = new mongoose.Schema({
     // Pix Donations
     qrCodePix64: String,
 
-    
     /* For Series */
     n_eps: Number,
     eps: [{

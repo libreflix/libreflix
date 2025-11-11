@@ -315,6 +315,8 @@ $(document).on('shown.bs.modal', '.modal', function () {
           </p>
           {% endif %}
 
+
+          {{ printSimpleField('Visualizações', film.views) }}
           {{ printSimpleField('Cidade de Origem', film.location.city) }}
           {{ printSimpleField('Estado de Origem', film.location.state) }}
           {{ printSimpleField('Lançamento', film.premiere) }}
