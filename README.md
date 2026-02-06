@@ -1,58 +1,100 @@
-![Logo da libreflix](assets/img/libreflix-logo-24.png)
------
-## Sobre
+<p align="center">
+  <img src="assets/img/libreflix-logo-24.png" alt="Libreflix Logo" width="300">
+</p>
 
-Libreflix é uma plataforma de streaming livre e colaborativa que reúne produções audiovisuais independentes, de livre exibição e que fazem pensar.
+# Libreflix
 
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL%20v3-blue.svg)](https://www.gnu.org/licenses/agpl-3.0)
+[![Node.js Version](https://img.shields.io/badge/node-%3E%3D6.1.0-brightgreen.svg)](https://nodejs.org/)
+[![Docker](https://img.shields.io/badge/docker-supported-blue.svg)](https://www.docker.com/)
 
-![](https://guilmour.org/img/blog/2018/libreflix-nacionais.jpg)
+Libreflix is a free, collaborative streaming platform that gathers independent audiovisual productions that are free to watch and thought-provoking.
 
-Nós defendemos novas formas de compartilhamento da cultura. Formas que atinjam todas as pessoas, principalmente as que não podem pagar por ela. Formas que conectem os artistas direto com os fãs. E até formas que permitam que artistas criem algo novo à partir do trabalho de outros artistas. Cultura é ciência, é poesia e é de todo mundo.
+![Libreflix Interface](https://guilmour.org/img/blog/2018/libreflix-nacionais.jpg)
 
-## Acessar
-- **Na web:** Você só precisa acessar o endereço https://libreflix.org
-- **GNU/Linux:** Em breve :)
-- **Android:** Baixe o nosso .apk disponível em https://libreflix.org/apps/#android
-- **F-Droid:** Procure o app dentro do F-droid: https://f-droid.org/en/packages/org.libreflix.app/
-- **Windows:** Baixe o programa instalável disponível em https://libreflix.org/apps/#windows
+## About
 
-## Jeitos de ajudar
-- Contribua com o código-fonte do programa
-- Ajuda na nossa campanha de financiamento coletivo https://catarse.me/libreflix
-- Entre em contato para ser um moderador de conteúdo
-- Divulgue, compartilhe, baixe e mostra para os amigos sobre a paltaforma
+We advocate for new ways of sharing culture—methods that reach everyone, especially those who cannot afford it. We believe in connecting artists directly with their fans and enabling creators to build upon the work of others. Culture is science, poetry, and it belongs to everyone.
 
-## Desenvolvimento
-**Deploying (Using Docker)**
-0. First, clone the repository.
-``` bash
-cd libreflix
-```
+## Access Libreflix
 
-1. Copy environment file
-``` bash
-cp .env.sample .env
-```
+- **Web:** Simply visit [libreflix.org](https://libreflix.org)
+- **GNU/Linux:** Coming soon! :)
+- **Android:** Download our .apk at [libreflix.org/apps/#android](https://libreflix.org/apps/#android)
+- **F-Droid:** Find us on F-Droid: [org.libreflix.app](https://f-droid.org/en/packages/org.libreflix.app/)
+- **Windows:** Download the installer at [libreflix.org/apps/#windows](https://libreflix.org/apps/#windows)
 
-2. Finally, use make commands to build and up the containers:
-``` bash
-make up
-```
-3. In another shell, you'll need to enter the `libreflix` container:
-``` bash
-make bash
-```
+## Technology Stack
 
-4. Install the dependencies in the `libreflix` container:
-```bash
-npm install
-```
+Libreflix is built with a modern and flexible stack:
 
-5. Initiate the node server inside the container:
-``` bash
-make serve
-```
+- **Backend:** Node.js, Express
+- **Database:** MongoDB (via Mongoose)
+- **Templating:** Nunjucks
+- **Search:** Elasticsearch
+- **Validation:** Express-Validator
+- **Authentication:** Passport.js
 
-Ready! If everything is working fine, just access on your browser [http://localhost:3998](http://localhost:3998).
-If you have any problem, feel free to open an [issue](https://github.com/libreflix/libreflix/issues/new).
+## Development
+
+### Prerequisites
+
+- [Docker](https://www.docker.com/) and [Docker Compose](https://docs.docker.com/compose/)
+- Alternatively, Node.js (>= 6.1.0) and MongoDB
+
+### Quick Start (Using Docker)
+
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/libreflix/libreflix.git
+   cd libreflix
+   ```
+
+2. **Setup environment variables:**
+   ```bash
+   cp .env.sample .env
+   ```
+
+3. **Build and run the containers:**
+   ```bash
+   make up
+   ```
+
+The application will be available at [http://localhost:3998](http://localhost:3998).
+
+### Database Migrations
+
+Manage database changes using our custom migration system:
+
+*   **Run all pending migrations:**
+    ```bash
+    make db-migration
+    ```
+*   **Run a specific migration up:**
+    ```bash
+    make db-migration-up id=<timestamp>
+    ```
+*   **Run a specific migration down:**
+    ```bash
+    make db-migration-down id=<timestamp>
+    ```
+
+## How to Help
+
+There are many ways to contribute to Libreflix:
+
+- **Code:** Contribute to our source code here on GitHub.
+- **Funding:** Support our crowdfunding campaign at [catarse.me/libreflix](https://catarse.me/libreflix).
+- **Moderation:** Get in touch to become a content moderator.
+- **Spread the Word:** Share, download, and tell your friends about the platform!
+
+## License
+
+This project is licensed under the **GNU Affero General Public License v3.0**. See the [LICENSE.md](LICENSE.md) file for details.
+
+Copyright by [Guilmour Rossi and contributors](https://github.com/libreflix/libreflix/graphs/contributors).
+
+---
+
+If you encounter any problems, feel free to open an [issue](https://github.com/libreflix/libreflix/issues/new).
 

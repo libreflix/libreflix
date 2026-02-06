@@ -1,6 +1,6 @@
 {
   "name": "Libreflix",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "description": "",
   "scripts": {
     "start": "node server.js",
@@ -31,7 +31,7 @@
     "mongoose-intl": "^3.1.0",
     "morgan": "^1.7.0",
     "nodemailer": "^2.3.0",
-    "nunjucks": "^2.5.2",
+    "nunjucks": "3.2.4",
     "nunjucks-markdown": "^2.0.1",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.0",
