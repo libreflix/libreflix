@@ -50,3 +50,22 @@ make server
 Ready! If everything is working fine, just access on your browser [http://localhost:3998](http://localhost:3998).
 If you have any problem, feel free to open an [issue](https://github.com/libreflix/libreflix/issues/new).
 
+## Database Migrations
+
+Manage database changes using the custom migration system.
+
+### Run all pending migrations
+```bash
+make db-migration
+```
+
+### Run a specific migration up
+```bash
+make db-migration-up id=20260206183946
+```
+
+### Run a specific migration down
+```bash
+make db-migration-down id=20260206183946
+```
+

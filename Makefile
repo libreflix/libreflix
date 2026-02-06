@@ -60,3 +60,16 @@ down:
 
 serve:
 	nodemon -e js,html,css,md,json server.js
+
+db-migration:
+	docker compose exec libreflix node scripts/migrate.js up $(id)
+
+db-migration-up:
+	docker compose exec libreflix node scripts/migrate.js up $(id)
+
+db-migration-down:
+	docker compose exec libreflix node scripts/migrate.js down $(id)
+
+start:
+	node scripts/migrate.js up
+	nodemon -e js,html,css,md,json server.js
