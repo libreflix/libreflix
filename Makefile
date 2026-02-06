@@ -8,28 +8,28 @@ configure-nodejs:
 	rm -rf /var/lib/apt/lists/*
 
 docker-build:
-	docker-compose build
+	docker compose build
 
 docker-run:
-	docker-compose up -d
+	docker compose up -d
 
 docker-down:
-	docker-compose down
+	docker compose down
 
 docker-destroy:
-	docker-compose down -v
+	docker compose down -v
 
 docker-status:
-	docker-compose ps
+	docker compose ps
 
 docker-bash:
-	docker-compose exec libreflix /bin/bash
+	docker compose exec libreflix /bin/bash
 
 docker-logs:
-	docker-compose logs -f
+	docker compose logs -f
 
 docker-test:
-	docker-compose run --rm libreflix npm test
+	docker compose run --rm libreflix npm test
 
 npm-build:
 	npm install . 
@@ -49,7 +49,14 @@ up:
 	docker compose up
 
 build:
+	docker compose up --build
+
+rebuild:
+	docker compose build --no-cache
 	docker compose up
+
+down:
+	docker compose down	
 
 serve:
 	nodemon -e js,html,css,md,json server.js

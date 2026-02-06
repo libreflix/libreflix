@@ -1,5 +1,3 @@
-version: '2'
-
 services:
   database:
       logging:
@@ -18,8 +16,7 @@ services:
       volumes:
         - ./:/libreflix
         - /libreflix/node_modules
-      # command: nodemon -e js,html,css,md,json server.js
-      command: /bin/bash
+      command: nodemon -e js,html,css,md,json server.js
       ports:
         - "3998:3998"
       links:
