@@ -1,0 +1,53 @@
+services:
+  mongo:
+    image: mongo:7.0
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=$MONGO_USERNAME
+      - MONGO_INITDB_ROOT_PASSWORD=$MONGO_PASSWORD
+    volumes:
+      - ./data:/data/db
+    networks:
+      - db
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+  app:
+    user: node
+    env_file: .env
+    build:
+      context: .
+    command: npm start
+    volumes:
+      - ./public:/app/public:ro
+    environment:
+      - BASEURL=http://localhost
+      - MONGO_USERNAME=$MONGO_USERNAME
+      - MONGO_PASSWORD=$MONGO_PASSWORD
+      - MONGO_HOSTNAME=mongo
+      - MONGO_PORT=$MONGO_PORT
+      - MONGO_DB=$DB_NAME
+    depends_on:
+      mongo:
+        condition: service_healthy
+    networks:
+      - db
+      - app
+    expose:
+      - "3998"
+  nginx:
+    image: nginx:alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./public:/app/public:ro
+    networks:
+      - app
+    depends_on:
+      - app
+    restart: unless-stopped
+
+networks:
+  app:
+    driver: bridge
+  db:
+    driver: bridge
