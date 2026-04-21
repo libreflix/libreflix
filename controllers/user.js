@@ -1,44 +1,45 @@
-var async = require('async');
-var crypto = require('crypto');
-var nodemailer = require('nodemailer');
-var passport = require('passport');
-var User = require('../models/User');
+var async = require("async");
+var crypto = require("crypto");
+var nodemailer = require("nodemailer");
+var passport = require("passport");
+var User = require("../models/User");
 
+const { body, sanitize, validationResult } = require("express-validator");
 /**
  * GET /login
  */
-exports.loginGet = function(req, res) {
+exports.loginGet = function (req, res) {
   if (req.user) {
-    return res.redirect('/');
+    return res.redirect("/");
   }
-  res.render('account/login', {
-    title: 'Log in'
+  res.render("account/login", {
+    title: "Log in",
   });
 };
 
 /**
  * POST /login
  */
-exports.loginPost = function(req, res, next) {
-  req.assert('email', 'O e-mail inserido não é válido').isEmail();
-  req.assert('email', 'O e-mail não pode ficar em branco').notEmpty();
-  req.assert('password', 'A senha não pode ficar em branco').notEmpty();
-  req.sanitize('email').normalizeEmail({ remove_dots: false });
+exports.loginPost = async function (req, res, next) {
+  await body("title", "O campo título precisa ser preenchido.").run(req);
+  await body("email", "O e-mail inserido não é válido").run(req);
+  await body("email", "O e-mail não pode ficar em branco").run(req);
+  await body("password", "A senha não pode ficar em branco").run(req);
+  await sanitize("email").normalizeEmail({ remove_dots: false }).run(req);
 
-  var errors = req.validationErrors();
-
+  var errors = !validationResult(req).isEmpty();
   if (errors) {
-    req.flash('error', errors);
-    return res.redirect('/login');
+    req.flash("error", errors);
+    return res.redirect("/login");
   }
 
-  passport.authenticate('local', function(err, user, info) {
+  passport.authenticate("local", function (err, user, info) {
     if (!user) {
-      req.flash('error', info);
-      return res.redirect('/login')
+      req.flash("error", info);
+      return res.redirect("/login");
     }
-    req.logIn(user, function(err) {
-      res.redirect('/');
+    req.logIn(user, function (err) {
+      res.redirect("/");
     });
   })(req, res, next);
 };
@@ -46,66 +47,69 @@ exports.loginPost = function(req, res, next) {
 /**
  * GET /logout
  */
-exports.logout = function(req, res) {
+exports.logout = function (req, res) {
   req.logout();
-  res.redirect('/');
+  res.redirect("/");
 };
 
 /**
  * GET /signup
  */
-exports.signupGet = function(req, res) {
+exports.signupGet = function (req, res) {
   if (req.user) {
-    return res.redirect('/');
+    return res.redirect("/");
   }
-  res.render('account/signup', {
-    title: 'Criar conta'
+  res.render("account/signup", {
+    title: "Criar conta",
   });
 };
 
 /**
  * POST /signup
  */
-exports.signupPost = function(req, res, next) {
-  req.assert('name', 'O nome não pode ficar em branco').notEmpty();
-  req.assert('email', 'O e-mail inserido não é válido').isEmail();
-  req.assert('email', 'O e-mail não pode ficar em branco').notEmpty();
-  req.assert('password', 'A senha precisa ter pelo menos 4 caracteres').len(4);
-  req.sanitize('email').normalizeEmail({ remove_dots: false });
+exports.signupPost = async function (req, res, next) {
+  await body("name", "O nome não pode ficar em branco").run(req);
+  await body("email", "O e-mail inserido não é válido").run(req);
+  await body("email", "O e-mail não pode ficar em branco").run(req);
+  await body("password", "A senha precisa ter pelo menos 4 caracteres").le.run(
+    req,
+  );
+  await sanitize("email").normalizeEmail({ remove_dots: false }).run(req);
 
-  var errors = req.validationErrors();
+  var errors = !validationResult(req).isEmpty();
 
   if (errors) {
-    req.flash('error', errors);
-    return res.redirect('/signup');
+    req.flash("error", errors);
+    return res.redirect("/signup");
   }
 
-  User.findOne({ email: req.body.email }, function(err, user) {
-    	if (user) {
-      	req.flash('error', { msg: 'O e-mail inserido já está associado com outra conta.' });
-      	return res.redirect('/signup');
-    	}
-   	user = new User({
+  User.findOne({ email: req.body.email }, function (err, user) {
+    if (user) {
+      req.flash("error", {
+        msg: "O e-mail inserido já está associado com outra conta.",
+      });
+      return res.redirect("/signup");
+    }
+    user = new User({
       name: req.body.name,
       username: req.body.username,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
     });
-    user.save(function(err) {
-      req.logIn(user, function(err) {
-        res.redirect('/');
+    user.save(function (err) {
+      req.logIn(user, function (err) {
+        res.redirect("/");
       });
     });
   });
-
 };
 
 /**
  * GET /account
  */
-exports.accountGet = function(req, res) {
-  res.render('account/profile', {
-    title: 'Minha Conta'
+exports.accountGet = function (req, res) {
+  res.render("account/profile", {
+    title: "Minha Conta",
   });
 };
 
@@ -113,25 +117,27 @@ exports.accountGet = function(req, res) {
  * PUT /account
  * Update profile information OR change password.
  */
-exports.accountPut = function(req, res, next) {
-  if ('password' in req.body) {
-    req.assert('password', 'A senha precisa ter pelo menos 4 caracteres.').len(4);
-    req.assert('confirm', 'As senhas inseridas não conferem.').equals(req.body.password);
+exports.accountPut = async function (req, res, next) {
+  if ("password" in req.body) {
+    await body("password", "A senha precisa ter pelo menos 4 caracteres.").run(
+      req,
+    );
+    await body("confirm", "As senhas inseridas não conferem.").run(req);
   } else {
-    req.assert('email', 'Este e-mail não é válido.').isEmail();
-    req.assert('email', 'O campo "Email" precisa ser preenchido.').notEmpty();
-    req.sanitize('email').normalizeEmail({ remove_dots: false });
+    await body("email", "Este e-mail não é válido.").run(req);
+    await body("email", 'O campo "Email" precisa ser preenchido.').run(req);
+    await sanitize("email").normalizeEmail({ remove_dots: false }).run(req);
   }
 
-  var errors = req.validationErrors();
+  var errors = !validationResult(req).isEmpty();
 
   if (errors) {
-    req.flash('error', errors);
-    return res.redirect('/account');
+    req.flash("error", errors);
+    return res.redirect("/account");
   }
 
-  User.findById(req.user.id, function(err, user) {
-    if ('password' in req.body) {
+  User.findById(req.user.id, function (err, user) {
+    if ("password" in req.body) {
       user.password = req.body.password;
     } else {
       user.email = req.body.email;
@@ -143,15 +149,19 @@ exports.accountPut = function(req, res, next) {
       user.cover_picture = req.body.cover_picture;
       user.allowNewsletter = req.body.allow_newsletter;
     }
-    user.save(function(err) {
-      if ('password' in req.body) {
-        req.flash('success', { msg: 'Sua senha foi redefinida com sucesso.' });
+    user.save(function (err) {
+      if ("password" in req.body) {
+        req.flash("success", { msg: "Sua senha foi redefinida com sucesso." });
       } else if (err && err.code === 11000) {
-        req.flash('error', { msg: 'E-mail ou username inseridos já estão associados com outra conta.' });
+        req.flash("error", {
+          msg: "E-mail ou username inseridos já estão associados com outra conta.",
+        });
       } else {
-        req.flash('success', { msg: 'Suas informações foram alteradas com sucesso.' });
+        req.flash("success", {
+          msg: "Suas informações foram alteradas com sucesso.",
+        });
       }
-      res.redirect('/account');
+      res.redirect("/account");
     });
   });
 };
@@ -159,42 +169,42 @@ exports.accountPut = function(req, res, next) {
 /**
  * DELETE /account
  */
-exports.accountDelete = function(req, res, next) {
-  User.remove({ _id: req.user.id }, function(err) {
+exports.accountDelete = function (req, res, next) {
+  User.remove({ _id: req.user.id }, function (err) {
     req.logout();
-    req.flash('info', { msg: 'Sua conta foi foi excluída com sucesso.' });
-    res.redirect('/');
+    req.flash("info", { msg: "Sua conta foi foi excluída com sucesso." });
+    res.redirect("/");
   });
 };
 
 /**
  * GET /unlink/:provider
  */
-exports.unlink = function(req, res, next) {
-  User.findById(req.user.id, function(err, user) {
+exports.unlink = function (req, res, next) {
+  User.findById(req.user.id, function (err, user) {
     switch (req.params.provider) {
-      case 'facebook':
+      case "facebook":
         user.facebook = undefined;
         break;
-      case 'google':
+      case "google":
         user.google = undefined;
         break;
-      case 'twitter':
+      case "twitter":
         user.twitter = undefined;
         break;
-      case 'vk':
+      case "vk":
         user.vk = undefined;
         break;
-      case 'github':
-          user.github = undefined;
+      case "github":
+        user.github = undefined;
         break;
       default:
-        req.flash('error', { msg: 'Invalid OAuth Provider' });
-        return res.redirect('/account');
+        req.flash("error", { msg: "Invalid OAuth Provider" });
+        return res.redirect("/account");
     }
-    user.save(function(err) {
-      req.flash('success', { msg: 'Your account has been unlinked.' });
-      res.redirect('/account');
+    user.save(function (err) {
+      req.flash("success", { msg: "Your account has been unlinked." });
+      res.redirect("/account");
     });
   });
 };
@@ -202,92 +212,110 @@ exports.unlink = function(req, res, next) {
 /**
  * GET /forgot
  */
-exports.forgotGet = function(req, res) {
+exports.forgotGet = function (req, res) {
   if (req.isAuthenticated()) {
-    return res.redirect('/');
+    return res.redirect("/");
   }
-  res.render('account/forgot', {
-    title: 'Forgot Password'
+  res.render("account/forgot", {
+    title: "Forgot Password",
   });
 };
 
 /**
  * POST /forgot
  */
-exports.forgotPost = function(req, res, next) {
-  req.assert('email', 'O e-mail não é válido').isEmail();
-  req.assert('email', ' e-mail não pode ficar em branco').notEmpty();
-  req.sanitize('email').normalizeEmail({ remove_dots: false });
+exports.forgotPost = async function (req, res, next) {
+  await body("email", "O e-mail não é válido").run(req);
+  await body("email", " e-mail não pode ficar em branco").run(req);
+  await sanitize("email").normalizeEmail({ remove_dots: false }).run(req);
 
-  var errors = req.validationErrors();
+  var errors = !validationResult(req).isEmpty();
 
   if (errors) {
-    req.flash('error', errors);
-    return res.redirect('/forgot');
+    req.flash("error", errors);
+    return res.redirect("/forgot");
   }
 
   async.waterfall([
-    function(done) {
-      crypto.randomBytes(16, function(err, buf) {
-        var token = buf.toString('hex');
+    function (done) {
+      crypto.randomBytes(16, function (err, buf) {
+        var token = buf.toString("hex");
         done(err, token);
       });
     },
-    function(token, done) {
-      User.findOne({ email: req.body.email }, function(err, user) {
+    function (token, done) {
+      User.findOne({ email: req.body.email }, function (err, user) {
         if (!user) {
-          req.flash('error', { msg: 'O endereço de e-mail ' + req.body.email + ' não está associado com nenhuma conta.' });
-          return res.redirect('/forgot');
+          req.flash("error", {
+            msg:
+              "O endereço de e-mail " +
+              req.body.email +
+              " não está associado com nenhuma conta.",
+          });
+          return res.redirect("/forgot");
         }
         user.passwordResetToken = token;
         user.passwordResetExpires = Date.now() + 3600000; // expire in 1 hour
-        user.save(function(err) {
+        user.save(function (err) {
           done(err, token, user);
         });
       });
     },
-    function(token, user, done) {
+    function (token, user, done) {
       var transporter = nodemailer.createTransport({
-        service: 'Mailgun',
+        service: "Mailgun",
         auth: {
           user: process.env.MAILGUN_USERNAME,
-          pass: process.env.MAILGUN_PASSWORD
-        }
+          pass: process.env.MAILGUN_PASSWORD,
+        },
       });
       var mailOptions = {
         to: user.email,
-        from: 'libreflix@protonmail.com',
-        subject: 'Redefinir sua senha no Libreflix',
-        text: 'Oi, tudo bem?\n\n Você está recebendo esse email porque pediu para redefenir a senha da sua conta no Libreflix.\n\n' +
-        'Por favor, clique no link a seguir, ou cole no seu navegador para completar esse processo:\n\n' +
-        'https://' + req.headers.host + '/reset/' + token + '\n\n' +
-        'Se você não pediu essa redefinição, por favor ignore este e-mail e a sua senha não sofrerá nenhuma alteração.\n' +
-        '\nAbraços Libres! <3\n\nTime Libreflix\n\n'
+        from: "libreflix@protonmail.com",
+        subject: "Redefinir sua senha no Libreflix",
+        text:
+          "Oi, tudo bem?\n\n Você está recebendo esse email porque pediu para redefenir a senha da sua conta no Libreflix.\n\n" +
+          "Por favor, clique no link a seguir, ou cole no seu navegador para completar esse processo:\n\n" +
+          "https://" +
+          req.headers.host +
+          "/reset/" +
+          token +
+          "\n\n" +
+          "Se você não pediu essa redefinição, por favor ignore este e-mail e a sua senha não sofrerá nenhuma alteração.\n" +
+          "\nAbraços Libres! <3\n\nTime Libreflix\n\n",
       };
-      transporter.sendMail(mailOptions, function(err) {
-        req.flash('info', { msg: 'Um e-mail foi enviado para ' + user.email + ' com mais informações.' });
-        res.redirect('/forgot');
+      transporter.sendMail(mailOptions, function (err) {
+        req.flash("info", {
+          msg:
+            "Um e-mail foi enviado para " +
+            user.email +
+            " com mais informações.",
+        });
+        res.redirect("/forgot");
       });
-    }
+    },
   ]);
 };
 
 /**
  * GET /reset
  */
-exports.resetGet = function(req, res) {
+exports.resetGet = async function (req, res) {
   if (req.isAuthenticated()) {
-    return res.redirect('/');
+    return res.redirect("/");
   }
   User.findOne({ passwordResetToken: req.params.token })
-    .where('passwordResetExpires').gt(Date.now())
-    .exec(function(err, user) {
+    .where("passwordResetExpires")
+    .gt(Date.now())
+    .exec(function (err, user) {
       if (!user) {
-        req.flash('error', { msg: 'Password reset token is invalid or has expired.' });
-        return res.redirect('/forgot');
+        req.flash("error", {
+          msg: "Password reset token is invalid or has expired.",
+        });
+        return res.redirect("/forgot");
       }
-      res.render('account/reset', {
-        title: 'Redefinir Senha'
+      res.render("account/reset", {
+        title: "Redefinir Senha",
       });
     });
 };
@@ -295,55 +323,63 @@ exports.resetGet = function(req, res) {
 /**
  * POST /reset
  */
-exports.resetPost = function(req, res, next) {
-  req.assert('password', 'A senha precisa ter ao menos 4 caracteres').len(4);
-  req.assert('confirm', 'A senhas não são iguais').equals(req.body.password);
+exports.resetPost = async function (req, res, next) {
+  await body("password", "A senha precisa ter ao menos 4 caracteres").le.run(
+    req,
+  );
+  await body("confirm", "A senhas não são iguais").run(req);
 
-  var errors = req.validationErrors();
+  var errors = !validationResult(req).isEmpty();
 
   if (errors) {
-    req.flash('error', errors);
-    return res.redirect('back');
+    req.flash("error", errors);
+    return res.redirect("back");
   }
 
   async.waterfall([
-    function(done) {
+    function (done) {
       User.findOne({ passwordResetToken: req.params.token })
-        .where('passwordResetExpires').gt(Date.now())
-        .exec(function(err, user) {
+        .where("passwordResetExpires")
+        .gt(Date.now())
+        .exec(function (err, user) {
           if (!user) {
-            req.flash('error', { msg: 'Password reset token is invalid or has expired.' });
-            return res.redirect('back');
+            req.flash("error", {
+              msg: "Password reset token is invalid or has expired.",
+            });
+            return res.redirect("back");
           }
           user.password = req.body.password;
           user.passwordResetToken = undefined;
           user.passwordResetExpires = undefined;
-          user.save(function(err) {
-            req.logIn(user, function(err) {
+          user.save(function (err) {
+            req.logIn(user, function (err) {
               done(err, user);
             });
           });
         });
     },
-    function(user, done) {
+    function (user, done) {
       var transporter = nodemailer.createTransport({
-        service: 'Mailgun',
+        service: "Mailgun",
         auth: {
           user: process.env.MAILGUN_USERNAME,
-          pass: process.env.MAILGUN_PASSWORD
-        }
+          pass: process.env.MAILGUN_PASSWORD,
+        },
       });
       var mailOptions = {
-        from: 'libreflix@protonmail.com',
+        from: "libreflix@protonmail.com",
         to: user.email,
-        subject: 'Sua senha no Libreflix foi alterada',
-        text: 'Olá! Tudo bem? \n\n' +
-        'Este e-mail é uma confirmação que a senha da sua conta no Libreflix (' + user.email + ') foi alterada recentemente.\n\nAbraços Libres! <3\n\nTime Libreflix\n\n'
+        subject: "Sua senha no Libreflix foi alterada",
+        text:
+          "Olá! Tudo bem? \n\n" +
+          "Este e-mail é uma confirmação que a senha da sua conta no Libreflix (" +
+          user.email +
+          ") foi alterada recentemente.\n\nAbraços Libres! <3\n\nTime Libreflix\n\n",
       };
-      transporter.sendMail(mailOptions, function(err) {
-        req.flash('success', { msg: 'Sua senha foi alterada com sucesso.' });
-        res.redirect('/account');
+      transporter.sendMail(mailOptions, function (err) {
+        req.flash("success", { msg: "Sua senha foi alterada com sucesso." });
+        res.redirect("/account");
       });
-    }
+    },
   ]);
 };
