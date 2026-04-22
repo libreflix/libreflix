@@ -66,39 +66,77 @@ exports.signupGet = function(req, res) {
 /**
  * POST /signup
  */
-exports.signupPost = function(req, res, next) {
-  req.assert('name', 'O nome não pode ficar em branco').notEmpty();
-  req.assert('email', 'O e-mail inserido não é válido').isEmail();
-  req.assert('email', 'O e-mail não pode ficar em branco').notEmpty();
-  req.assert('password', 'A senha precisa ter pelo menos 4 caracteres').len(4);
+const nodemailer = require('nodemailer');
+
+exports.signupPost = function (req, res, next) {
+  req.assert('name', 'O nome não pode ficar em branco.').notEmpty();
+  req.assert('email', 'O e-mail inserido não é válido.').isEmail();
+  req.assert('password', 'A senha precisa ter pelo menos 8 caracteres.').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
+  req.assert('username', 'O username não pode ficar em branco.').notEmpty();
+
   req.sanitize('email').normalizeEmail({ remove_dots: false });
 
-  var errors = req.validationErrors();
-
+  const errors = req.validationErrors();
   if (errors) {
     req.flash('error', errors);
     return res.redirect('/signup');
   }
 
-  User.findOne({ email: req.body.email }, function(err, user) {
-    	if (user) {
-      	req.flash('error', { msg: 'O e-mail inserido já está associado com outra conta.' });
-      	return res.redirect('/signup');
-    	}
-   	user = new User({
+  User.findOne({ email: req.body.email }, async function (err, user) {
+    if (user) {
+      req.flash('error', { msg: 'O e-mail já está cadastrado.' });
+      return res.redirect('/signup');
+    }
+
+    const existingUsername = await User.findOne({ username: req.body.username });
+    if (existingUsername) {
+      req.flash('error', { msg: 'O username já está cadastrado.' });
+      return res.redirect('/signup');
+    }
+
+    user = new User({
       name: req.body.name,
       username: req.body.username,
       email: req.body.email,
-      password: req.body.password
+      password: req.body.password,
     });
-    user.save(function(err) {
-      req.logIn(user, function(err) {
+
+    try {
+      await user.save();
+
+      // Configuração do transporte de e-mail
+      const transporter = nodemailer.createTransport({
+        service: 'Gmail',
+        auth: {
+          user: process.env.EMAIL_USER,
+          pass: process.env.EMAIL_PASS,
+        },
+      });
+
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: user.email,
+        subject: 'Confirmação de Cadastro',
+        text: `Olá ${user.name},\n\nClique no link abaixo para confirmar seu cadastro:\n\nhttps://libreflix.org/confirm/${user._id}\n\nObrigado!`,
+      };
+
+      await transporter.sendMail(mailOptions);
+      console.log('E-mail de confirmação enviado.');
+
+      req.logIn(user, function (err) {
+        if (err) {
+          return next(err);
+        }
         res.redirect('/');
       });
-    });
-  });
 
+    } catch (error) {
+      console.error('Erro ao salvar usuário ou enviar e-mail:', error);
+      return next(error);
+    }
+  });
 };
+
 
 /**
  * GET /account
