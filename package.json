@@ -6,6 +6,9 @@
     "start": "node server.js",
     "start-dev": "nodemon server.js"
   },
+  "bin": {
+    "libreflix": "./bin/libreflix"
+  },
   "dependencies": {
     "async": "^1.5.2",
     "bcrypt-nodejs": "^0.0.3",
@@ -38,7 +41,8 @@
     "passport-github": "^1.1.0",
     "passport-local": "^1.0.0",
     "passport-twitter": "^1.0.4",
-    "uuid": "^3.1.0"
+    "uuid": "^3.1.0",
+    "webtorrent": "^2.8.5"
   },
   "devDependencies": {},
   "engines": {
