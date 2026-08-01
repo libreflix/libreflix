@@ -10,8 +10,6 @@
 
 Libreflix is a free, collaborative streaming platform that gathers independent audiovisual productions that are free to watch and thought-provoking.
 
-![Libreflix Interface](https://guilmour.org/img/blog/2018/libreflix-nacionais.jpg)
-
 ## About
 
 We advocate for new ways of sharing culture—methods that reach everyone, especially those who cannot afford it. We believe in connecting artists directly with their fans and enabling creators to build upon the work of others. Culture is science, poetry, and it belongs to everyone.
