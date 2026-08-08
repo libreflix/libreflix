@@ -1,0 +1,20 @@
+[Unit]
+Description=Libreflix Seeder Daemon
+After=network.target
+
+[Service]
+Type=simple
+User=libreflix
+WorkingDirectory=/home/decko/dev/libreflix
+ExecStart=/usr/bin/node /home/decko/dev/libreflix/bin/libreflix daemon
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+Environment="NODE_ENV=production"
+Environment="SEEDER_DIR=/var/lib/libreflix/seeder-downloads"
+Environment="LIBREFLIX_DAEMON_PORT=9876"
+#Environment="MONGODB_URI=mongodb://localhost/libreflix"
+
+[Install]
+WantedBy=multi-user.target
